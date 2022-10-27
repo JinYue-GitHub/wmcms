@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{title}</title>
+		<link rel="stylesheet" href="{templates}/static/author/css/style.css">
+		<script src="{templates}/static/author/js/font.js"></script>
+		<script src="{templates}/static/author/js/jquery.min.js"></script>
+		<script src="{templates}/static/author/js/layer.js"></script>
+	</head>
+	<body>
+		<div class="app">
+			<div class="main" id="main">
+				<div class="header">
+					<a href="javascript:history.back(-1)" style="left: 0.1rem;" class="close">〈</a>
+				</div>
+				<div class="newBook">
+					<form name="form" id="form" method="post">
+						{隐藏表单}
+						<div class="u-f-ac inputbox">
+							<div class="otc">
+								<span class="name">分卷名字	 :</span>
+							</div>
+							<div class="input">
+								<input type="text" value="{分卷名字}" name="name" id="name">
+							</div>
+						</div>
+						<div class="u-f-ac inputbox">
+							<div class="otc">
+								<span class="name">显示顺序	 :</span>
+							</div>
+							<div class="input">
+								<input type="text" value="{分卷顺序}" id="order" name="order" placeholder="分卷的顺序。越小越靠前">
+							</div>
+						</div>
+						<div class="u-f-ac inputbox">
+							<div class="otc">
+								<span class="name">分卷介绍	 :</span>
+							</div>
+							<div class="input">
+								<textarea id="desc" placeholder="分卷简介" name="desc">{分卷简介}</textarea>
+							</div>
+						</div>
+						<div class="u-f u-f-jsb">
+							<div class="u-f">
+								{cur:vid>0}
+								<a id="delete" style="background-color: #FF5722;text-align: center;line-height: 0.6rem;" class="submit" href="{删除分卷}">删除</a>
+								{/cur}
+								<button type="button" class="submit" id="sub">保存</button>
+							</div>
+						</div>
+						
+					</form>
+				</div>
+			</div>
+		</div>
+		
+		<script>
+			
+			//保存分卷信息
+			$("#sub").click(function(){
+				var name = $("#name").val();
+				var order = $("#order").val();
+				
+				if( name == '' ){
+					layer.open({content:'对不起，分卷名字不能为空！',time: 2});
+				}else if( order == '' ){
+					layer.open({content:'对不起，显示顺序只能为数字！',time: 2});
+				}else{
+					$.ajax({
+						type:"POST",
+						url:"{url:action;author.novel_volumeedit&ajax=yes}",
+						data:$("#form").serializeArray(),
+						dataType:"json",
+						success:function(data){
+							layer.open({content:data.msg,time: 2});
+							setTimeout(function(){window.parent.location = '{小说分卷列表}';},2000);
+						},
+						async:true,
+					});
+				}
+			});
+		</script>
+	</body>
+</html>

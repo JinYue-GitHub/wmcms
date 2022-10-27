@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{title}</title>
+		<link rel="stylesheet" href="{templates}/static/author/css/style.css">
+		<script src="{templates}/static/author/js/font.js"></script>
+		<script src="{templates}/static/author/js/jquery.min.js"></script>
+		<script src="{templates}/static/author/js/layer.js"></script>
+		<script src="{templates}/static/author/js/ajaxfileupload.js"></script>
+	</head>
+	<body>
+		<div class="app">
+			<div class="header">
+				<a href="javascript:history.back(-1)" style="left: 0.1rem;" class="close">〈</a>
+			</div>
+			<div class="newBook">
+				<form name="form" method="post" action="{表单提交地址}" enctype="multipart/form-data">
+					<div class="u-f u-f-jsb">
+						<div class="left">
+							<div class="input">
+								<input type="text" name="name" placeholder="小说名" value="{名字}">
+							</div>
+							<div class="input">
+								<select name="process">
+								 {小说进程列表:}
+								 <option value="{小说进程id}" {eq:{process}:{小说进程id}}selected="selected"{/eq}>{小说进程名字}
+								 </option>
+								 {/小说进程列表}
+								</select>
+							</div>
+							<div class="input">
+								<select name="type">
+								{小说类型列表:}
+								<option value="{小说类型id}" {eq:{type}:{小说类型id}}selected="selected"{/eq}>{小说类型名字}
+								</option>
+								{/小说类型列表}
+								</select>
+							</div>
+							<div class="input">
+								{cur:id=0}
+								<select name="tid">
+								<option>选择分类</option>
+								{小说分类:父级分类=0}
+								<option value="{小说分类id}">{小说分类名字}</option>{/小说分类}
+								</select>
+								{/cur}
+								{cur:id>0}
+									{小说分类列表:}
+								  <select name="tid">
+								  {小说分类:父级分类={topid}}
+									<option value="{小说分类id}" {eq:{typeid}:{小说分类id}}selected="selected"{/eq}>{小说分类名字}</option>
+									{/小说分类}
+									</select>
+									{/小说分类列表}
+								{/cur}
+							</div>
+						</div>
+						<div class="right">
+							<input type="hidden" name="id" value="{id}">
+							<input type="hidden" name="cover" value="{封面}">
+							<img src="{封面}" id="cover" alt="" onclick="$('#hide_button').click()">
+							<input type="file" id="hide_button" class="hide_button" style="display: none;" name="hide_button"/>
+						</div>
+					</div>
+					<textarea class="edit" placeholder="小说简介" name="intro">{简介}</textarea>
+					<button class="submit" id="sub">提交</button>
+				</form>
+			</div>
+		</div>
+		
+		<script>
+			$('#hide_button').on('change',function(){
+			    $.ajaxFileUpload({
+			        url: '/wmcms/action/index.php?action=upload.novelcover', //用于文件上传的服务器端请求地址
+							type: 'post',
+			        secureuri: false, //是否需要安全协议，一般设置为false
+			        fileElementId: 'hide_button', //文件上传域的ID
+			        data:{ajax:'yes',module: 'novel',cid: '{id}'},
+			        dataType: 'json', //返回值类型 一般设置为json
+			        success: function (data)  //服务器成功响应处理函数
+			        {
+			        	alert
+			        	if( data.code == 500 ){
+			            	alert(data.msg);
+			        	}else{
+								//设置封面
+								$("#cover").attr("src", data.data.file);
+								$("[name=cover]").val(data.data.file);
+								//还原按钮
+								$('#hide_button').clone().val('');
+								$('#upload_button').val('上传新封面');
+			    		
+								alert(data.msg);
+			        	}
+			        },
+			        error: function(e) {
+			        	alert(e);
+			        } 
+			     })
+			});
+			$("#sub").click(function(){
+				var name = $("#name").val();
+				var intro = $("#intro").val();
+				var tid = $("[name=tid]").val();
+				if( name == '' ){
+					layer.open({content:'对不起，小说名字不能为空！',time: 2});
+				}else if( !isPositiveNum(tid) ){
+					layer.open({content:'对不起，请选择小说分类！',time: 2});
+				}else if( intro.length < 20 || intro.length > 1000  ){
+					layer.open({content:'对不起，描述只能在20-1000个字符之间！',time: 2});
+				}else{
+					$.ajax({
+						type:"POST",
+						url:"{表单提交地址}&ajax=yes",
+						data:$("[name=form]").serializeArray(),
+						dataType:"json",
+						success:function(data){
+							if(data.code == 200){
+								layer.open({content:data.msg,time: 2});
+								setTimeout(function(){window.parent.location = '{小说作品列表}';},2000);
+							}else{
+								layer.open({content:data.msg,time: 2});
+							}
+						},
+						async:true,
+					});
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,1 @@
+document.write('<script src="/files/js/danmu/barrager/jquery.barrager.min.js"></script>');

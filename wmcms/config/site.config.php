@@ -1,0 +1,1 @@
+<?php $C["config"]["site"]=array();?>

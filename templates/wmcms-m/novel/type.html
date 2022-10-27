@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html style="font-size: {$_COOKIE['fontsize']|default='52px'};">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=no">
+    <meta name="Keywords" content="{key}" />
+    <meta name="Description" content="desc}" />
+    <link rel="stylesheet" href="{templates}/static/css/style.css">
+    <title>{title}</title>
+</head>
+<body>
+    <div id="app">
+       <div class="x-home">
+            <div class="x-page__header van-hairline--bottom">
+                <a href="javascript:history.back();"></a>
+                <span class="x-page__title">书库</span>
+                <div class="header-menu" onclick="javascript:location.href='/';">
+                    <i class="icon-shouye-h is-active" style="font-size: 0.4rem;"></i>
+                </div>
+            </div>
+            <div class="x-page__content">
+                <div class="x-book__library">
+                    <div class="x-library__category">
+												<div class="x-category__box">
+														<div class="x-category__box--title">分类</div>
+														<div class="x-category__box--list">
+																<span class="x-category__item {cur:tid=0}is-active{/cur}"><a href="{全部小说}">全部小说</a></span>
+																{小说分类:}
+																<span class="x-category__item {cur}is-active{/cur}"><a href="{url}">{小说分类名字}</a></span>
+																{/小说分类}
+														</div>
+												</div>
+												
+												{检索分类:分类模块=小说;分类类型=条件;排序=分类顺序}
+                        <div class="x-category__box" {i:>1}style="display: none;"{/i}>
+                            <div class="x-category__box--title">{检索分类名字}</div>
+                            <div class="x-category__box--list">
+                                {检索条件:分类={检索分类id};数量=30;排序=条件顺序}
+                                <span class="x-category__item {cur}is-active{/cur}"><a href="{url}">{检索条件名字}</a></span>
+                                {/检索条件}
+                            </div>
+                        </div>
+												{/检索分类}
+                    </div>
+                    <div class="x-library__category--more">展开更多筛选项</div>
+                    <div class="x-library__books">
+                        <div class="van-list">
+                            <span>
+                                {小说列表:数量=20;}
+																{无数据}
+																<div class="nodata"><img src="{templates}/static/images/empty.png"></div>
+																{/无数据}
+                                <div class="x-book">
+                                    <div class="x-book__multi">
+                                        
+                                        <div class="x-book__coverbox">
+                                            <a href="{url}">
+                                                <img class="x-book__cover" src="{小说封面}" style="width: 1.6rem; height: 2.13333rem;">
+                                            </a>
+                                        </div>
+                                        <div class="x-book__text--multi" style="width: calc(100% - 1.6rem); height: 2.13333rem;">
+                                            <a href="{url}">
+                                                <div class="x-book__info">
+                                                    <p class="x-book__info--name">{小说名字}</p>
+                                                    <p class="x-book__info--chapter">{小说简介:30}</p>
+                                                    <p class="x-book__info--update">更新时间：{小说更新时间}</p>
+                                                    <p class="x-book__info--author">
+                                                        {小说作者}
+                                                        <span>{php}
+	                            if('{小说字数}'==0){
+	                                echo '暂未写作';
+	                            };
+	                            if('{小说字数}'<999 && '{小说字数}'>0){
+	                                echo '{小说字数}字';
+	                            };
+	                            if('{小说字数}'>999 && '{小说字数}'<9999){
+	                                echo '{运算:{小说字数}/1000}千字	';
+	                            };
+	                            if('{小说字数}'>9999 && '{小说字数}'<99999){
+	                                echo round('{运算:{小说字数}/10000}',0).'万字';
+	                            };
+	                            if('{小说字数}'>99999 && '{小说字数}'<999999){
+	                                echo round('{运算:{小说字数}/100000}',0).'十万字';
+	                            };
+	                            if('{小说字数}'>999999){
+	                                echo round('{运算:{小说字数}/1000000}',0).'百万字';
+	                            };
+                            {/php}</span>
+                                                    </p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {/小说列表}
+                            </span>
+                        </div>
+                        <div class="pages_bottom" style="display: block;margin-top: 0.4rem;">
+                            <ul class="pager">
+															<li><a href="{上一页}">«</a></li> 
+															<li><a href="{下一页}">»</a></li>
+														</ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ui-line"></div>
+        <footer class="index">
+            <div class="m-right"><p>{网站名}版权所有©2018-<span id="J_Copyright">2019</span></p></div>
+        </footer>
+    </div>
+<script type="text/javascript" src="{templates}/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="{templates}/static/js/global.js"></script>
+</body>
+</html>

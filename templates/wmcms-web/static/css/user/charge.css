@@ -1,0 +1,69 @@
+﻿@charset "utf-8";
+body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td{margin:0;padding:0}
+body{background:#f6f6f6}
+body,button,input,select,textarea{font:12px "Microsoft yahei",Arial,Helvetica,sans-serif,"宋体";color:#888}
+h1,h2,h3,h4,h5,h6{font-size:12px; font-weight:normal}
+address,cite,dfn,em,var{font-style:normal}
+code,kbd,pre,samp{font-family:courier new,courier,monospace}
+ul,ol,li{list-style:none}
+sup{vertical-align:text-top}
+sub{vertical-align:text-bottom}
+legend{color:#000}
+fieldset,img{border:0}
+button,input,select,textarea{font-size:100%;outline-style:none}
+button,input{*overflow:visible;vertical-align:middle;outline:none;border:none}
+table{border-collapse:collapse;border-spacing:0}
+img{vertical-align:top;display:inline-block;background-color:#fff}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{display:block;margin:0;padding:0}
+object,embed{outline:0}
+p{line-height:1.8}
+i{font-style: normal}
+button::-moz-focus-inner{border:0;padding:0;margin:0}
+a{text-decoration:none;outline:none;blr:expression(this.onFocus=this.blur())}
+a:hover{text-decoration:none}
+
+/* main */
+.main{width:958px;margin:0 auto;position:relative;z-index:3;margin:0 auto;margin-bottom:20px;line-height:1.8;background:#fff;border:solid 1px #dadada;-webkit-box-shadow:0px 5px 10px rgba(0,0,0,0.2);-moz-box-shadow:0px 5px 10px rgba(0,0,0,0.2);box-shadow:0px 5px 10px rgba(0,0,0,0.2);min-height:660px;_padding-bottom:100px;margin-top: 70px;}
+.layout_top ul li{float:left;font-size:15px;width:319px;height:60px;text-align:center;line-height:60px;border-bottom:1px solid #dcdcdc;background:url(../../images/user/line.jpg) left center no-repeat; }
+.layout_top ul .lineNo{background:none;}
+.layout_top ul li a{color:#666666;display:block;border-bottom:3px solid #fff;height:57px;}
+.layout_top ul li a:hover , .layout_top ul li .on{border-bottom:3px solid #4c7cc6;}
+/* cwq */
+.layout_top ul li a em {height:19px;padding:0 9px;color:#fff;background: #fe791f;border-radius: 10px;display: line-height;margin-left:10px;font-size:13px;}
+/* dcy */
+.layout_top ul li b{ position: absolute; width: 42px; height: 18px; background-color: #fe791f; color: #fff; line-height: 18px; font-size: 12px; border-radius: 12px; right: 80px; top: 22px;}
+.bc_blue{ border-color:#80B0FC!important;}
+
+
+.conTable {width:100%;}
+.conTable th {font-weight:normal;width:200px;text-align:right;font-size:14px;color:#666666;line-height:65px;vertical-align: top;padding-right:4px;}
+.conTable td {width:754px;text-align: left;line-height:65px;font-size:14px;}
+.conTable td b {color: #ef4b01;font-size: 16px;}
+
+
+/* 文本框样式 */
+.inputTxt {height: 39px; width:120px; line-height: 39px; padding: 0 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; color: #666;}
+.account { width: 250px; }
+/* 单选框样式 */
+.mutilLine .moneyRadio { display: inline-block; *display: inline; *zoom:1; padding: 0 7px; height: 39px; line-height: 39px; border: 1px solid #ccc;border-radius: 4px; font-size: 14px; background-color: #eee; color: #666; cursor: pointer; margin-right: 8px;}
+.mutilLine .moneyRadioSel { background-color: #fe791f; border-color: #fe791f; color: #fff; cursor: default; }
+.qdRadio { width: 112px; height: 31px; line-height: 31px; color:#707070; border: 2px solid #fff; float: left; text-align: left; cursor: pointer; }
+.qdRadio i {float:left;margin-right:10px;background: url(../../images/user/circle.jpg) no-repeat left top;width:20px;height:31px;display: block}
+.qdRadioSel {border-color: #4c7cc6; cursor: default; background-position: 0 -31px;}
+.qdRadioSel i {background-position: 0 -31px;}
+.qd_01 {background: url(../../images/user/bank1.jpg) no-repeat right top;}
+.qd_02 {background: url(../../images/user/bank2.jpg) no-repeat right top;}
+.qd_03 {background: url(../../images/user/bank3.jpg) no-repeat right top;}
+.qd_04 {background: url(../../images/user/bank4.jpg) no-repeat right top;}
+.qd_05 {background: url(../../images/user/bank5.jpg) no-repeat right top;}
+.qd_06 {background: url(../../images/user/bank6.jpg) no-repeat right top;}
+.qd_07 {background: url(../../images/user/bank7.jpg) no-repeat right top;}
+.qd_08 {background: url(../../images/user/bank8.jpg) no-repeat right top;}
+.qd_09 {background: url(../../images/user/bank9.jpg) no-repeat right top;}
+.qd_13 {background: url(../../images/user/bank13.jpg) no-repeat right top;}
+.qd_CMobile {background: url(../../images/user/cmobile.jpg) no-repeat right top;}
+.qd_CTelecom {background: url(../../images/user/ctelecom.jpg) no-repeat right top;}
+.qd_CUnicom {background: url(../../images/user/cunicom.jpg) no-repeat right top;width:165px;}
+/* 按钮样式 */
+.btn { display:block; width:117px; height:40px; background:url(../../images/user/btn_bg.jpg) no-repeat; text-align:center; line-height:40px; color:#fff; cursor:pointer; font-size:16px;}
+.commonBtn {display:inline-block;_zoom:1;height:30px;line-height:30px;border-radius: 5px;padding:0 14px;color:#fff;font-size:13px;background: #4e75c0;}

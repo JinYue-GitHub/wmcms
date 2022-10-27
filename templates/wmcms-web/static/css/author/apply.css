@@ -1,0 +1,87 @@
+@charset "utf-8";.authorInfoForm
+.tabBox{padding:25px
+0 0 82px}.infoListWrap{width:810px;padding-bottom:100px}.infoListWrap
+li{position:relative;min-height:30px;margin-bottom:20px;padding-left:104px;line-height:30px;font-size:14px;*zoom:1}.infoListWrap li
+p.tip{margin-left:5px;font:12px/30px "Microsoft YaHei";color:#999}.infoListWrap li
+em{position:absolute;top:0;left:0;width:90px;line-height:30px;text-align:right;font:14px/30px "Microsoft YaHei";color:#858585}.infoListWrap
+li.line{border-bottom:1px solid #E6E6E6;margin:25px
+0}.infoListWrap li.headPhoto
+em{top:16px}.infoListWrap li.headPhoto
+.button{position:absolute;z-index:1;top:5px;left:180px;width:94px;height:30px}.infoListWrap li.headPhoto
+i{position:absolute;top:40px;left:180px;font-size:12px;color:#999}.infoListWrap li.headPhoto
+input{position:absolute;z-index:2;top:4px;left:180px;width:94px;height:30px;font-size:26px \9;cursor:pointer;opacity:0;*left:174px;filter:alpha(opacity=0)}.infoListWrap li.headPhoto
+img{width:64px;height:64px;border-radius:100%}.infoListWrap li
+.approve{display:inline-block;vertical-align:middle;margin:-3px 0 0 5px}.infoListWrap li
+label{font:14px/30px "Microsoft YaHei"}.infoListWrap li
+label.fl{margin-right:25px}.infoListWrap li
+input.midInput{border:1px
+solid #DDD;width:373px;height:28px;padding-left:5px;font-family:"Microsoft YaHei";line-height:26px;vertical-align:middle}.infoListWrap li
+input.minInput{border:1px
+solid #DDD;width:150px;height:28px;padding-left:5px;line-height:26px;vertical-align:middle}.infoListWrap li
+select{display:inline-block;visibility:visible;border:1px
+solid #DDD;height:30px;margin-right:4px;font:14px/30px "Microsoft YaHei";vertical-align:middle;filter:alpha(opacity=100)}.infoListWrap li
+select.w100{width:100px}.infoListWrap li
+select.w120{width:124px}.infoListWrap li
+select.w180{width:252px;margin-right:0}.infoListWrap li
+select.w200{width:276px;margin-right:0}.infoListWrap li
+select.w300{width:380px}.infoListWrap li
+input.papersInput{width:269px}.infoListWrap li
+input.w245{width:245px}.place{margin-top:20px}.place
+textarea{border:1px
+solid #DDD;width:369px;height:50px;padding-left:5px}.reworkBox .extend,.where{display:none}.reworkBox .extend
+.checkBox{margin:10px
+5px 0 0}.reworkBox .extend
+p{overflow:hidden;*zoom:1}.reworkBox .extend
+p.other{padding:5px
+0 0}.reworkBox .extend p.other
+input{margin-right:20px}.infoBtn{padding:10px
+0 0 104px}.infoBtn
+.button{display:inline-block;width:180px;height:36px;font:14px/36px "Microsoft YaHei"}.modifyBox{font-size:14px;display:none}.modifyBox p
+i.f12{padding-left:5px}.saveBox{min-height:32px;font:14px/30px "Microsoft YaHei"}.photo-box{position:relative}.photo-box
+p{border:1px
+solid #DDD;width:138px;height:188px;background:#F0F0F0}.photo-box p
+img{position:absolute;z-index:2;top:1px;left:1px}.photo-box .upload-box{position:absolute;top:0;left:160px;display:none}.photo-box .upload-box
+input{position:absolute;top:0;width:98px;height:28px;font-size:22px;opacity:0;filter:alpha(opacity=0)}.photo-box .upload-box
+.white{display:block;width:98px;height:28px;margin-bottom:10px}.authorApplyWrap
+h3{height:40px;padding-left:18px;font:14px/40px "Microsoft YaHei";background:#F9F9F9}.authorApplyWrap .stepTitle
+i{margin:0
+35px}.applyForm{width:550px;margin:0
+auto;padding:50px
+0 315px}.infoListWrap li
+span.agreen{margin:10px
+5px 0 0}.applyForm
+p.confirm{padding-left:104px}.applyForm p.confirm
+.button{display:inline-block;width:180px;height:36px;font:14px/36px "Microsoft YaHei"}.applyForm p.confirm
+.back{margin-left:20px;font:12px/36px "Microsoft YaHei";color:#999}.welcome
+h4{margin:20px
+0 50px;font:24px/1.8 "Microsoft YaHei";text-align:center;color:#4BC46D}.welcome h4
+span.ok{width:28px;height:24px;margin:-3px 12px 0 0;background-position:-80px -147px}.welcome
+p{margin-bottom:50px;text-align:center}.welcome center
+a{display:inline-block;width:180px;height:36px;font:14px/36px "Microsoft YaHei";vertical-align:middle}.welcome center
+.white{width:178px;height:34px;margin-left:20px}.qrZone{border-top:1px solid #E6E6E6;margin-top:126px;padding-top:12px}.qrZone
+h4{font-weight:400;color:#575757}.qrZone
+dd{overflow:hidden;padding:19px
+0 0;*zoom:1}.qrZone dl
+img{float:left;margin-right:18px}.qrZone dl
+.qrZoneInfo{float:left;width:360px}.qrZone dl .qrZoneInfo
+h5{margin-bottom:10px;font:16px/1 "Microsoft YaHei"}.qrZone dl .qrZoneInfo
+p{margin-top:38px;font-size:12px;color:#999}.accredit{position:relative;margin-left:10px}.accreditTip{position:absolute;z-index:5;top:35px;left:-88px;border:1px
+solid #DDD;width:248px;padding:4px
+0;font:12px/1.8 'Microsoft YaHei';background:#FAFAFA}.accreditTip
+i{display:block;padding:0
+10px;color:#575757}.accreditTip
+cite{position:absolute;top:-8px;left:50%;width:15px;height:8px;margin-left:-5px;background-position:-80px -20px}.cozyVoice{position:relative;padding:25px
+32px 27px 67px;background:#f1fef1;box-shadow:inset 0px -1px 0px 0px #d8f1d8;font-size:16px;color:#32d079;line-height:20px}.cozyVoice
+.cozyIcon{position:absolute;left:32px;top:50%;height:32px;width:23px;margin-top:-16px;background:url(../../images/author/cozy_icon.png) 0 0 no-repeat}.certForm{padding-top:96px}.certForm li
+input.midInput{width:294px}.certForm
+.certvVoice{font-size:12px;color:#999;letter-spacing:0.5px;line-height:18px}.certForm .certvVoice
+strong{color:#4f4f4f}.certForm p.confirm
+.button{width:148px}.ml20{margin-left:20px}.certForm
+.darkLink{font-size:14px;color:#999;line-height:14px}.certForm li
+input.input200{border:1px
+solid #DDD;width:193px;height:28px;padding-left:5px;line-height:26px;vertical-align:middle}.certForm
+.sendCodeBtn{display:inline-block;margin-left:5px;height:28px;width:89px;font-size:12px;vertical-align:middle}.certForm .disableSend,.certForm .disableSend:hover{border-color:#b5daf1;background:#b5daf1;cursor:not-allowed}.infoListWrap li
+select.ww300{width:300px;margin-right:0}.card-img{border:1px
+solid #d9d9d9;width:128px;height:160px;margin-bottom:16px}.upload-box{position:relative;width:360px}.upload-box
+.button.white{display:block;width:98px;height:28px;margin-bottom:16px;font:14px/28px 'Microsoft YaHei';color:#999}.upload-box
+input{position:absolute;top:0;left:0;width:100px;height:30px;font-size:22px;opacity:0;filter:alpha(opacity=0)}

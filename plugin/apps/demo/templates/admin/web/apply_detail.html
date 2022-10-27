@@ -1,0 +1,33 @@
+<style>
+.form-horizontal .row {display: table;width: 100%;}
+.form .row {margin-top: 15px;}
+.form-horizontal .form-label {margin-top: 8px;cursor: text;text-align: right;padding-right: 10px; font-size: 14px;font-weight: normal;}
+</style>
+
+<div class="bjui-pageContent">
+	<form class="form form-horizontal">
+    <div class="row cl">
+		<label class="form-label col-md-3">申请用户：</label>
+    	<div class="formControls col-md-8">
+    		<input type="text" class="form-control" value="{php}echo C('plugin.data.message_name');{/php}">
+    	</div>
+    </div>
+    <div class="row cl">
+		<label class="form-label col-md-3">申请手机号：</label>
+    	<div class="formControls col-md-8">
+        	<input type="text" class="form-control"  value="{php}echo C('plugin.data.message_phone');{/php}">
+    	</div>
+    </div>
+    <div class="row cl">
+		<label class="form-label col-md-3">申请时间：</label>
+    	<div class="formControls col-md-8">
+    		<input type="text" class="form-control"  value="{php}echo date('Y-m-d H:i:s',C('plugin.data.message_time'));{/php}">
+    	</div>
+    </div>
+    </form>
+</div>
+<div class="bjui-pageFooter">
+    <ul>
+        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> 关闭</button></li>
+    </ul>
+</div>

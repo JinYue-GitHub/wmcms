@@ -1,0 +1,1 @@
+<script type="text/javascript">$(document).ready(function(){$(this).alertmsg("info", "暂未开通!")});</script>

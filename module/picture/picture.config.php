@@ -1,0 +1,1 @@
+<?php $pictureConfig=array('par_picture' => '0','par_replay' => '0','admin_add' => '1','user_add' => '1','dingcai_open' => '1','score_open' => '1','replay_open' => '1','score_login' => '1','search_open' => '1','dingcai_count' => '1','score_count' => '1','search_time' => '3','replay_login' => '1',);?>

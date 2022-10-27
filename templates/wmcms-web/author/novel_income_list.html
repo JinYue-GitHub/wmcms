@@ -1,0 +1,113 @@
+{header:author/inc_header.html}
+{header:author/inc_toper.html}
+{header:author/inc_nav.html}
+<script>
+$(document).ready(function(){
+	$("#income").addClass("act");
+});
+</script>
+<link rel="stylesheet" type="text/css" href="{templates}/static/css/author/income_base.css">
+<link rel="stylesheet" type="text/css" href="{templates}/static/css/author/base.css">
+<link rel="stylesheet" type="text/css" href="{templates}/static/css/author/income.css">
+<style>
+.mainWrap{margin-top:33px}
+.whereBox{float:left;margin-right:10px;}
+.whereBox select{visibility: inherit;border: 1px solid #DEDADA;height: 30px;border-radius: 5px;}
+</style>
+
+<div class="mainRight pb260 fl">
+	<div class="crumbsWrap"> <i><span>收入管理</span></i> </div>
+	<div class="tabSwitch cf">
+	    <span {cur:type=all}class="act"{/cur}><a href="{小说收入列表}">总收入</a></span>
+	    <span {cur:type=props}class="act"{/cur}><a href="{小说收入列表:props}">道具收入</a></span>
+	    <span {cur:type=reward}class="act"{/cur}><a href="{小说收入列表:reward}">打赏收入</a></span>
+	    <span {cur:type=sub}class="act"{/cur}><a href="{小说收入列表:sub}">订阅收入</a></span>
+	</div>
+	<div class="incomeWrap">
+		<div class="filter-box income cf">
+			<em>您当前共有 {用户金币2数量} {金币2名字}</em>
+			<a class="button" href="{提现申请}">申请提现</a>
+		</div>
+		<div class="filter-box income cf" style="display:none">
+			<em>查看方式：</em>
+			<div class="whereBox">
+				<select name="nid">
+					<option value="">全部</option>
+					{！--小说列表:数量=10}<option value="{小说id}">{小说名字}</option>{/小说列表--！}
+				</select>
+				<select name="year" id="year">
+					<option value="0">全部</option>
+				</select>
+				<select name="month" id="month">
+					<option value="0">全部</option>
+				</select>
+			</div>
+			<a class="button" href="javascript:" id="searchBtn">查看</a>
+		</div>
+
+    	<div class="reserveListWrap">
+        	<h3 class="reserveTitle"><em class="icon reward"></em>收入明细</h3>
+	        <div class="detailWrap mb10">
+	            <table class="detailTable" width="100%" border="0" cellspacing="0">
+	            <colgroup>
+	                <col width="18%">
+	                <col width="10%">
+	                <col width="30%">
+	                <col width="10%">
+	                <col width="10%">
+	                <col width="28%">
+	            </colgroup>
+	            <thead>
+	                <tr>
+	                    <th>时间</th>
+	                    <th>状态</th>
+	                    <th>作品</th>
+	                    <th>收入来源</th>
+	                    <th>收入{金币2名字}</th>
+	                    <th>备注信息</th>
+	                </tr>
+	            </thead>
+                <tbody>
+                	{收入列表:数量=20;排序=收入时间}
+	                {无数据}<tr><td colspan="6">暂无任何数据</td></tr>{/无数据}
+	                <tr>
+	                    <td>{收入时间}</td>
+	                    <td>{收入状态}</td>
+	                    <td>{收入作品}</td>
+	                    <td>{收入来源}</td>
+	                    <td>{收入金币2}</td>
+	                    <td>{收入备注}</td>
+	    			</tr>
+	    			{/收入列表}
+	    			<tr>
+	                    <td colspan="6">
+	                    <a href="{第一页}">首页</a> . 
+	                    <a href="{上一页}">上一页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	                    	共{当前页}/{总页数}页 &nbsp;&nbsp;&nbsp;&nbsp;
+	                    <a href="{下一页}">下一页</a> . 
+	                    <a href="{最后页}">末页</a>
+	                    </td>
+	    			</tr>
+				</tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{header:author/inc_footer.html}
+<script>
+$(document).ready(function(){
+	var d = new Date();
+	var year = d.getFullYear();
+	var month = d.getMonth()+1;
+	var yearHtml = monthHtml = '';
+	for(var i=0;i<5;i++){
+		yearHtml += '<option value="">'+(year-i)+'年</option>';
+	}
+	for(var i=1;i<=12;i++){
+		monthHtml += '<option value="">'+i+'月</option>';
+	}
+	$("#year").append(yearHtml);
+	$("#month").append(monthHtml);
+});
+</script>

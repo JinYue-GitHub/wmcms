@@ -1,0 +1,104 @@
+{header:user/inc_header.html}
+<style>
+#pbbs,#psts .pf_l{overflow: hidden;border: solid #f4f4f4;border-width: 2px 2px 1px 1px;}
+#pbbs div,#psts .pf_l div{float: left;width: 357px;border-bottom: 1px solid #f4f4f4;}
+#pbbs span,#psts .pf_l span{padding: 11px 0 11px 10px;display: inline-block;color: #5a5a5a;}
+#pbbs .th,#psts .pf_l .th{width: 84px;border: solid #f4f4f4;border-width: 0 1px 0 1px; color: #acacac;}
+#psts{margin-top: 20px;}
+
+.textCenter{text-align: center;width: 100%;}
+.textCenter input{border: 1px solid #e0dfdf;border-radius: 5px;height:25px;width:150px}
+.textCenter button{cursor: pointer;background: #fd6440;width: 80px;border: 0px;border-radius: 5px;font-size: 14px;color: white;}
+</style>
+<div id="ct" class="ct2 wp cl">
+	<div class="mn">
+		<div class="bm">
+			<div class="bm_h">
+				<span class="xi2 y"><a href="{提现记录}" style="color:red">提现记录</a></span>
+				<h1 class="mt">在线提现申请</h1>
+			</div>
+			<div class="bm_c">
+				<div class="bm_c u_profile">
+				    <div class="pbm mbm bbda cl" style="position: relative;">
+						<div style="clear: both"></div>
+						<div id="pbbs" class="pf_l">
+							<div><span class="th">账户余额</span><span>{用户余额}</span></div>
+							<div><span class="th">提现手续费</span><span>{提现手续费} %</span></div>
+							{开启梦宝兑换余额}
+							<div><span class="th">{金币2名字}</span><span>{用户金币2数量} {金币2单位}</span></div>
+								<div><span class="th">兑换比例</span><span>1({金币2名字})：{兑换余额比例}(余额≈{梦宝兑换余额数量})</span></div>
+							{/开启梦宝兑换余额}
+							
+							<div style="width: 100%;"><span class="th">预计可提现</span><span>{可提现金额} 元</span></div>
+							
+							{关闭提现}
+							<div class="textCenter">
+								<span>对不起，提现功能已经关闭</span>
+							</div>
+							{/关闭提现}
+							{开启提现}
+							<div class="textCenter" style="width: 100%;">
+								<span><input class="pt" type="text" id="money" autocomplete="off" placeholder="单位元，最低提现{最低提现金额}元"> <button id="sub">立即提现</button>
+								&nbsp;&nbsp;实际到账 <b style="color:red" id="real">0</b> 元
+							</div>
+							{/开启提现}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="sd">
+		<div id="pcd" class="bm cl">
+			<div class="bm_c">
+				<div class="hm">
+					<p><a href="{头像设置}" class="avtm"><img src="{用户头像}"></a></p>
+					<h2 class="xs2">{用户昵称}</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="/files/js/common.js"></script>
+<script>
+$(function(){
+	$("#money").keyup(function(){
+		var money = $(this).val();
+		if( isPositiveNum(money) == false){
+			$(this).val('0');
+			easydialog_autoclose("对不起，请输入正整数！");
+		}
+		$("#real").html(Math.floor($(this).val()*((100-{提现手续费})/100)*100)/100);
+    });
+	$("#sub").click(function(){
+		var money = $("#money").val();
+		if(money < {最低提现金额}){
+			easydialog_autoclose("对不起，最低需要提现{最低提现金额}元！");
+		}if( !isPositiveNum(money) ){
+			$("#money").val('');
+			easydialog_autoclose("对不起，请输入正整数！");
+		}else if(money > {可提现金额}){
+			easydialog_autoclose("对不起，提现金额不能超过您的余额！");
+		}else if({是否开启提现} == 0 ){
+			easydialog_autoclose("对不起，提现功能已经关闭！");
+		}else{
+			//提现操作
+			$.ajax({
+				type:"POST",
+				url:"{url:action;finance.cash_apply&ajax=yes}",
+				data:{'money':money},
+				dataType:"json",
+				success:function(data){
+					if(data.code==200){
+						easydialog_autoclose(data.msg,'success',2000);
+						setTimeout(function(){window.parent.location.reload();},2000);
+					}else{
+						easydialog_autoclose(data.msg,'',2000);
+					}
+				}
+			});
+		}
+	})
+})
+</script>
+{footer:user/inc_footer.html}

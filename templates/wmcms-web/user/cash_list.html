@@ -1,0 +1,55 @@
+{header:user/inc_header.html}
+<div id="ct" class="ct2 wp cl">
+	<div class="mn">
+		<div class="bm">
+			<div class="bm_h">
+				<span class="xi2 y"><a href="{提现申请}" style="color:red">申请提现</a></span>
+				<h1 class="mt">提现申请记录</h1>
+			</div>
+			<div class="bm_c">
+				<div class="tl">
+					<table cellspacing="0" cellpadding="0">
+						<tbody>
+							<tr class="th">
+								<td class="icn">编号</td>
+								<td>订单状态</td>
+								<td>提现金额</td>
+								<td>实际到账（手续费{提现手续费}%）</td>
+								<td>提现时间</td>
+							</tr>
+							{提现列表:数量=5}
+							<tr>
+								{无数据}<td colspan="5"><p class="emp">还没有申请过提现</p></td>{/无数据}
+								<td>{提现id}</td>
+								<td style="color:{处理中}red{/处理中}{已处理}green{/已处理}{已拒绝}#C3C1C1{/已拒绝}">{提现处理状态}</td>
+								<td>{提现申请金额}</td>
+								<td>{提现实际到账}</td>
+								<td>{提现申请时间}</td>
+							</tr>
+							{/提现列表}
+							<tr>
+								<td colspan="5" style="text-align:center">
+									<a href="{第一页}">第一页</a> . <a href="{上一页}">上一页</a>
+									共{当前页}/{总页数}页 
+									<a href="{下一页}">下一页</a> . <a href="{最后页}">最后页</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="sd">
+		<div id="pcd" class="bm cl">
+			<div class="bm_c">
+				<div class="hm">
+					<p><a href="{头像设置}" class="avtm"><img src="{用户头像}"></a></p>
+					<h2 class="xs2">{用户昵称}</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{footer:user/inc_footer.html}

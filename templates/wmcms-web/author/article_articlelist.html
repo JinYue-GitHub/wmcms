@@ -1,0 +1,87 @@
+{header:author/inc_header.html}
+{header:author/inc_toper.html}
+{header:author/inc_nav.html}
+<script>
+$(document).ready(function(){
+	$("#article").addClass("act");
+});
+</script>
+<link rel="stylesheet" type="text/css" href="{templates}/static/css/author/novellist.css">
+
+<div class="mainRight fl">
+    <div class="crumbsWrap">
+        <i><span>投稿管理</span></i>
+    </div>
+    <div class="msgBoxTitle">
+        <p class="f12 c555">当前投稿总数<span id="bookCount" class="blue Num">{总数据}</span>篇</p>
+        <a class="create button" href="{文章投稿}"><em class="icon"></em>立即投稿</a>
+        <a class="button white" href="{文章草稿箱列表}">草稿箱</a>
+    </div>
+    
+    <!-- 存在作品 -->
+    <div id="bookManageExist" class="worksCtrlWrap">
+        <div class="worksListWrap mb20">
+            <table class="worklist-table" width="100%" border="0" cellspacing="0">
+                <colgroup>
+                    <col width="32px">
+                    <col width="250px">
+                    <col width="80px">
+                    <col width="80px">
+                    <col width="80px">
+                    <col width="60px">
+                    <col width="60px">
+                    <col width="130px">
+                    <col width="80px">
+                </colgroup>
+                <thead>
+	                <tr>
+	                    <th></th>
+	                    <th class="tl">文章标题</th>
+	                    <th class="center">文章分类</th>
+	                    <th class="center">文章编辑</th>
+	                    <th class="center">审核状态</th>
+	                    <th class="center">点击量</th>
+	                    <th class="center">评论量</th>
+	                    <th class="center">投稿时间</th>
+	                    <th class="center">操作</th>
+	                </tr>
+                </thead>
+                <tbody id="novelList">
+               		{文章列表:数量=20;排序=时间}
+               		{无数据}
+               		<tr class="active">
+	               		<td colspan="9">
+						    <div class="worksCtrlWrap">
+						        <div class="null"><p>你还没有进行过投稿，<a class="button" style="color: #FFF;" href="{文章投稿}">立即投稿</a></p></div>
+						    </div>
+					    </td>
+				    </tr>
+				    {/无数据}
+                	<tr style="background: #FFFFFF;">
+                		<td></td>
+                		<td class="tl"><a href="{url}" target="_blank">{文章标题}</a></td>
+                		<td class="center">{文章分类名字}</td>
+                		<td class="center">{文章编辑}</td>
+                		<td class="center">{文章状态}</td>
+                		<td class="center">{文章阅读量}</td>
+                		<td class="center">{文章评论量}</td>
+                		<td class="center">{文章发布时间}</td>
+                		<td class="center"><div class="dib-wrap"><a class="button blue" href="{eurl}" title="编辑"><span class="icon"></span><i>编辑</i></a></div>
+                		</tr>
+                	{/文章列表}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+</div>
+{header:author/inc_footer.html}
+<script>
+$(document).ready(function(){
+	$("#novelList tr").hover(function(){
+		$(this).css('background','#F6FBFF');  
+    },function(){  
+		$(this).css('background','#FFFFFF');
+    })  
+});
+</script>

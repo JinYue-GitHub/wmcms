@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<config> 
+	<name>QQ</name>
+	<author>WMCMS官方</author>
+	<apply>replay,editor</apply>
+	<number>40</number>
+	<url>{i}.gif</url>
+</config> 

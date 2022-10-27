@@ -1,0 +1,139 @@
+{header:user/inc_header.html}
+<!-- 弹窗组件 -->
+<script type="text/javascript" src="/files/js/easydialog/easydialog.js"></script>
+<link href="/files/js/easydialog/easydialog.css" rel="stylesheet"  media="screen" type="text/css"/>
+<script>
+$(document).ready(function(){
+	$("#nv").find("li a").eq("5").addClass("nvcur");
+});
+</script>
+<style>
+h2{font-size: 14px;}
+.xw0{margin-left: 15px;font-size: 12px;}
+.pf_l li{float: left;width: auto;margin-right: 35px;color: #5a5a5a;}
+.pf_l em{padding-right: 2px;}
+.bm_h{height: 32px;line-height: 36px;}
+.table_show,#pcr{border: 2px solid #f4f4f4;width: 100%;margin: 15px 0;}
+.table_show th,.table_show td,#pcr td,#pcr th{padding: 11px 0 11px 8px;}
+.table_show th,#pcr th{color: #acacac;}
+.table_show td,#pcr td{color: #5a5a5a;}
+.md_ctrl{margin: 15px 0;}
+.block_title{padding-bottom: 8px;border-bottom: 1px dashed #cdcdcd;}
+.group_show{position: absolute;top: 0px;right: 0px;}
+.group_show li{float: left;margin-left: 30px;}
+#pbbs,#psts .pf_l{overflow: hidden;border: solid #f4f4f4;border-width: 2px 2px 1px 1px;}
+#pbbs div,#psts .pf_l div{/*float: left;width: 357px;*/border-bottom: 1px solid #f4f4f4;}
+#pbbs span,#psts .pf_l span{padding: 11px 0 11px 10px;display: inline-block;color: #5a5a5a;}
+#pbbs .th,#psts .pf_l .th{width: 84px;border: solid #f4f4f4;border-width: 0 1px 0 1px; color: #acacac;}
+#psts{margin-top: 20px;}
+.clear{clear: both;}
+.folatright{float: right;}
+.mar{margin-right: 15px;}
+.htitle{width: 70px;height: 30px;cursor: pointer;}
+.htitlehover{border-bottom: #FD6440 2px solid;}
+</style>
+
+<div id="ct" class="ct2 wp cl">
+	<div class="mn">
+		<div class="bm">
+			<div class="bm_h" style="line-height: 33px;">
+				<div style="width: 155px;">
+					<h1 id="t2" class="mt folatright htitle">修改财务信息</h1>
+					<h1 id="t1" class="mt mar htitle htitlehover">修改个人资料</h1>
+				</div>
+			</div>
+			<div class="clear"></div>
+			<div class="bm_c" id="basic" style="display:block">
+				<div class="bm_c u_profile">
+					<form class="search-box" method="POST" action="{表单提交地址}">
+				    <div class="pbm mbm bbda cl" style="position: relative;">
+						<div style="clear: both"></div>
+						<div id="pbbs" class="pf_l">
+							<div><span class="th">昵称</span><span><input type="text" class="px" name="nickname" maxlength="16" value="{用户昵称}" /></span> <span style="color: #acacac;">昵称只能为2-10个字符!</span></div>
+							<div><span class="th">q　　q</span><span><input type="text" class="px" name="qq" maxlength="30" value="{用户qq}" /></div>
+							
+							<div><span class="th">性　　别</span><span><input name="sex" type="radio" value="1" {eq:1:{用户性别码}}checked=""{/eq}>男 <input name="sex" type="radio" value="2" {eq:2:{用户性别码}}checked=""{/eq}>女</span></div>
+							
+							<div><span class="th">出生日期</span><span><input type="date" class="px" name="birthday" maxlength="30" value="{用户出生日期}" /></span></div>
+
+							<div><span class="th">个性签名</span><span><textarea cols="60" name="sign" class="px" style="height:70px">{用户签名}</textarea></span></div>
+							
+							<button type="submit" value="true" class="pn3"><img src="{templates}/static/images/home_save_btn.png"></button>
+						</div>
+					</div>
+					</form>
+				</div>
+			</div>
+			<div class="bm_c" id="finance" style="display:none">
+				<div class="bm_c u_profile">
+					<form class="search-box" method="POST" action="{财务表单提交地址}"  onsubmit="return FinacneCheck(this)">
+				    <div class="pbm mbm bbda cl" style="position: relative;">
+						<div style="clear: both"></div>
+						<div id="pbbs" class="pf_l">
+							<div><span class="th">真实姓名</span><span><input type="text" class="px" name="realname" value="{用户真实姓名}" /></span> <span style="color: #acacac;">和身份证上的姓名一致!</span></div>
+							
+							<div><span class="th">身 份 证</span><span><input size="40" type="text" class="px" name="cardid" value="{用户身份证}" /> <span style="color: #acacac;">身份证号码!</span></div>
+							
+							<div><span class="th">联系地址</span><span><input size="40" type="text" class="px" name="address" value="{用户联系地址}" /></div>
+							
+							<div><span class="th">邮　　编</span><span><input type="text" class="px" name="zipcode" value="{用户邮编}" /></div>
+							
+							<div><span class="th">支 付 宝</span><span><input size="40" type="text" class="px" name="alipay" value="{用户支付宝}" /> <span style="color: #acacac;">支付宝和银行卡只填其中一项即可!</span></div>
+							
+							<div><span class="th">开 户 行</span><span><input size="30" type="text" class="px" name="bank" value="{用户开户行}" /></div>
+							
+							<div><span class="th">持 卡 人</span><span><input type="text" class="px" name="bankmaster" value="{用户持卡人}" /></div>
+							
+							<div><span class="th">银行卡号</span><span><input size="40" type="text" class="px" name="bankcard" value="{用户银行卡号}" /></div>
+							
+							<div><span class="th">开户行地址</span><span><input size="40" type="text" class="px" name="bankaddress" value="{用户开户行地址}" /></div>
+							
+							
+							<button type="submit" value="true" class="pn3"><img src="{templates}/static/images/home_save_btn.png"></button>
+						</div>
+					</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="sd">
+		<div id="pcd" class="bm cl">
+			<div class="bm_c">
+				<div class="hm">
+					<p><a href="{头像设置}" class="avtm"><img src="{用户头像}"></a></p>
+					<h2 class="xs2">{用户昵称}</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+$(document).ready(function(){
+	$("#t1").click(function(){
+		$("#t2").removeClass("htitlehover");
+		$(this).addClass("htitlehover");
+		$("#finance").hide();
+		$("#basic").show();
+	});
+	$("#t2").click(function(){
+		$("#t1").removeClass("htitlehover");
+		$(this).addClass("htitlehover");
+		$("#basic").hide();
+		$("#finance").show();
+	});
+});
+
+function FinacneCheck(a){
+	if( $("[name=realname]").val() == '' || $("[name=cardid]").val() == '' || $("[name=address]").val() == '' || $("[name=zipcode]").val() == ''){
+		easydialog_alert("对不起，真实姓名、身份证、联系地址和邮编必须填写！");
+	}else if($("[name=alipay]").val() == '' && ($("[name=bank]").val() == '' || $("[name=bankmaster]").val() == ''
+			|| $("[name=bankcard]").val() == '' || $("[name=bankaddress]").val() == '')){
+		easydialog_alert("对不起，银行和支付宝必须填写一项！");
+	}else{
+		return true;
+	}
+	return false;
+}
+</script>
+{footer:user/inc_footer.html}

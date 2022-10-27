@@ -1,0 +1,1 @@
+<?php $C["config"]["domain"]=array('article' => array('domain'=>'','index'=>'index'),'bbs' => array('domain'=>'','index'=>'index'),'app' => array('domain'=>'','index'=>'index'),'user' => array('domain'=>'','index'=>'homne'),'link' => array('domain'=>'','index'=>'index'),'author' => array('domain'=>'','index'=>'index'),'novel' => array('domain'=>'','index'=>'index'),);?>

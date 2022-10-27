@@ -1,0 +1,68 @@
+{header:user/inc_header.html}
+<script>
+$(document).ready(function(){
+	$("#nv").find("li a").eq("7").addClass("nvcur");
+});
+</script>
+<style>
+h2{font-size: 14px;}
+.xw0{margin-left: 15px;font-size: 12px;}
+.pf_l li{float: left;width: auto;margin-right: 35px;color: #5a5a5a;}
+.pf_l em{padding-right: 2px;}
+.bm_h{height: 32px;line-height: 36px;}
+.table_show,#pcr{border: 2px solid #f4f4f4;width: 100%;margin: 15px 0;}
+.table_show th,.table_show td,#pcr td,#pcr th{padding: 11px 0 11px 8px;}
+.table_show th,#pcr th{color: #acacac;}
+.table_show td,#pcr td{color: #5a5a5a;}
+.md_ctrl{margin: 15px 0;}
+.block_title{padding-bottom: 8px;border-bottom: 1px dashed #cdcdcd;}
+.group_show{position: absolute;top: 0px;right: 0px;}
+.group_show li{float: left;margin-left: 30px;}
+#pbbs,#psts .pf_l{overflow: hidden;border: solid #f4f4f4;border-width: 2px 2px 1px 1px;}
+#pbbs div,#psts .pf_l div{/*float: left;width: 357px;*/border-bottom: 1px solid #f4f4f4;}
+#pbbs span,#psts .pf_l span{padding: 11px 0 11px 10px;display: inline-block;color: #5a5a5a;}
+#pbbs .th,#psts .pf_l .th{width: 84px;border: solid #f4f4f4;border-width: 0 1px 0 1px; color: #acacac;}
+#psts{margin-top: 20px;}
+.imgcode{height: 29px;}
+</style>
+
+<div id="ct" class="ct2 wp cl">
+	<div class="mn">
+		<div class="bm">
+			<div class="bm_h"><h1 class="mt">修改密码</h1></div>
+			<div class="bm_c">
+				<div class="bm_c u_profile">
+					<form class="search-box" method="POST" action="{表单提交地址}">
+					{表单锁}
+				    <div class="pbm mbm bbda cl" style="position: relative;">
+						<div style="clear: both"></div>
+						<div id="pbbs" class="pf_l">
+							<div><span class="th">旧密码</span><span><input type="password" class="px" name="oldpsw" maxlength="16" /></span> <span style="color: #acacac;">输入旧密码!</span></div>
+							
+							<div><span class="th">新密码</span><span><input type="password" class="px" name="newpsw" maxlength="30" /> <span style="color: #acacac;">只能为6-16个字符!</span></div>
+							
+							<div><span class="th">重复新密码</span><span><input type="password" class="px" name="renewpsw" maxlength="30" /> <span style="color: #acacac;">重复输入新密码!</span></div>
+							
+							{找回密码验证码开启}<div><span class="th">验证码</span><span><input type="text" class="px" name="code" size="8" />{找回密码验证码}</div>{/找回密码验证码开启}
+							
+							<button type="submit" value="true" class="pn3"><img src="{templates}/static/images/home_save_btn.png"></button>
+						</div>
+					</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="sd">
+		<div id="pcd" class="bm cl">
+			<div class="bm_c">
+				<div class="hm">
+					<p><a href="{头像设置}" class="avtm"><img src="{用户头像}"></a></p>
+					<h2 class="xs2">{用户昵称}</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{footer:user/inc_footer.html}

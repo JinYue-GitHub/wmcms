@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>{title}</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport">
+<link href="{templates}/static/css/user/charge.css" type="text/css" rel="stylesheet" />
+<style>
+.conTable{margin-top: 100px;}
+.account_box td{text-align:center;font-size:16px;}
+.money{font: 40px/1 Arial; color: #ed4259;}
+</style>
+</head>
+<body>
+    <div class="main">
+		<div class="layout_top">
+			<ul class="clearfix">
+				<li style="width:100%"><a class="on">{支付方式}支付成功</a></li>
+			</ul>
+		</div>
+
+        <div class="content pt25">
+            <table class="conTable">
+                <tr class="account_box">
+                    <td><img src="/files/images/pay/{支付标识}.jpg" width="140"><br/>{支付方式}支付</td>
+                </tr>
+                <tr class="account_box">
+                    <td><span class="money">{支付金额}</span>&nbsp;&nbsp;元</td>
+                </tr>
+                <tr class="account_box">
+                    <td style="font-size: 12px;line-height:0;color:#bbbbbb;">订单号：{订单号}</td>
+                </tr>
+                <tr class="account_box">
+					<td><a class="blue-btn" href="{用户中心}">充值完成</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>

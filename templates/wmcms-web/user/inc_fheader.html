@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />        
+<title>{title}</title>
+<meta name="keywords" content="{key}" />
+<meta name="description" content="{desc}" />
+<meta name="author" content="wmcms" />
+<meta name="copyright" content="www.weimengcms.com" />
+<link rel="stylesheet" type="text/css" href="{templates}/static/css/common.css" />
+<link rel="stylesheet" type="text/css" href="{templates}/static/css/home_space.css" />
+<link rel="stylesheet" type="text/css" href="{templates}/static/css/space.css" />
+<link rel="stylesheet" type="text/css" href="{templates}/static/css/style.css" />
+<script type="text/javascript" src="/files/js/jquery-2.0.0.min.js"></script>
+<!-- 弹窗组件 -->
+<script type="text/javascript" src="/files/js/easydialog/easydialog.js"></script>
+<link href="/files/js/easydialog/easydialog.css" rel="stylesheet"  media="screen" type="text/css"/>
+
+</head>
+
+<body>
+<style>
+.block{margin: 0 5px 10px;}
+</style>
+
+
+<div id="toptb" class="cl">
+	<div class="y">
+		{已登录}
+		<a href="javascript:void(0);" class="xw1">{用户昵称},您好！</a>
+		<a href="{退出登录}">安全退出</a>
+		{/已登录}
+		{未登录}
+		<a href="javascript:easydialog_url('user.login','登录/注册','',320,360)">您好，请先登录</a>
+		{/未登录}
+	</div>
+	<div class="z">
+		<a href="{首页}" title="WMCMS" class="xw1">返回网站首页</a>
+	</div>
+</div>
+
+<div id="hd" class="wp cl">
+	<h2 id="spaceinfoshow">
+		<strong id="spacename" class="mbn">{好友昵称}的个人中心</strong>
+	</h2>
+	
+	<div id="nv">
+	<ul>
+		<li><a href="{好友主页}">TA的主页</a></li>
+		<li><a href="{好友书架}">TA的书架</a></li>
+		<li><a href="{好友收藏}">TA的收藏</a></li>
+	</ul>
+	</div>
+</div>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{title}</title>
+		<link rel="stylesheet" href="{templates}/static/author/css/style.css">
+		<script src="{templates}/static/author/js/font.js"></script>
+		<script src="{templates}/static/author/js/jquery.min.js"></script>
+		<script src="{templates}/static/author/js/layer.js"></script>
+		<script src="{templates}/static/author/js/ajaxfileupload.js"></script>
+	</head>
+	<body>
+		<div class="app">
+			<div class="main" id="main">
+				<div class="header">
+					<a href="javascript:history.back(-1)" style="left: 0.1rem;" class="close">〈</a>
+					<a href="javascript:;" id="menu" class="more">管理</a>
+				</div>
+				
+				<div class="newBook">
+					<form name="form" id="form" method="post" action="{表单提交地址}" enctype="multipart/form-data">
+						{隐藏表单}
+						<div class="u-f u-f-jsb">
+							<div class="left">
+								<div class="input">
+									<input type="text" name="title" autocomplete="off" placeholder="文章标题" value="{标题}">
+								</div>
+								<div class="input">
+									<input type="text" name="cname" autocomplete="off" placeholder="文章短标题" value="{短标题}">
+								</div>
+								<div class="input">
+									<input type="text" name="source" autocomplete="off" placeholder="来源" value="{来源}">
+								</div>
+								<div class="input">
+									<input type="text" name="tags" autocomplete="off" placeholder="标签	" value="{标签}">
+								</div>
+								<div class="input">
+									{文章分类列表:允许投稿=是}
+									<select name="tid">
+									{文章分类:父级分类={topid};允许投稿=是}<option value="{文章分类id}" {eq:{typeid}:{文章分类id}}selected="selected"{/eq}>{文章分类名字}</option>{/文章分类}
+									</select>
+									{/文章分类列表}
+								</div>
+							</div>
+							<div class="right">
+								<input type="hidden" name="id" value="{id}">
+								<input type="hidden" name="simg" value="{缩略图}">
+								<img src="{缩略图}" id="cover" alt="" onclick="$('#hide_button').click()">
+								<input type="file" id="hide_button" class="hide_button" style="display: none;" name="hide_button"/>
+							</div>
+						</div>
+						<textarea class="edit" id="info" placeholder="简介" name="info">{简介}</textarea>
+						<script type="text/javascript" src="/files/js/wangeditor/wangeditor.js"></script>
+						<textarea id="content" name="content" style="display:none">{内容}</textarea>
+						<div id="content_editor" style="background: #FFFFFF;">{内容}</div>
+						<script type="text/javascript">
+						var editor = new window.wangEditor('#content_editor');
+						editor.customConfig.uploadImgType = 'author&module=article';
+						//监控变化，同步更新到 textarea
+						editor.customConfig.menus = [
+								'bold',
+								'head',
+								'link',
+								'italic',
+								'image',
+								'underline'
+						]
+						editor.customConfig.onchange = function (html) {
+							$('[name=content]').val(html);
+						}
+						editor.create();
+						</script>
+						<button type="button" class="submit" id="save" style="background-color: #FF5722;">保存</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		
+		<script>
+			$('#hide_button').on('change',function(){
+			    $.ajaxFileUpload({
+			        url: '/wmcms/action/index.php?action=upload.articlesimg', //用于文件上传的服务器端请求地址
+							type: 'post',
+			        secureuri: false, //是否需要安全协议，一般设置为false
+			        fileElementId: 'hide_button', //文件上传域的ID
+			        data:{ajax:'yes',module: 'article'},
+			        dataType: 'json', //返回值类型 一般设置为json
+			        success: function (data)  //服务器成功响应处理函数
+			        {
+								
+			        	if( data.code == 500 ){
+			            	layer.open({content:data.msg,time: 2});
+										$('#hide_button').clone().val('');
+										$('#upload_button').val('上传新封面');
+			        	}else{
+								//设置封面
+								$("#cover").attr("src", data.data.file);
+								$("[name=simg]").val(data.data.file);
+								//还原按钮
+								$('#hide_button').clone().val('');
+								$('#upload_button').val('上传新封面');
+									layer.open({content:data.msg,time: 2});
+			        	}
+			        },
+			        error: function(e) {
+								layer.open({content:e,time: 2});
+			        } 
+			     })
+			});
+			//发布文章
+			$("#save").click(function(){
+				var name = $("#name").val();
+				var source = $("#source").val();
+				var tags = $("#tags").val();
+				var content = $("#content").val();
+				var tid = $("[name=tid]").val();
+				
+				if( name == '' || source == '' || tags == '' || content == '' ){
+					layer.open({content:'对不起，文章名字、来源、标签、内容不能为空！',time: 2});
+				}else if( !isPositiveNum(tid) ){
+					layer.open({content:'对不起，请选择文章分类！',time: 2});
+				}else if( content.length < 20 || content.length > 50000  ){
+					layer.open({content:'对不起，描述只能在20-50000个字符之间！',time: 2});
+				}else{
+					$.ajax({
+						type:"POST",
+						url:'{url:action;author.article_articleedit&ajax=yes}',
+						data:$("#form").serializeArray(),
+						dataType:"json",
+						success:function(data){
+							layer.open({content:data.msg,time: 2});
+							if(data.code==200){
+								setTimeout(function(){window.parent.location = '{文章投稿列表}';},1000);
+							}
+						},
+						async:true,
+					});
+				}
+			});
+			function isPositiveNum(str){
+				if( str== '0' ){
+					return true;
+				}
+				var re = /^[0-9]*[1-9][0-9]*$/;
+			    return re.test(str); 
+			} 
+		</script>
+	</body>
+</html>

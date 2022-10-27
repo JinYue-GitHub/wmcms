@@ -1,0 +1,261 @@
+{header:author/inc_header.html}
+{header:author/inc_toper.html}
+{header:author/inc_nav.html}
+<script>
+$(document).ready(function(){
+	$("#main-bar").find("li").eq("1").addClass("act");
+});
+</script>
+<script type="text/javascript" src="/files/js/insertContent.js"></script>
+<link rel="stylesheet" type="text/css" href="{templates}/static/css/author/novellist.css">
+<style>
+.select{border: 1px solid #DDDDDD;height: 30px;outline: none !important;cursor: pointer;visibility: inherit;}
+.page{border-top: 1px solid #DEDEDE;border-right: 1px solid #DEDEDE;height: 29px;line-height: 28px;text-align: center;}
+.page a{font-size:14px;}
+</style>
+
+<div class="mainRight fl">
+    <div class="crumbsWrap">
+    	<i class="before"><a href="{小说作品列表}"><span>小说管理</span></a></i><em class="same"></em>
+		<i class="current"><span>{名字}</span></i>
+    </div>
+    <div class="msgBoxTitle">
+    	<a class="create button" href="{小说新建草稿}"><em class="icon"></em>新建章节</a>
+        <div class="tabSwitch cf">
+            <span><a href="{编辑小说}">编辑作品信息</a></span>
+            <span class="act"><a href="{小说草稿箱列表}">草稿箱</a></span>
+            <span><a href="{小说分卷列表}">分卷管理</a></span>
+            <span><a href="{小说章节列表}">章节管理</a></span>
+        </div>
+    </div>
+    
+    <div class="managerWrap cf">
+        <div class="mLeftList fl">
+			<div id="draftListWrap" class="leftListWrap">
+                <div class="titleBox"><p>共 {总数据}章</p></div>
+                <div class="sectionManage">
+                    <div class="slimScrollDiv">
+                    	<div class="sectionList">
+	                        <!-- 草稿列表 -->
+	                        <ul id="draftlist" style="position: absolute;height: 100%;overflow: auto;width: 100%;">
+	                        	{草稿列表:}
+	                            <li data-id="{草稿id}">
+	                            	<div class="sectionBox">
+	                            		<p><em>{草稿标题}</em></p>
+	                            		<p class="f12"><i>{草稿创建时间}  </i>共{草稿字数}字 </p>
+	                            	</div>
+	                            </li>
+	                        	{/草稿列表}
+	                        </ul>
+                    	</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    
+	    <div class="managerWrap cf" id="contentBox" style="display:none">
+	        <div class="mRightContent fl">
+	            <div class="midWrap editWrap">
+	                <form id="form" name="form" method="post">
+					{隐藏表单}
+	                    <div class="sectionViewWrap">
+	                        <div>
+	                        	<div class="sectionBtnBox cf">
+		                            <div class="titleBtn fr">
+		                                <a id="delete" class="button white" href="javascript:">删除</a>
+		                                <a id="tongji" class="button white font" href="javascript:">字数统计（<span>0</span> 字符）</a>
+		                                <a id="save" class="button white" href="javascript:">保存</a>
+		                                <a id="sub" class="button green" href="javascript:"><span class="icon "></span>发布</a>
+		                            </div>
+		                            <em class="c999">发布至：</em>
+		                            <div class="select-wrap mid" style="width: 110px;">
+			                            <select id="vid" name="vid" class="select">
+			                            	{小说分卷列表:}<option value="{小说分卷id}" {eq:{分卷id}:{小说分卷id}}selected="selected"{/eq}>{小说分卷名字}</option>{/小说分卷列表}
+			                            </select>
+		                            </div>
+	
+		                            <em class="c999">章节类型：</em>
+		                            <div class="select-wrap min">
+			                            <select id="pay" name="pay" class="select">
+			                            	{小说章节类型列表:}<option value="{小说章节类型id}" {eq:{是否上架}:{小说章节类型id}}selected="selected"{/eq}>{小说章节类型名字}</option>{/小说章节类型列表}
+			                            </select>
+		                            </div>
+		                        </div>
+							</div>
+	                        <div class="zwText">
+	                            <input style="width: 100%;" autocomplete="off" id="title" name="title" type="text" maxlength="30" placeholder="此处输入章节号与章节名。示例：“第十章 天降奇缘”">
+	                            <textarea style="width: 100%;" autocomplete="off" id="content" name="content" placeholder="请输入正文"></textarea>
+	                        </div>
+	                    </div>
+	 				</form>
+	            </div>
+	        </div>
+	    </div>
+    </div>
+ </div>
+{header:author/inc_footer.html}
+<script>
+var isCopy = false;
+$(document).ready(function(){
+	$("#draftlist li").hover(function(){
+		$(this).css('background','#E1F2FF');  
+    },function(){  
+		$(this).css('background','#FFFFFF');
+    })
+
+    //点击草稿
+	$("#draftlist li").click(function(){
+		$("#contentBox").css("display","block");
+		var did = $(this).data('id');
+		$("#title").val("");
+		$("#content").val("");
+		$("#did").val(did);
+		$.ajax({
+			type:"GET",
+			url:"{url:ajax;author.getdraft&did="+did+"}",
+			dataType:"json",
+			success:function(data){
+				$("#vid").removeAttr("selected");
+				$("#pay").removeAttr("selected");
+				if(data.code==200){
+					var thisTitle = data.data.draft_title;
+					var thisContent = data.data.draft_content;
+					var thisVid = data.data.draft_option.vid;
+					var thisPay = data.data.draft_option.pay;
+					$("#title").val(thisTitle);
+					$("#content").val(thisContent);
+					$("#tongji span").html(data.data.draft_number);
+					$("#vid option[value='"+thisVid+"']").attr("selected","selected");
+					$("#pay option[value='"+thisPay+"']").attr("selected","selected");
+				}
+			},
+			async:true,
+		});
+    })  
+    
+  	//字数统计
+	$("#tongji").click(function(){
+		var str = $("[name=content]").val();
+		easydialog_alert('当前共有'+wordsNumber(str)+'个字符！','','','');
+	});
+	//实时检查字数
+	$("#content").keyup(function(e){
+		$("#tongji span").html(wordsNumber($("[name=content]").val()));
+		//回车自动缩进
+		var keyCode = e.keyCode || e.which || e.charCode;
+		if(keyCode == 13){
+			$("#content").insertContent("　　");
+		}
+		//粘贴格式处理
+		if(isCopy == true ){
+			$(this).val($(this).val().replace(new RegExp("　　","g"), ""));
+			$(this).val($(this).val().replace(new RegExp("\n　　","g"), "\n"));
+			$(this).val($(this).val().replace(new RegExp("\n","g"), "\n　　"));
+			$(this).val("　　"+$(this).val());
+		}
+		isCopy = false;
+	});
+	//复制粘贴格式处理
+	$("#content").keydown(function(e){
+		var keyCode = e.keyCode || e.which || e.charCode;
+		var ctrlKey = e.ctrlKey || e.metaKey;
+		if(ctrlKey && keyCode == 86) {
+			isCopy = true;
+		}
+		if( $(this).val() == '' ){
+			$(this).val("　　");
+		}
+	});
+	
+	//删除
+	$("#delete").click(function(){
+		if(window.confirm("删除是不可恢复的，你确认要删除吗？")){
+			var did = $("#did").val();
+			if( !isPositiveNum(did) ){
+				easydialog_alert('对不起，草稿id错误！','','','');
+			}else{
+				$.ajax({
+					type:"POST",
+					url:"{url:action;author.draftdel&ajax=yes&did="+did+"}",
+					dataType:"json",
+					success:function(data){
+						easydialog_alert(data.msg,'','','');
+						setTimeout(function(){window.parent.location = '';},1000);
+					},
+					async:true,
+				});
+			}
+		}
+	});
+	
+	//保存草稿
+	$("#save").click(function(){
+	 	var vid = $("#vid").val();
+	 	var pay = $("#pay").val();
+	 	var title = $("#title").val();
+	 	var content = $("#content").val();
+	 	
+	 	if( !isPositiveNum(pay) ){
+	 		easydialog_alert('对不起，章节类型错误！','','','');
+	 	}else if( !isPositiveNum(vid) ){
+	 		easydialog_alert('对不起，请先添加分卷！','','','');
+	 		setTimeout(function(){window.parent.location = '{小说新建分卷}';},1000);
+	 	}else if( title == '' || content == '' ){
+	 		easydialog_alert('对不起，所有项都不能为空！','','','');
+	 	}else{
+	 		$.ajax({
+	 			type:"POST",
+	 			url:"{url:action;author.draftedit&ajax=yes}",
+	 			data:$("#form").serializeArray(),
+	 			dataType:"json",
+	 			success:function(data){
+	 				easydialog_alert(data.msg,'','','');
+	 			},
+	 			async:true,
+	 		});
+	 	}
+	});
+	
+
+
+
+	//发布章节草稿
+	$("#sub").click(function(){
+		var vid = $("#vid").val();
+		var pay = $("#pay").val();
+		var title = $("#title").val();
+		var content = $("#content").val();
+		var did = $("#did").val();
+		var contentid = $("#contentid").val();
+		var module = $("#module").val();
+		
+		if( !isPositiveNum(pay)){
+			easydialog_alert('对不起，章节类型错误！','','','');
+		}else if( !isPositiveNum(vid) ){
+			easydialog_alert('对不起，请先添加分卷！','','','');
+			setTimeout(function(){window.parent.location = '{小说新建分卷}';},1000);
+		}else if( !isPositiveNum(did) || !isPositiveNum(contentid) ){
+			easydialog_alert('对不起，草稿id和书籍id错误！','','','');
+		}else if( module == '' ){
+			easydialog_alert('对不起，草稿发布模块错误！','','','');
+		}else if( title == '' || content == '' ){
+			easydialog_alert('对不起，所有项都不能为空！','','','');
+		}else{
+			$.ajax({
+				type:"POST",
+				url:"{url:action;author.novel_chapteredit&ajax=yes}",
+				data:$("#form").serializeArray(),
+				dataType:"json",
+				success:function(data){
+					easydialog_alert(data.msg,'','','');
+					if( data.code == 200){
+						setTimeout(function(){window.parent.location = '';},1000);
+					}
+				},
+				async:true,
+			});
+		}
+	});
+});
+</script>

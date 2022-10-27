@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{title}</title>
+		<link rel="stylesheet" href="{templates}/static/author/css/style.css">
+		<script src="{templates}/static/author/js/font.js"></script>
+		<script src="{templates}/static/author/js/jquery.min.js"></script>
+	</head>
+	<body>
+		<div class="app">
+			<div class="header">
+				<a href="javascript:history.back(-1)" style="left: 0.1rem;" class="close">〈</a>
+				<a href="{创建小说}" id="more" class="more">发布新作品</a>
+			</div>
+			<div class="info">
+				<div class="gonggao">
+					{小说列表:数量=20;排序=最新入库}
+					{无数据}您还没有开始写作呢！{/无数据}
+					<div class="u-f list">
+						<div class="cover">
+							<a href="{url}">
+								<img src="{小说封面}" alt="{小说名字}">
+							</a>
+						</div>
+						<div class="info u-f1">
+							<h2><a href="{url}">{小说名字}</a></h2>
+							<h5>{小说分类名字}</h5>
+							<p>更新至 : {小说最新章节名字}</p>
+							<div class="u-f">
+								<a href="{deurl}" class="next" style="margin-right: 0.1rem;">写新章节</a>
+								<a href="{curl}" class="next" style="margin-right: 0.1rem;">发布记录</a>
+								<a href="{dlurl}" class="next">草稿箱</a>
+							</div>
+						</div>
+					</div>
+					{/小说列表}
+				</div>
+				<div class="page">
+					<a href="{上一页}">上一页</a>
+					<a href="{下一页}">下一页</a>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,494 @@
+{header:novel/header.html}
+	<link rel="stylesheet" type="text/css" href="{templates}/static/css/wmcms.page.works.css" media="screen" />
+	<script type="text/javascript">
+		var nid='{id}';
+	</script>
+	<script type="text/javascript" src="{templates}/static/js/wmcms.page.info.js"></script>
+	<style>
+	#wmcms_star{float:right;margin-right:40px;cursor: pointer;}
+	#wmcms_star img{cursor:pointer;float:left;margin:0 2px 0 0;display:inline;}
+	#novel_data ul{width:640px;}
+	#novel_data ul li{float:left;width:160px;font-size:14px;line-height:35px}
+	.recTop{width: 20px;height: 20px;display: block;float: left;text-align: center;line-height: 18px;font-size: 16px;border-radius: 25px;margin-top: 15px;margin-right: 5px;}
+	.recTop1{background: #ff4d09;color: #FFFFFF;}
+	.recTop2{background: #f89158;color: #FFFFFF;}
+	.recTop3{background: #14eb1b;color: #FFFFFF;}
+	.recTopTitle{width: 140px;height: 50px;line-height: 50px;font-size: 18px;}
+    .recTopBox{width: 1040px;line-height: 50px;padding-left: 20px;height: 50px;}
+    .recRank{
+        position: absolute;left: 495px;top: 13px;width:55px;height:0;text-align: center;
+	    border-width: 0px 35px 36px 36px;border-style:none solid solid;
+	    border-color:transparent transparent #fa9144;transform:rotate(45deg);
+	    -webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);color: #FFFFFF;line-height: 35px;font-size: 20px;
+	}
+	</style>
+</head>
+<body>
+
+{header:novel/nav.html}
+<div id="special_bg" style="padding-top:50px">
+	<div class="ui-wm ui-mb40 clearfix">
+	    <div class="ui-left works-intro-wr">
+	        <div class="works-intro clearfix">
+	            <div class="works-cover ui-left">
+	                <img src="{封面}" alt="{名字}" style="margin-left: 20px;" height="280" width="210"/>
+	                <div class="works-cover-shadow"></div>
+	                <label class="works-intro-status">{进程}</label>
+	            </div>
+	            
+	            <div class="works-intro-detail ui-left">
+	            	{推荐排名:排名类型=推荐票;排名时间=本月数据;数量=100}<div class="recRank">NO:{推荐排名名次}</div>{/推荐排名}
+	            	<div class="works-intro-text">
+	                    <div class="works-intro-head clearfix">
+	                        <h2 class="works-intro-title ui-left"><strong>{名字}</strong>（ID:{id}） <a href="{txt下载}" target="_blank">TXT在线下载</a></h2>
+	                    </div>
+	                    <div class="works-score clearfix">
+	                        <div class="works-score-act ui-left">
+		                        {评分模版}
+	                        	<label id="score-label" class="ui-left">请您评分：</label>
+	                        </div>
+	                        <p class="ui-left">
+	                        	评分：<strong class="ui-text-orange">{评分}</strong>(<span>{评分人数}</span>人评价)
+	                        </p>
+	                    </div>
+	                    <p class="works-intro-digi">
+	                       <span class="first" style="padding-right: 10px;">
+	                       	作者：<em style="max-width: 168px;">{作者}&nbsp;</em></span>
+	                       <span>人气：<em>{总点击}</em></span>
+	                       <span>总点击：<em id="coll_count">{总点击}</em></span>
+	                       <span>总藏数：<em id="coll_count">{总收藏}</em></span>
+	                       <span>总推荐：<em id="coll_count">{总推荐}</em></span>
+	                   </p>
+	                   <p class="works-intro-short ui-text-gray9">{简介}</p>
+	               </div>
+	               <div class="works-intro-opera">
+	                   <div class="ui-left">
+	                       	<p class="works-intro-tags">
+	                           <span class="ui-left">标签：</span>
+	                           <span id="tags-show" class="tags-show">
+									{标签:key={标签}}
+	                              	<a href="{surl}" class='works-intro-tags-item'>{标签标题}</a>
+									{/标签}
+	                           </span>
+	                       	</p>
+	                       	<div class="works-intro-active clearfix">
+	                       	{已阅读}<a class="works-intro-view ui-btn-orange ui-radius3" title="继续阅读{上次阅读章节名字}" href="{上次阅读}">继续阅读</a>{/已阅读}
+							{未阅读}<a class="works-intro-view ui-btn-orange ui-radius3" title="开始阅读{名字}" href="{立即阅读}">开始阅读</a>{/未阅读}
+	                           <div class="works-button-wr ">
+		                           <div id='div_collection_btn' class="ui-left">
+		                           		{未收藏}
+		                           		<a class="coll works-intro-fav ui-btn-pink" data-url="{加入收藏}" title="收藏" href="javascript:void(0);"><i class="unfav">收藏</i></a>
+		                           		{/未收藏}
+		                           		{已收藏}
+		                           		<a class="coll works-intro-fav ui-btn-pink" data-url="{加入收藏}" title="收藏" href="javascript:void(0);"><i class="hasfav">已收藏</i></a>
+		                           		{/已收藏}
+		                           		
+				                   		{未书架}
+		                           		<a class="coll works-intro-fav ui-btn-pink" data-url="{加入书架}" title="加入书架" href="javascript:void(0);"><i class="unfav">放书架</i></a>
+		                           		{/未书架}
+				                   		{已书架}
+		                           		<a class="works-intro-fav ui-btn-pink" title="已经加入书架" href="javascript:easydialog_alert('您已经添加到书架了','','no');"><i class="unfav" style="background-position:-376px -642px;">已添加</i></a>
+		                           		{/已书架}
+	                           		
+		                           		<script>
+										if( !AC.Page.cookie('user_account') ){
+											document.write('<a href="javascript:openlogin();" class="works-intro-ticket pop-month-tic ui-btn-pink" title="推荐他"><i class="icon-ticket">推荐他</i></a><a href="javascript:openlogin();" class="works-intro-playtour ui-btn-pink dashang-btn" title="打赏"><i class="icon-playtour">打赏</i></a>');
+										}else{
+											document.write('<a href="javascript:wmcms_operate(\'rec\');" class="works-intro-ticket pop-month-tic ui-btn-pink" title="推荐他"><i class="icon-ticket">推荐他</i></a><a href="javascript:wmcms_operate(\'reward\');" class="works-intro-playtour ui-btn-pink dashang-btn" title="打赏"><i class="icon-playtour">打赏</i></a>');
+										}
+										</script>
+				                        <span class="works-png-plays ">&nbsp;</span>
+		                                </div>
+				                   	</div>	
+                                </div>
+                            </div>
+                            <div class="ui-right">
+                                <p class="clearfix"><a class="works-report ui-right" href="javascript:easyDialog.open({container : 'message',});" title="催更报错">催更报错</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="works-vote clearfix">
+                    <ul class="works-vote-list ui-left clearfix">
+                        <li>
+                            <strong>{顶}</strong>
+                            <a onclick="wmcms_dingcai('ding' , 'novel' , '{id}')" class="works-vote-red works-vote-btn" href="javascript:void(0);" title="鲜花">鲜花</a>
+                            <p>鲜花</p>
+                        </li>
+                        <li>
+                            <strong>{踩}</strong>
+                            <a onclick="wmcms_dingcai('cai' , 'novel' , '{id}')" class="works-vote-black works-vote-btn" href="javascript:void(0);" title="鸡蛋">鸡蛋</a>
+                            <p>鸡蛋</p>
+                        </li>
+                        <li>
+                            <span class="border-right"></span>
+                        </li>
+                    </ul>
+                    <div id="novel_data" class="works-status ui-left">
+                    	<ul>
+                    		<li>总点击:{总点击}</li><li>日点击:{日点击}</li><li>周点击:{周点击}</li><li>月点击:{月点击}</li>
+                    	</ul>
+                    	<ul class="clear">
+                    		<li>总收藏:{总收藏}</li><li>日收藏:{日收藏}</li><li>周收藏:{周收藏}</li><li>月收藏:{月收藏}</li>
+                    	</ul>
+                    	<ul class="clear">
+                    		<li>总推荐:{总推荐}</li><li>日推荐:{日推荐}</li><li>周推荐:{周推荐}</li><li>月推荐:{月推荐}</li>
+                    	</ul>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-right">
+                <div class="works-author-wr">
+                    <div class="works-author-intro clearfix" style="height: 120px;">
+                        <a class="works-author-face ui-left" href="{cur:{作者id}>0}{作者详情}{/cur}{cur:{作者id}=0}javascript:void(0){/cur}" title="{作者}">
+                            <img src="{作者头像}" alt="{作者}"/>
+                        </a>
+                        <dl class="works-author-info ui-left" style="margin-top:25px">
+                        	<dt><a class="works-author-name" href="{cur:{作者id}>0}{作者详情}{/cur}{cur:{作者id}=0}javascript:void(0){/cur}" title="{作者}">{作者}</a></dt>
+                            <dd style="line-height: 24px;">作者等级：{作者等级}</dd>
+                            <dd style="line-height: 24px;">签约状态：{是否签约}</dd>
+                            <dd style="line-height: 24px;">是否上架：{是否上架}</dd>
+                        </dl>
+                    </div>
+                    <div class="clearfix">
+                    	<h3 class="works-author-title ui-left" style="margin-top:24px">作者公告</h3>
+	                    <p class="works-author-notice">{作者公告}</p>
+	                    <span class="works-author-robe"></span>
+	                </div>
+	                
+	                <div class="works-slider-ad" style="height:214px">
+	                    <div class="bx-wrapper mod-slider">
+		                    <div class="bx-viewport" style="height: 214px">
+		                    	<ul class="works-slider-list">
+		                    		{同作者小说:数量=5}
+		                    		{无数据}<div style="line-height:225px;text-align:center">该作者暂无其他作品</div>{/无数据}
+			                    	<li style="{i:>1} display: none;{/i}">
+			                        	<a title="{小说名字}" href="{url}" target="_blank">
+		                                    <img src="{小说封面}" alt="{小说名字}" style="height:214px">
+		                                </a>
+		                            </li>
+		                            {/同作者小说}
+		                        </ul>
+		                	</div>
+		                	<div class="bx-controls bx-has-pager bx-has-controls-direction">
+		                		<div class="bx-pager bx-default-pager">
+		                			{同作者小说:数量=5}
+		                			<div class="bx-pager-item"><a href="{url}" class="bx-pager-link {i:1}active{/i}">{i}</a></div>
+		                            {/同作者小说}
+		                        </div>
+		                		<div class="bx-controls-direction">
+			                		<a class="bx-prev" href="javascript:void(0);">Prev</a>
+			                		<a class="bx-next" href="javascript:void(0);">Next</a>
+		                		</div>
+		                	</div>
+		                </div>
+                	</div>
+            	</div>
+	        </div>
+	        
+			<!-- 粉丝列表、打赏、道具开始 -->
+			<div class="subscribe-tip-wrap ui-wm clearfix" style="margin-bottom: 20px;"></div>
+			<div class="ui-left">
+				<div class="words-bear-wr clearfix">
+                    <h3 class="words-bear-tit ui-left">支持作者</h3>
+                    <div class="words-bear-con ui-left">
+                        <p class="bear-p-xone"><span class="bear-ft-b">《{名字}》 作者：{作者}</p>
+                        <div class="bear-p-xtwo clearfix">
+                            <span class="bear-ft-b ui-left">粉丝排行：</span>
+                            <div class="bear-name ui-left">
+                                <div id="fresh-marquee" class="fresh-marquee">
+                                    <ul class="fresh-support">
+                    				{粉丝:数量=6;排序=经验值倒序}
+                    				{无数据}<li><a>本书还没有粉丝，快来抢第一吧！</a></li>{/无数据}
+                                    <li><a title="{粉丝昵称}">{粉丝昵称}[{粉丝经验值}]</a></li>
+                    				{/粉丝}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+				<div class="words-xone ui-mb20">
+					<ul id="words-xone-menu" class="words-xone-menu clearfix">
+						<li class=""><a title="除了支持" href="javascript:void(0);">礼物支持</a></li>
+                    </ul>
+                    <div id="tab-content-dashang" class="works-plays-wrap ui-dn" style="display: block;">
+                    	<div class="works-month-title">
+                       		<span class="ui-font-fb ui-f14">《{名字}》</span>
+                           	<!-- 累计被打赏 <span class="ft-plays-b" id="ft-plays-b">0次</span> -->
+                    	</div>
+                        <div class="works-plays-con clearfix">
+                            <div class="works-plays-left" style="display: block;">
+                                <ul class="works-plays-people-list">
+	                                {道具销售排行:数量=3;排序=销售排行金币2倒序}
+	                                {无数据}<li class="plays-people-li" style="line-height: 146px;text-align: center;">本书还没有粉丝，快来抢第一吧！</li>{/无数据}
+                                    <li class="plays-people-li">
+                                        <span class="plays-ico-qiz plays-ico-{i}">{i}</span>
+                                        <div class="plays-poa-wrap clearfix">
+                                            <a class="plays-people-left ui-left" title="{道具销售用户昵称}">
+                                                <span class="plays-bg-img plays-name-{i}">&nbsp;</span>
+                                                <img src="{道具销售用户头像}" width="75" height="75" alt="{道具销售用户昵称}头像">
+                                            </a>
+                                            <div class="plays-people-right ui-left">
+                                                <a title="{道具销售用户昵称}" class="plays-people-name ">{道具销售用户昵称}</a>
+                                                <p class="plays-p-dj">累计礼物价值：<span class="ft-plays-b works-ticket-number">{道具销售金币2合计}{金币2名字}</span></p>
+                                                <div class="plays-icon-xz clearfix">
+                                                    <i class="mod-honer-small mod-pay-small-3" title="豪气干云">&nbsp;</i>
+                                                </div>
+                                        	</div>
+                                    	</div>
+                                    </li>
+	                                {/道具销售排行}
+                                </ul>
+							</div>
+                            <div class="works-plays-right">
+	                            <div class="works-mc-list" style="margin-top:0px;">
+	                              <div class="works-mcplays-list-con">
+	                                 <h3 class="ui-text-gray3 ui-font-fb">《{名字}》作者“{作者}”在此跪谢：</h3>
+	                                 <div class="works-mc-list-detail" style="height:390px">
+	                                  <div class="works-msglist-content" style="height:390px">
+	                                     <ul>
+	                                     	<li style="height:390px">
+	                                     		{道具销售记录:数量=5;排序=销售倒序}
+	                                     		{无数据}<dl><dt>还没有人给本书赠送礼物呢，快来抢第一吧！</dt></dl>{/无数据}
+                                         		<dl>
+                                         			<dt>
+	                                                	<em class="name ui-left">{道具销售用户昵称}</em>
+	                                                	<span class="ui-left ui-text-gray6">赏了{道具销售数量}个价值{道具销售价格2}{金币2名字}的{道具销售名字}</span>
+	                                                	<span class="ui-right ui-text-gray6">{道具销售时间}</span>
+	                                                </dt>
+	                                                <dd class="works-mc-detail-text works-mcdetail-text2 ">
+	                                                    <i class="works-mc-detail-bor2 "></i>
+	                                                    <p title="{道具销售备注}">{道具销售备注:30}</p>
+	                                                </dd>
+	                                            </dl>
+	                                     		{/道具销售记录}
+	                                         </li>
+                                          </ul>
+                                         </div>
+                                      </div>
+                                     </div>
+                                  </div>
+                             	</div>
+                         	</div>
+                    	</div>
+                	</div>
+                </div>
+                <div class="ui-right">
+                <!-- 粉丝榜开始 -->
+                <div class="works-fanshero ui-mb20">
+                    <div class="works-fanshero-tit">
+                        <h2>粉丝打赏榜</h2>
+                    </div>
+                    <div class="works-fanshero-head clearfix">
+                        <span class="no1">排名</span>
+                        <span class="no2">打赏{金币2名字}</span>
+                    </div>
+                    <ul class="works-fanshero-list" id="fans-rank-top10">
+                    	{粉丝消费记录:数量=10;排序=消费金币2倒序}
+	                        {无数据}<li>还没有人给本书打赏呢，快来抢第一吧！</li>{/无数据}
+	                    	{i:i<4}
+		                    <li class="works-li">
+		                        <em class="works-fanshero-number fanshero-number-no{i}">{i}</em>
+		                        <div class="fanshero-people-wrap clearfix">
+		                            <a class="fanshero-people-img ui-left" title="{粉丝消费用户昵称}">
+		                                <img src="{粉丝消费用户头像}" width="63" height="63" alt="{粉丝消费用户昵称}头像">
+		                            </a>
+		                            <div class="fanshero-people-text ui-left">
+		                                <a class="fanshero-name " title="{粉丝消费用户昵称}">{粉丝消费用户昵称}</a>
+		                                <div class="fanshero-pone clearfix">
+		                                    <p class="fanshero-pone-right" style="width:auto;">
+		                                        <span class="fanshero-ft-two " style="float: initial;width: 145px;">{粉丝消费金币2}{金币2名字}</span>
+		                                    </p>
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </li>
+		                    {/i}
+	                    	{i:i>3}
+		                    <li>
+		                        <em class="fanshero-sub-number">{i}</em>
+		                        <a class="fanshero-work " title="{粉丝消费用户昵称}">{粉丝消费用户昵称}</a>
+		                        <div class="fanshero_ticket ui-left">
+		                            <span class="fanshero-ticket-two " style="width: 100px;">{粉丝消费金币2}{金币2名字}</span>
+		                        </div>
+		                    </li>
+		                    {/i}
+                    	{/粉丝消费记录}
+                    </ul>
+                    <div class="works-fanshero-foot">《{名字}》粉丝排行</div>
+                </div>
+	        </div>
+			<!-- 粉丝列表、打赏、道具结束 -->
+			<!-- 推荐贡献 -->
+			<div class="works-chapter-wr works-stack ui-wm ui-mb20" style="padding-bottom: unset;height: auto;">
+				<div class="words-bear-wr clearfix" style="width:100%">
+                    <h3 class="words-bear-tit ui-left recTopTitle" style="background: #82bee7;">日推荐贡献</h3>
+                    <div class="fresh-marquee recTopBox">
+                        <ul class="fresh-support">
+                        	{推荐贡献:数量=8;贡献时间=本日数据}
+	                         <li>{cur:i<4}<span class="recTop recTop{i}">{i}</span>{/cur}
+	                         	<a title="{推荐贡献用户昵称}总贡献{推荐贡献票数量}张">{推荐贡献用户昵称}[{推荐贡献票数量}]</a></li>
+	                         {/推荐贡献}
+                     	</ul>
+                  </div>
+                </div>
+                
+				<div class="words-bear-wr clearfix" style="width:100%">
+				<h3 class="words-bear-tit ui-left recTopTitle" style="background: #f89158;">周推荐贡献</h3>
+                    <div class="fresh-marquee recTopBox">
+                        <ul class="fresh-support">
+                        	{推荐贡献:数量=8;贡献时间=本周数据}
+	                         <li>{cur:i<4}<span class="recTop recTop{i}">{i}</span>{/cur}
+	                         	<a title="{推荐贡献用户昵称}总贡献{推荐贡献票数量}张">{推荐贡献用户昵称}[{推荐贡献票数量}]</a></li>
+	                         {/推荐贡献}
+                     	</ul>
+                  </div>
+                </div>
+                
+				<div class="words-bear-wr clearfix" style="width:100%">
+                    <h3 class="words-bear-tit ui-left recTopTitle">月推荐贡献</h3>
+                    <div class="fresh-marquee recTopBox">
+                        <ul class="fresh-support">
+                        	{推荐贡献:数量=8;贡献时间=本月数据}
+	                         <li>{cur:i<4}<span class="recTop recTop{i}">{i}</span>{/cur}
+	                         	<a title="{推荐贡献用户昵称}总贡献{推荐贡献票数量}张">{推荐贡献用户昵称}[{推荐贡献票数量}]</a></li>
+	                         {/推荐贡献}
+                     	</ul>
+                  </div>
+                </div>
+       	 	</div>
+			<!-- 推荐贡献结束 -->
+
+	        <div class="works-chapter-wr works-stack ui-wm ui-mb20">
+	            <ul class="words-xone-menu clearfix works-chapter-menu">
+	                <li class="active"><a href="{目录链接}" title="{名字}的章节列表">章节目录列表</a></li>
+                </ul>
+	            <div class="works-chapter-list-tabcon">
+	                <div class="works-chapter-list-con" id="chapter">
+	                    <div class="works-chapter-top subscribe-wrap">
+	                        <ul class="works-chapter-log ui-left">
+	                            <!-- <li><span class="ui-font-fb">上次看到：</span><a href="javascript:void(0);" class="works-unlink">--</a></li> -->
+	                            <li>
+	                           		{小说章节列表:排序=章节倒序;数量=1}
+		                            <span class="ui-font-fb">最新章：</span><a class="works-ft-new" href="{url}">{小说章节名字}</a>
+		                            <span class="ui-pl10 ui-text-gray6">{小说章节创建时间}</span>
+		                           	{/小说章节列表}
+	                            </li>
+	                        </ul>
+	                        <div class="chapter-page-pager"></div>
+	                    </div>
+	                    
+	                    <div class="works-chapter-list-wr ui-left">
+	                   		<ol class="chapter-page-new works-chapter-list">
+		                    <li>
+		                    	{小说章节列表:排序=章节倒序;数量=20}
+		                    	{无数据}<div style="line-height:225px;text-align:center;font-size:20px">该小说暂时没有开始写作</div>{/无数据}
+	                          	<p><span class="works-chapter-item"><a href="{url}" title="{小说章节名字}">{小说章节名字:19}</a></span></p>
+	                          	{/小说章节列表}
+	                        </li>
+	                        </ol>
+                        </div>
+                        <div class="clear"></div>
+                	</div>
+				</div>
+       	 	</div>
+
+			<div class="ui-right">
+		    	<div class="works-simi-wr">
+	            	<h3 class="works-title">同类推荐</h3>
+	                	<ul id="works-simi-list" class="works-simi-list">
+	                		{同标签小说:数量=4}
+	                    	<li>
+	                        	<a class="works-simi-cover" title="{小说名字}" href="{url}" target="_blank">
+	                            	<img src="{小说封面}" alt="{小说名字}">
+	                            </a>
+	                            <h5 class="works-simi-name">
+	                            	<a href="{url}" title="{小说名字}">{小说名字:8}</a>
+	                            </h5>
+	                        </li>
+	                        {/同标签小说}
+	                     </ul>
+	            	</div>
+                </div>
+                
+	       		<div class="works-more-wr works-stack ui-mb40" id="youMayLike">
+                    <h3 class="works-title-small">看过《{名字}》的人还看过....</h3>
+                    <ul id="mod-cover-list" class="mod-cover-list clearfix">
+	                	{同分类小说:数量=5}
+                        <li>
+                            <a class="mod-cover-list-thumb mod-cover-effect ui-db" title="{小说名字}" href="{url}" target="_blank">
+                                <img src="{小说封面}" alt="{小说名字}">
+                                <span class="mod-layer-mask">&nbsp;&nbsp;</span>
+                            </a>
+                            <p class="mod-cover-list-updata">
+                                <a class="mod-cover-list-mask" href="{rurl}" target="_blank" title="{小说名字}">
+                                    <span class="mod-cover-list-text">{小说最新章节名字}</span>
+                                </a>
+                            </p>
+                            <h5>
+                                <a class="mod-cover-list-name" href="{url}" target="_blank" title="{小说名字}">{小说名字:9}</a>
+                            </h5>
+                            <p class="mod-cover-list-intro" title="{小说简介:10}">{小说简介:10}</p>
+                            <p class="mod-cover-list-tag">
+                                <a class="mod-tag-item" href="{turl}" target="_blank" title="{小说分类名字}">{小说分类名字}</a>
+                            </p>
+                        </li>
+	                    {/同分类小说}
+                	</ul>
+                </div>
+
+                <div style="clear:both"></div>
+                <div id="wmcms_replay">{js评论}</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 催更报错 -->
+<div id="message" class="works-report-wr ui-dn" style="display:none;">
+	<div class="ui-popup-wr ">
+		<div class="ui-popup-content-wr">
+			<div class="ui-popup-head"><h3 class="ui-popup-title">{网站名}-催更报错 </h3></div>
+			<div class="ui-popup-content">
+				<div id="message_novel" style="display:none">{名字}</div>
+		        <ul class="works-report-list">
+		            <li class="clearfix">
+		            	<label class="works-report-label ui-left">报错作品：</label>
+		            	<h3 id="works_report_title" class="works-report-name ui-left">{名字}</h3>
+		            </li>
+		            <li>
+		            	<label class="works-report-label">报错理由：</label>
+		                <span class="works-report-radio">
+		                    <input id="type1" type="radio" checked="checked" name="type" value="【更新太慢】">
+		                    <label for="type1">更新太慢</label>
+		                </span>
+		                <span class="works-report-radio">
+		                    <input id="type2" type="radio" name="type" value="【内容错误】">
+		                    <label for="type2">章节错乱</label>
+		                </span>
+		                <span class="works-report-radio">
+		                    <input id="type3" type="radio" name="type" value="【内容错误】">
+		                    <label for="type3">内容错误</label>
+		                </span>
+		                <span class="works-report-radio">
+		                    <input id="type4" type="radio" name="type" value="【其他错误】">
+		                    <label for="type4">其他错误</label>
+		                </span>
+		            </li>
+		            <li>
+		                <textarea id="content" class="works-report-content"></textarea>
+		                <p id="content_tip" class="works-report-content-tip">请输入1-200字的详细信息</p>
+		            </li>
+		        </ul>
+		    </div>
+		    <div class="ui-popup-foot-wr">
+		    	<a class="ui-popup-btn ui-popup-callback ui-btn-orange ui-mr30" id="message_sub" href="javascript:void(0);">提交</a>
+		    	<a class="ui-popup-btn ui-btn-pale ui-popup-btn-close" href="javascript:easyDialog.close();">取消</a>
+		    </div>
+	    </div>
+	    <sub class="ui-popup-closer" onClick="easyDialog.close();">关闭</sub>
+    </div>
+</div>
+{footer:novel/footer.html}

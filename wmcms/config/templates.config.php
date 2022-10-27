@@ -1,0 +1,1 @@
+<?php $C["config"]["templates"]=array("wmcms-web"=>array("path"=>"wmcms-web","name"=>"官方-仿腾讯动漫电脑版","appid"=>"1"),"wmcms-m"=>array("path"=>"wmcms-m","name"=>"wmcms默认触屏模版","appid"=>"2"),);?>

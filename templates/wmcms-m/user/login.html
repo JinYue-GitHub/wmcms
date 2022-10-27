@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title>{title}</title>
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" href="{templates}/static/user/css/style.css">
+    <script type="text/javascript" src="{templates}/static/user/js/flexible.min.js"></script>
+    <style>
+        .code_box{width: 60%;height:1.3437rem;line-height:1.3437rem;display: block;float: right;text-align: right;}
+        .code_send_btn{width: 30%;text-align: center;background-color: #ea4136; color: #FFFFFF;border-radius: 0.2rem;}
+        .code_input{width:40%}
+    </style>
+</head>
+<body>
+	<div class="app_meskSection"></div>
+	<div class="container">
+		<div class="app_header_section2  app_scrollerHeader" id="header">
+			<div class="app_header_detail2">
+				<div class="app_header_back"></div>
+				<div class="app_header_h1">
+					登录
+					<i class="moreIco"></i>
+				</div>
+			</div>
+			<div class="app_header_second" style="display: none;">
+				<ul>
+					<li class="icon1">
+						<a href="/">首页</a>
+					</li>
+					<li class="icon2">
+						<a href="{全部小说}">书库</a>
+					</li>
+					<li class="icon3">
+						<a href="{我的书架}">书架</a>
+					</li>
+					<li class="icon4">
+						<a href="{用户中心}">账户</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="app_body">
+			<div class="app_bindPhoneBlock">
+				<div class="app_bindPhoneBlock_header">
+					<span class="app_header">
+						<img src="{templates}/static/user/images/userlogin.png"></span>
+				</div>
+				
+				<div class="app_lisLoinSpan">
+					<ul>
+						{表单锁}
+						<li class="username">
+							<input id="userphone" type="text" name="name" placeholder="请输入用户名">	
+						</li>
+						<li class="password">
+							<input id="userpass" type="password" name="psw" placeholder="请输入密码">
+						</li>
+						{登录验证码开启}
+						<li class="code" style="position: unset;padding-right: unset;">
+						    <div style="clear:both"></div>
+							{登录验证码}
+							<span class="code_input"><input id="code" type="text" name="code" placeholder="请输入验证码"></span>
+						</li>
+						{/登录验证码开启}
+					</ul>
+				</div>
+				<div class="app_listBlockButton" style="padding-top: 0.36rem">
+					<button id="loginbtn" ajax-reg='app_lisLoinSpan' url="{登录提交地址}&ajax=yes" errorback="newcode()">立即登录</button>
+				</div>
+				<div class="app_registerList">
+					<span class="public_AddFloatLeft">
+						<a href="{注册}">我要注册</a>
+					</span>
+					<span class="public_AddFloatRight">
+						<a href="{找回密码}">忘记密码</a>
+					</span>
+				</div>
+				<div class="app_dengLu_title"> <i>以下账号直接登录</i></div>
+				<div class="app_iconList app_iconList2">
+					<ul>
+						{微信公众号登录开启}
+						<li>
+							<a href="{微信公众号登录}">
+								<span><img src="{templates}/static/user/images/login-weixin.png"></span>
+								<span class="name">公众号登录</span>
+							</a>
+						</li>
+						{/微信公众号登录开启}
+						{qq登录开启}
+						<li>
+							<a href="{qq登录}">
+								<span><img src="{templates}/static/user/images/login-qq.png"></span>
+								<span class="name">QQ登录</span>
+							</a>
+						</li>
+						{/qq登录开启}
+						{微信登录开启}
+						<li>
+							<a href="{微信登录}">
+								<span><img src="{templates}/static/user/images/login-weixin.png"></span>
+								<span class="name">微信登录</span>
+							</a>
+						</li>
+						{/微信登录开启}
+						{微博登录开启}
+						<li>
+							<a href="{微博登录}">
+								<span><img src="{templates}/static/user/images/login-weibo.png"></span>
+								<span class="name">微博登录</span>
+							</a>
+						</li>
+						{/微博登录开启}
+						{百度登录开启}
+						<li>
+							<a href="{百度登录}">
+								<span><img src="{templates}/static/user/images/login-baidu.png"></span>
+								<span class="name">百度登录</span>
+							</a>
+						</li>
+						{/百度登录开启}
+						{支付宝登录开启}
+						<li>
+							<a href="{支付宝登录}">
+								<span><img src="{templates}/static/user/images/login-zhifubao.png"></span>
+								<span class="name">支付宝</span>
+							</a>
+						</li>
+						{/支付宝登录开启}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="{templates}/static/user/js/jquery.min.js"></script>
+	<script type="text/javascript" src="{templates}/static/js/layer.js"></script>
+	<script type="text/javascript" src="{templates}/static/user/js/ajax.js?v=202203231514"></script>
+	<script type="text/javascript" src="{templates}/static/user/js/user.js?v=202203231514"></script>
+</body>
+</html>

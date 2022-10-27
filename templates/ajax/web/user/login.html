@@ -1,0 +1,272 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html>
+<head>
+<meta name="viewport" content="width=device-width; initial-scale=1.3; minimum-scale=1.0; maximum-scale=2.0" />
+<meta name="MobileOptimized" content="240"/>
+<meta name="format-detection" content="telephone=no" />
+<title>登录-{网站名}</title>
+<style type="text/css">
+.login-page{width:300px;margin:auto;}
+.form{z-index:1;background:#FFFFFF;text-align:center;}
+.form input{font-family:"Roboto",sans-serif;outline:0;background:#f2f2f2;width:100%;border:0;margin:0 0 15px;padding:15px;box-sizing:border-box;font-size:14px;}
+.form button{font-family:"Microsoft YaHei","Roboto",sans-serif;text-transform:uppercase;outline:0;background:#4CAF50;width:100%;border:0;padding:15px;color:#FFFFFF;font-size:14px;-webkit-transition:all 0.3 ease;transition:all 0.3 ease;cursor:pointer;}
+.form button:hover,.form button:active,.form button:focus{background:#43A047;}
+.form .message{margin:15px 0 0;color:#b3b3b3;font-size:12px;}
+.form .message a{color:#4CAF50;text-decoration:none;}
+.form .register-form{display:none;}
+.container{position:relative;z-index:1;max-width:300px;margin:0 auto;}
+.container:before,.container:after{content:"";display:block;clear:both;}
+.container .info{margin:50px auto;text-align:center;}
+.container .info h1{margin:0 0 15px;padding:0;font-size:36px;font-weight:300;color:#1a1a1a;}
+.container .info span {color: #4d4d4d;font-size: 12px;}
+.container .info span a {color: #000000;text-decoration: none;}
+.container .info span .fa {color: #EF3B3A;}
+.shake_effect{-webkit-animation-name: shake;animation-name: shake;-webkit-animation-duration: 1s;animation-duration: 1s;}
+@-webkit-keyframes shake {
+  from, to {-webkit-transform: translate3d(0, 0, 0);transform: translate3d(0, 0, 0);}
+  10%, 30%, 50%, 70%, 90% {-webkit-transform: translate3d(-10px, 0, 0);transform: translate3d(-10px, 0, 0);}
+  20%, 40%, 60%, 80% {-webkit-transform: translate3d(10px, 0, 0);transform: translate3d(10px, 0, 0);}
+}
+@keyframes shake {
+  from, to {-webkit-transform: translate3d(0, 0, 0);transform: translate3d(0, 0, 0);}
+  10%, 30%, 50%, 70%, 90% {-webkit-transform: translate3d(-10px, 0, 0);transform: translate3d(-10px, 0, 0);}
+  20%, 40%, 60%, 80% {-webkit-transform: translate3d(10px, 0, 0);transform: translate3d(10px, 0, 0);}
+}
+p.center{color: #fff;font-family: "Microsoft YaHei";}
+.other_login{margin-top:40px;}
+.other_title{margin: 15px 0 0;color: #6B6A6A;font-size: 14px;}
+.other_login ul{width:100%;padding-left:0px}
+.other_login li{width:100px;float:left;list-style:none;}
+.other_login li a{text-decoration: none;color:#8E8A8A;font-size: 13px;}
+.other_login li a:hover{text-decoration:underline;color:#4CAF50}
+.other_login .qq {display: inline-block;background: url(/files/images/icon_login.png) 1px -37px no-repeat;height:22px;padding-left:21px;padding-top: 3px;}
+.other_login .weibo {display: inline-block;background: url(/files/images/icon_login.png) 1px 3px no-repeat;height:22px;padding-left:21px;padding-top: 3px;}
+.other_login .bd {display: inline-block;background: url(/files/images/icon_login.png) 1px -140px no-repeat;height:22px;padding-left:21px;padding-top: 3px;}
+.other_login .alipay {display: inline-block;background: url(/files/images/icon_login.png) 1px -74px no-repeat;height:22px;padding-left:21px;padding-top: 3px;}
+.other_login .wx {display: inline-block;background: url(/files/images/icon_login.png) 1px -110px no-repeat;height:22px;padding-left:21px;padding-top: 3px;}
+.imgcode{width:40%;height:46px;margin-top: -1px;}
+.code_txt,.code_math,.code_email,.code_tel{width:40%;display:block;float:right;height:45px;line-height:45px;font-size:14px}
+.code_txt{font-size:12px;}
+.form .login_code{width:60%}
+.code_email,.code_tel{background: #4caf50;color: #FFFFFF;cursor:pointer;border-radius: 4px;}
+.code_disbled{background:#afafaf}
+</style>
+</head>
+<body>
+
+<div id="wrapper" class="login-page" style="margin-top:10px">
+	<div class="form">
+		<form class="login-form" name="user_login" id="user_login">
+			{表单锁}
+			<input type="hidden" value="{登录验证码类型}" id="login_type"/>
+			<input type="text" placeholder="用户名/邮箱地址/手机号" name="name"/>
+			<input type="password" placeholder="密码" name="psw"/>
+			{登录验证码开启}
+    			{cur:{登录验证码类型}=4}<input type="text" placeholder="请输入登录邮箱" name="email"/>{/cur}
+    			{cur:{登录验证码类型}=5}<input type="text" placeholder="请输入手机号" name="tel"/>{/cur}
+    			<input type="text" placeholder="验证码" name="code" class="login_code"/>{登录验证码}
+			{/登录验证码开启}
+			<input type="hidden" name="time" value="2592000" />
+			<input type="hidden" name="remember" value="1" />
+			<button id="login">登　录</button>
+			<p class="message" style="margin-top:30px">还没有账户? <a href="#">注册账号</a></p>
+			<div class="other_login">
+				<div class="other_title">---- 使用其他方式登录 ----</div>
+				<ul>
+					{qq登录开启}<li><a target="_parent" href="{qq登录}" class="qq">QQ登录</a></li>{/qq登录开启}
+					{微信登录开启}<li><a target="_parent" href="{微信登录}" class="wx">微信登录</a></li>{/微信登录开启}
+					{微博登录开启}<li><a target="_parent" href="{微博登录}" class="weibo">微博登录</a></li>{/微博登录开启}
+					{百度登录开启}<li><a target="_parent" href="{百度登录}" class="bd">百度登录</a></li>{/百度登录开启}
+					{支付宝登录开启}<li><a target="_parent" href="{支付宝登录}" class="alipay">支付宝登录</a></li>{/支付宝登录开启}
+				</ul>
+			</div>
+		</form>
+		
+		<form class="register-form" id="user_reg" name="user_reg">
+			{表单锁}
+			<input type="hidden" value="{注册验证码类型}" id="reg_type"/>
+			<input type="text" placeholder="登录用户名" name="name"/>
+			<input type="password" placeholder="密码，6-16位字母、数字" name="psw" />
+			<input type="password" placeholder="重复一次密码！" name="repsw"/>
+			{注册验证码开启}
+			{cur:{注册验证码类型}=4}<input type="text" placeholder="邮箱，用于快速登录，不能修改！" name="email"/>{/cur}
+			{cur:{注册验证码类型}=5}<input type="text" placeholder="手机号，用于快速登录，不能修改！" name="tel"/>{/cur}
+			<input type="text" placeholder="验证码" name="code" class="login_code"/>{注册验证码}
+			{/注册验证码开启}
+			<button id="reg">立即注册</button>
+			<p class="message">已经有了一个账户? <a href="#">立刻登录</a></p>
+		</form>
+	</div>
+</div>
+
+<script src="/files/js/common.js"></script>
+<script>
+$(function(){
+    if( $("#login_type").val()=='3' ){
+        $('#user_login .code_txt').css('width','60%');
+        $('#user_login .login_code').css('width','40%');
+    }
+    if( $("#reg_type").val()=='3' ){
+        $('#user_reg .code_txt').css('width','60%');
+        $('#user_reg .login_code').css('width','40%');
+    }
+	//注册
+	$("#reg").click(function(){
+	    var regCode = {注册验证码状态};
+	    var regCodeType = {注册验证码类型};
+		var name = $("#user_reg [name=name]").val();
+		var psw = $("#user_reg [name=psw]").val();
+		var repsw = $("#user_reg [name=repsw]").val();
+		var email = $("#user_reg [name=email]").val();
+		var tel = $("#user_reg [name=tel]").val();
+		var code = $("#user_reg [name=code]").val();
+
+		if( name.length>50 || name.length<4 ){
+			easydialog_alert('对不起，账号长度只能为4-50个字符！','','','');
+			return false;
+		}else if( psw.length>16 || psw.length<6 ){
+			easydialog_alert('对不起，密码长度只能为6-16个字符！','','','');
+			return false;
+		}else if( psw != repsw ){
+			easydialog_alert('对不起，两次输入的密码不一致！','','','');
+			return false;
+		}else if( regCode==1 && regCodeType==4 && !isEmail(email) ){
+			easydialog_alert('对不起，邮箱格式错误！','','','');
+			return false;
+		}else if( regCode==1 && regCodeType==5 && !isPhone(tel) ){
+			easydialog_alert('对不起，手机号格式错误！','','','');
+			return false;
+		}else if( regCode==1 && code == ''){
+			easydialog_alert('对不起，请输入验证码！','','','');
+			return false;
+		}else{
+			easydialog_loading();
+			$.ajax({
+				type:"POST",url:"{注册提交地址}&ajax=yes",dataType:"json",
+				data:$("[name=user_reg]").serializeArray(),
+				success:function(data){
+					if( data.code != 200 ){
+						easydialog_alert(data.msg,'','','');
+					}else{
+						easydialog_autoclose('注册成功，系统会在两秒后关闭','success');
+						if( self!=top ){
+							setTimeout(function(){window.parent.location='{用户中心}';},1500);
+						}else{
+							setTimeout(function(){window.location='{用户中心}';},1500);
+						}
+					}
+				},
+				async:true,
+			});
+			return false; 
+		}
+	})
+	
+	//登录
+	$("#login").click(function(){
+	    var loginCode = {登录验证码状态};
+		var name = $("#user_login [name=name]").val();
+		var psw = $("#user_login [name=psw]").val();
+		var code = $("#user_login [name=code]").val();
+		var loginInfo;
+		if( name.length>50 || name.length<4 ){
+			easydialog_alert('对不起，账号长度只能为4-50个字符！','','','');
+			return false;
+		}else if( psw.length>16 || psw.length<6 ){
+			easydialog_alert('对不起，密码长度只能为6-16个字符！','','','');
+			return false;
+		}else if( loginCode==1 && code == ''){
+			easydialog_alert('对不起，请输入验证码！','','','');
+			return false;
+		}else{
+			easydialog_loading();
+			$.ajax({
+				type:"POST",url:"{登录提交地址}&ajax=yes",dataType:"json",
+				data:$("[name=user_login]").serializeArray(),
+				success:function(data){
+					if( data.code != 200 ){
+						easydialog_alert(data.msg,'','','');
+					}else{
+						if( '{登录后操作}' == 'ref'){
+							loginInfo = '登录成功，系统会在两秒后关闭!';
+						}else if( '{登录后操作}' == 'jump'){
+							loginInfo = '登录成功，两秒后跳转到用户中心!';
+						}
+						easydialog_autoclose(loginInfo,'success');
+						if( self!=top ){
+							if( '{登录后操作}' == 'ref'){
+								setTimeout(function(){window.parent.location.reload();},1500);
+							}else if( '{登录后操作}' == 'jump'){
+								setTimeout(function(){window.parent.location = '{用户中心}';},1500);
+							}
+						}else{
+							if( '{登录后操作}' == 'ref'){
+								setTimeout(function(){window.location.reload();},1500);
+							}else if( '{登录后操作}' == 'jump'){
+								setTimeout(function(){window.location= '{用户中心}';},1500);
+							}
+						}
+					}
+				},
+				async:true,
+			}); 
+			return false; 
+		}
+	})
+	//替换登录注册
+	$('.message a').click(function () {
+		$('form').animate({height: 'toggle',opacity: 'toggle'}, 'slow');
+	});
+	
+	var timer = null;
+	var sendBtn = true;
+	var time = 60;
+	var num = time;
+	$('.code_email,.code_tel').click(function () {
+	    var id = $(this).data('id');
+	    var type = $(this).data('type');
+        var email = $('#user_reg').find('[name=email]').val();
+        var tel = $('#user_reg').find('[name=tel]').val();
+        if( sendBtn==false ){
+            return false;
+        }else if( type=='email' && !isEmail(email) ){
+			easydialog_alert('对不起，邮箱格式错误！','','','');
+        }else if( type=='tel' && !isPhone(tel) ){
+			easydialog_alert('对不起，手机号格式错误！','','','');
+        }else{
+            //发送验证码类型id
+            sendBtn = false;
+            $(this).html(time+'S');
+            $(this).addClass('code_disbled');
+            timer = setInterval(timing, 1000); //一秒执行一次
+            $.ajax({
+        		type:"POST",url:"/wmcms/ajax/index.php?action=sys.sendcode",dataType:"json",
+        		data:{"id":id,"email":email,"tel":tel},
+        		success:function(data){
+        		    if( data.code == '200' ){
+    			        easydialog_autoclose('发送成功！','success',1000);
+        		    }else{
+    			        easydialog_autoclose(data.msg,'error',3000);
+        		    }
+        		},
+        		async:true,
+        	});
+	    }
+	});
+    function timing(){
+        num--;
+        if(num > 0){
+            $('.code_send_btn').html(num+'S');
+        }else{
+            clearInterval(timer); //清除js定时器
+            $('.code_send_btn').html('发送验证码');
+            $('.code_send_btn').removeClass('code_disbled');
+        	timer = null;
+        	sendBtn = true;
+            num = time; //重置时间
+        }
+    }
+})
+</script>
+</body>
+</html>

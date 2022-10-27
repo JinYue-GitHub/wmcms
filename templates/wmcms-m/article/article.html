@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html style="font-size: {$_COOKIE['fontsize']|default='52px'};">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=no">
+    <meta name="Keywords" content="{key}" />
+    <meta name="Description" content="{desc}" />
+    <link rel="stylesheet" href="{templates}/static/css/style.css">
+    <title>{title}</title>
+</head>
+<body>
+    <div id="app">
+       <div class="x-home">
+            <div class="x-page__header van-hairline--bottom">
+                <a href="javascript:history.back();"></a>
+                <span class="x-page__title">{标题}</span>
+                <div class="header-menu" onclick="javascript:location.href='/';">
+                    <i class="icon-shouye-h is-active" style="font-size: 0.4rem;"></i>
+                </div>
+            </div>
+            <div class="x-page__content">
+                <div class="x-book__detail">
+                    <h3 class="x-news__title">{标题}</h3>
+                    <div class="x-news__content hr-bottom">
+                        {内容}
+                    </div>
+                    <div class="x-city__part x-detail__part hr-bottom">
+                        <div class="x-part__content">
+                            <div style="width: 100%; padding-bottom: 20px;padding-top: 20px">
+                            		<span id="counter-box">
+                            			<div class="global-nav">
+                            				<ul>
+                            					<li>
+                            						<h4 class="pull-left" style="display: inline-block;font-weight: initial;font-size: 16px">精彩评论</h4>
+                            						<h5 class="pull-left" style="display: inline-block;font-weight: initial;font-size:12px">已盖 <span style="color:#f10">{评论量}</span> 楼</h5>
+                            					</li>
+                            				</ul>
+                            			</div>
+                            		</span>
+                            		<span id="post-box">
+                            			<div class="uyanpost">
+                            				<form method="post" action="{评论提交地址}" class="form-x">
+                            				{表单锁}
+                            				{评论隐藏表单}
+                            				<div class="resetbox sectionbox">
+                            					<div class="blockbox">
+                            						<div class="postarea">
+                            							<div class="postborder">
+                            								{未登录}
+                            								<div style="background:#fff;
+                            								width: 99.8%;height: 80px;font-size: 12px;box-sizing:border-box;padding:10px">您还未登录，请先 <a href="{登录}" style="color:#f20" target="_parent">登录</a> 后再发表评论。</div>
+                            								</div>
+                            								{/未登录}
+                            								{已登录}
+                            								<textarea name="content"></textarea>
+                            								{发表评论验证码开启}
+                            								<div style="display: flex;align-items: center;margin-top:10px;">
+                            									<input type="text" name="code" style="border:1px solid #f8f8f8;border-radius: 4px; height: 30px;padding: 0 10px;" placeholder="请输入验证码">
+                            									<div style="display: flex;align-items: center;margin-left: 10px;">
+                            										<span>{发表评论验证码}</span>
+                            									</div>
+                            								</div>
+                            								{/发表评论验证码开启}
+                            								{/已登录}
+                            							<div style="display: block;text-align: right;margin-top:8px">
+                            								<button class="btn btn-info ajaxpost" type="submit" target-form="form-x">发 送</button>
+                            							</div>
+                            						</div>
+                            						<input type="hidden" name="mid" value="19136">
+                            					</div>
+                            				</div>
+                            				</form>
+                            			</div>
+                            		</span>
+                            		<span id="nav-box">
+                            			<div class="nav">
+                            				<div class="nav-left">
+                            					<span style="font-size: 16px;"> 最新评论</span>
+                            				</div>
+                            				<div class="claer"></div>
+                            			</div>
+                            		</span>
+                            		<span id="posts">
+                            			
+                            		<ul id="post-list" class="post-list">
+                            			{评论:}
+                            			<li class="post">
+                            				<div class="post-content">
+                            					<div class="avatar hovercard">
+                            						<div class="user">
+                            							<img src="{评论用户头像}"></div>
+                            						<div style="color:#666;font-size: 12px;text-align: center;margin-top: 5px">{评论用户昵称}
+                            						</div>
+                            					</div>
+                            					<div class="post-body">
+                            						<div class="post-body-inner">
+                            							<div data-role="message-container" class="post-message-container">
+                            								<div data-role="message-content">
+                            									<div class="post-message publisher-anchor-color">
+                            										<p>{评论内容}</p>
+                            									</div>
+                            								</div>
+                            							</div>
+                            						</div>
+                            						<div class="u-footer">
+                            							<div class="time-ago">{评论楼层} {评论时间}</div>
+                            							<ul>
+                            								<li>
+                            									<a onclick="javascript:location.href='{评论顶链接}';" title="顶一下" href="javascript:void(0);" class="action">
+                            										<span></span>
+                            										点赞<span style="font-size: 12px">（{评论顶}）</span>
+                            									</a> <em>•</em>
+                            								</li>
+                            								<li class="reply">
+                            									<a class="action" href="javascript:void(0);" onclick="reply(this,{$list['mid']|default=0},{$list['id']|default=0},'{$list['type']|default='novel'}');">回复</a>
+                            								</li>
+                            								<div class="claer"></div>
+                            							</ul>
+                            						</div>
+                            					</div>
+                            				</div>
+                            				<div class="uyan-reply-postbox"></div>
+                            				<ul class="children">
+                            					
+                            				</ul>
+                            			</li>
+                            			{/评论}
+                            		</ul>
+                            		</span>
+                            		<span id="loadmore" style="display: none;"></span>
+                            		<div class="ujian-uyan"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="x-city__part x-detail__part hr-bottom">
+                        <div class="x-part__title">推荐小说</div>
+                        <div class="x-part__content">
+                            <div class="x-detail__part--book">
+                                {推荐小说:数量=3;排序=随机;}
+                                <div class="x-book" style="width: 2rem;">
+                                    <a href="{url}" title="{小说名字}">
+                                        <div class="x-book__coverbox">
+                                            <img lazy="loaded" class="x-book__cover" src="{小说封面}" style="width: 2rem; height: 2.66667rem;">
+                                        </div>
+                                        <div class="x-book__text--normal">{小说名字}</div>
+                                    </a>
+                                </div>
+                                {/推荐小说}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript" src="{templates}/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="{templates}/static/js/global.js"></script>
+</body>
+</html>

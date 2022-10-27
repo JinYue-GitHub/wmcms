@@ -1,0 +1,46 @@
+<div class="ne-footer">
+ 	<div class="ne-footer-con">
+ 		<div class="ne-ftc-left" id="guideFtLeft">
+ 			<ul class="ne-ftcl-ul">
+ 				<li class="ne-ftcl-li"><p class="ne-ftcl-txt">本章字数：<span class="num" id="wordnumber">0</span></p></li>
+ 				<li class="ne-ftcl-li"><em class="ne-ftcl-line"></em></li>
+ 				<li class="ne-ftcl-li"><p class="ne-ftcl-txt">码字速率：<span class="num" id="speed">0</span> 字/分</p></li>
+ 				<li class="ne-ftcl-li"><em class="ne-ftcl-line"></em></li>
+ 				<li class="ne-ftcl-li"><p class="ne-ftcl-txt">编辑时长：<span class="num" id="time">00:00:00</span></p></li>
+ 				<li class="ne-ftcl-li"><em class="ne-ftcl-line"></em></li>
+ 				<li class="ne-ftcl-li"><p class="ne-ftcl-txt">创建时间：<span class="num" id="date">{cur:did=0}{年}-{月}-{日} {时}:{分}:{秒}{/cur}{cur:did>0}{创建时间}{/cur}</span></p></li>
+ 				<li class="ne-ftcl-li"><em class="ne-ftcl-line"></em></li>
+ 			</ul>
+		</div>
+		<div class="ne-ftc-center"><span></span></div>
+		<div class="ne-ftc-right" id="guideFtRight">
+				<ul class="ne-ftcr-oprate">
+					<li class="ne-ftcr-item">
+						<a href="javascript:" id="fullScreen" title="全屏显示"><em class="ne-ftcr-icon ui-tips nw-all-hover"><i class=" sicon-con"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="sicon"><path  d="M10.333 2c0-.368.299-.667.667-.667h3c.368 0 .667.299.667.667v3a.667.667 0 01-1.334 0V2.667H11A.667.667 0 0110.333 2zM14 10.333c.368 0 .667.299.667.667v3a.667.667 0 01-.667.667h-3a.667.667 0 010-1.334h2.333V11c0-.368.299-.667.667-.667zM2 10.333c.368 0 .667.299.667.667v2.333H5a.667.667 0 010 1.334H2A.667.667 0 011.333 14v-3c0-.368.299-.667.667-.667zM1.333 2c0-.368.299-.667.667-.667h3a.667.667 0 010 1.334H2.667V5a.667.667 0 01-1.334 0V2z" fill="#525252"></path></svg></i></em></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+var isFull = false;
+var time = 0;
+//全屏/退出全屏
+$("#fullScreen").on("click",function(){
+	if( !isFull ){
+		$(this).attr('title','退出全屏');
+		isFull = true;
+	    FullScreen();	
+	}else{
+		$(this).attr('title','全屏显示');
+		isFull = false;
+	    ExitFullscreen();
+	}
+})
+//更新时间
+function updateTime(){
+	time++;document.getElementById("time").innerHTML=FormatSeconds(time);
+}
+setInterval(function(){updateTime()},1000);
+</script>

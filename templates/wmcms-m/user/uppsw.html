@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title>{title}</title>
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" href="{templates}/static/user/css/style.css">
+    <script type="text/javascript" src="{templates}/static/user/js/flexible.min.js"></script>
+</head>
+<body>
+	<div class="app_meskSection"></div>
+	<div class="container">
+		<div class="app_header_section2  app_scrollerHeader" id="header">
+			<div class="app_header_detail2">
+				<div class="app_header_back"></div>
+				<div class="app_header_h1">
+					修改密码
+					<a href="{我的书架}"> <i class="shujiaIco"></i>
+					</a> <i class="moreIco"></i>
+				</div>
+			</div>
+			<div class="app_header_second" style="display: none;">
+				<ul>
+					<li class="icon1">
+						<a href="/">首页</a>
+					</li>
+					<li class="icon2">
+						<a href="{全部小说}">书库</a>
+					</li>
+					<li class="icon3">
+						<a href="{我的书架}">书架</a>
+					</li>
+					<li class="icon4">
+						<a href="{用户中心}">账户</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="app_body">
+			<div class="app_wanJiPassWord">
+		        <div class="app_lisBlockSpan">
+		            <ul>
+										{表单锁}
+		                <li>
+		                    <span class="left">当前密码：</span>
+		                    <input name="oldpsw" type="password" placeholder="请填写当前密码">
+		                </li>
+		                <li>
+		                    <span class="left">新密码：</span>
+		                    <input name="newpsw" type="password" placeholder="6-18位大小写字母、符号或数字">
+		                </li>
+		                <li>
+		                    <span class="left">确认密码：</span>
+		                    <input name="renewpsw" type="password" placeholder="请再次输入密码">
+		                </li>
+										{修改密码验证码开启}
+										<li class="code">
+											<span class="left">验证码：</span>
+											<input id="code" type="text" name="code" placeholder="请输入验证码">
+										</li>
+										<li style="display: flex;align-items: center;border: none;padding: 0;height: 1.3437rem;">
+											{修改密码验证码}
+										</li>
+										{/修改密码验证码开启}
+		            </ul>
+		        </div>
+		        <div class="app_listBlockButton app_marginStyle1" style="padding-bottom: 1.5rem">
+		        	<button id="submitbtn" ajax-reg="app_lisBlockSpan" url="{表单提交地址}&ajax=yes">确认</button>
+		        </div>
+		    </div>
+		</div>
+	</div>
+	<script type="text/javascript" src="{templates}/static/user/js/jquery.min.js"></script>
+	<script type="text/javascript" src="{templates}/static/js/layer.js"></script>
+	<script type="text/javascript" src="{templates}/static/user/js/ajax.js"></script>
+	<script type="text/javascript" src="{templates}/static/user/js/user.js"></script>
+</body>
+</html>

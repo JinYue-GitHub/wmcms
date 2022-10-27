@@ -1,0 +1,71 @@
+﻿/*评论盒子属性*/
+#wmcms_replay .clear{clear:both}
+#wmcms_replay .right{float:right}
+#wmcms_replay .left{float:left}
+#wmcms_replay{margin:auto;width: 100%}
+#wmcms_replay li{list-style:none}
+#wmcms_replay_num,#wmcms_replay_sum{font-style:normal}
+/*评论框标题*/
+.wmcms_replay_titlebox,#wmcms_repaly_title,#wmcms_replay_sum,#wmcms_replay_num{ font-size:20px;}
+.wmcms_replay_title{ font-size:20px;}
+.wmcms_replay_frombox{margin-top:5px;}
+/*评论框头像*/
+.wmcms_replay_header{float:left;width:95px}
+.wmcms_replay_replayheader img{border:#84a8c2 solid 2px;border-radius:5px;}
+.wmcms_repaly_nickname{ text-align:center; margin-top:5px;}
+/*评论框*/
+.wmcms_replay_from{margin-left:95px;}
+.wmcms_replay_textarea{padding-left: 10px;padding-top: 10px;width:98%; height:100px; border:#84a8c2 solid 2px;resize: none;border-bottom:none;border-radius:5px 5px 0 0; color:#666}
+.wmcms_replay_tool{width:99%;border:#84a8c2 solid 2px;z-index:99; border-top:#cbd2d8 solid 2px; height:40px; margin-top:-6px;border-radius:0 0 5px 5px; background-color:#fafafa;}
+.wmcms_replay_face{width:40px; height:40px; background:url(face.png) no-repeat;background-position: center; border-right:#cbd2d8 solid 1px; cursor:pointer}
+.wmcms_replay_facehover{width:40px; height:40px; background:url(facehover.png) no-repeat;background-position: center; border-right:#cbd2d8 solid 1px; cursor:pointer}
+.wmcms_replay_buttonbox{ float:right;}
+.wmcms_replay_button{ width:100px; height:40px; background-color:#5788a9; border:none; color:#FFF; font-size:20px; font-weight:bold; cursor:pointer; font-family:"黑体"}
+.wmcms_replay_buttonhover{ width:100px; height:40px; background-color:#73a0bf; border:none; color:#FFF; font-size:20px; font-weight:bold; cursor:pointer; font-family:"黑体"}
+
+.wmcms_replay_fromreplaybox{margin-bottom:10px;line-height: 18px;}
+
+.wmcms_replay_buttonclick{background-color:#f7f7f7;color:#ccd4d9;border-left:#ccd4d9 solid 1px;}
+
+/*表情框*/
+.wmcms_replay_face_box{padding:3px 3px 0 3px;width:284px;height: 208px;border: 1px solid #84A8C2;border-radius: 5px;position: absolute; margin-top: -1px;z-index: 999;display: none;background: #FFFFFF;}
+.wmcms_replay_face_title{background:#DCDBDB;line-height: 25px;height:25px;margin-left: -3px;margin-top: -3px;width:290px;border-radius:5px 5px 0 0;}
+.wmcms_replay_face_title li{list-style:none;width:auto;float:left;font-size: 14px;padding: 0 5px 0 5px;color:#407092;cursor: pointer;}
+.wmcms_replay_face_title_cur{background: #FFFFFF;color: #807D7D;}
+
+/*验证码*/
+.wmcms_replay_codebox{float: right;height: 40px;}
+#wmcms_replay_code{height: 40px;margin-left: 5px;border: none;border-left: 1px solid #84A8C2;}
+
+.wmcms_replay_face_list {height: 185px;}
+.wmcms_replay_face_list li{list-style:none;float:left;width:35px;height:35px;border-bottom:1px dashed #84A8C2;cursor: pointer;}
+.wmcms_replay_face_list img{display: block;width:30px;height:30px;padding: 4px 0 0 4px}
+
+/*评论列表盒子*/
+.wmcms_replay_listbox{ margin:auto;}
+.wmcms_replay_nodata{ margin-top:20px;background-color:#e1f3fc; color:#008aea; height:40px; text-align:center; line-height:40px;}
+.wmcms_replay_listtitle{ margin-top:20px; padding-bottom:5px;border-bottom:#84a8c2 solid 2px; font-size:18px;}
+.wmcms_replay_list  ul li{list-style:none;margin-top:20px; border-bottom:#CCC dashed 1px;}
+.wmcms_replay_hotlist  ul li{ margin-top:20px; border-bottom:#CCC dashed 1px;}
+.wmcms_replay_replayheader{ float:left}
+.wmcms_replay_replay{ margin-left:100px;height:auto; min-height:100px; _height:100px;}
+.wmcms_replay_replaycontent{height:auto; min-height:50px; _height:50px;}
+.wmcms_replay_replay_body{padding-left: 50px;}
+
+.wmcms_replay_replaynickname,.wmcms_replay_replaytime{ color:#b6b6b6}
+.wmcms_replay_replay_user{padding-top:0px;}
+.wmcms_replay_replaytime{ float:right}
+.wmcms_replay_replaynickname a{ color:#3c6986}
+.wmcms_replay_replaycontent{ line-height:30px; margin-top:10px; font-size:15px;padding:15px;}
+.wmcms_replay_replaydc{color:#b6b6b6; margin-bottom:10px; height:15px;}
+
+.curc,.curd{cursor:pointer;}
+.wmcms_replay_replayd{background:url(icos.png) no-repeat -96px 0px;width:20px; height:15px; cursor:pointer;  float:right;}
+.wmcms_replay_replaydhover{background:url(icos.png) no-repeat -121px 0px;}
+.wmcms_replay_replayc{background:url(icos.png) no-repeat -96px -25px;width:20px; height:15px;cursor:pointer; float:right;}
+.wmcms_replay_replaychover{background:url(icos.png) no-repeat -121px -25px;}
+.wmcms_replay_replaytext{ color:#f76c46}
+
+.wmcms_replay_pagelist {text-align:center;padding-top:10px;}
+.wmcms_replay_pagelist li{height:25px; line-height:26px;min-width:25px;border:#e5e5e5 1px solid;margin-right:5px;cursor:pointer;display:inline-block;}
+.wmcms_replay_list_hover{ background-color:#5788a9; color:#f4e2ce;}

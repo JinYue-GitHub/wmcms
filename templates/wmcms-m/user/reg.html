@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title>{title}</title>
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" href="{templates}/static/user/css/style.css">
+    <script type="text/javascript" src="{templates}/static/user/js/flexible.min.js"></script>
+    <style>
+        .code_box{width: 60%;height:1.3437rem;line-height:1.3437rem;display: block;float: right;text-align: right;}
+        .code_send_btn{width: 30%;text-align: center;background-color: #ea4136; color: #FFFFFF;border-radius: 0.2rem;}
+        .code_input{width:40%}
+    </style>
+</head>
+<body>
+	<div class="app_meskSection"></div>
+	<div class="container">
+		<div class="app_header_section2  app_scrollerHeader" id="header">
+			<div class="app_header_detail2">
+				<div class="app_header_back"></div>
+				<div class="app_header_h1">
+					注册
+					<i class="moreIco"></i>
+				</div>
+			</div>
+			<div class="app_header_second" style="display: none;">
+				<ul>
+					<li class="icon1">
+						<a href="/">首页</a>
+					</li>
+					<li class="icon2">
+						<a href="{全部小说}">书库</a>
+					</li>
+					<li class="icon3">
+						<a href="{我的书架}">书架</a>
+					</li>
+					<li class="icon4">
+						<a href="{用户中心}">账户</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="app_body">
+			<div class="app_bindPhoneBlock">
+				<div class="app_lisLoinSpan app_addPaddingStyle">
+					<ul>
+						{表单锁}
+						<li class="username">
+							<input type="text" name="name" placeholder="请输入用户名">	
+						</li>
+						<input type="hidden" name="sex" value="1">
+						<li class="password">
+							<input type="password" name="psw" placeholder="请输入密码">
+						</li>
+						<li class="password">
+							<input type="password" name="repsw" placeholder="再次输入密码">
+						</li>
+						{注册验证码开启}
+            			{cur:{注册验证码类型}=4}<li class="email"><input type="text" placeholder="邮箱，用于快速登录，不能修改！" name="email"/></li>{/cur}
+            			{cur:{注册验证码类型}=5}<li class="email"><input type="text" placeholder="手机号，用于快速登录，不能修改！" name="tel"/></li>{/cur}
+						<li class="code" style="position: unset;padding-right: unset;">
+						    <div style="clear:both"></div>
+							{注册验证码}
+							<span class="code_input"><input id="code" type="text" name="code" placeholder="请输入验证码"></span>
+						</li>
+						{/注册验证码开启}
+					</ul>
+				</div>
+				<div class="app_listBlockButton" style="padding-top: 0.36rem">
+					<button id="loginbtn" ajax-reg='app_lisLoinSpan' url="{注册提交地址}&ajax=yes" errorback="newcode()">立即注册</button>
+				</div>
+				<div class="app_dengLu_bottom">
+		            注册即表示您同意<a href="{:url('user/user/pact')}" class="blue">《服务条款和隐私政策》</a>
+		        </div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="/files/js/function.js"></script>
+	<script type="text/javascript" src="{templates}/static/user/js/jquery.min.js"></script>
+	<script type="text/javascript" src="{templates}/static/js/layer.js"></script>
+	<script type="text/javascript" src="{templates}/static/user/js/ajax.js"></script>
+	<script type="text/javascript" src="{templates}/static/user/js/user.js"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+{header:user/inc_fheader.html}
+<script>
+$(document).ready(function(){
+	$("#nv").find("li a").eq("0").addClass("nvcur");
+});
+</script>
+<div id="ct" class="wp w cl">
+	<div id="diypage" class="area">
+		<div id="frame1" class="frame cl">
+			<div id="frame1_left" style="width:200px" class="z column">
+				<div id="profile" class="block move-span">
+					<div class="blocktitle title">
+						<span>头像</span>
+					</div>
+					<div id="profile_content" class="dxb_bc">
+						<div>
+							<div class="hm">
+								<p><img src="{好友头像}" width="150" height="150" /></p>
+								<h2 class="mbn">{好友昵称}</h2>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="statistic" class="block move-span">
+					<div class="blocktitle title"><span>统计信息</span></div>
+					<div id="statistic_content" class="dxb_bc">
+						<div>
+							<p class="mbm xw1">已有 <strong class="xi1">{好友人气}</strong> 人来访过</p>
+							<ul class="xl xl2 cl">
+								<li>等级: {好友等级}</li>
+								<li>经验: {好友经验}</li>
+								<li>{金币1名字}: {好友金币1数量}</li>
+								<li>{金币2名字}: {好友金币2数量}</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="frame1_center" style="width:520px" class="z column">
+				<div id="personalinfo" class="block move-span">
+					<div class="blocktitle title"><span>个人资料</span></div>
+					<div id="personalinfo_content" class="dxb_bc">
+						<ul id="pprl" class="mbm pbm bbda cl">
+							<li><em>性别</em>{好友性别}</li>
+							<li><em>年龄</em>{好友年龄}</li>
+							<li><em>等级</em>{好友等级} (下一级:{好友下一等级}) </li>
+							<li><em>经验</em>{好友经验}/{好友下级经验} {经验名字}</li>
+							<li><em>签名</em>{好友签名}</li>
+							<li><em>最后登录时间</em>{好友登陆时间}</li>
+							<li><em>注册时间</em>{好友注册时间}</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div id="frame1_right" style="width:240px" class="z column">
+				<div id="visitor" class="block move-span"><div class="blocktitle title"><span>最近访客</span></div>
+				<div id="visitor_content" class="dxb_bc">
+					<ul class="ml mls cl">
+						{好友访客列表:数量=6}
+						<li><a href="{url}" class="avt"><img src="{访客头像}" /></a><p><a href="{url}" title="{访客昵称}">{访客昵称}</a></p><span class="xg2"><span title="{访问时间:n-y-r}">{访问时间:n-y-r}</span></span></li>
+						{/好友访客列表}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+{footer:user/inc_footer.html}

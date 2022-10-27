@@ -1,0 +1,371 @@
+{header:novel/header.html}
+	<link rel="stylesheet" type="text/css" href="{templates}/static/css/wmcms.page.rank.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="{templates}/static/css/SunZX/SunZX_rank.css" media="screen" />
+	<script>
+	$(document).ready(function(){
+		$(".mod-top-nav-list").find("li").eq("2").addClass("active");
+	});
+	</script>
+</head>
+<body>
+
+{header:novel/nav.html}
+
+<div class="top-border"></div>
+<div class="mod-rank-wrap clearfix rank-sub-mb" style="margin-top:20px">
+	<div class="mod-rank-menu ui-left">
+	    <h2 class="ui-rank-tit">排行榜</h2>
+	    <div class="mod-rank-tab-wrap">
+	        <div class="mod-rank-menu-tabcont">
+	            <span class="ui-rank-ft-tit"><span>数据榜</span></span>
+	            <ul class="mod-rank-menu-list">
+	                <li><a href="{小说排行首页}" title="全部榜单" class="fwb">全部榜单</a></li>
+	                {小说类型排行:1,2,7,12}
+	                <li><a href="{url}" title="{小说类型排行名字}" {cur}class="fwb"{/cur}>{小说类型排行名字}</a></li>
+	                {/小说类型排行}
+	            </ul>
+	            <span class="ui-rank-ft-tit"><span>分类榜</span></span>
+	            <ul class="mod-rank-menu-list">
+	            	{小说分类排行:数量=20}
+	                <li><a href="{url}" title="{小说分类名字}" {cur}class="fwb"{/cur}>{小说分类名字}</a></li>
+	                {/小说分类排行}
+	            </ul>
+	        </div>
+	    </div>
+	</div>
+
+	<!-- 左侧导航结束 -->
+    <div class="ran-wrapp">
+        <div class="ran-main-top ran-rank-month ui-mb40 clearfix">
+            <div class="ran-rank-month-tit clearfix"><h3 class="ran-rank-title ui-left">人气排行榜</h3></div>
+            <div class="rank-box1">
+                <div class="mod-rank-subtit clearfix">
+                    <ul class="mod-rank-sublist">
+                        <li class="li_1"><b>作品</b><strong>作者</strong><em>点击量</em></li>
+                        <li class="li_2"><b>作品</b><strong>作者</strong><em>点击量</em></li>
+                        <li class="li-3"><b>作品</b><strong>作者</strong><em>点击量</em></li>
+                    </ul>
+                </div>
+                <div id="month_ticket_rank_content" class="ran-top-month mod-rank-wr">
+                    <div class="mod-rank-month-wr tabs-panel clearfix ">
+                    	<ol class=" mod-rank-list mod-rank-month-list">
+                    		{小说:数量=10;排序=总点击}
+                        	<li>
+                            	<sub class="mod-rank-{i:<4}keep{/i}{i:>3}light{/i} ui-left">{i}</sub>
+                                <a class="mod-rank-name ui-left" title="{小说名字}" href="{url}">{小说名字}</a>
+                                <b class="mod-rank-money ui-right">{小说总点击}</b>
+                                <span class="mod-rank-num ui-right">{小说作者}</span>
+							</li>
+							{/小说}
+						</ol>
+                        <ol class=" mod-rank-list mod-rank-month-list">
+                    		{小说:数量=10,10;排序=总点击}
+                        	<li>
+                            	<sub class="mod-rank-light ui-left">{运算:10+{i}}</sub>
+                                <a class="mod-rank-name ui-left" title="{小说名字}" href="{url}">{小说名字}</a>
+                                <b class="mod-rank-money ui-right">{小说总点击}</b>
+                                <span class="mod-rank-num ui-right">{小说作者}</span>
+							</li>
+							{/小说}
+                        </ol>
+                        <ol class=" mod-rank-list mod-rank-month-list">
+                    		{小说:数量=20,10;排序=总点击}
+                        	<li>
+                            	<sub class="mod-rank-light ui-left">{运算:20+{i}}</sub>
+                                <a class="mod-rank-name ui-left" title="{小说名字}" href="{url}">{小说名字}</a>
+                                <b class="mod-rank-money ui-right">{小说总点击}</b>
+                                <span class="mod-rank-num ui-right">{小说作者}</span>
+							</li>
+							{/小说}
+                         </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+		<div class="ran-main-top ran-main-list ui-mb40 clearfix">
+            <div class="ran-top-pay ran-rank mod-rank-wr">
+                <div class="mod-rank-head"><h3 class="ran-rank-title ui-left">收藏总榜</h3></div>
+                <div class="mod-rank-list-wr tabs-panel">
+                    <ol class="mod-rank-list" style="display: block;">
+                    	{小说:数量=10;排序=总收藏}
+                    	<li {i:1}class="mod-rank-first"{/i}>
+                    		{i:1}
+	                        <a target="_blank" class="mod-rank-cover ui-left" title="{小说名字}" href="{url}">
+	                            <img height="104px" width="78px" src="{小说封面}" title="{小说名字}" alt="{小说名字}">
+	                        </a>
+	                        <a target="_blank" class="mod-rank-no" title="{小说名字}" href="{url}">1</a>
+	                        <dl class="mod-rank-info ui-left">
+	                            <dt class="mod-rank-title"><a title="{小说名字}" href="{url}" target="_blank">{小说名字}</a></dt>
+	                            <dd>{小说简介:10}</dd>
+	                            <dd><span class="ui-left">人气：<em>{小说总收藏}</em></span><sup class="ui-rank-trend-up"></sup></dd>
+	                        </dl>
+	                        {/i}
+	                        {i:>1}
+                            <sub class="mod-rank-light ui-left">{i}</sub>
+                            <a target="_blank" class="mod-rank-name ui-left" title="{小说名字}" href="{url}">{小说名字}</a>
+                            <sup class="ui-rank-trend-up"></sup>
+                            <span class="mod-rank-num ui-right">{小说总收藏}</span>
+	                        {/i}
+	                    </li>
+	                    {/小说}
+                    </ol>
+                </div>
+            </div>
+
+            <div class="ran-top-hot ran-rank mod-rank-wr">
+                <div class="mod-rank-head"><h3 class="ran-rank-title ui-left">推荐总榜</h3></div>
+                <div class="mod-rank-list-wr tabs-panel">
+                    <ol class="mod-rank-list">
+                    	{小说:数量=10;排序=总推荐}
+                    	<li {i:1}class="mod-rank-first"{/i}>
+                    		{i:1}
+	                        <a target="_blank" class="mod-rank-cover ui-left" title="{小说名字}" href="{url}">
+	                            <img height="104px" width="78px" src="{小说封面}" title="{小说名字}" alt="{小说名字}">
+	                        </a>
+	                        <a target="_blank" class="mod-rank-no" title="{小说名字}" href="{url}">1</a>
+	                        <dl class="mod-rank-info ui-left">
+	                            <dt class="mod-rank-title"><a title="{小说名字}" href="{url}" target="_blank">{小说名字}</a></dt>
+	                            <dd>{小说简介:10}</dd>
+	                            <dd><span class="ui-left">人气：<em>{小说总推荐}</em></span><sup class="ui-rank-trend-up"></sup></dd>
+	                        </dl>
+	                        {/i}
+	                        {i:>1}
+                            <sub class="mod-rank-light ui-left">{i}</sub>
+                            <a target="_blank" class="mod-rank-name ui-left" title="{小说名字}" href="{url}">{小说名字}</a>
+                            <sup class="ui-rank-trend-up"></sup>
+                            <span class="mod-rank-num ui-right">{小说总推荐}</span>
+	                        {/i}
+	                    </li>
+	                    {/小说}
+					</ol>
+                </div>
+            </div>
+            
+            <div class="ran-rank mod-rank-wr">
+                <div class="mod-rank-head"><h3 class="ran-rank-title ui-left">评论总榜</h3></div>
+                <div class="mod-rank-list-wr">
+                    <ol class="mod-rank-list">
+                    	{小说:数量=10;排序=评论}
+                    	<li {i:1}class="mod-rank-first"{/i}>
+                    		{i:1}
+	                        <a target="_blank" class="mod-rank-cover ui-left" title="{小说名字}" href="{url}">
+	                            <img height="104px" width="78px" src="{小说封面}" title="{小说名字}" alt="{小说名字}">
+	                        </a>
+	                        <a target="_blank" class="mod-rank-no" title="{小说名字}" href="{url}">1</a>
+	                        <dl class="mod-rank-info ui-left">
+	                            <dt class="mod-rank-title"><a title="{小说名字}" href="{url}" target="_blank">{小说名字}</a></dt>
+	                            <dd>{小说简介:10}</dd>
+	                            <dd><span class="ui-left">人气：<em>{小说评论量}</em></span><sup class="ui-rank-trend-up"></sup></dd>
+	                        </dl>
+	                        {/i}
+	                        {i:>1}
+                            <sub class="mod-rank-light ui-left">{i}</sub>
+                            <a target="_blank" class="mod-rank-name ui-left" title="{小说名字}" href="{url}">{小说名字}</a>
+                            <sup class="ui-rank-trend-up"></sup>
+                            <span class="mod-rank-num ui-right">{小说评论量}</span>
+	                        {/i}
+	                    </li>
+	                    {/小说}
+					</ol>
+                </div>
+            </div>
+        </div>
+        
+        <!--广告栏-->	
+		<div class="container">
+			<div class="gallery">
+				{小说:排序=字数;数量=8}
+				<div class="gallery-item">
+					<a href="{url}" target="_blank" >
+						<div class="gallery-item-image">
+							<img class="lazy" width="115px" height="150px" src="{小说封面}">
+						</div>
+						<div class="gallery-item-description">
+						<h3>{小说名字}</h3>
+						<span>{小说简介}</span>
+						</div>
+					</a>
+				</div>
+				{/小说}
+			</div>
+		</div>
+        
+        <div class="ran-week-top ui-mb40">
+            <div id="week-content" class="ran-week-wr tabs-panel clearfix">
+            	<div class="ran-week-content ">
+                	<div class="ran-rank mod-rank-wr">
+                        <div class="mod-rank-head"><h3 class="ran-rank-title">玄幻魔法</h3></div>
+                        <div class="mod-rank-list-wr">
+                            <ol class="mod-rank-list">
+		                    	{小说:分类=1;数量=10;排序=总点击}
+		                    	<li {i:1}class="mod-rank-first"{/i}>
+		                    		{i:1}
+			                        <a target="_blank" class="mod-rank-cover ui-left" title="{小说名字}" href="{url}">
+			                            <img height="104px" width="78px" src="{小说封面}" title="{小说名字}" alt="{小说名字}">
+			                        </a>
+			                        <a target="_blank" class="mod-rank-no" title="{小说名字}" href="{url}">1</a>
+			                        <dl class="mod-rank-info ui-left">
+			                            <dt class="mod-rank-title"><a title="{小说名字}" href="{url}" target="_blank">{小说名字}</a></dt>
+			                            <dd>{小说简介:10}</dd>
+			                            <dd><span class="ui-left">人气：<em>{小说总点击}</em></span><sup class="ui-rank-trend-up"></sup></dd>
+			                        </dl>
+			                        {/i}
+			                        {i:>1}
+		                            <sub class="mod-rank-light ui-left">{i}</sub>
+		                            <a target="_blank" class="mod-rank-name ui-left" title="{小说名字}" href="{url}">{小说名字}</a>
+		                            <sup class="ui-rank-trend-up"></sup>
+		                            <span class="mod-rank-num ui-right">{小说总点击}</span>
+			                        {/i}
+			                    </li>
+			                    {/小说}
+                        	</ol>
+                        </div>
+                    </div>
+                    <div class="ran-rank mod-rank-wr">
+                        <div class="mod-rank-head"><h3 class="ran-rank-title">武侠修真</h3></div>
+                        <div class="mod-rank-list-wr">
+                            <ol class="mod-rank-list">
+		                    	{小说:分类=2;数量=10;排序=总点击}
+		                    	<li {i:1}class="mod-rank-first"{/i}>
+		                    		{i:1}
+			                        <a target="_blank" class="mod-rank-cover ui-left" title="{小说名字}" href="{url}">
+			                            <img height="104px" width="78px" src="{小说封面}" title="{小说名字}" alt="{小说名字}">
+			                        </a>
+			                        <a target="_blank" class="mod-rank-no" title="{小说名字}" href="{url}">1</a>
+			                        <dl class="mod-rank-info ui-left">
+			                            <dt class="mod-rank-title"><a title="{小说名字}" href="{url}" target="_blank">{小说名字}</a></dt>
+			                            <dd>{小说简介:10}</dd>
+			                            <dd><span class="ui-left">人气：<em>{小说总点击}</em></span><sup class="ui-rank-trend-up"></sup></dd>
+			                        </dl>
+			                        {/i}
+			                        {i:>1}
+		                            <sub class="mod-rank-light ui-left">{i}</sub>
+		                            <a target="_blank" class="mod-rank-name ui-left" title="{小说名字}" href="{url}">{小说名字}</a>
+		                            <sup class="ui-rank-trend-up"></sup>
+		                            <span class="mod-rank-num ui-right">{小说总点击}</span>
+			                        {/i}
+			                    </li>
+			                    {/小说}
+                        	</ol>
+                        </div>
+                    </div>
+                    <div class="ran-rank mod-rank-wr">
+                        <div class="mod-rank-head"><h3 class="ran-rank-title">都市言情</h3></div>
+                        <div class="mod-rank-list-wr">
+                            <ol class="mod-rank-list">
+		                    	{小说:分类=3;数量=10;排序=总点击}
+		                    	<li {i:1}class="mod-rank-first"{/i}>
+		                    		{i:1}
+			                        <a target="_blank" class="mod-rank-cover ui-left" title="{小说名字}" href="{url}">
+			                            <img height="104px" width="78px" src="{小说封面}" title="{小说名字}" alt="{小说名字}">
+			                        </a>
+			                        <a target="_blank" class="mod-rank-no" title="{小说名字}" href="{url}">1</a>
+			                        <dl class="mod-rank-info ui-left">
+			                            <dt class="mod-rank-title"><a title="{小说名字}" href="{url}" target="_blank">{小说名字}</a></dt>
+			                            <dd>{小说简介:10}</dd>
+			                            <dd><span class="ui-left">人气：<em>{小说总点击}</em></span><sup class="ui-rank-trend-up"></sup></dd>
+			                        </dl>
+			                        {/i}
+			                        {i:>1}
+		                            <sub class="mod-rank-light ui-left">{i}</sub>
+		                            <a target="_blank" class="mod-rank-name ui-left" title="{小说名字}" href="{url}">{小说名字}</a>
+		                            <sup class="ui-rank-trend-up"></sup>
+		                            <span class="mod-rank-num ui-right">{小说总点击}</span>
+			                        {/i}
+			                    </li>
+			                    {/小说}
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="ran-rank mod-rank-wr">
+                        <div class="mod-rank-head"><h3 class="ran-rank-title">历史军事</h3></div>
+                        <div class="mod-rank-list-wr">
+                            <ol class="mod-rank-list">
+		                    	{小说:分类=4;数量=10;排序=总点击}
+		                    	<li {i:1}class="mod-rank-first"{/i}>
+		                    		{i:1}
+			                        <a target="_blank" class="mod-rank-cover ui-left" title="{小说名字}" href="{url}">
+			                            <img height="104px" width="78px" src="{小说封面}" title="{小说名字}" alt="{小说名字}">
+			                        </a>
+			                        <a target="_blank" class="mod-rank-no" title="{小说名字}" href="{url}">1</a>
+			                        <dl class="mod-rank-info ui-left">
+			                            <dt class="mod-rank-title"><a title="{小说名字}" href="{url}" target="_blank">{小说名字}</a></dt>
+			                            <dd>{小说简介:10}</dd>
+			                            <dd><span class="ui-left">人气：<em>{小说总点击}</em></span><sup class="ui-rank-trend-up"></sup></dd>
+			                        </dl>
+			                        {/i}
+			                        {i:>1}
+		                            <sub class="mod-rank-light ui-left">{i}</sub>
+		                            <a target="_blank" class="mod-rank-name ui-left" title="{小说名字}" href="{url}">{小说名字}</a>
+		                            <sup class="ui-rank-trend-up"></sup>
+		                            <span class="mod-rank-num ui-right">{小说总点击}</span>
+			                        {/i}
+			                    </li>
+			                    {/小说}
+                             </ol>
+                        </div>
+                    </div>
+                    <div class="ran-rank mod-rank-wr">
+                        <div class="mod-rank-head"><h3 class="ran-rank-title">科幻奇幻</h3></div>
+                        <div class="mod-rank-list-wr">
+                            <ol class="mod-rank-list">
+		                    	{小说:分类=7;数量=10;排序=总点击}
+		                    	<li {i:1}class="mod-rank-first"{/i}>
+		                    		{i:1}
+			                        <a target="_blank" class="mod-rank-cover ui-left" title="{小说名字}" href="{url}">
+			                            <img height="104px" width="78px" src="{小说封面}" title="{小说名字}" alt="{小说名字}">
+			                        </a>
+			                        <a target="_blank" class="mod-rank-no" title="{小说名字}" href="{url}">1</a>
+			                        <dl class="mod-rank-info ui-left">
+			                            <dt class="mod-rank-title"><a title="{小说名字}" href="{url}" target="_blank">{小说名字}</a></dt>
+			                            <dd>{小说简介:10}</dd>
+			                            <dd><span class="ui-left">人气：<em>{小说总点击}</em></span><sup class="ui-rank-trend-up"></sup></dd>
+			                        </dl>
+			                        {/i}
+			                        {i:>1}
+		                            <sub class="mod-rank-light ui-left">{i}</sub>
+		                            <a target="_blank" class="mod-rank-name ui-left" title="{小说名字}" href="{url}">{小说名字}</a>
+		                            <sup class="ui-rank-trend-up"></sup>
+		                            <span class="mod-rank-num ui-right">{小说总点击}</span>
+			                        {/i}
+			                    </li>
+			                    {/小说}
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="ran-rank mod-rank-wr">
+                        <div class="mod-rank-head"><h3 class="ran-rank-title">网游竞技</h3></div>
+                        <div class="mod-rank-list-wr">
+                            <ol class="mod-rank-list">
+		                    	{小说:分类=6;数量=10;排序=总点击}
+		                    	<li {i:1}class="mod-rank-first"{/i}>
+		                    		{i:1}
+			                        <a target="_blank" class="mod-rank-cover ui-left" title="{小说名字}" href="{url}">
+			                            <img height="104px" width="78px" src="{小说封面}" title="{小说名字}" alt="{小说名字}">
+			                        </a>
+			                        <a target="_blank" class="mod-rank-no" title="{小说名字}" href="{url}">1</a>
+			                        <dl class="mod-rank-info ui-left">
+			                            <dt class="mod-rank-title"><a title="{小说名字}" href="{url}" target="_blank">{小说名字}</a></dt>
+			                            <dd>{小说简介:10}</dd>
+			                            <dd><span class="ui-left">人气：<em>{小说总点击}</em></span><sup class="ui-rank-trend-up"></sup></dd>
+			                        </dl>
+			                        {/i}
+			                        {i:>1}
+		                            <sub class="mod-rank-light ui-left">{i}</sub>
+		                            <a target="_blank" class="mod-rank-name ui-left" title="{小说名字}" href="{url}">{小说名字}</a>
+		                            <sup class="ui-rank-trend-up"></sup>
+		                            <span class="mod-rank-num ui-right">{小说总点击}</span>
+			                        {/i}
+			                    </li>
+			                    {/小说}
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+             </div>
+        </div>
+
+    </div>
+    </div>
+{header:novel/footer.html}

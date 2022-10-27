@@ -1,0 +1,81 @@
+{header:user/inc_header.html}
+<script>
+$(document).ready(function(){
+	$("#nv").find("li a").eq("4").addClass("nvcur");
+});
+</script>
+<style>
+h2{font-size: 14px;}
+.xw0{margin-left: 15px;font-size: 12px;}
+.pf_l li{float: left;width: auto;margin-right: 35px;color: #5a5a5a;}
+.pf_l em{padding-right: 2px;}
+.bm_h{height: 32px;line-height: 36px;}
+.table_show,#pcr{border: 2px solid #f4f4f4;width: 100%;margin: 15px 0;}
+.table_show th,.table_show td,#pcr td,#pcr th{padding: 11px 0 11px 8px;}
+.table_show th,#pcr th{color: #acacac;}
+.table_show td,#pcr td{color: #5a5a5a;}
+.md_ctrl{margin: 15px 0;}
+.block_title{padding-bottom: 8px;border-bottom: 1px dashed #cdcdcd;}
+.group_show{position: absolute;top: 0px;right: 0px;}
+.group_show li{float: left;margin-left: 30px;}
+#pbbs,#psts .pf_l{overflow: hidden;border: solid #f4f4f4;border-width: 2px 2px 1px 1px;}
+#pbbs div,#psts .pf_l div{float: left;width: 357px;border-bottom: 1px solid #f4f4f4;}
+#pbbs span,#psts .pf_l span{padding: 11px 0 11px 10px;display: inline-block;color: #5a5a5a;}
+#pbbs .th,#psts .pf_l .th{width: 84px;border: solid #f4f4f4;border-width: 0 1px 0 1px; color: #acacac;}
+#psts{margin-top: 20px;}
+</style>
+<div id="ct" class="ct2 wp cl">
+	<div class="mn">
+		<div class="bm">
+			<div class="bm_h"><h1 class="mt">个人资料</h1></div>
+			<div class="bm_c">
+				<div class="bm_c u_profile">
+				    <div class="pbm mbm bbda cl" style="position: relative;">
+						<h2 class="mbn">用户账号信息</h2>
+						<div style="clear: both"></div>
+						<div id="pbbs" class="pf_l">
+							<div><span class="th">用户昵称</span><span>{用户昵称}</span></div>
+							<div><span class="th">用户id</span><span>{用户id}</span></div>
+							<div><span class="th">性别</span><span>{用户性别}</span></div>
+							<div><span class="th">年龄</span><span>{用户年龄}岁({用户出生日期})</span></div>
+							<div><span class="th">qq</span><span>{用户qq}</span></div>
+							<div><span class="th">手机</span><span>{用户手机}</span></div>
+							<div><span class="th">空间访问量</span><span>{用户人气}</span></div>
+							<div><span class="th">邮箱地址</span><span>{用户邮箱}</span></div>
+							<div><span class="th">{金币1名字}</span><span>{用户金币1} {金币1单位}</span></div>
+							<div><span class="th">{金币2名字}</span><span>{用户金币2} {金币2单位} <a style="color:red" href="{充值}">充值</a></span></div>
+							<div><span class="th">余额</span><span>{用户余额} {余额名字}</span></div>
+							<div><span class="th">冻结余额</span><span>{用户冻结金额} {余额名字}</span></div>
+							<div><span class="th">当前等级</span><span>{用户等级}</span></div><div><span class="th">&nbsp;</span><span>&nbsp;</span></div>
+							<div><span class="th">经验信息</span><span>{用户经验}/{下级经验}</span></div>
+							<div><span class="th">升级信息</span><span>{升级经验}{经验名字}升级到{下一等级}</span></div>
+							<div><span class="th">注册日期</span><span>{用户注册时间}</span></div>
+							<div><span class="th">上次登录</span><span>{用户登陆时间}</span></div>
+						</div>
+					</div>
+					<div id="psts" class="cl">
+						<h2 class="mbn">【收藏信息】</h2>
+						<div class="pf_l">
+							<div><span class="th">书架容量：</span><span>已用{书架已用容量} / 总{书架总容量} = 剩余 {书架剩余容量}</span></div>
+							<div><span class="th">收藏容量：</span><span>已用{收藏已用容量} / 总{收藏总容量} = 剩余 {收藏剩余容量}</span></div>
+							<div><span class="th">剩余{月票名字}：</span><span>剩余 {月票} 张</span></div>
+							<div><span class="th">剩余{推荐票名字}：</span><span>剩余 {推荐票} 张</span></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="sd">
+		<div id="pcd" class="bm cl">
+			<div class="bm_c">
+				<div class="hm">
+					<p><a href="{头像设置}" class="avtm"><img src="{用户头像}"></a></p>
+					<h2 class="xs2">{用户昵称}</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{footer:user/inc_footer.html}

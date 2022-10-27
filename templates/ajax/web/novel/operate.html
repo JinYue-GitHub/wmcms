@@ -1,0 +1,309 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html>
+<head>
+<title>小说互动操作 - {网站名}</title>
+<style>
+body{margin:auto;}
+.clear{clear:both;}
+
+.box{width:813px;height:407px;background-color:#F4F4F4;font-size:12px;margin:auto;}
+
+.title{height: 50px;}
+.title h3{width:100px;color: #333;}
+.title-nav{float:left;text-align: center;cursor: pointer;height:50px;width: 100px;}
+.title-nav-hover,.title-nav:hover{background-color: #F5FBED;#D60C0C;}
+.title-nav-hover,.title-nav:hover h3{color:#D60C0C;}
+.title-nav-hover h3{color:#D60C0C;}
+.title .title-tip{float:right;line-height: 18px;}
+.title p{color: #333;}
+
+.content-box{background-image: url({templates}/static/images/novel/operate/bg.jpg);background-size:100%;width:813px;height:357px;}
+.content-dashang-box{padding: 30px 0 0 30px;}
+.content-dashang-props{height:125px;margin-left: -38px;}
+.content-dashang-props li{cursor: pointer;list-style:none;float: left;background: #222121; width: 123px;height: 144px;margin-right: 18px;padding-bottom: 8px;position: relative;}
+.content-dashang-props li .dashang-props-img{width: 123px;height: 103px;overflow: hidden;}
+.content-dashang-props li .dashang-props-money{color:#969292;}
+.content-dashang-props li .dashang-props-title{letter-spacing: -1px;color:#ff9a6a;}
+.dashang-props-money{margin-top: 10px;line-height: 15px;text-align: center;font-weight: normal;}
+.dashang-props-title{line-height: 20px;text-align: center;font-weight: normal;}
+.content-dashang-props li .dashang-props-checked{
+	background: url({templates}/static/images/novel/operate/money.png) no-repeat;
+	background-position: 0 -653px;color: #fff;font-family: "Microsoft YaHei";font-size: 20px;line-height: 18px;width: 82px;height: 30px;top: 0;left: 0;
+    z-index: 3;position: absolute;padding: 75px 0 0 41px;display:inline;
+}
+.content-dashang-money{height: 18px;line-height: 18px;overflow: hidden;margin-top:30px}
+.content-dashang-remarks{margin-top:20px;width: 560px;}
+.dashang-remarks-text textarea{background: #fff;width: 390px;height: 48px;color: #333;line-height: 24px;font-size: 12px;padding: 10px 6px 14px 10px;border: 1px solid #c1c1c1;border-radius: 2px;resize: none;}
+.content-dashang-remarks .dashang-remarks-btn{width: 122px;}
+.content-dashang-remarks .dashang-remarks-btn{float:right;}
+.dashang-remarks-btn .dashang-btn{cursor: pointer;margin-right: 245px;text-align: center;width: 120px;font-size: 18px;height: 50px;line-height: 50px;
+    box-shadow: 0 0 1px rgba(255,255,255,0.5) inset;border: 1px solid #d4351b;color: #fff;background: #ec5245;font-family: "Microsoft YaHei";border-radius: 3px;
+}
+.dashang-remarks-btn .dashang-btn-tip{margin-top: 6px;width: 130px;color: #696464;text-align: center;font-weight: normal;}
+.content-dashang-money input{background: #fff;color: #333;font-size: 12px;width:30px;border: 1px solid #c1c1c1;border-radius: 2px;resize: none;}
+
+/*打赏金币样式*/
+.content-gold-box{padding: 10px 0 0 20px;}
+.content-gold-props{height:220px}
+.content-gold-props .dashang-props-img span{display:block}
+.content-gold-props li{height: 97px;color:#FFFFFF;font-size:30px;text-align:center;margin-right: 30px; margin-bottom: 15px;}
+.content-gold-remarks{width: auto;margin-top:0px;text-align:center}
+.content-gold-number{padding-bottom: 5px;}
+
+.content-rec-props{height:220px}
+.content-rec-number{font-size:16px}
+.content-rec-props h4{color:#BBB3B3}
+#recNumber,#monthNumber{text-align: center;height: 40px;font-size: 20px;border: 1px solid #D6D6D6;color: #3BA730;outline:none;}
+</style>
+</head>
+<body>
+
+<div class="box">
+	<div class="title">
+		<div class="title-tip"><p>您的打赏是作者最大的动力~</p></div>
+		<div>
+			<div class="title-nav {cur:tab=reward}title-nav-hover{/cur}"><h3>赠送礼物</h3></div>
+			<div class="title-nav {cur:tab=gold}title-nav-hover{/cur}"><h3>打赏{金币2名字}</h3></div>
+			<div class="title-nav {cur:tab=rec}title-nav-hover{/cur}"><h3>我要推荐</h3></div>
+			<div class="title-nav {cur:tab=month}title-nav-hover{/cur}"><h3>我投月票</h3></div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div class="content">
+		<div class="content-box" style="display:none">
+			<div class="content-dashang-box">
+				<ul class="content-dashang-props">
+					{道具:模块=小说;排序=顺序;tid=4;数量=4}
+					<li data-id="{道具id}">
+						<div class="dashang-props-img"><img src="{道具图标}" alt="{道具名字}"></div>
+						<div class="dashang-props-money"><money>{道具价格2}</money>{金币2名字}</div>
+						<div class="dashang-props-title">{道具名字}</div>
+					</li>
+					{/道具}
+				</ul>
+	
+				<div class="clear"></div>
+				<div class="content-dashang-money">（您共有{用户金币1数量}{金币1名字} , {用户金币2数量}{金币2名字}）</div>
+				<div class="content-dashang-remarks">
+	                <div class="dashang-remarks-btn">
+						<div class="dashang-btn" id="dashang">打赏</div>
+						<div class="dashang-btn-tip">支持作者，有我一份！</div>
+					</div>
+					<div class="dashang-remarks-text">
+						<textarea placeholder="作者大大我跟你说：这么多高科技，赶紧用起，别再借口说没电脑哈~还等着看呢" name="dashang-remarks" maxlength="30"></textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="content-box" style="display:none">
+			<div class="content-dashang-box content-gold-box">
+				<ul class="content-dashang-props content-gold-props">
+					<li><div class="dashang-props-img"><span>10</span>{金币2名字}</div></li>
+					<li><div class="dashang-props-img"><span>20</span>{金币2名字}</div></li>
+					<li>
+						<div class="dashang-props-img"><span>50</span>{金币2名字}</div>
+						<span class="dashang-props-checked">选中</span>
+					</li>
+					<li><div class="dashang-props-img"><span>100</span>{金币2名字}</div></li>
+					<li><div class="dashang-props-img"><span>200</span>{金币2名字}</div></li>
+					<li><div class="dashang-props-img"><span>500</span>{金币2名字}</div></li>
+					<li><div class="dashang-props-img"><span>1000</span>{金币2名字}</div></li>
+					<li><div class="dashang-props-img"><span>2000</span>{金币2名字}</div></li>
+					<li><div class="dashang-props-img"><span>5000</span>{金币2名字}</div></li>
+					<li><div class="dashang-props-img"><span>10000</span>{金币2名字}</div></li>
+				</ul>
+	
+				<div class="clear"></div>
+				<div class="content-dashang-remarks content-gold-remarks">
+	                <div class="content-gold-number">（您共有{用户金币1数量}{金币1名字} , {用户金币2数量}{金币2名字}）</div>
+	                <div class="dashang-remarks-btn" style="margin: auto;float: none">
+						<div class="dashang-btn" id="gold_btn">打赏</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="content-box" style="display:none">
+			<div class="content-dashang-box content-rec-box">
+				<ul class="content-dashang-props content-rec-props" style="text-align:center;">
+	                <div class="content-rec-number">剩余{推荐票名字}数{推荐票}张·当前最多能投{推荐票}张</div>
+					<div class="vote-form-wrap">
+				        <h4>投票数量</h4>
+				        <input id="recNumber" maxlength="3" value="1">
+				    </div>
+				</ul>
+	
+				<div class="clear"></div>
+				<div class="content-dashang-remarks content-gold-remarks">
+	                <div class="dashang-remarks-btn" style="margin: auto;float: none">
+						<div class="dashang-btn" id="rec_btn">推荐你</div>
+						<div class="dashang-btn-tip">支持作者，有我一份！</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="content-box" style="display:none">
+			<div class="content-dashang-box content-rec-box">
+				<ul class="content-dashang-props content-rec-props" style="text-align:center;">
+	                <div class="content-rec-number">剩余{月票名字}数{月票}张·当前最多能投{月票}张</div>
+					<div class="vote-form-wrap">
+				        <h4>投票数量</h4>
+				        <input id="monthNumber" maxlength="3" value="1">
+				    </div>
+				</ul>
+	
+				<div class="clear"></div>
+				<div class="content-dashang-remarks content-gold-remarks">
+	                <div class="dashang-remarks-btn" style="margin: auto;float: none">
+						<div class="dashang-btn" id="month_btn">月票走你</div>
+						<div class="dashang-btn-tip">支持作者，有我一份！</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="/files/js/common.js"></script>
+<script>
+//打赏文本框的默认值
+var dashangRemarks= [
+'作者大大我跟你说：这么多高科技，赶紧用起，别再借口说没电脑哈~还等着看呢',
+'作者大大我跟你说：电脑不卡了吧，哈哈，爷有钱，你就安心码字吧~',
+'作者大大我跟你说：这小说真心不错，真不错，真TM不错！！！',
+'作者大大我跟你说：送你个鼓励师，我只要好看的小说，其他的你随意，哈哈~',
+];
+
+$(function(){
+	//默认选中
+	$(".content .content-box").eq($('.title-nav-hover').index()).show();
+	//tab切换
+	$(".title-nav").click(function(){
+		//tab隐藏显示
+		$(".title-nav").removeClass('title-nav-hover');
+		$(this).addClass('title-nav-hover');
+		//box隐藏显示
+		$(".content .content-box").hide();
+		$(".content .content-box").eq($(this).index()).show();
+	});
+	//点击切换
+	$(".content-dashang-props li").click(function(){
+		$(".content-dashang-props li").find(".dashang-props-checked").remove();
+		$(this).append('<span class="dashang-props-checked">选中</span>');
+		$("[name='dashang-gold2']").val($(this).find("money").html());
+		$(".dashang-remarks-text textarea").attr('placeholder',dashangRemarks[$(this).index()]);
+	});
+	
+
+	/*道具打赏*/
+	$("#dashang").click(function(){
+		var parent = $(".content-dashang-box").find('.dashang-props-checked').parent();
+		var remark = $('[name=dashang-remarks]').val();
+		var thisGold = parent.find('money').html();
+		var pid = parent.data("id");
+		var gold = thisGold;
+		thisGold = parseInt(thisGold);
+		if(typeof(gold) == 'undefined' || thisGold < 1 || pid < 1){
+			easydialog_autoclose("对不起，请选择赠送的道具!");
+		}else if( thisGold > {用户金币2数量} ){
+			easydialog_alert("对不起，您的{金币2名字}为{用户金币2数量}，不足"+thisGold+"{金币2名字}，无法赠送道具！<br/>请先<a href='{充值}'>充值</a>后再试!",'{金币2名字}不足','','');
+		}else{
+			if( remark == '' ){
+				remark = dashangRemarks[parent.index()];
+			}
+			//赠送道具操作
+			$.ajax({
+				type:"POST",
+				url:"{url:action;novel.props.give&ajax=yes}",
+				data:{'pid':pid,'nid':'{nid}','remark':remark},
+				dataType:"json",
+				success:function(data)
+				{
+					if(data.code==200){
+						easydialog_autoclose(data.msg,'success',3000);
+					}else{
+						easydialog_autoclose(data.msg,'',2000);
+					}
+				}
+			});
+		}
+	});
+	/*金币打赏*/
+	$("#gold_btn").click(function(){
+		var thisGold = $(".content-gold-box").find('.dashang-props-checked').parent().find('span').html();
+		var gold = thisGold;
+		thisGold = parseInt(thisGold);
+		if(typeof(gold) == 'undefined' || thisGold < 1){
+			easydialog_autoclose("对不起，请选择打赏的数量!");
+		}else if( thisGold > {用户金币2数量} ){
+			easydialog_alert("对不起，您的{金币2名字}为{用户金币2数量}，不足"+thisGold+"{金币2名字}，无法完成打赏！<br/>请先<a href='{充值}'>充值</a>后再试!",'{金币2名字}不足','','');
+		}else{
+			//打赏金币操作
+			$.ajax({
+				type:"POST",
+				url:"{url:action;novel.reward&ajax=yes}",
+				data:{'gold2':thisGold,'nid':'{nid}'},
+				dataType:"json",
+				success:function(data)
+				{
+					if(data.code==200){
+						easydialog_autoclose(data.msg,'success',3000);
+					}else{
+						easydialog_autoclose(data.msg,'',2000);
+					}
+				}
+			});
+		}
+	});
+	/*推荐*/
+	$("#rec_btn").click(function(){
+		var rec = $("#recNumber").val();
+		if( rec > {推荐票} ){
+			easydialog_autoclose("对不起，您的{推荐票名字}为{推荐票}张，不足"+rec+"张，不能完成投票！");
+		}else{
+			//推荐操作
+			$.ajax({
+				type:"POST",
+				url:"{url:action;novel.ticket&ajax=yes}",
+				data:{'number':rec,'type':'rec','nid':'{nid}'},
+				dataType:"json",
+				success:function(data)
+				{
+					if(data.code==200){
+						easydialog_autoclose(data.msg,'success',3000);
+					}else{
+						easydialog_autoclose(data.msg,'',2000);
+					}
+				}
+			});
+		}
+	});
+	/*月票*/
+	$("#month_btn").click(function(){
+		var month = $("#monthNumber").val();
+		if( month > {月票} ){
+			easydialog_autoclose("对不起，您的{月票名字}为{月票}张，不足"+month+"张，不能完成投票！");
+		}else{
+			//月票操作
+			$.ajax({
+				type:"POST",
+				url:"{url:action;novel.ticket&ajax=yes}",
+				data:{'number':month,'type':'month','nid':'{nid}'},
+				dataType:"json",
+				success:function(data)
+				{
+					if(data.code==200){
+						easydialog_autoclose(data.msg,'success',3000);
+					}else{
+						easydialog_autoclose(data.msg,'',2000);
+					}
+				}
+			});
+		}
+	});
+});
+</script>
+</body>
+</html>

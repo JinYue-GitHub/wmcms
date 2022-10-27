@@ -1,0 +1,371 @@
+/*解决首页标题过长显示问题*/
+.mod-cover-list-text {
+	width: 100px;
+	display: -moz-inline-box;
+	display: inline-block;	
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	line-height: 16px!important;
+	color: #E8E8E8!important;
+} 
+.mod-cover-list-name{
+	
+	width: 100px;
+	text-align: center;
+	/*display: -moz-inline-box;*/
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	
+}
+.mod-cover-list-mask{
+	padding-top: 6px;
+	margin-top: 0!important;
+	text-align: center!important;
+}
+.mod-cover-list-text{
+    padding-right: 0px!important;
+}
+
+
+
+
+
+/*测试===书名过长鼠标悬停显示全部书名*/
+.in-rise-item .mod-cover-list-intro,
+.in-teen-list-wr .mod-cover-list-intro,
+.in-girl-list-wr .mod-cover-list-intro,
+.in-gamble-list .mod-cover-list-intro{
+	margin-top: 34px;
+}
+
+.in-rise-item h5{
+	position:absolute;
+	width: 98px;
+	
+}
+.in-teen-list-wr h5,
+.in-girl-list-wr h5,
+.in-gamble-list h5{
+	position:absolute;
+	width: 133px;
+	}
+
+.in-rise-item .mod-cover-list-name{
+	line-height: 14px!important;
+	padding-top: 3px;
+}
+.in-rise-item .mod-cover-list-name:hover{
+	position:absolute!important; 
+	left: 1px;
+	top: 0;
+	width: auto;
+	min-width: 100%;
+	white-space: pre-line;
+	line-height: 14px;
+	z-index: 99;	
+}
+.in-teen-list-wr .mod-cover-list-name:hover,
+.in-girl-list-wr .mod-cover-list-name:hover,
+.in-gamble-list .mod-cover-list-name:hover{
+	position:absolute!important; 
+	left: 0;
+	width: auto;
+	min-width: 100%;
+	white-space: nowrap;
+	z-index: 99;	
+}
+
+
+
+
+
+/*小说分类标题添加鼠标悬浮显示全部效果*/
+.in-slider-wr .mod-cover-list-text:hover,
+.in-teen-list-wr .mod-cover-list-text:hover,
+.in-girl-list-wr .mod-cover-list-text:hover,
+.in-gamble-wr .mod-cover-list-text:hover{
+	margin-left: 2px;
+	text-align: left;
+	white-space: pre-line;
+	line-height: 16px;
+    width:120px;
+	padding: 1px 0px 6px 6px;	
+	word-break:normal;
+    display:block;
+    overflow: hidden;
+} 
+
+.mod-cover-list-mask{	
+	position: absolute!important;
+	bottom: 0!important;
+	left: 0!important;
+	height: auto!important;
+	min-height: 100%!important;
+}
+
+/*全站总榜字体颜色超链接颜色修改*/
+.video-list a:hover .play-text-sub1{
+    color:#ff9a6a!important;
+}
+.play-text i{
+	color:#E8E8E8;
+}
+
+/*解决新书排行榜标题过长显示问题*/
+.in-monrank-item .no1{
+	margin-left: -5px;
+	position: absolute;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.in-monrank-item .no2{
+	width: 165px!important;
+	margin-left: 173px;
+}
+/*首页标题作者等居中显示*/
+.in-content a{
+    text-align: center;
+	width: 133px;
+}
+.mod-cover-list-intro,
+.mod-cover-list-tag,
+.in-sign-list li{
+	text-align: center;
+}
+
+/*精品推荐加简介样式*/
+.in-slider-wr{
+	height: 290px!important;
+}
+.in-slider-list .mod-cover-list-intro-1{
+	word-break: break-all;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:2;
+	overflow: hidden;
+	height: 32px!important;	
+	line-height: 16px;
+	text-align: left!important;
+	white-space: pre-line;
+}
+.in-slider-list .mod-cover-list-intro{
+	padding-top: 6px;
+}
+
+/*玄幻魔法加简介省略号*/
+.in-sign-right-wr .in-sign-work-intro{
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:2;
+}
+
+/*点击排行加超链接效果*/
+.in-award-list a{ color: #333; }
+.in-award-list a:hover{
+    color: #fa8729;
+}
+
+/*少男少女和热血显示问题*/
+.in-teen-list-wr,
+.in-girl-list-wr{
+	height: 336px!important;
+}
+.in-teen-list-wr li,
+.in-girl-list-wr li,
+.in-gamble-wr li{
+	text-align: center;
+}
+.in-teen-list-wr .mod-cover-list-intro,
+.in-girl-list-wr .mod-cover-list-intro{
+	word-break: break-all;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:3;
+	overflow: hidden;
+	height: 48px!important;	
+	line-height: 16px;
+	text-align: left!important;
+	white-space: pre-line;
+}
+.in-teen-list-wr .mod-cover-list-tag,
+.in-girl-list-wr .mod-cover-list-tag{
+padding-top: 8px;
+}
+.in-gamble-title{	
+	margin-top:-6px!important;
+}
+.in-gamble-wr .mod-cover-list-intro{
+	text-align: left!important;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+/*最近更新移出*/
+.in-exce-list-wr{
+	width: 1200px!important;
+	margin-top: -60px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 30px;
+}
+.in-rise-list2 .in-rise-ta-wrap{
+	width: 1200px!important;
+}
+.in-rise-ta-wrap td{
+	color: #999;
+}
+.in-rise-ta-wrap .td1{
+	width: 120px;
+}
+.in-rise-ta-wrap .td2{
+	width: 280px;
+}
+.in-rise-ta-wrap .td3{
+	width: 430px;
+}
+.in-rise-ta-wrap .td4{
+	width: 176px;
+}
+.in-new-top .in-new-more{
+	margin-top: -2px;
+	color: #fa8729;
+	font-size: 15px;
+}
+
+/*友情链接宽度调整*/
+.linkBox{
+	width: 1183px!important;
+}
+
+/*首页五合一鼠标悬停效果*/
+.container{
+	width: 1200px;
+	height: 150px;
+	margin-left: auto;
+    margin-right: auto;
+	margin-bottom: 40px;
+	padding: 16px 0;
+    background-color: #535353;
+    overflow: hidden;
+}
+.gallery{
+	margin-left: -15px;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+}
+.gallery-item{
+	width: 115px;
+	height: 150px;
+	border: 1px solid #393939;
+	margin-left: 15px;
+	position: relative;
+	cursor: pointer;
+	overflow: hidden;
+}
+.gallery-item-image{
+	position: absolute;
+	width: 115px;
+	height: 150px;
+	background: lightblue;
+	z-index:20;
+	-webkit-transition:all .5s ease;
+	transition: all .5s ease;
+	bottom:0;
+	overflow: hidden;
+}
+.gallery-item:hover{
+	border-color: #ff9a6a;
+	box-shadow: 0 0 14px #ff9a6a;
+}
+.gallery-item:hover .gallery-item-image{
+	border-bottom: 1px solid #ff9a6a;
+	box-shadow: 0 0 30px #ff9a6a;
+	bottom: 126px;
+}
+
+.gallery-item-description{
+	color:#E8E8E8;
+	width: 100%;
+	height: 126px;
+	padding: 6px;
+	background: #3E3E3E;
+	position: absolute;
+	bottom:0;
+}
+.gallery-item-description h3{
+	margin-top: 15px;
+	font-weight:bold;
+	font-size: 13px;
+	text-align: center;
+	width: 100px;
+	display: -moz-inline-box;
+	display: inline-block;
+	float: inherit;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.gallery-item-description span{
+	font-size: 12px;
+	color: #969696 ;
+	margin-left: -2px;
+	word-break: break-all;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:5;
+	overflow: hidden;
+	height: 80px;
+	line-height: 16px;
+	text-align: left;
+	white-space: pre-line;
+	
+}
+
+/*最新入库鼠标悬停效果*/
+.mousetouch{
+	overflow: hidden;
+	position: relative;
+}
+.mousetouch .content{
+	top: 0;left: 0;right: 0;bottom: 0;
+	padding: 5px;
+	position: absolute;
+	font-size: 12px;
+	background-color: black;
+	color: #E8E8E8;
+	text-align: left;
+	visibility: hidden;
+}
+.mousetouch:hover .content{
+	visibility: visible;
+	border: 2px solid #ff9a6a;
+	background-color:rgba(0,0,0,0.5);
+}
+.mousetouch .content span{
+	margin: 4px 0 0 1px;
+	word-break: break-all;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:7;
+	overflow: hidden;
+	height: 112px;	
+	line-height: 16px;
+	white-space: pre-line;
+}

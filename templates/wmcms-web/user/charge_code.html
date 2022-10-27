@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>{title}</title>
+<meta name="Keywords" content="{key}" />
+<meta name="Description" content="{desc}" />
+<link href="{templates}/static/css/user/charge.css" type="text/css" rel="stylesheet" />
+<script src="/files/js/common.js"></script>
+<style>
+.conTable{margin-top: 100px;}
+.account_box td{text-align:center;font-size:16px;}
+.money{font: 40px/1 Arial; color: #ed4259;}
+</style>
+</head>
+<body>
+    <div class="main">
+		<div class="layout_top">
+			<ul class="clearfix">
+				<li style="width:100%"><a class="on">{支付方式}扫码支付</a></li>
+			</ul>
+		</div>
+
+
+        <div class="content pt25">
+            <table class="conTable">
+                <tr class="account_box">
+                    <td><img src="/files/images/pay/{支付标识}.jpg" width="140"><br/>{支付方式}扫码支付</td>
+                </tr>
+                <tr class="account_box">
+                    <td><img src="{二维码}"></td>
+                </tr>
+                <tr class="account_box">
+                    <td>请打开[{支付方式}扫一扫]扫描上方二维码完成支付</td>
+                </tr>
+                <tr class="account_box">
+                    <td><span class="money">{支付金额}</span>&nbsp;&nbsp;元</td>
+                </tr>
+                <tr class="account_box">
+                    <td style="font-size: 12px;line-height:0;color:#bbbbbb;">订单号：{订单号}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    
+<script>
+function CheckOrder(){
+	$.ajax({
+		type:"GET",
+		url:"/wmcms/ajax/index.php?action=finance.get_charge_order_list",
+		dataType:"json",
+		success:function(json){
+			if( json.code == 200 ){
+				if(json.data.charge_status == '1'){
+					easydialog_autoclose('充值成功！','success');
+					setTimeout(function(){window.close();},2000);
+				}
+			}else{
+				easydialog_autoclose(json.msg,'error');
+			}
+		},
+		async:true,
+	});
+}
+window.setInterval(CheckOrder, 4000); 
+</script>
+</body>
+</html>

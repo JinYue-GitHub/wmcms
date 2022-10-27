@@ -1,0 +1,65 @@
+{header:user/inc_header.html}
+<script>
+$(document).ready(function(){
+	$("#nv").find("li a").eq("6").addClass("nvcur");
+});
+</script>
+<style>
+h2{font-size: 14px;}
+.xw0{margin-left: 15px;font-size: 12px;}
+.pf_l li{float: left;width: auto;margin-right: 35px;color: #5a5a5a;}
+.pf_l em{padding-right: 2px;}
+.bm_h{height: 32px;line-height: 36px;}
+.table_show,#pcr{border: 2px solid #f4f4f4;width: 100%;margin: 15px 0;}
+.table_show th,.table_show td,#pcr td,#pcr th{padding: 11px 0 11px 8px;}
+.table_show th,#pcr th{color: #acacac;}
+.table_show td,#pcr td{color: #5a5a5a;}
+.md_ctrl{margin: 15px 0;}
+.block_title{padding-bottom: 8px;border-bottom: 1px dashed #cdcdcd;}
+.group_show{position: absolute;top: 0px;right: 0px;}
+.group_show li{float: left;margin-left: 30px;}
+#pbbs,#psts .pf_l{overflow: hidden;border: solid #f4f4f4;border-width: 2px 2px 1px 1px;}
+#pbbs div,#psts .pf_l div{float: left;width: 357px;border-bottom: 1px solid #f4f4f4;}
+#pbbs span,#psts .pf_l span{padding: 11px 0 11px 10px;display: inline-block;color: #5a5a5a;}
+#pbbs .th,#psts .pf_l .th{width: 84px;border: solid #f4f4f4;border-width: 0 1px 0 1px; color: #acacac;}
+#psts{margin-top: 20px;}
+
+/*使用系统默认上传此样式表必须，可以自定义修改*/
+/*头像框*/
+.headbox{text-align:center}
+.head{width:130px; height:130px;border-radius: 10px;}
+/*上传框*/
+.upbox{text-align:center;margin-top: 10px;}
+.submit_form{}
+.save_button{width: 40px;height: 20px;border: none;cursor: pointer;}
+.upload_button{width: 40px;height: 20px;border: none;cursor: pointer;}
+.hide_button{opacity:0;position:absolute; margin-left:-40px;width:40px;}
+/*头像列表*/
+.wmcms{margin-right:5px;cursor: pointer;}
+.wmcms img{border-radius: 10px;}
+.wmcms img:hover{opacity: 0.6;}
+
+</style>
+<div id="ct" class="ct2 wp cl">
+	<div class="mn" style="float:none">
+		<div class="bm" style="width: 950px;margin-left: 10px;">
+			<div class="bm_h"><h1 class="mt">个人资料</h1></div>
+			<div class="bm_c">
+				<div class="bm_c u_profile">
+				    <div class="pbm mbm bbda cl" style="position: relative;">
+						{上传头像表单}
+					</div>
+				</div>
+				
+				<div class="mqq-content" id="headlist" style="padding:10px;padding-left:20px;">
+					{预设头像:排序=头像排序;数量=20}
+					<wmcms class="wmcms"><img height="60" width="60" data-id="{id}" src="{src}"></wmcms>
+					{/预设头像}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{上传头像js}
+{footer:user/inc_footer.html}

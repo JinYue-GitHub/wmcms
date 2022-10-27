@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html style="font-size: 55.2px;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=no">
+    <meta name="Keywords" content="{key}" />
+    <meta name="Description" content="{desc}" />
+    <link rel="stylesheet" href="{templates}/static/css/style.css">
+    <title>{title}</title>
+</head>
+<body>
+    <div id="app">
+       <div class="x-home">
+            <div class="x-page__header van-hairline--bottom">
+                <a href="javascript:history.back();"></a>
+                <span class="x-page__title">{名字}</span>
+                <div class="header-menu" onclick="javascript:location.href='/';">
+                    <i class="icon-shouye-h is-active" style="font-size: 0.4rem;"></i>
+                </div>
+            </div>
+            <div class="x-page__content">
+                <div class="x-book__detail">
+                    <div class="x-detail__top">
+                        <div class="x-detail__book">
+                            <div class="bg-blur" style="background: url('{封面}') center top / cover no-repeat;"></div>
+                            <div class="bg-blur__bg"></div>
+                            <div class="x-book">
+                                <div class="x-book__multi">
+                                    <div class="x-book__coverbox">
+                                        <img lazy="loaded" class="x-book__cover"src="{封面}" style="width: 1.5rem; height: 2rem;">                    
+                                    </div>
+                                    <div class="x-book__text--multi" style="width: calc(100% - 1.5rem); height: 2rem;">
+                                        <div class="x-detail__book--info">
+                                            <p class="x-detail__info--title">{名字}</p>
+                                            <p class="x-detail__info--author">{作者}</p>
+                                            <p class="x-detail__info--words">字数：{php}
+	                            if('{字数}'==0){
+	                                echo '暂未写作';
+	                            };
+	                            if('{字数}'<999 && '{字数}'>0){
+	                                echo '{字数}字';
+	                            };
+	                            if('{字数}'>999 && '{字数}'<9999){
+	                                echo '{运算:{字数}/1000}千';
+	                            };
+	                            if('{字数}'>9999 && '{字数}'<99999){
+	                                echo round('{运算:{字数}/10000}',0).'万';
+	                            };
+	                            if('{字数}'>99999 && '{字数}'<999999){
+	                                echo round('{运算:{字数}/100000}',0).'十万';
+	                            };
+	                            if('{字数}'>999999){
+	                                echo round('{运算:{字数}/1000000}',0).'百万';
+	                            };
+                            {/php}</p>
+                                            <p class="x-detail__info--reads">
+                                                阅读：{php}
+	                            if('{总点击}'==0){
+	                                echo '暂未写作';
+	                            };
+	                            if('{总点击}'<999 && '{总点击}'>0){
+	                                echo '{总点击}';
+	                            };
+	                            if('{总点击}'>999 && '{总点击}'<9999){
+	                                echo '{运算:{总点击}/1000}千';
+	                            };
+	                            if('{总点击}'>9999 && '{总点击}'<99999){
+	                                echo round('{运算:{总点击}/10000}',0).'万';
+	                            };
+	                            if('{总点击}'>99999 && '{总点击}'<999999){
+	                                echo round('{运算:{总点击}/100000}',0).'十万';
+	                            };
+	                            if('{总点击}'>999999){
+	                                echo round('{运算:{总点击}/1000000}',0).'百万';
+	                            };
+                            {/php}
+                                                <span>{进程}</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="x-detail__operator">
+                                <span class="x-detail__operator--item" onclick="addshujia('{加入书架}')">加入书架</span>
+                                <span class="to-read"><a href="{立即阅读}">开始阅读</a></span>
+                            </div>
+                        </div>
+                        <div class="x-detail__ticket">
+                            <div class="x-detail__ticket--box">
+                                <span onclick="digg('{id}','ding')" class="x-detail__ticket--item van-hairline--right">
+                                    {顶} <i>顶</i>
+                                </span>
+                                <span onclick="digg('{id}','cai')" class="x-detail__ticket--item van-hairline--right">
+                                    {踩} <i>踩</i>
+                                </span>
+                                <span onclick="tuijian('{投推荐票}')" class="x-detail__ticket--item">
+                                    {总推荐}票 <i>推荐票</i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="x-detail__intro hr-bottom">
+                        <div class="x-detail__intro--content">{简介}</div>
+                        <div class="x-detail__intro--tags">
+														{标签:4}
+                            <span>{标签标题}</span>
+														{/标签}
+                        </div>
+                    </div>
+                    <div class="x-city__part x-detail__part hr-bottom">
+                        <div class="x-part__title">
+                            目录
+                            <span class="x-catalog__total">(共{章节数量}章)</span>
+                            <span class="x-catalog__update">更新于：{更新时间}</span>
+                        </div>
+                        <div class="x-part__content">
+                            {已阅读}<a href="{上次阅读}">
+                                <div class="x-catalog__new" style="justify-content: unset;">
+                                    <span style="padding: 0.1rem 0.1rem;margin-right: 10px;">上次阅读</span>{上次阅读章节名字}
+                                </div>
+                            </a>{/已阅读}
+                            <a href="{最新章节}" {eq:{最新章节名字}:0}style="display: none;"{/eq}>
+                                <div class="x-catalog__new">
+                                    {最新章节名字}
+                                    <span>最新</span>
+                                </div>
+                            </a>
+                            <div class="x-catalog__list van-hairline--bottom">
+                                {小说章节列表:数量=3;排序=章节顺序}
+                                <a href="{url}"><p class="x-catalog__list--item">{小说章节名字}</p></a>
+                                {/小说章节列表}
+                            </div>
+                            <div class="x-catalog__more">更多目录&gt;</div>
+                        </div>
+                    </div>
+                    <div class="x-city__part x-detail__part hr-bottom">
+                        <div class="x-part__content">
+                            <div style="width: 100%; padding-bottom: 20px;padding-top: 20px">
+                            		<span id="counter-box">
+                            			<div class="global-nav">
+                            				<ul>
+                            					<li>
+                            						<h4 class="pull-left" style="display: inline-block;font-weight: initial;font-size: 16px">精彩评论</h4>
+                            						<h5 class="pull-left" style="display: inline-block;font-weight: initial;font-size:12px">已盖 <span style="color:#f10">{评论量}</span> 楼</h5>
+                            					</li>
+                            				</ul>
+                            			</div>
+                            		</span>
+                            		<span id="post-box">
+                            			<div class="uyanpost">
+                            				<form method="post" action="{评论提交地址}" class="form-x">
+																		{表单锁}
+																		{评论隐藏表单}
+                            				<div class="resetbox sectionbox">
+                            					<div class="blockbox">
+                            						<div class="postarea">
+                            							<div class="postborder">
+																						{未登录}
+                            								<div style="background:#fff;
+                            								width: 99.8%;height: 80px;font-size: 12px;box-sizing:border-box;padding:10px">您还未登录，请先 <a href="/user/user/login.html" style="color:#f20" target="_parent">登录</a> 后再发表评论。</div>
+                            								</div>
+																						{/未登录}
+																						{已登录}
+																						<textarea name="content"></textarea>
+																						{发表评论验证码开启}
+																						<div style="display: flex;align-items: center;margin-top:10px;">
+																							<input type="text" name="code" style="border:1px solid #f8f8f8;border-radius: 4px; height: 30px;padding: 0 10px;" placeholder="请输入验证码">
+																							<div style="display: flex;align-items: center;margin-left: 10px;">
+																								<span>{发表评论验证码}</span>
+																							</div>
+																						</div>
+																						{/发表评论验证码开启}
+																						{/已登录}
+                            							<div style="display: block;text-align: right;margin-top:8px">
+                            								<button class="btn btn-info ajaxpost" type="submit" target-form="form-x">发 送</button>
+                            							</div>
+                            						</div>
+                            						<input type="hidden" name="mid" value="19136">
+                            					</div>
+                            				</div>
+                            				</form>
+                            			</div>
+                            		</span>
+                            		<span id="nav-box">
+                            			<div class="nav">
+                            				<div class="nav-left">
+                            					<span style="font-size: 16px;"> 最新评论</span>
+                            				</div>
+                            				<div class="claer"></div>
+                            			</div>
+                            		</span>
+                            		<span id="posts">
+                            			
+                            		<ul id="post-list" class="post-list">
+                            			{评论:}
+                            			<li class="post">
+                            				<div class="post-content">
+                            					<div class="avatar hovercard">
+                            						<div class="user">
+                            							<img src="{评论用户头像}"></div>
+                            						<div style="color:#666;font-size: 12px;text-align: center;margin-top: 5px">{评论用户昵称}
+                            						</div>
+                            					</div>
+                            					<div class="post-body">
+                            						<div class="post-body-inner">
+                            							<div data-role="message-container" class="post-message-container">
+                            								<div data-role="message-content">
+                            									<div class="post-message publisher-anchor-color">
+                            										<p>{评论内容}</p>
+                            									</div>
+                            								</div>
+                            							</div>
+                            						</div>
+                            						<div class="u-footer">
+                            							<div class="time-ago">{评论楼层} {评论时间}</div>
+                            							<ul>
+                            								<li>
+                            									<a onclick="javascript:location.href='{评论顶链接}';" title="顶一下" href="javascript:void(0);" class="action">
+                            										<span></span>
+                            										点赞<span style="font-size: 12px">（{评论顶}）</span>
+                            									</a> <em>•</em>
+                            								</li>
+                            								<li class="reply">
+                            									<a class="action" href="javascript:void(0);" onclick="reply(this,{$list['mid']|default=0},{$list['id']|default=0},'{$list['type']|default='novel'}');">回复</a>
+                            								</li>
+                            								<div class="claer"></div>
+                            							</ul>
+                            						</div>
+                            					</div>
+                            				</div>
+                            				<div class="uyan-reply-postbox"></div>
+                            				<ul class="children">
+																			
+                            				</ul>
+                            			</li>
+                            			{/评论}
+                            		</ul>
+																</span>
+                            		<span id="loadmore" style="display: none;"></span>
+                            		<div class="ujian-uyan"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="x-city__part x-detail__part">
+                        <div class="x-part__title">同类作品</div>
+                        <div class="x-part__content">
+                            <div class="x-detail__part--book">
+                                {同标签小说:数量=3;}
+                                <div class="x-book" style="width: 2rem;">
+                                    <a href="{url}" title="{小说名字}">
+                                        <div class="x-book__coverbox">
+                                            <img lazy="loaded" class="x-book__cover" src="{小说封面}" style="width: 2rem; height: 2.66667rem;">
+                                        </div>
+                                        <div class="x-book__text--normal">{小说名字}</div>
+                                    </a>
+                                </div>
+                                {/同标签小说}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="ui-line"></div> -->
+        <footer class="index">
+            <div class="m-right"><p>{网站名}版权所有©2018-<span id="J_Copyright">2019</span></p></div>
+        </footer>
+    </div>
+    <div class="chapter-list">
+        <div class="x-page__header van-hairline--bottom">
+            <a href="javascript:" id="chapter_back"></a>
+            <span class="x-page__title">目录</span>
+        </div>
+        <div class="x-page__content">
+            <div class="x-catalog">
+                <div class="van-pull-refresh">
+                    <div id="wrapper" class="van-pull-refresh__track">
+                        <div class="x-catalog__list van-list">
+                            {小说章节列表:排序=章节顺序}
+                            <a href="{url}">
+                                <p class="x-catalog__item">
+                                    {小说章节名字}
+                                </p>
+                            </a>
+                            {/小说章节列表}
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+	var dingUrl = '{顶链接}';
+	var caiUrl = '{踩链接}';
+</script>
+<script type="text/javascript" src="{templates}/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="{templates}/static/js/layer.js"></script>
+<script type="text/javascript" src="{templates}/static/js/global.js?v=202203221700"></script>
+<script>
+	$(document).ready(function(){
+	    var info = $('.x-detail__intro--content').html();
+	    if( info ){
+	        infoArr = info.split('<br>');
+	        $('.x-detail__intro--content').html('<p>'+infoArr.join('</p><p>')+'</p>');
+	    }
+    });
+</script>
+</body>
+</html>

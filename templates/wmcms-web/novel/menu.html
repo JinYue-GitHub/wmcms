@@ -1,0 +1,41 @@
+{header:novel/header.html}
+	<link rel="stylesheet" type="text/css" href="{templates}/static/css/wmcms.page.works.css" media="screen" />
+	<style>
+	.vloume{ height: 50px;width: 100%;line-height: 50px;font-size: 20px;padding-left: 25px;border-bottom: 2px solid #ff9a6a;color: #000000;}
+	.isvip{display: block;background-image: url(/files/images/vip.png);width: 33px;height: 13px;float: left;margin-top: 3px;clear: both;margin-right:5px;}
+	</style>
+</head>
+<body>
+
+{header:novel/nav.html}
+
+<div id="special_bg" style="padding-top:20px">
+	<div class="ui-wm ui-mb40 clearfix" style="background: #FFFFFF;border: 1px solid #e0dedc;">
+		<div class="works-chapter-wr ui-wm ui-mb40" style="overflow: inherit;">
+			<ul class="words-xone-menu clearfix works-chapter-menu">
+				<li class="active"><a href="javascript:void(0);" title="{名字}的章节列表">章节列表</a></li>
+	            <li class="active"><a href="{内容链接}">返回《{名字}》</a></li>
+			</ul>
+			<div class="works-chapter-list-tabcon">
+	            <div class="works-chapter-list-con">
+	                <div class="works-chapter-list-wr ui-left" style="height: auto;width: 1200px;">
+		                {小说分卷列表:}
+						<div class="vloume">{小说分卷名字}</div>
+	               		<ol class="chapter-page-new works-chapter-list" style="height: auto;">
+		                 	<li>
+		                 		{小说章节列表:分卷id={小说分卷id};排序=章节顺序}
+		                      	<p><span class="works-chapter-item">{收费章节}<span class="isvip"></span>{/收费章节}<a href="{url}" title="{小说章节名字}">{小说章节名字:19}</a></span></p>
+		                 		{/小说章节列表}
+		                    </li>
+	                    </ol>
+	                    <div class="chapter-end" style="height:40px"></div>
+						{/小说分卷列表}
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	
+{footer:novel/footer.html}

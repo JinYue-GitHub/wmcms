@@ -1,0 +1,129 @@
+{header:author/inc_header.html}
+{header:author/inc_toper.html}
+{header:author/inc_nav.html}
+<script>
+$(document).ready(function(){
+	$("#basic").addClass("act");
+});
+</script>
+<link rel="stylesheet" type="text/css" href="{templates}/static/css/author/basic.css">
+
+<div class="mainRight fl">
+	<div class="crumbsWrap"><i><span>作家资料</span></i></div>
+	<div class="msgBoxTitle">
+		<div class="tabSwitch cf">
+		<span class="act" id="t1"><a href="javascript:void(0)">基础信息</a></span>
+		<span id="t2"><a href="javascript:void(0)">财务信息</a></span></div>
+	</div>
+    <div class="tabWrap authorInfoForm" id="basicBox">
+		<div class="baseInfo tabBox">
+			<div class="infoListWrap">
+				<form id="basicForm" name="basicForm" method="post" action="{表单提交地址}">
+      				<ul>
+						<li><em>作家ID</em>{作家id}</li>
+	      				<li><em>笔名</em>{作家笔名}</li>
+				        <li><em>手机号码</em>{用户手机}</li>
+				        <li><em>电子邮箱</em>{用户邮箱}</li>
+				        <li><em>QQ号</em>{用户qq}</li>
+				        <li>
+							<em>作家简介</em>
+							<p class="place">
+							<textarea name="info" style="width:400px;height:80px;" id="info">{作家简介}</textarea>
+							</p>
+				        </li>
+				        <li>
+							<em>作家公告</em>
+							<p class="place">
+							<textarea name="notice" style="width:400px;height:80px;" id="notice">{作家公告}</textarea>
+							</p>
+				        </li>
+	     			 </ul>
+				      <p class="infoBtn">
+				        <a id=editBasicBtn class="button" href="javascript:">修改</a>
+					</p>
+				</form>
+			</div>
+		</div>
+	</div>
+		
+    <div class="tabWrap authorInfoForm" id="financeBox" style="display:none">
+		<div class="baseInfo tabBox">
+			<div class="infoListWrap">
+				<form id="financeForm" name="financeForm" method="post" action="{财务表单提交地址}">
+      				<ul>
+				        <li>
+							<em>真实姓名</em>
+							<p class="place"><input class="midInput" name="realname" type="text" value="{用户真实姓名}" style="width:80px"> <i class="f12 c999">和身份证上的姓名要一致</i></p>
+				        </li>
+				        <li>
+							<em>身 份 证</em>
+							<p class="place"><input class="midInput" name="cardid" type="text" value="{用户身份证}"></p>
+				        </li>
+				        <li>
+							<em>联系地址</em>
+							<p class="place"><input class="midInput" name="address" type="text" value="{用户联系地址}"></p>
+				        </li>
+				        <li>
+							<em>邮　　编</em>
+							<p class="place"><input class="midInput" name="zipcode" type="text" value="{用户邮编}" style="width:80px"></p>
+				        </li>
+				        <li>
+							<em>支 付 宝</em>
+							<p class="place"><input class="midInput" name="alipay" type="text" value="{用户支付宝}" style="width:160px;"> <i class="f12 c999">支付宝和银行信息可以只填其中一项</i></p>
+				        </li>
+				        <li>
+							<em>开 户 行</em>
+							<p class="place"><input class="midInput" name="bank" type="text" value="{用户开户行}" style="width:180px"></p>
+				        </li>
+				        <li>
+							<em>持 卡 人</em>
+							<p class="place"><input class="midInput" name="bankmaster" type="text" value="{用户持卡人}" style="width:80px"></p>
+				        </li>
+				        <li>
+							<em>银行卡号</em>
+							<p class="place"><input class="midInput" name="bankcard" type="text" value="{用户银行卡号}"></p>
+				        </li>
+				        <li>
+							<em>开户行地址</em>
+							<p class="place"><input class="midInput" name="bankaddress" type="text" value="{用户开户行地址}"></p>
+				        </li>
+	     			 </ul>
+				      <p class="infoBtn">
+				        <a id="editFinanceBtn" class="button" href="javascript:">修改</a>
+					  </p>
+				</form>
+			</div>
+		</div>    	
+	</div>
+	
+	<script>
+	$(document).ready(function(){
+		$("#t1").click(function(){
+			$("#t2").removeClass("act");
+			$(this).addClass("act");
+			$("#financeBox").hide();
+			$("#basicBox").show();
+		});
+		$("#t2").click(function(){
+			$("#t1").removeClass("act");
+			$(this).addClass("act");
+			$("#basicBox").hide();
+			$("#financeBox").show();
+		});
+		$("#editBasicBtn").click(function(){
+			$("#basicForm").submit();
+		});
+		$("#editFinanceBtn").click(function(){
+			if( $("[name=realname]").val() == '' || $("[name=cardid]").val() == '' || $("[name=address]").val() == '' || $("[name=zipcode]").val() == ''){
+				easydialog_alert("对不起，真实姓名、身份证、联系地址和邮编必须填写！");
+			}else if($("[name=alipay]").val() == '' && ($("[name=bank]").val() == '' || $("[name=bankmaster]").val() == ''
+					|| $("[name=bankcard]").val() == '' || $("[name=bankaddress]").val() == '')){
+				easydialog_alert("对不起，银行和支付宝必须填写一项！");
+			}else{
+				$("#financeForm").submit();
+			}
+		});
+		
+	});
+	</script>
+{header:author/inc_footer.html}

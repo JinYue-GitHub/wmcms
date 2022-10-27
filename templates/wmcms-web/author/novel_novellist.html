@@ -1,0 +1,93 @@
+{header:author/inc_header.html}
+{header:author/inc_toper.html}
+{header:author/inc_nav.html}
+<script>
+$(document).ready(function(){
+	$("#novel").addClass("act");
+});
+</script>
+<link rel="stylesheet" type="text/css" href="{templates}/static/css/author/novellist.css">
+
+<div class="mainRight fl">
+    <div class="crumbsWrap">
+        <i><span>小说管理</span></i>
+    </div>
+    <div class="msgBoxTitle">
+        <p class="f12 c555">当前作品总数<span id="bookCount" class="blue Num">{总数据}</span>本</p>
+        <a class="create button" href="{创建小说}"><em class="icon"></em>创建作品</a>
+    </div>
+    <!-- 存在作品 -->
+    <div id="bookManageExist" class="worksCtrlWrap">
+        <div class="worksListWrap mb20">
+            <table class="worklist-table" width="100%" border="0" cellspacing="0">
+                <colgroup>
+                    <col width="32px">
+                    <col width="220px">
+                    <col width="80px">
+                    <col width="180px">
+                    <col width="120px">
+                    <col width="60px">
+                    <col width="60px">
+                    <col width="160px">
+                </colgroup>
+                <thead>
+	                <tr>
+	                    <th></th>
+	                    <th class="tl">书名</th>
+	                    <th class="tl">状态</th>
+	                    <th class="tl">最新章节</th>
+	                    <th class="center">小说类型</th>
+	                    <th>收藏</th>
+	                    <th>进程</th>
+	                    <th class="center">操作</th>
+	                </tr>
+                </thead>
+                <tbody id="novelList">
+               		{小说列表:数量=20;排序=最新入库}
+               		{无数据}
+               		<tr class="active">
+	               		<td colspan="8">
+						    <div class="worksCtrlWrap">
+						        <div class="null"><p>你还没有发布任何作品，<a class="button" style="color: #FFF;" href="{创建小说}">创建作品</a></p></div>
+						    </div>
+					    </td>
+				    </tr>
+				    {/无数据}
+                	<tr class="active" style="background: #FFFFFF;">
+                		<td></td>
+                		<td class="tl">
+	                		<div class="work-photo">
+		                		<a href="{url}" target="_blank"><img src="{小说封面}" width="83" height="108" alt="作品封面"></a>
+	                		</div>
+	                		<p class="work-name"><a href="{url}" target="_blank">{小说名字}</a></p>
+                		</td>
+                		<td class="tl">{小说状态}</td>
+                		<td class="tl">
+                			<a href="{rurl}" target="_blank">{小说最新章节名字}</a><br>
+                			<em class="time">{小说更新时间}</em>
+                		</td>
+                		<td><em>{小说分类名字}</em></td>
+                		<td><em class="Num">{小说总收藏}</em></td>
+                		<td>{小说进程}</td>
+                		<td><div class="dib-wrap">
+                		<a class="button white" style="margin-right:10px" href="{neurl}"><span class="icon"></span><i>作品信息</i></a>
+                		<a class="button blue" href="{deurl}"><span class="icon"></span><i>工作台</i></a>
+                		</div></td>
+                		</tr>
+                	{/小说列表}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+</div>
+{header:author/inc_footer.html}
+<script>
+$(document).ready(function(){
+	$("#novelList tr").hover(function(){
+		$(this).css('background','#F6FBFF');  
+    },function(){  
+		$(this).css('background','#FFFFFF');
+    })  
+});
+</script>

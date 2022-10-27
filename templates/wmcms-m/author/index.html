@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{title}</title>
+		<link rel="stylesheet" href="{templates}/static/author/css/style.css">
+		<script src="{templates}/static/author/js/font.js"></script>
+	</head>
+	<body>
+		<div class="app">
+			<!-- Head -->
+			<div class="header">
+				<a href="javascript:history.back(-1)" class="close">&#10006</a>
+				<div class="headPic u-f-ajc">
+					<div>
+						<img src="{用户头像}" alt="{作家笔名}">
+					</div>
+				</div>
+				<div class="nickname u-f-ajc">
+					<span>{作家笔名}</span>
+				</div>
+				<div class="sign u-f-ajc">
+					<span>欢迎{作家笔名}来到作家系统</span>
+				</div>
+				<div class="menu u-f-ajc">
+					<a href="{小说收入列表}">收入明细</a>
+					<a href="{作家基本资料}">我的资料</a>
+				</div>
+			</div>
+			<!-- Info -->
+			<div class="info">
+				<div class="title">
+					<span>公告</span>
+				</div>
+				<div class="gonggao">
+					<span>{作家公告}</span>
+				</div>
+				<div class="line"></div>
+				<div class="title">
+					<span>简介</span>
+				</div>
+				<div class="gonggao">
+					<span>{作家简介}</span>
+				</div>
+				
+				<div class="line"></div>
+				<div class="title">
+					<span>小说</span>
+					<a href="{小说作品列表}" class="more">More</a>
+				</div>
+				<div class="gonggao">
+					{作者小说:小说作者id={作家id};数量=10;}
+					{无数据}您还没有开始写作呢！{/无数据}
+					<div class="u-f list">
+						<div class="cover">
+							<img src="{小说封面}" alt="{小说名字}">
+						</div>
+						<div class="info u-f1">
+							<h2>{小说名字}</h2>
+							<h5>{小说分类名字}</h5>
+							<p>上次写作时间 : {小说更新时间}</p>
+							<a href="/module/author/novel_draftedit.php?nid={小说id}" class="next">继续写作</a>
+						</div>
+					</div>
+					{/作者小说}
+				</div>
+				
+				<div class="line"></div>
+				<div class="title">
+					<span>文章</span>
+					<a href="{文章投稿列表}" class="more">More</a>
+				</div>
+				<div class="gonggao">
+					<ul>
+						{作者文章:文章作者id={作家id};数量=10;}
+						{无数据}您还未投稿任何文章！{/无数据}
+						<li><a href="/module/author/article_articleedit.php?id={文章id}">{文章标题}</a></li>
+						{/作者文章}
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<footer>
+			<p>{网站名}</p>
+		</footer>
+	</body>
+</html>

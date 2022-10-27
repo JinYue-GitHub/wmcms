@@ -1,0 +1,272 @@
+/* footer */
+.ne-footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #F5F6F7;
+    z-index: 3;
+    border-top: 1px solid rgba(21, 26, 48, .08);
+    box-sizing: border-box;
+    height: 40px;
+    user-select: none;
+    /* box-shadow: 0 -2px 4px rgba(21, 26, 48, 0.04), 0 -4px 12px rgba(21, 26, 48, .04);; */
+}
+
+.ne-footer-con {
+    position: relative;
+    padding: 4px 20px;
+}
+
+.ne-footer-con::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.ne-ftcl-ul {
+    font-size: 0;
+}
+
+.ne-ftc-left {
+    float: left;
+}
+
+.ne-ftcl-li {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.ne-ftcl-line {
+    display: block;
+    margin: 8px 16px;
+    height: 16px;
+    border-left: 1px solid rgba(21, 26, 48, 0.04);
+}
+
+.ne-ftcl-more {
+    margin-left: 4px;
+    cursor: pointer;
+    color: #7a7a7a;
+}
+
+.ne-ftcl-more .sicon {
+    width: 16px;
+    height: 16px;
+    margin: 6px;
+}
+
+.ne-ftclm-con {
+    position: absolute;
+    padding: 12px 16px;
+    bottom: 32px;
+    width: 190px;
+    background-color: #fff;
+    border-radius: 4px;
+    left: -93px;
+    border: 1px solid transparent;
+    box-shadow: 0 0 16px rgba(0, 0, 0, .16);
+}
+
+.ne-ftclm-con:before,
+.ne-ftclm-con:after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    margin-left: -8px;
+    border-style: solid;
+    border-width: 8px 8px 0 8px;
+}
+
+.ne-ftclm-con:before {
+    bottom: -8px;
+    border-color: #e0e0e0 transparent transparent transparent;
+}
+
+.ne-ftclm-con:after {
+    bottom: -7px;
+    border-color: white transparent transparent transparent;
+}
+
+.ne-ftcl-txt {
+    font-size: 12px;
+    line-height: 32px;
+    color: #7a7a7a;
+}
+
+.ne-ftcl-txt>.num {
+    color: #525252;
+}
+
+.ne-ftc-center {
+    position: absolute;
+    left: 0;
+    right: 0;
+    max-width: 350px;
+    margin: auto;
+    text-align: center;
+}
+
+.ne-ftc-center .spell-game-con {
+    position: relative;
+    display: inline-block;
+    font-size: 0;
+    background-color: #fff;
+    border: 1px solid rgba(21, 26, 48, .12);
+    box-sizing: border-box;
+    border-radius: 60px;
+    right: auto;
+    vertical-align: top;
+    max-height: 32px;
+}
+
+.ne-ftc-center .sg-type-mode {
+    display: inline-block;
+    float: none;
+    vertical-align: top;
+    width: 24px;
+    height: 24px;
+    margin: 3px 8px;
+}
+
+.ne-ftc-center .sg-desc {
+    display: inline-block;
+    overflow: visible;
+    box-shadow: none;
+    background-color: transparent;
+    padding: 4px 12px;
+    margin: auto -6px;
+    vertical-align: top;
+}
+
+.ne-ftc-center .sg-type-icon {
+    width: 24px;
+    height: 24px;
+    background-size: 100% 100%;
+}
+
+.ne-ftc-center .sg-type-txt,
+.ne-ftc-center .spell-game-txt {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 12px;
+    line-height: 24px;
+    margin: auto 6px;
+}
+
+.ne-ftc-center .sicon-con {
+    vertical-align: -10px;
+    margin-left: 6px;
+    margin-right: 6px;
+}
+
+.ne-ftc-right {
+    float: right;
+}
+
+.ne-ftc-right::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.ne-ftcr-oprate {}
+
+.ne-ftcr-oprate::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.ne-ftcr-item {
+    position: relative;
+    float: left;
+    padding: 0 8px;
+}
+
+.ne-ftcr-item+.ne-ftcr-item::after {
+    content: "";
+    top: 25%;
+    left: 0;
+    height: 50%;
+    position: absolute;
+    border-left: 1px solid rgba(21, 26, 48, .12);
+}
+
+.ne-ftcr-icon {
+    display: block;
+    height: 16px;
+    padding: 8px;
+    cursor: pointer;
+    color: #525252;
+    border-radius: 4px;
+}
+
+.ne-ftcr-icon:focus {
+    outline: none;
+}
+
+.ne-ftcr-icon .sicon-con {
+    vertical-align: top;
+}
+
+.ne-font-scale {
+    font-size: 0;
+}
+
+.ne-font-scale>a {
+    display: inline-block;
+}
+
+.ne-font-scale>.ne-ftcr-icon,
+.ne-font-scale>.ne-fs-current {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.ne-fs-current {
+    font-size: 12px;
+    line-height: 16px;
+}
+
+.ne-font-scale>.ne-fs-current,
+.ne-fs-range>.ne-fs-current {
+    cursor: pointer;
+    min-width: 36px;
+    text-align: center;
+    line-height: 32px;
+    /* vertical-align: top; */
+}
+
+.fz-xs .ne-font-down>.ne-ftcr-icon,
+.fz-lg .ne-font-add>.ne-ftcr-icon {
+    cursor: default;
+    opacity: .4;
+    pointer-events: none;
+}
+
+.ne-fs-range {
+    position: absolute;
+    padding: 8px 0;
+    bottom: 32px;
+    width: 88px;
+    background-color: #fff;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+    box-shadow: 0 0 16px rgba(0, 0, 0, .16);
+    margin-left: 6px;
+}
+
+.ne-fs-range>.ne-fs-current:hover {
+    background-color: rgba(21, 26, 48, .1);
+    color: #292929;
+    transition: .2s;
+}
+
+.ne-fs-range>.active {
+    color: #292929;
+}

@@ -1,0 +1,227 @@
+{header:author/inc_header.html}
+{header:author/inc_toper.html}
+{header:author/inc_nav.html}
+<script>
+$(document).ready(function(){
+	$("#main-bar").find("li").eq("2").addClass("act");
+});
+</script>
+<link rel="stylesheet" type="text/css" href="{templates}/static/css/author/novellist.css">
+<style>
+.upload_button{width: 40px;height: 20px;border: none;cursor: pointer;}
+.hide_button{opacity:0;position:absolute;margin-top: -5px;width: 122px;height: 45px;cursor: pointer;}
+#field li label{margin-right:10px;};
+#field li input{vertical-align:middle};
+
+</style>
+
+
+<div class="mainRight fl">
+    <div class="crumbsWrap">
+    	<i class="before"><a href="{文章投稿列表}"><span>投稿管理</span></a></i><em class="same"></em>
+		<i class="current"><span>文章编辑</span></i>
+    </div>
+    <div class="msgBoxTitle">
+        <div class="tabSwitch cf">
+            <span class="act"><a>编辑文章</a></span>
+        </div>
+    </div>
+    <div class="workStateWrap cf">
+        <form name="form" id="form" method="post" action="{表单提交地址}" enctype="multipart/form-data">
+        	{隐藏表单}
+        	<input type="hidden" name="simg" value="{缩略图}">
+            <div class="fmBox fl" style="width: 200px;height: 200px;">
+               <div class="fm">
+                   <img src="{缩略图}" id="simg" style="width: 193px;height: 193px;">
+                   <span class="modify hidden" id="upload_button" style="display: inline;left: 40px;">上传缩略图</span>
+					<input type="file" id="hide_button" class="hide_button" name="hide_button"/>
+               </div>
+            </div>
+             
+            <div class="workSetList fl">
+                <ul>
+                    <li>
+                    	<em>文章标题：</em>
+                        <input id="title" name="title" autocomplete="off" class="midInput recTagInput" value="{标题}" type="text" placeholder="必填：文章标题">
+                    </li>
+                    <li>
+                    	<em>短&nbsp;&nbsp;标&nbsp;&nbsp;题：</em>
+                        <input id="cname" name="cname" autocomplete="off" class="midInput recTagInput" value="{短标题}" type="text" placeholder="选填：文章的短标题">
+                    </li>
+                    <li><em>文章分类：</em>
+                        <b class="select-category" id="type_box" style="width: auto;">
+							{文章分类列表:允许投稿=是}
+	                        <select name="tid" style="visibility: visible; display: inline-block;">
+	                        	{文章分类:父级分类={topid};允许投稿=是}<option value="{文章分类id}" {eq:{typeid}:{文章分类id}}selected="selected"{/eq}>{文章分类名字}</option>{/文章分类}
+							</select>
+							{/文章分类列表}
+						</b>
+                    </li>
+                    <li>
+                    	<em>文章来源：</em>
+                        <input id="source" name="source" autocomplete="off" class="midInput recTagInput" value="{来源}" type="text" placeholder="必填：文章的来源方式">
+                    </li>
+                    <li>
+                    	<em>文章标签：</em>
+                        <input id="tags" name="tags" autocomplete="off" class="midInput recTagInput" value="{标签}" type="text" placeholder="必填：文章的标签,多个用,分割">
+                    </li>
+				</ul>
+                <ul id="field" style="display:none"></ul>
+				<ul>
+                    <li><em>文章简介：</em>
+                        <textarea id="info" name="info" style="height: 60px;" placeholder="选填：文章的简介内容">{简介}</textarea>
+                        <p data-node="tip" class="f12 c999">文章的内容简介</p>
+                    </li>
+                    <li style="margin-left:-240px"><em>文章内容：</em>
+                        <script type="text/javascript" src="/files/js/wangeditor/wangeditor.js"></script>
+						<textarea id="content" name="content" style="display:none">{内容}</textarea>
+						<div id="content_editor" style="background: #FFFFFF;">{内容}</div>
+						<script type="text/javascript">
+						var editor = new window.wangEditor('#content_editor');
+						editor.customConfig.uploadImgType = 'author&module=article';
+						//监控变化，同步更新到 textarea
+						editor.customConfig.onchange = function (html) {
+							$('[name=content]').val(html);
+						}
+						editor.create();
+						</script>
+                        <p data-node="tip" class="f12 c999">20~50000个字，可自行修改</p>
+                    </li>
+                </ul>
+
+                <p class="dib-wrap confirm modify hidden" style="display: block;">
+                    <a class="button green" id="sub" href="javascript:">保存</a>
+            	</p>
+            </div>
+		</form>
+    </div>
+ </div>
+{header:author/inc_footer.html}
+<script type="text/javascript" src="/files/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="/files/js/ajaxfileupload.js"></script>
+<script type="text/javascript" src="{templates}/static/js/author/field.js"></script>
+<script>
+function checkForm(url){
+	var name = $("#name").val();
+	var source = $("#source").val();
+	var tags = $("#tags").val();
+	var content = $("#content").val();
+	var tid = $("[name=tid]").val();
+	
+	if( name == '' || source == '' || tags == '' || content == '' ){
+		easydialog_alert('对不起，文章名字、来源、标签、内容不能为空！','','','');
+	}else if( !isPositiveNum(tid) ){
+		easydialog_alert('对不起，请选择文章分类！','','','');
+	}else if( content.length < 20 || content.length > 50000  ){
+		easydialog_alert('对不起，描述只能在20-50000个字符之间！','','','');
+	}else{
+		$.ajax({
+			type:"POST",
+			url:url,
+			data:$("#form").serializeArray(),
+			dataType:"json",
+			success:function(data){
+				easydialog_alert(data.msg,'','','');
+				if(data.code==200){
+					setTimeout(function(){window.parent.location = '{文章投稿列表}';},1000);
+				}
+			},
+			async:true,
+		});
+	}
+}
+//发布文章
+$("#sub").click(function(){
+	checkForm("{url:action;author.article_articleedit&ajax=yes}");
+});
+/*上传封面按妞*/
+$('#hide_button').live('change',function(){
+	//禁用按钮
+	$('#upload_button').val('上传中...');
+    $.ajaxFileUpload
+    ({
+        url: '/wmcms/action/index.php?action=upload.articlesimg', //用于文件上传的服务器端请求地址
+		type: 'post',
+        secureuri: false, //是否需要安全协议，一般设置为false
+        fileElementId: 'hide_button', //文件上传域的ID
+        data:{ajax:'yes',module: 'article'},
+        dataType: 'json', //返回值类型 一般设置为json
+        success: function (data)  //服务器成功响应处理函数
+        {
+        	alert
+        	if( data.code == 500 ){
+            	easydialog_alert(data.msg);
+        	}else{
+				//设置封面
+	        	$("#simg").attr("src", data.data.file);
+	        	$("[name=simg]").val(data.data.file);
+				//还原按钮
+				$('#hide_button').clone().val('');
+				$('#upload_button').val('上传缩略图');
+				
+				easydialog_alert(data.msg , '提示' , null, '');
+        	}
+        },
+        error: function(e) {
+        	easydialog_alert(e);
+        } 
+     })
+});
+
+//分类选择
+$('#type_box select').live('change',function(){
+	var html=obj='';
+	var thisObj = $(this);
+	$.ajax({
+		type:"POST",
+		url:"{url:ajax;article.gettype}",
+		data:{tid:thisObj.val(),child:'1',cid:{id}},
+		dataType:"json",
+		success:function(data){
+			thisObj.nextAll().remove();
+			if( data.code != 500 ){
+				if(data.code == 200){
+					obj = data.data;
+					html = objToHtml(data.data , '<option value="{type_id}">{type_name}</option>' , '<select name="tid" style="visibility: visible; display: inline-block;"><option value="'+thisObj.val()+'">选择分类</option>' , '</select>' );
+					$('#type_box').append(html);
+				}
+				if(typeof(data.field.content_field) != 'undefined' ){
+					$('#field').html(getForm(data.field.content_field));
+					$('#field').show();
+				}else{
+					$('#field').html('');
+					$('#field').hide();
+				}
+				typeOption = true;
+			}
+		},
+		async:true,
+	});
+})
+
+
+init();
+//初始化分类选择
+function init(){
+	var html=obj='';
+	var thisObj = $('#type_box select:last');
+	$.ajax({
+		type:"POST",
+		url:"{url:ajax;article.gettype}",
+		data:{tid:thisObj.val(),child:'1',cid:{id}},
+		dataType:"json",
+		success:function(data){
+			if( data.code != 500 ){
+				if(typeof(data.field.content_field) != 'undefined' ){
+					$('#field').html(getForm(data.field.content_field));
+					$('#field').show();
+				}else{
+					$('#field').html('');
+					$('#field').hide();
+				}
+			}
+		},
+		async:true,
+	});
+}
+</script>

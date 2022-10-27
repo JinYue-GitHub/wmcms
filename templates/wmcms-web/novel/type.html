@@ -1,0 +1,114 @@
+{header:novel/header.html}
+<style>
+#search-condition li a{width:45px}
+</style>
+	<link rel="stylesheet" type="text/css" href="{templates}/static/css/wmcms.page.comicall.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="{templates}/static/css/SunZX/SunZX_type.css" media="screen" />
+</head>
+<body>
+
+{header:novel/nav.html}
+
+<div class="ui-wm ui-mb40 ui-mt40 clearfix">
+	<div class="ret-side-wr ui-left">
+	    <div class="ret-tags-wr">
+	        <h2 class="ret-title">分类检索</h2>
+	        <!-- <div class="ret-check-all clearfix">
+	            <span class="ui-left ret-check-ft">全部 &gt;</span>
+	        </div> -->
+	        <div class="ret-tags-type">
+	            <h3 class="ret-tags-title ret-tags-lx">小说分类</h3>
+	            <div class="ret-tags-items single" id="p_vip">
+					<a href="{全部小说}" title="全部" {cur:tid=0}class="active"{/cur}>全部</a>
+	                {小说分类:父级分类=0;排序=分类排序}
+	                <a href="{surl}" title="{小说分类名字}" {cur}class="active"{/cur}>{小说分类名字}</a>
+					{/小说分类}
+	            </div>
+	        </div>
+	        
+			{cur:tid>0}
+			<div class="ret-tags-type">
+				<h3 class="ret-tags-title">{分类名字}</h3>
+				<div class="ret-tags-items multi">
+					{小说分类:父级分类={一级分类id}}
+	                <a href="{surl}" title="{小说分类名字}" {cur}class="active"{/cur}>{小说分类名字}</a>
+					{/小说分类}
+				</div>
+			</div>
+			{/cur}
+			
+	        {检索分类:分类模块=小说;分类类型=条件;排序=分类顺序}
+			<div class="ret-tags-type">
+				<h3 class="ret-tags-title ret-tags-{i:1}jd{/i}{i:2,3}dq{/i}{i:4}copy{/i}{i:5}sx{/i}{i:6}zm{/i}">{检索分类名字}</h3>
+				<div class="ret-tags-items multi">
+					{检索条件:分类={检索分类id};数量=30;排序=条件顺序}<a href="{url}" title="{检索条件名字}" {cur}class="active"{/cur}>{检索条件名字}</a>{/检索条件}
+				</div>
+			</div>
+			{/检索分类}
+	    </div>
+	</div>
+	
+    <div class="ret-main-wr ui-mb40 ui-left">
+        <div class="ret-main">
+        	<div class="ret-search-head clearfix">
+                <ul id="search-condition" class="ret-search-type ui-left">
+               		{检索条件:分类=7;数量=5;排序=条件顺序}
+                    <li {cur}class="active"{/cur}><a class="ret-search-time" href="{url}">{检索条件名字}</a></li>
+                    {/检索条件}
+                </ul>
+                
+                <div class="ret-head-page ui-right" id="pagination1">
+                	<a href="{第一页}" class="mod_page_next">第一页</a>
+                	<a href="{上一页}" class="mod_page_next">上一页</a>
+                	{跳页:2}
+	                	{选中页}<a href="javascript:void(0)" class="current">{i}</a>{/选中页}
+	                	<a href="{url}">{i}</a>
+                	{/跳页}
+                	<a href="{下一页}" class="mod_page_next">下一页</a>
+                	<a href="{最后页}" class="mod_page_next">最后页</a>
+                </div>
+              	<span class="ret-result-num ui-right">共<em>{总数据}</em>个结果</span>
+            </div>
+            
+            <div class="ret-search-result">
+            	<ul class="ret-search-list clearfix">
+            		{小说列表:数量=20}
+                	<li class="ret-search-item clearfix">
+	                    <div class="ret-works-cover">
+	                		<a class="mod-cover-list-thumb mod-cover-effect ui-db" title="{小说名字}" href="{url}" target="_blank">
+	                            <img class="lazy" src="{小说封面}"style="display: block;">
+	                            <span class="mod-layer-mask">&nbsp;&nbsp;</span>
+	                        </a>
+	                        <p class="mod-cover-list-updata">
+	                        	<a class="mod-cover-list-mask" href="{url}" target="_blank"><span class="mod-cover-list-text">{小说最新章节名字}</span></a>
+	                        </p>
+	                    </div>
+	                    <div class="ret-works-info">
+	                    	<h3 class="ret-works-title clearfix"><a href="{url}" target="_blank" title="{小说名字}">{小说名字}</a></h3>
+	                        <p class="ret-works-author" title="{小说作者}">{小说作者}</p>
+                            <p class="ret-works-tags">
+                                <a href="{turl}" target="_blank">{小说分类名字}</a>
+                                <span>点击：<em>{小说总点击}</em></span>
+                    		</p>
+                            <p class="ret-works-decs">{小说简介}</p>
+	                        <a class="ret-works-view ui-btn-pink" href="{rurl}" target="_blank">开始阅读</a>
+	                	</div>
+	                </li>
+					{/小说列表}
+                </ul>
+                
+                <div class="ret-page-wr mod-page" id="pagination2">
+                	<a href="{第一页}" class="mod_page_next">第一页</a>
+                	<a href="{上一页}" class="mod_page_next">上一页</a>
+                	{跳页:3}
+	                	{选中页}<a href="javascript:void(0)" class="current">{i}</a>{/选中页}
+	                	<a href="{url}">{i}</a>
+                	{/跳页}
+                	<a href="{下一页}" class="mod_page_next">下一页</a>
+                	<a href="{最后页}" class="mod_page_next">最后页</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{footer:novel/footer.html}

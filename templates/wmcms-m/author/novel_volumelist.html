@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{title}</title>
+		<link rel="stylesheet" href="{templates}/static/author/css/style.css">
+		<script src="{templates}/static/author/js/font.js"></script>
+		<script src="{templates}/static/author/js/jquery.min.js"></script>
+		<script src="{templates}/static/author/js/layer.js"></script>
+	</head>
+	<body>
+		<div class="app">
+			<div class="header">
+				<a href="javascript:history.back(-1)" style="left: 0.1rem;" class="close">〈</a>
+				<a href="{小说新建分卷}" class="more">创建分卷</a>
+			</div>
+			<div class="chapterlist">
+				{小说分卷列表:}
+				<div class="u-f listLine">
+					<ul class="list-a">
+						<li data-list="false">
+							<h2><a href="/module/author/novel_volumeedit.php?nid=12208&vid={小说分卷id}" style="color: #333333;">{小说分卷名字}</a></h2>
+						</li>
+					</ul>
+				</div>
+				{/小说分卷列表}
+			</div>
+		</div>
+		
+		<script>
+			
+		</script>
+	</body>
+</html>

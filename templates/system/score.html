@@ -1,0 +1,65 @@
+<div id="wmcms_star" onmouseover="rate(this,event)"></div>
+<script>
+$(function(){
+	var starHtml = starImg = '';
+	for(var i=1;i<=5;i++){
+		starImg = 'star_off.gif'; 
+		if( i <= {平均分整数} ){
+			starImg = 'star_on.gif'; 
+		}
+		starHtml += '<img src="/files/images/'+starImg+'" title="'+i+'分" />';
+	}
+	$("#wmcms_star").html(starHtml);
+});
+
+function rate(obj,oEvent){ 
+	var imgSrc = '/files/images/star_off.gif'; 
+	var imgSrc_2 = '/files/images/star_on.gif'; 
+
+	if(obj.rateFlag) return;
+	var e = oEvent || window.event;
+	var target = e.target || e.srcElement;  
+	var imgArray = obj.getElementsByTagName("img"); 
+	for(var i=0;i<imgArray.length;i++){ 
+		imgArray[i]._num = i; 
+		imgArray[i].onclick=function(){ 
+			if(obj.rateFlag)
+			return; 
+			obj.rateFlag=true; 
+
+			//评分操作
+			$.ajax({
+				type:"POST",
+				url:"/wmcms/action/index.php?action=score.score&ajax=yes",
+				data:{'module':'{评分模块}','cid':'{评分id}','score':this._num+1},
+				dataType:"json",
+				success:function(data)
+				{
+					easyDialog.open({container : {content :data.msg},autoClose : 2000});
+				},
+				error:function (e)//服务器响应失败处理函数
+		        {
+					console.log(e);
+		            alert(e);
+		        },
+				async:true,
+			});
+			
+		};
+	} 
+
+	if(target.tagName=="IMG"){ 
+		for(var j=0;j<imgArray.length;j++){ 
+			if(j<=target._num){ 
+				imgArray[j].src=imgSrc_2; 
+			}else{ 
+				imgArray[j].src=imgSrc; 
+			} 
+		} 
+	}else{ 
+		for(var k=0;k<imgArray.length;k++){ 
+			imgArray[k].src=imgSrc; 
+		} 
+	}
+}
+</script>

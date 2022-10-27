@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{title}</title>
+		<link rel="stylesheet" href="{templates}/static/author/css/style.css">
+		<script src="{templates}/static/author/js/font.js"></script>
+		<script src="{templates}/static/author/js/jquery.min.js"></script>
+	</head>
+	<body>
+		<div class="app">
+			<div class="header">
+				<a href="javascript:history.back(-1)" style="left: 0.1rem;" class="close">〈</a>
+				<a href="javascript:;" id="more" class="more">修改财务信息</a>
+			</div>
+			
+			<div class="basicEdit">
+				<form name="basicForm" id="form1" method="post" action="{表单提交地址}">
+					<ul>
+						<li><em>作家ID</em> : {作家id}</li>
+						<li><em>笔名</em> : {作家笔名}</li>
+						<li><em>手机号码</em> : {用户手机}</li>
+						<li><em>电子邮箱</em> : {用户邮箱}</li>
+						<li><em>QQ号</em> : {用户qq}</li>
+						<li>
+							<em>作家简介</em> : 
+							<p class="place">
+								<textarea name="info" id="info">{作家简介}</textarea>
+							</p>
+						</li>
+						<li>
+							<em>作家公告</em> : 
+							<p class="place">
+								<textarea name="notice" id="notice">{作家公告}</textarea>
+							</p>
+						</li>
+				 </ul>
+				 <button type="submit">提交修改</button>
+				</form>
+				<form id="form2" method="post" action="{财务表单提交地址}" style="display: none;">
+					<ul>
+						<li>
+							<em>真实姓名</em>
+							<p class="place"><input class="midInput" name="realname" type="text" value="{用户真实姓名}" style="width:80px"> </p>
+							<i class="">和身份证上的姓名要一致</i>
+						</li>
+						<li>
+							<em>身份证</em>
+							<p class="place"><input class="midInput" name="cardid" type="text" value="{用户身份证}"></p>
+						</li>
+						<li>
+							<em>联系地址</em>
+							<p class="place"><input class="midInput" name="address" type="text" value="{用户联系地址}"></p>
+						</li>
+						<li>
+							<em>邮编</em>
+							<p class="place"><input class="midInput" name="zipcode" type="text" value="{用户邮编}" style="width:80px"></p>
+						</li>
+						<li>
+							<em>支付宝</em>
+							<p class="place"><input class="midInput" name="alipay" type="text" value="{用户支付宝}" style="width:160px;"> </p>
+							<i class="">支付宝和银行信息可以只填其中一项</i>
+						</li>
+						<li>
+							<em>开户行</em>
+							<p class="place"><input class="midInput" name="bank" type="text" value="{用户开户行}" style="width:180px"></p>
+						</li>
+						<li>
+							<em>持卡人</em>
+							<p class="place"><input class="midInput" name="bankmaster" type="text" value="{用户持卡人}" style="width:80px"></p>
+						</li>
+						<li>
+							<em>银行卡号</em>
+							<p class="place"><input class="midInput" name="bankcard" type="text" value="{用户银行卡号}"></p>
+						  </li>
+						  <li>
+						<em>开户行地址</em>
+						<p class="place"><input class="midInput" name="bankaddress" type="text" value="{用户开户行地址}"></p>
+						</li>
+				 </ul>
+				 <button type="submit">提交修改</button>
+				</form>
+			</div>
+		</div>
+		<script>
+			$('#more').click(function(){
+				if($(this).text()=='修改财务信息'){
+					$('#form2').show();
+					$('#form1').hide();
+					$(this).text('修改基础信息')
+				}else{
+					$('#form2').hide();
+					$('#form1').show();
+					$(this).text('修改财务信息')
+				}
+			})
+		</script>
+	</body>
+</html>

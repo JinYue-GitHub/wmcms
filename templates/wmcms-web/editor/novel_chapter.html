@@ -1,0 +1,374 @@
+{header:editor/inc_header.html}
+{header:editor/inc_toper.html}
+{header:editor/inc_nav.html}
+<style>
+    .tabSwitch span{padding: 0px 19px 0;}
+    .tabSwitch {height: 38px;}
+    .msgBoxTitle {padding: 15px 0 0 35px;}
+    .pageBox{padding: 0 0 5px 0;text-align: center;}
+    .font_red{ color: red;}
+    .font_green{color:green}
+    .font_gray{color:#bbbbbb}
+    .pageBox a:hover{color:#FFFFFF}
+    .oldBox,.newBox{width:655px;height:300px; }
+    .oldBox .bc-ec-item,.newBox .bc-ec-item{overflow-y: scroll;height: 266px;}
+    .bc-ec-txt {overflow: unset;line-height:20px;-webkit-line-clamp: unset;font-size: 14px;}
+    .bc-ec-txt div{margin-top: 10px;padding-bottom: 10px;border-bottom: 1px dashed #e1e0e0;}
+    .bc-ec-item::-webkit-scrollbar {width:10px;height:10px;background-color: #bbbbbb;}
+    .bc-ec-item::-webkit-scrollbar-thumb {background: #50a8ff;}
+    .refuseRemark{position: absolute;padding:10px;top:400px;left:540px;border: 1px solid #ffffff;background: #FFFFFF;width: 300px;z-index:99999}
+    .editor-select-body .ui-dialog-body {margin: 0;}
+    .basic div{margin-top: 5px;padding-bottom: 5px;}
+    .fullBtn{position: absolute;border: 1px solid #50a8ff;color: #FFFFFF;background:#0067E6;text-align: center;width: 30px;height: 30px;line-height: 30px;left: -5px;bottom: 0px;border-radius: 5px;cursor: pointer;display:none}
+    .fullBtnExit{position: fixed;display: block;left: 50.3%;top: 0;z-index: 999;}
+    .posUnset{position:unset;}
+    .full_old_content{position: absolute;top: 0;left: 0;z-index: 99;width: 50%;height:100%;overflow-y: scroll;}
+    .full_new_content{position: absolute;top: 0;right: 0;z-index: 99;width: 50%;height:100%;overflow-y: scroll;}
+    .full_old_content::-webkit-scrollbar,.full_new_content::-webkit-scrollbar {width:10px;height:10px;background-color: #bbbbbb;}
+    .full_old_content::-webkit-scrollbar-thumb,.full_new_content::-webkit-scrollbar-thumb {background: #50a8ff;}
+    
+    .content_total p{margin: 0 0 10px;}
+    code{white-space: unset;color: unset;}
+    pre{background-color: #f5f2f2;font-size: 16px;}
+    .hljs{line-height: 20px;background-color: #f5f2f2;white-space:}
+</style>
+<link href="/files/js/diff/diff.css" rel="stylesheet">
+<style>
+    .hljs{line-height: 20px;background-color: #f5f2f2;white-space: pre;
+    white-space: pre-wrap;
+    white-space: pre-line;}
+    .modified{line-height: 25px;}
+    .deleted{line-height: 20px;}
+    .inserted{line-height: 20px;}
+    .padding{line-height: 20px;}
+</style>
+<link rel="stylesheet" type="text/css" href="{templates}/static/css/author/novellist.css">
+
+<div class="mainRight fl">
+    <div class="crumbsWrap">
+        <i><span>小说章节审核</span></i>
+    </div>
+    <div class="msgBoxTitle">
+		<div class="tabSwitch cf">
+    		<span {cur:{状态}=}class="act"{/cur}><a href="{编辑小说章节审核}">全部</a></span>
+    		<span {cur:{状态}=0}class="act"{/cur}><a href="{待审核章节}">待审核</a></span>
+    		<span {cur:{状态}=1}class="act"{/cur}><a href="{已审核章节}">已审核</a></span>
+    		<span {cur:{状态}=2}class="act"{/cur}><a href="{未通过章节}">未通过</a></span>
+		</div>
+	</div>
+    <!-- 存在作品 -->
+    <div id="bookManageExist" class="worksCtrlWrap">
+        <div class="worksListWrap mb20">
+            <table class="worklist-table" width="100%" border="0" cellspacing="0">
+                <thead>
+	                <tr>
+	                    <th class="center" width="60px">ID</th>
+	                    <th class="center" width="60px">状态</th>
+	                    <th class="center" width="80px">编辑组</th>
+	                    <th class="tl" width="200px">书名</th>
+	                    <th class="tl" width="200px">章节名字</th>
+	                    <th class="center" width="160px">申请/处理时间</th>
+	                    <th class="center" width="60px">操作</th>
+	                </tr>
+                </thead>
+                <tbody id="novelList">
+           		{编辑小说章节列表:数量=15;排序=申请排序}
+               		{无数据}
+               		<tr class="active"><td colspan="9"><div class="worksCtrlWrap"><div class="null"><p>暂无相关数据</p></div></div></td></tr>
+				    {/无数据}
+                	<tr class="active" style="background: #FFFFFF;">
+                		<td>{编辑小说章节申请id}</td>
+                		<td class="center"><span class="{cur:{编辑小说章节申请状态码}=0}font_red{/cur} {cur:{编辑小说章节申请状态码}=1}font_green{/cur} {cur:{编辑小说章节申请状态码}=2}font_gray{/cur}">{编辑小说章节申请状态}</span></td>
+                		<td class="center">{编辑小说章节编辑组}</td>
+                		<td class="tl">《<a href="{编辑小说url}" target="_blank">{小说名字}</a>》</td>
+                		<td class="tl"><em><a href="{编辑小说章节url}" target="_blank">{编辑小说章节申请章节名字}</a></em></td>
+                		<td><em style="color: #b1b1b1;">{编辑小说章节申请时间}</em><br/><em style="color:#59c95d">{编辑小说章节处理时间}</em></td>
+                		<td><div class="dib-wrap">
+                		<a class="detailBtn button {cur:{编辑小说章节申请状态码}=0}blue{/cur} {cur:{编辑小说章节申请状态码}>0}white{/cur}" href="javascript:void(0);" style="width: 40px;height: 45px;margin-right: 0;" data-option='{编辑小说章节申请数据}' data-aid="{编辑小说章节申请id}"><span class="icon" style="margin:4px 10px 1px auto;"></span><i style="margin-top: 3px;">详情</i></a>
+                		</div></td>
+            		</tr>
+            	{/编辑小说章节列表}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="msgBoxTitle pageBox">
+        <p class="f12 c555">共 {总数据} 条，当前 {当前页} / {总页数} 页，{跳页:3}<a href="{url}" style="padding: 3px;margin-right: 5px;height: auto;">{i}</a>{/跳页}</p>
+    </div>
+</div>
+
+<div id="detailHtml" style="display:none">
+    <div class="bc-editor-con j-select">
+        <ul class="bc-ec-ul cf">
+            <li class="bc-ec-li oldBox"><div href="javascript:" class="bc-ec-item"><h4 class="bc-ec-title">旧的数据</h4><div class="bc-ec-txt old"></div></div></li>
+            <li class="bc-ec-li" style="width: 20px;line-height:300px;color: red;">=><div class="fullBtn">全屏</div></li>
+            <li class="bc-ec-li newBox"><div href="javascript:" class="bc-ec-item"><h4 class="bc-ec-title" style="color: red;">新的数据</h4><div class="bc-ec-txt new"></div></div></li>
+            <li class="bc-ec-li" style="width: 1355px;">
+                <div href="javascript:" class="bc-ec-item" style="height:218px;">
+                    <h4 class="bc-ec-title" style="color: green;">基础数据</h4>
+                    <div class="bc-ec-txt basic">
+                        <div>申请 I D：<span class="apply_id"></span></div>
+                        <div>申请状态：<span class="apply_status"></span></div>
+                        <div>申请时间：<span class="apply_createtime"></span></div>
+                        <div>处理时间：<span class="apply_updatetime"></span></div>
+                        <div>处理编辑：<span class="editor_name"></span></div>
+                        <div style="height: 39px;overflow-y: scroll;">申请备注：<span class="apply_remark"></span></div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<div id="refuseHtml" style="display:none">
+    <div class="refuseRemark">
+        <h4 class="bc-ec-title" style="color: green;">拒绝理由</h4>
+        <div class="write-form-li" style="margin: 5px auto;">
+            <div class="write-form-cell">
+                <div class="write-input">
+                    <div class="ui-textarea j-check pr"><textarea rows="6" placeholder="请填写" class="remark">{拒绝理由}</textarea></div>
+                    <p class="input-caution">200字以内</p>
+                </div>
+                <a href="javascript:" class="ui-button ui-button-primary remark_sure">确定</a>
+                <a href="javascript:" class="ui-button remark_close">关闭</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--新旧内容-->
+<div id="old_content_html" style="display:none"></div>
+<div id="new_content_html" style="display:none"></div>
+<script src="/files/js/diff/LineDiff.js"></script>
+<script src="/files/js/diff/EditSet.js"></script>
+<script src="/files/js/diff/LineUtils.js"></script>
+<script src="/files/js/diff/Diff.js"></script>
+<script src="/files/js/diff/DiffFormatter.js"></script>
+<script src="/files/js/diff/LineFormatter.js"></script>
+<script src="/files/js/diff/AnchorIterator.js"></script>
+<script src="/files/js/diff/highlight.pack.js"></script>
+<script>
+function doDiff() {
+    var text1 = $('#old_content_html').html().replace(/<br>/g,"\r\n");
+    var text2 = $('#new_content_html').html().replace(/<br>/g,"\r\n");
+    var chag = 0, add = 0, del = 0;
+    var diff = new SourceDiff.Diff(true);
+    var formatter = new SourceDiff.DiffFormatter(diff);
+    var results = formatter.formattedDiff(text1, text2);
+    var adds = results[3].added.all();
+    var dels = results[3].deleted.all();
+    var cha = arrayIntersection(adds, dels);
+    //记录变更内容
+    $('.diff_cha').html(cha.length);
+    $('.diff_adds').html(adds.length - cha.length);
+    $('.diff_dels').html(dels.length - cha.length);
+    $('.fullBtn').css({"display":"block"});
+    $(".hljs-line-numbers").remove();
+    $('.old_content code').html(results[0]);
+    $('.new_content code').html(results[1]);
+	
+    var pre = $('pre code');
+    for (var i = 0; i < pre.length; i++) {
+        hljs.highlightBlock(pre[i]);
+    }
+    var _line = 0;
+    $('pre code').each(function () {
+        var lines = $(this).html().split('<br>').length - 1;
+        var lines = Math.round($(this).height()/20);
+        _line = lines;
+        $(this).before('<code class="hljs hljs-line-numbers" style="float: left;"></code>');
+        var html = $(this).prev('.hljs-line-numbers');
+        for (i = 1; i <= lines; i++) {
+            if (i == lines)
+                html.html(html.html() + (i + '.'));
+            else
+                html.html(html.html() + (i + '.<br>'));
+        }
+    });
+}
+function arrayIntersection(a, b) {
+    var ai = 0, bi = 0;
+    var result = new Array();
+    while (ai < a.length && bi < b.length) {
+        if (a[ai] < b[bi]) { ai++; }
+        else if (a[ai] > b[bi]) { bi++; }
+        else /* they're equal */
+        {
+            result.push(a[ai]);
+            ai++;
+            bi++;
+        }
+    }
+    return result;
+}
+function arrayIntersect(a, b) {
+    return jQuery.merge(jQuery.grep(a, function (i) {
+        return jQuery.inArray(i, b) == -1;
+    }), jQuery.grep(b, function (i) {
+        return jQuery.inArray(i, a) == -1;
+    })
+    );
+};
+function FullEvent(){
+	//监听数据div的滚动条
+    $(".fullBtn").on("click", function () {
+        $('.ui-dialog').addClass('posUnset');
+        $('.oldBox').addClass('posUnset');
+        $('.newBox').addClass('posUnset');
+        $('.old_content').addClass('full_old_content');
+        $('.new_content').addClass('full_new_content');
+        $('.fullBtn').addClass('fullBtnExit');
+        $('.fullBtn').html('退出');
+        $('body').css({'overflow-y':'hidden'});
+        //监听全屏代码区域滚动
+        $(".full_old_content,.full_new_content").on("scroll", function () {
+            $(".full_old_content,.full_new_content").scrollTop($(this).scrollTop());
+        });
+    	//监听数据div的滚动条
+        $(".fullBtnExit").on("click", function () {
+            $('.ui-dialog').removeClass('posUnset');
+            $('.oldBox').removeClass('posUnset');
+            $('.newBox').removeClass('posUnset');
+            $('.old_content').removeClass('full_old_content');
+            $('.new_content').removeClass('full_new_content');
+            $('.fullBtn').html('全屏');
+            $('.fullBtn').removeClass('fullBtnExit');
+            FullEvent();
+        });
+    });
+}
+$(document).ready(function(){
+	$("#novel_chapter").addClass("act");
+    //获得用户信息url
+    var getApplyUrl = '{url:ajax;editor.get_apply}';
+    //处理请求URL
+    var applyUrl = '{url:ajax;editor.apply}';
+    
+	//查看详情
+	$(".detailBtn").click(function(){
+	    var aid = $(this).data('aid');
+	    $('#pass').data('aid',aid);
+	    $('#refuse').data('aid',aid);
+	    ShowDialogMask();
+		$.ajax({
+			type:"POST",dataType:"json",url:getApplyUrl,data:{aid:aid,mt:'novel_editchapter'},
+			success:function(result){
+			    if( result.code == 200 ){
+			        var data = result.data.data;
+			        var change = result.data.change;
+		            $('.old').html('');
+		            $('.new').html('');
+		            $('#old_content_html').html('');
+		            $('#new_content_html').html('');
+			        //变更数据
+			        for(k in change){
+			            var isChange = '';
+			            if( change[k]['old']!=change[k]['new'] ){
+			                isChange = '【<span class="font_red">新</span>】';
+			            }
+			            if( k=='content' ){
+			                var diffHtml='<div class="content_total">差异化统计：<p style="background-color: #FD8;"><strong class="diff_cha">0</strong>处修改</p><p style="background-color: #9E9;"><strong class="diff_adds">0</strong>处新增</p><p style="background-color: #E99"><strong class="diff_dels">0</strong>处删除</p></div>';
+    			            $('.old').append(diffHtml+'<div>'+change[k]['title']+'：<pre class="old_content"><code class="">差异对比中....</code></pre></div>');
+    			            $('.new').append(diffHtml+'<div>'+change[k]['title']+'：<pre class="new_content"><code class="">差异对比中....</code></pre></div>');
+    			            $('#old_content_html').html(change[k]['old']);
+    			            $('#new_content_html').html(change[k]['new']);
+			            }else{
+    			            $('.old').append('<div>'+change[k]['title']+'：'+change[k]['old']+'</div>');
+    			            $('.new').append('<div>'+change[k]['title']+'：'+isChange+change[k]['new']+'</div>');
+			            }
+			        }
+			        /*基础数据*/
+			        var status = '<span class="font_red">待审核</span>';
+			        var btn = new Array('pass','refuse','close');
+			        if( data.apply_status=='1' ){
+			            status = '<span class="font_green">已审核</span>';
+			            btn = false;
+			        }else if( data.apply_status=='2' ){
+			            status = '<span class="font_gray">未通过</span>';
+			            btn = false;
+			        }
+			        var createTime = FormatTime(data.apply_createtime,'Y-m-d H:i:s');
+			        var updateTime = '------';
+			        if( data.apply_updatetime > 0 ){
+			            updateTime = FormatTime(data.apply_updatetime,'Y-m-d H:i:s');
+			        }
+			        $('.apply_id').html(data.apply_id);
+			        $('.apply_status').html(status);
+			        $('.apply_createtime').html(createTime);
+			        $('.apply_updatetime').html(updateTime);
+			        $('.apply_remark').html(data.apply_remark);
+			        $('.editor_name').html(data.o_editor_name);
+                    $('.fullBtn').css({"display":"none"});
+			        //进行差异化对比
+			        setTimeout(function () { doDiff(); }, 500);
+			        /*基础数据*/
+	                ShowDialog('数据变更详情','申请修改前后数据记录',$('#detailHtml').html(),1400,btn)
+                	//监听数据div的滚动条
+                    $(".bc-ec-item").on("scroll", function () {
+                        $(".bc-ec-item").scrollTop($(this).scrollTop());
+                    });
+                    FullEvent();
+			    }else{
+			        HideDialog();
+			        easydialog_alert(result.msg,'','','');
+			    }
+			},
+		});
+	});
+	//通过操作
+	$("#pass").click(function(){
+	    if (confirm("是否确认要通过审核？")) {
+	        var aid = $(this).data('aid');
+            DialogLoadingShow();
+    		$.ajax({
+    			type:"POST",dataType:"json",url:applyUrl,data:{aid:aid,status:1,mt:'novel_editchapter'},
+    			success:function(result){
+    			    DialogLoadingHide();
+    			    if( result.code == 200 ){
+					    easydialog_autoclose(result.msg,'success',false,function(){location.reload();});
+    			    }else{
+    			        easydialog_autoclose(result.msg,'error');
+    			    }
+    			},
+    		});
+        }
+	});
+	//拒绝按钮
+	$("#refuse").click(function(){
+        DialogLoadingShow();
+        $('.dialog-loading div').html('');
+	    $('.ui-dialog-footer').append($('#refuseHtml').html());
+	    $('.refuseRemark').css({top:$('#refuse').position().top-240,left:$('#refuse').position().left-117});
+    	//提交拒绝理由
+        $(".remark_sure").on("click", function () {
+	        var aid = $('#refuse').data('aid');
+    	    var remark = $('.ui-dialog-footer .remark').val();
+    		if (remark == null || remark == "") {
+    	        easydialog_alert('请输入拒绝理由','','','');
+    		}else if (remark.length >= 200 ) {
+    	        easydialog_alert('拒绝理由200字以内','','','');
+    		} else {
+                $('.dialog-loading div').html('加载中...');
+                $('.ui-dialog-footer .refuseRemark').remove();
+                $.ajax({
+        			type:"POST",dataType:"json",url:applyUrl,data:{aid:aid,status:2,remark:remark,mt:'novel_editchapter'},
+        			success:function(result){
+        			    DialogLoadingHide();
+        			    if( result.code == 200 ){
+    					    easydialog_autoclose(result.msg,'success',false,function(){location.reload();});
+        			    }else{
+        			        easydialog_autoclose(result.msg,'error');
+        			    }
+        			},
+        		});
+    		}
+    	});
+    	//关闭拒绝理由
+        $(".remark_close").on("click", function () {
+            DialogLoadingHide();
+            $('.dialog-loading div').html('加载中...');
+            $('.ui-dialog-footer .refuseRemark').remove();
+    	});
+	});
+});
+</script>
+{header:editor/inc_footer.html}

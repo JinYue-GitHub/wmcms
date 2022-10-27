@@ -1,0 +1,970 @@
+{header:novel/header.html}
+	<link rel="stylesheet" type="text/css" href="{templates}/static/css/wmcms.index.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="{templates}/static/css/SunZX/SunZX.css" media="screen" />
+	<script type="text/javascript" src="{templates}/static/js/wmcms.page.index.js"></script>
+	<script>
+	$(document).ready(function(){
+		$(".mod-top-nav-list").find("li").eq("0").addClass("active");
+	});
+	</script>
+</head>
+<body>
+{header:novel/nav.html}
+<div class="newyear-bg-wrap">
+	<div class="mod-tags-wr ui-wm">
+		<ul class="mod-animate-list clearfix">
+			<li class="first"><span class="ui-ico-animate">独家推荐</span></li>
+			{推荐小说:首页推荐=是;数量=10}
+			<li>
+				<a href="{url}" title="{小说名字}" target="_blank" class="mod-top-ani-a">{小说名字}</a>
+				<div class="mod-ani-info">
+					<span class="mod-ico-top">&nbsp;</span>
+					<a class="mod-ani-img" href="{url}" target="_blank">
+						<img class="lazy" src="{小说封面}" width="214" height="214" alt="{小说名字}" />
+					</a>
+					<div class="mod-ani-text1 clearfix">
+						<a href="{url}" class="ui-left ui-fs-18" title="{小说名字}">{小说名字:8}</a>
+						<a class="ui-right ui-txt-fb" title="{小说作者}">{小说作者}</a>
+					</div>
+					<div class="mod-ani-text2">
+						<p class="ui-ani-fplay">浏览量{小说总点击}</p>
+                       	最新：<a href="{rurl}" title="{小说名字}最新章节" target="_blank">{小说最新章节名字}</a>
+					</div>
+					<ul class="mod-ani-ul clearfix"></ul>
+				</div>
+			</li>
+			{/推荐小说}
+		</ul>
+	</div>
+</div>
+
+
+<!-- banner -->
+<div class="ui-wm clearfix in-banner-wrap">
+    <div class="banner" id="banner">
+        <div class="in-banner-con">
+            <ul class="in-banner" id="in-banner">
+                <li>
+                	{推荐小说:首页封面=是;数量=5;排序=推荐顺序}
+                	<a href="{url}" class="no3{i}" target="_blank" title="{小说名字}">
+						<img src="{小说推荐封面}" alt="{小说名字}" style="width:100%;height:100%" />
+						<p class="in-banner-info">
+							<strong>{小说名字}</strong>
+							<span class="in-banner-ft-info;">{小说推荐标题}</span>
+							<i class="in-banner-icon">&nbsp;</i>
+						</p>
+						<span class="in-banner-bg"></span>
+						<span class="in-banner-name bg-org">《{小说名字}》<span class="icon-right"></span></span>
+					</a>
+					{/推荐小说}
+				</li>
+				<li>
+                	{推荐小说:首页封面=是;数量=5,5;排序=推荐顺序}
+                	<a href="{url}" class="no2{i}" target="_blank" title="{小说名字}">
+						<img src="{小说推荐封面}" alt="{小说名字}" style="width:100%;height:100%" />
+						<p class="in-banner-info">
+							<strong>{小说名字}</strong>
+							<span class="in-banner-ft-info">{小说推荐标题}</span>
+							<i class="in-banner-icon">&nbsp;</i>
+						</p>
+						<span class="in-banner-bg"></span>
+						<span class="in-banner-name bg-org">《{小说名字}》<span class="icon-right"></span></span>
+					</a>
+					{/推荐小说}
+				</li>
+				<li>
+                	{推荐小说:首页封面=是;数量=10,5;排序=推荐顺序}
+                	<a href="{url}" class="no2{i}" target="_blank" title="{小说名字}">
+						<img src="{小说推荐封面}" alt="{小说名字}" style="width:100%;height:100%" />
+						<p class="in-banner-info">
+							<strong>{小说名字}</strong>
+							<span class="in-banner-ft-info">{小说推荐标题}</span>
+							<i class="in-banner-icon">&nbsp;</i>
+						</p>
+						<span class="in-banner-bg"></span>
+						<span class="in-banner-name bg-org">《{小说名字}》<span class="icon-right"></span></span>
+					</a>
+					{/推荐小说}
+				</li>
+			</ul>
+			<div class="in-banner-arrow" id="in-banner-arrow">
+				<a class="in-banner-leftbtn" title="上一页">上一页</a>
+				<a class="in-banner-rightbtn" title="下一页">下一页</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="in-rank-wr ui-right">
+	    <div class="mod-tab-handle clearfix">
+	        <h2>热门排行</h2>
+	        <ul id="top-rank-handle">
+	            <li class="active"><a href="javascript:void(0);">月榜</a></li>
+	            <li><a href="javascript:void(0);">周榜</a></li>
+	            <li><a href="javascript:void(0);">日榜</a></li>
+	        </ul>
+	    </div>
+        <div id="top-rank-panel" class="mod-tab-content-wr">
+            <div class="mod-tab-content clearfix">
+				<ol class="in-rank-list ui-left ui-pr10">
+                	{小说:排序=月点击;数量=8}
+					<li>
+						<sub class="{i:1,2,3}in-rank-no-orange{/i}{i:>3}in-rank-no-gray{/i}">{i}</sub>
+						<a class="in-rank-name" href="{url}" title='{小说名字}'>{小说名字}</a>
+						<i class="ui-rank-trend-keep"></i>
+					</li>
+					{/小说}
+				</ol>
+				<ol class="in-rank-list ui-left">
+                	{小说:排序=月点击;数量=8,8;}
+					<li>
+						<sub class="in-rank-no-gray">{运算:{i}+8}</sub>
+						<a class="in-rank-name" href="{url}" title='{小说名字}'>{小说名字}</a>
+						<i class="ui-rank-trend-keep"></i>
+					</li>
+					{/小说}
+				</ol>
+			</div>
+			<div class="mod-tab-content ui-dn clearfix">
+				<ol class="in-rank-list ui-left ui-pr10">
+                	{小说:排序=周点击;数量=8}
+					<li>
+						<sub class="{i:1,2,3}in-rank-no-orange{/i}{i:>3}in-rank-no-gray{/i}">{i}</sub>
+						<a class="in-rank-name" href="{url}" title='{小说名字}'>{小说名字}</a>
+						<i class="ui-rank-trend-keep"></i>
+					</li>
+					{/小说}
+				</ol>
+				<ol class="in-rank-list ui-left">
+                	{小说:排序=周点击;数量=8,8;}
+					<li>
+						<sub class="in-rank-no-gray">{运算:{i}+8}</sub>
+						<a class="in-rank-name" href="{url}" title='{小说名字}'>{小说名字}</a>
+						<i class="ui-rank-trend-keep"></i>
+					</li>
+					{/小说}
+				</ol>
+			</div>
+            <div class="mod-tab-content ui-dn clearfix">
+				<ol class="in-rank-list ui-left ui-pr10">
+                	{小说:排序=日点击;数量=8}
+					<li>
+						<sub class="{i:1,2,3}in-rank-no-orange{/i}{i:>3}in-rank-no-gray{/i}">{i}</sub>
+						<a class="in-rank-name" href="{url}" title='{小说名字}'>{小说名字}</a>
+						<i class="ui-rank-trend-keep"></i>
+					</li>
+					{/小说}
+				</ol>
+				<ol class="in-rank-list ui-left">
+                	{小说:排序=日点击;数量=8,8;}
+					<li>
+						<sub class="in-rank-no-gray">{运算:{i}+8}</sub>
+						<a class="in-rank-name" href="{url}" title='{小说名字}'>{小说名字}</a>
+						<i class="ui-rank-trend-keep"></i>
+					</li>
+					{/小说}
+				</ol>
+            </div>
+		</div>
+		
+		<div class="in-rank-spacing"></div>
+		<ul class="in-rank-recommend">
+			{小说:排序=评分;数量=4}
+			<li><a href="{url}" target="_blank" title="{小说名字}">{小说名字}</a></li>
+			{/小说}
+       </ul>
+	</div>
+</div>
+            
+<!-- recommend -->
+<div class="in-strong-wr ui-wm ui-mb40" id="in-strong-wr">
+	<div class="in-title-wr title-line-bg ui-mb20 clearfix">
+		<h3 class="in-title-big ui-left veins">精品<em>推荐</em></h3>
+	</div>
+	<div id="in-slider-wr" class="in-slider-wr in-content">
+		<ul id="in-slider-list" class="in-slider-list mod-cover-list clearfix">
+			{推荐小说:首页精品=是;数量=8}
+			<li>
+				<a class="mod-cover-list-thumb mod-cover-effect ui-db" title="{小说名字}" href="{url}" target="_blank" >
+		            <img class="lazy" src='{小说封面}'  alt="{小说名字}"/>
+		            <span class="mod-layer-mask">&nbsp;&nbsp;</span>
+	            </a>
+	            <p class="mod-cover-list-updata">
+					<a class="mod-cover-list-mask" href="{rurl}" target="_blank">
+						<span class="mod-cover-list-text">{小说最新章节名字}</span>
+					</a>
+				</p>
+				<h5><a class="mod-cover-list-name" href="{url}" title="{小说名字}" target="_blank">{小说名字}</a></h5>
+				<p class="mod-cover-list-intro-1">{小说简介}</p>
+				<p class="mod-cover-list-intro">{小说作者}</p>
+				<p class="mod-cover-list-tag">
+					<a class="mod-tag-item" href="{turl}" target="_blank" title="{小说分类名字}">{小说分类名字}</a>
+				</p>
+			</li>
+			{/推荐小说}
+		</ul>
+	</div>
+</div>
+
+<!-- 中部五合一 -->	
+<div class="container">
+	<div class="gallery">
+		{小说:排序=字数;数量=9}
+		<div class="gallery-item">
+			<a href="{url}" target="_blank" >
+				<div class="gallery-item-image">
+					<img class="lazy" width="115px" height="150px" src="{小说封面}">
+				</div>
+				<div class="gallery-item-description">
+					<h3>{小说名字}</h3>
+					<span>{小说简介}</span>
+				</div>
+			</a>
+		</div>
+		{/小说}
+	</div>
+</div>
+
+<!-- 玄幻魔法 -->
+<div class="in-sign-wr ui-wm ui-mb40" id="in-sign-wr">
+	<div class="in-title-wr  ui-mb20"><h3 class="in-title-big">玄幻魔法</h3></div>
+	<div class="in-content-wr">
+		<div class="in-sign-left-wr">
+			<div id="in-sign-cover" class="in-sign-cover">
+    			{小说:分类=1;排序=总点击;数量=8}
+    			<a class="{i:>1}ui-dn{/i}" href="{url}" target="_blank" title="{小说名字}"><img class="lazy" width="210" height="280" src="{小说封面}"  title="{小说名字}" alt="{小说名字}"/></a>
+				{/小说}
+			</div>
+		</div>
+		<div class="in-sign-right-wr">
+			<div id="in-sign-intro" class="in-sign-work-wr">
+    			{小说:分类=1;排序=总点击;数量=8}
+				<div class="in-sign-work {i:>1}ui-dn{/i}">
+					<div class="clearfix">
+						<h4 class="ui-left">
+							<a class="in-sign-work-name ui-ahover-normal" href="{url}" target="_blank" title="{小说名字}">{小说名字}</a>
+						</h4>
+                        <p class="in-star-wr ui-left">
+                        	<sub class="ui-star ui-star-8"></sub>
+                            <sub class="in-sign-work-score">{小说评分}</sub>
+                        </p>
+					</div>
+                    <p class="in-sign-work-author ui-text-gray9">
+                    	<strong>{小说作者}</strong>
+                    	{小说标签:key={小说标签}}
+                    	<a class="mod-tag-item" href="javascript:void(0);" title="{小说标签标题}">{小说标签标题}</a>
+                    	{/小说标签}
+					</p>
+					<p class="in-sign-work-intro"><a href="{url}">{小说简介}</a></p>
+				</div>
+				{/小说}
+			</div>
+
+			<div class="in-sign-handle">
+				<ul id="in-sign-handle" class="in-sign-list clearfix">
+					{小说:分类=1;排序=总点击;数量=8}
+					<li class="active" data-ping="new.ac_index.Sign.works.1">
+                    	<a class="in-sign-thumb ui-db" title="{小说名字}" href="{url}" target="_blank">
+	                        <img class='lazy' src='{小说封面}'/>
+	                        <span class="in-sign-mask">&nbsp;&nbsp;</span>
+                        </a>
+						<p class="mod-cover-list-updata">
+							<a class="mod-cover-list-mask" href="{url}" target="_blank"><span class="mod-cover-list-text">{小说作者}</span></a>
+						</p>
+						<h5 class="in-sign-name"><a class="ui-text-gray3" href="{url}" target="_blank">{小说名字}</a></h5>
+                	</li>
+					{/小说}
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+ 
+<!-- 全站总榜-->
+<div class="video in-video-wr ui-wm ui-mb40" id="in-video-wr">
+    <div class="in-title-wr"><h3 class="in-title-big">全站<em>总榜</em></h3></div>
+    <div class="dvideo-wrap">
+        <div class="dvideo-ul-wrap">
+            <ul class="video-content-ul" id="video-content-ul">
+            	{小说:排序=总点击;数量=4}
+                <li>
+                	<div class="video-content">
+                        <a href="{url}" target="_blank" class="video-big-cover" ><img src="{小说封面}" alt="{小说名字}"/></a>
+                        <div class="video-content-text">
+                        	<ul class="video-information">
+                                <li>
+                                    <h3>
+                                    	<a href="{url}" target="_blank" class="name" title="{小说名字}">{小说名字}</a>
+                                    	<a href="{url}" target="_blank" class="new-video">[{小说最新章节名字}]</a>
+                                        <a class="more-information in-hover-under" href="{url}">详细信息 &gt;&gt;</a>
+                                    </h3>
+                                </li>
+                                <li class="about-author">
+									作者：{小说作者}
+			                    	{小说标签:key={小说标签}}
+			                    	<a class="mod-tag-item" href="javascript:void(0);" title="{小说标签标题}">{小说标签标题}</a>
+			                    	{/小说标签}
+								</li>
+                                <li class="information-text">
+                                    <p>{小说简介}</p>
+                                 </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                {/小说}
+            </ul>
+        </div>
+        <div class="video-list-wrap">
+            <div class="video-list" id="video-list">
+            	{小说:排序=总点击;数量=4}
+                <a title="{小说名字}" href="{url}" target="_blank">
+                    <img class="play-man" src='{小说封面}' width="120" height="150" alt="{小说名字}">
+                    <span class="play-text">
+                        <i class="play-text-sub1" style="width: 100px;overflow: hidden;height: 30px;">{小说名字:5}</i>
+                        <i class="play-text-sub2" style="width: 100px;overflow: hidden;">[{小说作者}]</i>
+                     </span>
+                </a>
+                {/小说}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--上升最快 和月票排行榜-->
+<div class="in-vip-wr ui-wm ui-mb40 clearfix" id="in-vip-wr">
+	<div class="in-rise-wr ui-left">
+		<div class="in-title-wr clearfix">
+			<h3 class="in-title-big ui-left veins" id="in-create">最新<em>入库</em></h3>
+			<div class="in-rise-tab ui-right veins" id="in-rise-tab">
+				<a class="in-rise-tab-leftbtn" href="javascript:void(0);" title="上一页">&nbsp;</a>
+				<a class="in-rise-tab-num current" href="javascript:void(0);" title="最新入库1-10">1-10</a>
+				<a class="in-rise-tab-num" href="javascript:void(0);" title="最新入库11-20">11-20</a>
+				<a class="in-rise-tab-num" href="javascript:void(0);" title="最新入库21-30">21-30</a>
+				<a class="in-rise-tab-rightbtn" href="javascript:void(0);" title="下一页">&nbsp;</a>
+			</div>
+		</div>
+		<ul id="in-rise-list" class="in-rise-list mod-cover-list-samll clearfix">                
+			<li>
+				<div class="in-rise-con clearfix">
+					{小说:排序=最新入库;数量=10}
+					<div class='in-rise-item'>
+						<div class="mousetouch">
+							<a class="mod-cover-list-thumb-samll mod-cover-effect ui-db mod-cover-list-thumb-small" href="{url}" target="_blank">
+								<img class="lazy" src="{小说封面}" width="100" height="133" />
+								<span class="mod-layer-mask">&nbsp;&nbsp;</span>
+							</a>
+							<a href="{url}" target="_blank"><div class="content"><span>{小说简介}</span></div></a>
+						</div>
+						<h5>
+							<a class="mod-cover-list-name" href="{url}">{小说名字:7}</a>
+						</h5>
+						<p class="mod-cover-list-intro" >{小说作者}</p>
+						<p class="mod-cover-list-tag">
+							<a class="mod-tag-item" href="{url}" target="_blank" title="{小说分类名字}">{小说分类名字}</a>
+						</p>
+					</div>
+					{/小说}
+				</div>
+			</li>
+			<li>
+				<div class="in-rise-con clearfix">
+					{小说:排序=最新入库;数量=10,10}
+					<div class='in-rise-item'>
+						<div class="mousetouch">
+							<a class="mod-cover-list-thumb-samll mod-cover-effect ui-db mod-cover-list-thumb-small" href="{url}" target="_blank">
+								<img class="lazy" src="{小说封面}" width="100" height="133" />
+								<span class="mod-layer-mask">&nbsp;&nbsp;</span>
+							</a>
+							<a href="{url}" target="_blank"><div class="content"><span>{小说简介}</span></div></a>
+						</div>
+						<h5>
+							<a class="mod-cover-list-name" href="{url}">{小说名字:7}</a>
+						</h5>
+						<p class="mod-cover-list-intro" >{小说作者}</p>
+						<p class="mod-cover-list-tag">
+							<a class="mod-tag-item" href="{turl}" target="_blank" title="{小说分类名字}">{小说分类名字}</a>
+						</p>
+					</div>
+					{/小说}
+				</div>
+            </li>
+            <li>
+				<div class="in-rise-con clearfix">
+					{小说:排序=最新入库;数量=20,10}
+					<div class='in-rise-item'>
+						<div class="mousetouch">
+							<a class="mod-cover-list-thumb-samll mod-cover-effect ui-db mod-cover-list-thumb-small" href="{url}" target="_blank">
+								<img class="lazy" src="{小说封面}" width="100" height="133" />
+								<span class="mod-layer-mask">&nbsp;&nbsp;</span>
+							</a>
+							<a href="{url}" target="_blank"><div class="content"><span>{小说简介}</span></div></a>
+						</div>
+						<h5>
+							<a class="mod-cover-list-name" href="{url}">{小说名字:7}</a>
+						</h5>
+						<p class="mod-cover-list-intro" >{小说作者}</p>
+						<p class="mod-cover-list-tag">
+							<a class="mod-tag-item" href="{turl}" target="_blank" title="{小说分类名字}">{小说分类名字}</a>
+						</p>
+					</div>
+					{/小说}
+				</div>
+			</li>
+		</ul>
+	</div>
+	<div class="in-monrank-wr clearfix">
+		<div class="in-monrank-title clearfix">
+			<h3 class="in-monrank-name in-title ui-left">新书排行榜</h3>
+		</div>
+		<div class="in-monrank-item">
+			<h4 class="in-monrank-tit">新书排名（日榜）</h4>
+				<div class="in-ranrank-tab-right clearfix">
+					<div class="in-ranrank-tab-a ui-right">
+						<a href="javascript:void(0)" title="1-15" class="active">1-15</a>
+						<a href="javascript:void(0)" title="16-30">16-30</a>
+					</div>
+				</div>
+				<div class="in-monrank-tab-con">
+					<div class="in-monrank-con">
+						<span class="in-ico-td in-ico-td1">&nbsp;</span>
+						<span class="in-ico-td in-ico-td2">&nbsp;</span>
+						<ul class="in-monrank-list clearfix">
+							<li><span class="s">实时排名</span><span>作品名称</span><span class="z">作者</span><span>此时点击</span></li>
+							{小说:排序=日点击;数量=15}
+							<li class="in-monrank-list-{i:<4}hot{/i}{i:>3}no{/i}">
+								<b>{i}</b>
+								<a href="{url}" target="_blank">
+								<em class="no1" title="{小说名字}">{小说名字}</em>
+								<em class="no2" title="{小说作者}">{小说作者}</em>
+								<em class="last">{小说日点击}</em>
+								</a>
+							</li>
+							{/小说}
+						</ul>
+					</div>
+					<div class="in-monrank-con" style="none">
+	                    <span class="in-ico-td in-ico-td3">&nbsp;</span>
+	                    <ul class="in-monrank-list clearfix">
+	                    	<li><span class="s">实时排名</span><span>作品名称</span><span class="z">作者</span><span>此时点击</span></li>
+	                        {小说:排序=日点击;数量=15,15}
+							<li class="in-monrank-list-no">
+								<b>{运算:{i}+15}</b>
+								<a href="{url}" target="_blank">
+								<em class="no1" title="{小说名字}">{小说名字}</em>
+								<em class="no2" title="{小说作者}">{小说作者}</em>
+								<em class="last">{小说日点击}</em>
+								</a>
+							</li>
+							{/小说}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- audience -->
+<div class="ui-wm ui-mb30 clearfix"  id="in-box">
+	<div class="in-main-wr ui-left">
+		<!-- teen -->
+		<div class="in-teen-list-wr ui-mb30" id="in-teen-list-wr">
+			<div class="in-title-wr ui-mb20 clearfix">
+				<h3 class="in-title-big ui-left">少年<em>小说</em></h3>
+			</div>
+			<div class="in-content-wr">
+				<ul id="in-teen-list" class="in-teen-list mod-cover-list clearfix">
+					{小说:分类=[in-id->1,2];排序=总点击;数量=6}
+					<li>
+                    	<a class="mod-cover-list-thumb mod-cover-effect ui-db" title="{小说名字}" href="{url}">
+                    		<img class="lazy" src="{小说封面}" alt="{小说封面}"/>
+                            <span class="mod-layer-mask">&nbsp;&nbsp;</span>
+                        </a>
+                        <p class="mod-cover-list-updata">
+                        	<a class="mod-cover-list-mask" href="{rurl}" title="{小说名字}" target="_blank">
+							<span class="mod-cover-list-text">{小说最新章节名字}</span>
+							</a>
+			            </p>
+			            <h5>
+							<a class="mod-cover-list-name" href="{url}" title="{小说名字}" target="_blank">{小说名字}</a>
+						</h5>
+			            <p class="mod-cover-list-intro">{小说简介}</p>
+			            <p class="mod-cover-list-tag">
+							<a class="mod-tag-item" href="{url}" target="_blank" title="{小说分类名字}">{小说分类名字}</a>
+						</p>
+					</li>
+					{/小说}
+				</ul>
+			</div>
+		</div>
+
+		<!-- girl -->
+        <div class="in-girl-list-wr ui-mb30">
+            <div class="in-title-wr ui-mb20 clearfix">
+                <h3 class="in-title-big ui-left">少女<em>小说</em></h3>
+            </div>
+			<div class="in-content-wr">
+				<ul id="in-teen-list" class="in-teen-list mod-cover-list clearfix">
+					{小说:分类=[in-id->3,5];排序=总点击;数量=6}
+					<li>
+                    	<a class="mod-cover-list-thumb mod-cover-effect ui-db" title="{小说名字}" href="{url}">
+                    		<img class="lazy" src="{小说封面}" alt="{小说封面}"/>
+                            <span class="mod-layer-mask">&nbsp;&nbsp;</span>
+                        </a>
+                        <p class="mod-cover-list-updata">
+                        	<a class="mod-cover-list-mask" href="{rurl}" title="{小说名字}" target="_blank">
+							<span class="mod-cover-list-text">{小说最新章节名字}</span>
+							</a>
+			            </p>
+			            <h5>
+							<a class="mod-cover-list-name" href="{url}" title="{小说名字}" target="_blank">{小说名字}</a>
+						</h5>
+			            <p class="mod-cover-list-intro">{小说简介}</p>
+			            <p class="mod-cover-list-tag">
+							<a class="mod-tag-item" href="{url}" target="_blank" title="{小说分类名字}">{小说分类名字}</a>
+						</p>
+					</li>
+					{/小说}
+				</ul>
+			</div>
+		</div>
+
+		<!-- gamble -->
+		<div class="in-gamble-wr ui-mb30">
+			<div class="in-title-wr ui-mb20 clearfix">
+				<h3 class="in-gamble-title mod-tab-handle ui-left" id="in-gamble-title">
+					<a class="active first" href="javascript:void(0);">网游<span class="ico-gam-dian">竞技</span>
+						<span class="in-gamble-s">&nbsp;</span>
+                   	</a>
+                   	<a href="javascript:void(0);">都市<span class="ico-gam-dian">言情</span>
+                    	<span class="in-gamble-s">&nbsp;</span>
+                   	</a>
+                   	<a href="javascript:void(0);">恐怖<span class="ico-gam-dian">灵异</span>
+                    	<span class="in-gamble-s">&nbsp;</span>
+                   	</a>
+                   		<a href="javascript:void(0);">科幻<span class="ico-gam-dian">奇幻</span>
+                   	</a>
+				</h3>
+           </div>
+
+           <div class="mod-tab-content" id="in-gamble-content">
+               	<!-- 网游竞技-->
+				<div class="in-gamble-content-wr">
+					<div class="in-gamble-list-wr" id="rxComicList">
+                    	<div class="in-gamble-left in-gamble-rx">
+							{小说:分类=6;数量=1}
+                           	<div class="in-gamble-intro-wr ui-right">
+		                    	<h4 class="in-gamble-intro-title ui-ahover-normal"><a href="{url}" target="_blank" title="{小说名字}">{小说名字}</a></h4>
+		                        <p class="in-gamble-intro"><a href="{url}" target="_blank">{小说简介}</a></p>
+		                    </div>
+		                    <a class="in-gamble-thumb" href="{url}" target="_blank" title="{小说名字}">
+		                    	<img class="lazy" src="{小说封面}" title="{小说名字}" alt="{小说名字}"/>
+		                    </a>
+                            {/小说}
+						</div>
+						<div class="in-gamble-right">
+							<ul class="in-gamble-list mod-cover-list clearfix">
+								{小说:分类=6;数量=1,4}
+								<li>
+	                            	<a class="mod-cover-list-thumb mod-cover-effect ui-db" title="{小说名字}" href="{url}" target="_blank">
+	                            		<img class="lazy" src="{小说封面}" alt="{小说名字}"/>
+	                                    <span class="mod-layer-mask">&nbsp;&nbsp;</span>
+	                                </a>
+	                                <p class="mod-cover-list-updata">
+		                                <a class="mod-cover-list-mask" href="{rurl}" target="_blank">
+		                                	<span class="mod-cover-list-text">{小说最新章节名字}</span>
+		                            	</a>
+		                           	</p>
+	                                <h5>
+										<a class="mod-cover-list-name" href="{url}" title="{小说名字}" target="_blank">{小说名字}</a>
+									</h5>
+	                                <p class="mod-cover-list-intro">{小说简介}</p>
+	                                <p class="mod-cover-list-tag">
+										<a class="mod-tag-item" href="{turl}" target="_blank" title="{小说分类名字}">{小说分类名字}</a>
+									</p>
+								</li>
+	                            {/小说}
+							</ul>
+						</div>
+					</div>
+				</div>
+
+	            <!-- 都市言情 -->
+	            <div class="in-gamble-content-wr ui-dn">
+					<div class="in-gamble-list-wr" id="rxComicList">
+	                   	<div class="in-gamble-left in-gamble-rx">
+							{小说:分类=2;数量=1}
+	                          	<div class="in-gamble-intro-wr ui-right">
+		                    	<h4 class="in-gamble-intro-title ui-ahover-normal"><a href="{url}" target="_blank" title="{小说名字}">{小说名字}</a></h4>
+		                        <p class="in-gamble-intro"><a href="{url}" target="_blank">{小说简介}</a></p>
+		                    </div>
+		                    <a class="in-gamble-thumb" href="{url}" target="_blank" title="{小说名字}">
+		                    	<img class="lazy" src="{小说封面}" title="{小说名字}" alt="{小说名字}"/>
+		                    </a>
+	                        {/小说}
+						</div>
+						<div class="in-gamble-right">
+							<ul class="in-gamble-list mod-cover-list clearfix">
+								{小说:分类=2;数量=1,4}
+								<li>
+		                           	<a class="mod-cover-list-thumb mod-cover-effect ui-db" title="{小说名字}" href="{url}" target="_blank">
+		                           		<img class="lazy" src="{小说封面}" alt="{小说名字}"/>
+		                                   <span class="mod-layer-mask">&nbsp;&nbsp;</span>
+		                               </a>
+		                               <p class="mod-cover-list-updata">
+		                                <a class="mod-cover-list-mask" href="{rurl}" target="_blank">
+		                                	<span class="mod-cover-list-text">{小说最新章节名字}</span>
+		                            	</a>
+		                           	</p>
+		                               <h5>
+										<a class="mod-cover-list-name" href="{url}" title="{小说名字}" target="_blank">{小说名字}</a>
+									</h5>
+		                               <p class="mod-cover-list-intro">{小说简介}</p>
+		                               <p class="mod-cover-list-tag">
+										<a class="mod-tag-item" href="{turl}" target="_blank" title="{小说分类名字}">{小说分类名字}</a>
+									</p>
+								</li>
+		                        {/小说}
+							</ul>
+						</div>
+					</div>
+				</div>
+	
+	            <!-- 恐怖灵异 -->
+	            <div class="in-gamble-content-wr ui-dn">
+					<div class="in-gamble-list-wr" id="rxComicList">
+	                   	<div class="in-gamble-left in-gamble-rx">
+							{小说:分类=8;数量=1}
+	                          	<div class="in-gamble-intro-wr ui-right">
+		                    	<h4 class="in-gamble-intro-title ui-ahover-normal"><a href="{url}" target="_blank" title="{小说名字}">{小说名字}</a></h4>
+		                        <p class="in-gamble-intro"><a href="{url}" target="_blank">{小说简介}</a></p>
+		                    </div>
+		                    <a class="in-gamble-thumb" href="{url}" target="_blank" title="{小说名字}">
+		                    	<img class="lazy" src="{小说封面}" title="{小说名字}" alt="{小说名字}"/>
+		                    </a>
+	                        {/小说}
+						</div>
+						<div class="in-gamble-right">
+							<ul class="in-gamble-list mod-cover-list clearfix">
+								{小说:分类=8;数量=1,4}
+								<li>
+		                           	<a class="mod-cover-list-thumb mod-cover-effect ui-db" title="{小说名字}" href="{url}" target="_blank">
+		                           		<img class="lazy" src="{小说封面}" alt="{小说名字}"/>
+		                                   <span class="mod-layer-mask">&nbsp;&nbsp;</span>
+		                               </a>
+		                               <p class="mod-cover-list-updata">
+		                                <a class="mod-cover-list-mask" href="{rurl}" target="_blank">
+		                                	<span class="mod-cover-list-text">{小说最新章节名字}</span>
+		                            	</a>
+		                           	</p>
+		                               <h5>
+										<a class="mod-cover-list-name" href="{url}" title="{小说名字}" target="_blank">{小说名字}</a>
+									</h5>
+		                               <p class="mod-cover-list-intro">{小说简介}</p>
+		                               <p class="mod-cover-list-tag">
+										<a class="mod-tag-item" href="{turl}" target="_blank" title="{小说分类名字}">{小说分类名字}</a>
+									</p>
+								</li>
+		                        {/小说}
+							</ul>
+						</div>
+					</div>
+				</div>
+	
+	            <!-- 科幻奇幻 -->
+	            <div class="in-gamble-content-wr ui-dn">
+					<div class="in-gamble-list-wr" id="rxComicList">
+	                   	<div class="in-gamble-left in-gamble-rx">
+							{小说:分类=7;数量=1}
+	                          	<div class="in-gamble-intro-wr ui-right">
+		                    	<h4 class="in-gamble-intro-title ui-ahover-normal"><a href="{url}" target="_blank" title="{小说名字}">{小说名字}</a></h4>
+		                        <p class="in-gamble-intro"><a href="{url}" target="_blank">{小说简介}</a></p>
+		                    </div>
+		                    <a class="in-gamble-thumb" href="{url}" target="_blank" title="{小说名字}">
+		                    	<img class="lazy" src="{小说封面}" title="{小说名字}" alt="{小说名字}"/>
+		                    </a>
+	                        {/小说}
+						</div>
+						<div class="in-gamble-right">
+							<ul class="in-gamble-list mod-cover-list clearfix">
+								{小说:分类=7;数量=1,4}
+								<li>
+		                           	<a class="mod-cover-list-thumb mod-cover-effect ui-db" title="{小说名字}" href="{url}" target="_blank">
+		                           		<img class="lazy" src="{小说封面}" alt="{小说名字}"/>
+		                                   <span class="mod-layer-mask">&nbsp;&nbsp;</span>
+		                               </a>
+		                               <p class="mod-cover-list-updata">
+		                                <a class="mod-cover-list-mask" href="{rurl}" target="_blank">
+		                                	<span class="mod-cover-list-text">{小说最新章节名字}</span>
+		                            	</a>
+		                           	</p>
+		                               <h5>
+										<a class="mod-cover-list-name" href="{url}" title="{小说名字}" target="_blank">{小说名字}</a>
+									</h5>
+		                               <p class="mod-cover-list-intro">{小说简介}</p>
+		                               <p class="mod-cover-list-tag">
+										<a class="mod-tag-item" href="{turl}" target="_blank" title="{小说分类名字}">{小说分类名字}</a>
+									</p>
+								</li>
+		                        {/小说}
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="in-side-wr ui-right">
+		<div class="in-phlist-wrap ui-mb30">
+        	<div class="in-phlist-top clearfix">
+            	<h2 class="in-phlist-tit ui-left">点击排行</h2>
+                <a href="{小说排行首页}" target="_blank" title="排行榜"><span class="in-phlist-tit-right in-phlist-right-span">全部榜单</span></a>
+            </div>
+            <ul class="in-phlist-middle">
+            	<li class="no1">排名</li>
+               	<li class="no2">书名</li>
+               	<li class="no3">累计点击</li>
+            </ul>
+            <ul class="in-award-list">
+            	{小说:排序=总点击;数量=10}
+            	<li class="{i:<4}li-spe{/i}{i:3} li-three{/i}">
+            		{i:>3}<sub class="ui-border-em ui-left">{i}</sub>{/i}
+                	<a title="{小说名字}" href="{url}" class="mod-rank-name1 ui-left">
+                		{i:<4}
+						<img width="45" height="45" src="{小说封面}" alt="{小说名字}">
+						<span class="rank-award-name">{小说名字}</span>
+						<i class="mod-icos-plays-{i} rank-ico-plays"></i>
+						{/i}
+						{i:>3}{小说名字}{/i}
+					</a>
+                    <b class="award-num">{小说总点击}</b>
+                </li>
+                {/小说}
+			</ul>
+		</div>
+
+		<div class="in-phlist-wrap">
+			<div class="in-phlist-top clearfix">
+				<h2 class="in-phlist-tit ui-left">小说字数排行榜</h2>
+			</div>
+			<ul class="in-phlist-middle">
+            	<li class="no1">排名</li>
+                <li class="no2">书名</li>
+                <li class="no3">累计字数</li>
+            </ul>
+            <ul class="in-phvip-list">
+            	{小说:排序=字数;数量=10}
+            	<li>
+	                <em class="ui-border-em {i:<4}ui-red-border{/i}">{i}</em>
+	                <a href="{url}" class="in-award-name ui-left" title="{小说名字}">{小说名字}</a>
+	                <span class="award-num">{小说字数}字</span>
+				</li>
+            	{/小说}
+			</ul>
+		</div>
+	</div>
+</div>
+
+<!-- 最近更新 -->
+<div class="in-exce-list-wr">
+	<div class="in-content-wr">
+		<!-- 最近更新 -->
+		<div class="in-new" id="in-new">
+			<div class="in-new-top clearfix">
+				<h2 class="in-title-big ui-left">最近<em>更新</em></h2>
+				<a href="{全部小说}" class="in-new-more ui-right in-hover-under" target="_blank" title="最新更新">更多&gt;&gt;</a>
+				<div class="in-rise-tab ui-right" id="in-rise-tab2">
+					<a title="上一页" href="javascript:void(0);" class="in-rise-tab-leftbtn">&nbsp;</a>
+					<a title="1-15" href="javascript:void(0);" class="in-rise-tab-num current">1-15</a>
+					<a title="16-30" href="javascript:void(0);" class="in-rise-tab-num">16-30</a>
+					<a title="31-45" href="javascript:void(0);" class="in-rise-tab-num">31-45</a>
+					<a title="45-60" href="javascript:void(0);" class="in-rise-tab-num">46-60</a>
+					<a title="45-60" href="javascript:void(0);" class="in-rise-tab-num">61-75</a>
+					<a title="45-60" href="javascript:void(0);" class="in-rise-tab-num">76-90</a>
+					<a title="下一页" href="javascript:void(0);" class="in-rise-tab-rightbtn">&nbsp;</a>
+				</div>
+			</div>
+			<div class="in-rise-con2">
+				<ul id="in-rise-list2" class="in-rise-list2 clearfix">
+					<li class="in-rise-li">
+						<div class="in-rise-ta-wrap">
+							<table border="0" cellspacing="1" cellpadding="0" class="in-rise-ta">
+                                <tbody>
+                                	{小说:排序=最新更新;数量=15}
+ 									<tr>
+ 										<td class="td1">
+ 											<span class="in-risecon-first">
+												<a href="{turl}" target="_blank" title="{小说分类名字}">【{小说分类名字}】</a>
+											</span>
+										</td>
+										<td class="td2">小说名称：<a href="{url}" target="_blank" class="ft-weight" title="{小说名字}">{小说名字}</a></td>
+										<td class="td3">最新章节：<a href="{rurl}" target="_blank" title="{小说最新章节名字}">{小说最新章节名字:20}</a></td>
+										<td class="td4">作者：{小说作者}</td>
+										<td>更新时间：{小说更新时间}</td>
+									</tr>
+									{/小说}
+								</tbody>
+							</table>
+						</div>
+					</li>
+					<li class="in-rise-li">
+						<div class="in-rise-ta-wrap">
+							<table border="0" cellspacing="1" cellpadding="0" class="in-rise-ta">
+                                <tbody>
+                                	{小说:排序=最新更新;数量=15,15}
+ 									<tr>
+ 										<td class="td1">
+ 											<span class="in-risecon-first">
+												<a href="{turl}" target="_blank" title="{小说分类名字}">【{小说分类名字}】</a>
+											</span>
+										</td>
+										<td class="td2">小说名称：<a href="{url}" target="_blank" class="ft-weight" title="{小说名字}">{小说名字}</a></td>
+										<td class="td3">最新章节：<a href="{rurl}" target="_blank" title="{小说最新章节名字}">{小说最新章节名字:20}</a></td>
+										<td class="td4">作者：{小说作者}</td>
+										<td>更新时间：{小说更新时间}</td>
+									</tr>
+									{/小说}
+								</tbody>
+							</table>
+						</div>
+					</li>
+					<li class="in-rise-li">
+						<div class="in-rise-ta-wrap">
+							<table border="0" cellspacing="1" cellpadding="0" class="in-rise-ta">
+                                <tbody>
+                                	{小说:排序=最新更新;数量=30,15}
+ 									<tr>
+ 										<td class="td1">
+ 											<span class="in-risecon-first">
+												<a href="{turl}" target="_blank" title="{小说分类名字}">【{小说分类名字}】</a>
+											</span>
+										</td>
+										<td class="td2">小说名称：<a href="{url}" target="_blank" class="ft-weight" title="{小说名字}">{小说名字}</a></td>
+										<td class="td3">最新章节：<a href="{rurl}" target="_blank" title="{小说最新章节名字}">{小说最新章节名字:20}</a></td>
+										<td class="td4">作者：{小说作者}</td>
+										<td>更新时间：{小说更新时间}</td>
+									</tr>
+									{/小说}
+								</tbody>
+							</table>
+						</div>
+					</li>
+					<li class="in-rise-li">
+						<div class="in-rise-ta-wrap">
+							<table border="0" cellspacing="1" cellpadding="0" class="in-rise-ta">
+                                <tbody>
+                                	{小说:排序=最新更新;数量=45,15}
+ 									<tr>
+ 										<td class="td1">
+ 											<span class="in-risecon-first">
+												<a href="{turl}" target="_blank" title="{小说分类名字}">【{小说分类名字}】</a>
+											</span>
+										</td>
+										<td class="td2">小说名称：<a href="{url}" target="_blank" class="ft-weight" title="{小说名字}">{小说名字}</a></td>
+										<td class="td3">最新章节：<a href="{rurl}" target="_blank" title="{小说最新章节名字}">{小说最新章节名字:20}</a></td>
+										<td class="td4">作者：{小说作者}</td>
+										<td>更新时间：{小说更新时间}</td>
+									</tr>
+									{/小说}
+								</tbody>
+							</table>
+						</div>
+					</li>
+					<li class="in-rise-li">
+						<div class="in-rise-ta-wrap">
+							<table border="0" cellspacing="1" cellpadding="0" class="in-rise-ta">
+                                <tbody>
+                                	{小说:排序=最新更新;数量=60,15}
+ 									<tr>
+ 										<td class="td1">
+ 											<span class="in-risecon-first">
+												<a href="{turl}" target="_blank" title="{小说分类名字}">【{小说分类名字}】</a>
+											</span>
+										</td>
+										<td class="td2">小说名称：<a href="{url}" target="_blank" class="ft-weight" title="{小说名字}">{小说名字}</a></td>
+										<td class="td3">最新章节：<a href="{rurl}" target="_blank" title="{小说最新章节名字}">{小说最新章节名字:20}</a></td>
+										<td class="td4">作者：{小说作者}</td>
+										<td>更新时间：{小说更新时间}</td>
+									</tr>
+									{/小说}
+								</tbody>
+							</table>
+						</div>
+					</li>
+					<li class="in-rise-li">
+						<div class="in-rise-ta-wrap">
+							<table border="0" cellspacing="1" cellpadding="0" class="in-rise-ta">
+                                <tbody>
+                                	{小说:排序=最新更新;数量=75,15}
+ 									<tr>
+ 										<td class="td1">
+ 											<span class="in-risecon-first">
+												<a href="{turl}" target="_blank" title="{小说分类名字}">【{小说分类名字}】</a>
+											</span>
+										</td>
+										<td class="td2">小说名称：<a href="{url}" target="_blank" class="ft-weight" title="{小说名字}">{小说名字}</a></td>
+										<td class="td3">最新章节：<a href="{rurl}" target="_blank" title="{小说最新章节名字}">{小说最新章节名字:20}</a></td>
+										<td class="td4">作者：{小说作者}</td>
+										<td>更新时间：{小说更新时间}</td>
+									</tr>
+									{/小说}
+								</tbody>
+							</table>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 友情链接 -->
+<div class="linkBox">
+	<span class="linkTitle">友情链接</span>
+	<p class="linkList">
+		{友链:}<a href="{url}">{友链名字}</a>{/友链}
+	</p>
+</div>
+  
+
+<!-- fixedLayer(悬浮栏) -->
+<div id="fixed" class="mod-fixed-top-wr">
+    <div class="mod-fixed-top ui-wm">
+        <ul class="mod-fixed-top-tags ui-left">
+            <li class="active"><a href="{首页}">首页</a></li>
+            {小说分类:数量=6}
+			<li><a href="{url}" title="{小说分类名字}">{小说分类名字}</a></li>
+			{/小说分类}
+        </ul>
+        <div class="mod-fix-search-wr ui-left">
+            <form action="{搜索提交地址}" method="post">
+				<input type="hidden" name="module" value="novel">
+				<input type="hidden" name="type" value="1">
+	            <div>
+	                <div class="mod-fix-search ui-left">
+						<input class="mod-search-input" type="text" name="key" placeholder="请输入小说名字"/>
+	                </div>
+	                <button class="mod-search-submit ui-left" type="submit">搜索</button>
+	            </div>
+			</form>
+        </div>
+    </div>
+</div>
+
+<!-- 左侧悬浮栏 -->
+<div class="mod-fixed-left-wr" id="mod-fixed-left-wr">
+    <ul class="mod-fixed-left-tags" id="mod-fixed-left-tags">
+        <li><a href="javascript:void(0)" title="封面推荐">封面<br/>推荐</a></li>
+        <li><a href="javascript:void(0)" title="精品推荐">精品<br/>推荐</a></li>
+        <li><a href="javascript:void(0)" title="分类小说">分类<br/>小说</a></li>
+        <li><a href="javascript:void(0)" title="最新入库">最新<br/>入库</a></li>
+        <li><a href="javascript:void(0)" title="最新更新">最新<br/>更新</a></li>
+    </ul>
+    <a class="tab-top" id="mod-fixed-left-top" href="javascript:void(0);" title="顶部">顶部</a>
+</div>
+
+{footer:novel/footer.html}

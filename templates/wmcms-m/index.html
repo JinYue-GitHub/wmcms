@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html style="font-size: 55.2px;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=no">
+    <meta name="Keywords" content="{key}" />
+    <meta name="Description" content="{desc}" />
+    <link rel="stylesheet" href="{templates}/static/css/style.css">
+    <title>{title}</title>
+</head>
+<body>
+    <div id="app">
+        <div class="x-home">
+            <div class="x-city__header">
+                <img src="{logo}" alt="" class="x-city__logo">
+								<form action="{搜索提交地址}" class="x-city__search">
+								    <input type="text" placeholder="请输入搜索的书名" name="key" class="x-city__search--input" autocomplete="off">                    
+								    <input type="hidden" name="module" value="novel">                    
+								    <img src="{templates}/static/images/search.png" id="souya">
+								</form>
+                {已登录}
+                <a class="user" style="background-image: url({用户头像});" href="{用户中心}">{用户昵称}</a>
+                {/已登录}
+								{未登录}
+                <a class="account" href="{登录}">帐户</a>
+                {/未登录}
+            </div>
+            <ul class="menu f-cb van-hairline--bottom">
+                <li>
+                    <a href="{首页}" class="crt">首页</a>
+                </li>
+								<li>
+								    <a href="{小说男生版}">男生</a>
+								</li>
+								<li>
+								    <a href="{小说女生版}">女生</a>
+								</li>
+								<li>
+								    <a href="{全部小说}">书库</a>
+								</li>
+								<li>
+								    <a href="{小说排行列表}">排行</a>
+								</li>
+								<li>
+								    <a href="{全部文章}">文章</a>
+								</li>
+            </ul>
+            <div class="x-city__banner">
+                <div class="swiper-container" id="swiper">
+                    <div class="swiper-wrapper">
+                        {幻灯片:模块=index;分类拼音=mobile_boy;}
+                        <div class="swiper-slide">
+                            <a href="{幻灯片链接}">
+                               <img _src="{幻灯片图片}">
+                            </a>
+                       </div>
+                       {/幻灯片}
+                   </div>
+                   <div class="van-swipe__indicators">
+                   </div>
+                </div>
+                <img src="{templates}/static/images/shadow.png" alt="" class="banner-shadow">
+            </div>
+            <section class="x-city__part hr-top">
+                <div class="x-part__title">重磅推荐</div>
+                <div class="x-part__books">
+                    <div class="x-part__books--cover">
+                        {推荐小说:数量=6;首页封面=是}
+                        <div class="x-book">
+                            <a href="{url}">
+                                <div class="x-book__coverbox">
+                                    <img class="x-book__cover" src="{小说封面}">
+                                </div>
+                                <div class="x-book__text--normal">{小说名字}</div>
+                            </a>
+                        </div>
+                        {/推荐小说}
+                    </div>
+                </div>
+            </section>
+            <section class="x-city__part hr-top">
+                <div class="x-part__title">大家都在看</div>
+                <div class="x-part__books">
+                    <div class="x-part__books--cover">
+                        {推荐小说:数量=6;首页推荐=是}
+                        <div class="m-book-single f-cb">
+                            <a href="{url}" title="{小说名字}">
+                                <img src="{小说封面}" alt="{小说名字}">
+                                <h3>{小说名字}</h3>
+                                <p>{小说作者}</p>
+                                <p>{小说简介:50}</p>
+                                <p class="tag">
+                                    <span>{小说进程}</span>
+                                    <span>{php}
+	                            if('{小说字数}'==0){
+	                                echo '暂未写作';
+	                            };
+	                            if('{小说字数}'<999 && '{小说字数}'>0){
+	                                echo '{小说字数}字';
+	                            };
+	                            if('{小说字数}'>999 && '{小说字数}'<9999){
+	                                echo '{运算:{小说字数}/1000}千';
+	                            };
+	                            if('{小说字数}'>9999 && '{小说字数}'<99999){
+	                                echo round('{运算:{小说字数}/10000}',0).'万';
+	                            };
+	                            if('{小说字数}'>99999 && '{小说字数}'<999999){
+	                                echo round('{运算:{小说字数}/100000}',0).'十万';
+	                            };
+	                            if('{小说字数}'>999999){
+	                                echo round('{运算:{小说字数}/1000000}',0).'百万';
+	                            };
+                            {/php}</span>
+                                </p>
+                            </a>
+                        </div>
+                        {/推荐小说}
+                    </div>
+                </div>
+            </section>
+            <section class="x-city__part hr-top">
+                <div class="x-part__title">最近更新</div>
+                <div class="x-part__books">
+                    <div class="x-city__swiper--item">
+                        {小说:数量=10;排序=最新更新}
+                        <div class="x-book">
+                            <div class="x-book__nocover">
+                                <div class="x-book__text--multi">
+                                    <p class="x-book__name">
+                                    <span class="x-book__titleName"><a href="{url}">{小说名字}</a></span>
+                                        <span class="x-book__tag">{小说分类名字}</span>
+                                        <span class="x-book__tag">{小说作者}</span>
+                                    </p>
+                                    <p class="x-book__intro"><a href="{小说最新章节url}">{小说最新章节名字}</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        {/小说}
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="ui-line"></div>
+        <footer class="index">
+            <div class="m-right"><p>{网站名}版权所有©2018-<span id="J_Copyright">2019</span></p></div>
+        </footer>
+    </div>
+<script type="text/javascript" src="{templates}/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="{templates}/static/js/TouchSlide.1.1.js"></script>
+<script type="text/javascript" src="{templates}/static/js/global.js"></script>
+</body>
+</html>

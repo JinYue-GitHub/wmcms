@@ -1,0 +1,594 @@
+<html>
+<head>
+	<title>{title}</title>
+	<meta charset="utf-8" />
+    <meta name="keywords" content="{key}">
+    <meta name="description" content="{desc}">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="renderer" content="webkit|ie-comp|ie-stand" />
+	<link rel="stylesheet" href="{templates}/static/css/author/editor_ui.css" />
+	<link rel="stylesheet" href="{templates}/static/css/author/editor_common.css" />
+	<link rel="stylesheet" href="{templates}/static/css/author/editor_main.css" />
+	<script src="/files/js/wangeditor/wangeditor.js"></script>
+	<script src="/files/js/jquery-2.0.0.min.js"></script>
+	<script src="/files/js/function.js"></script>
+	<style>
+	#content .keywordBg{background: #ff0;}
+	#content .keywordSelect{background: #ff9632;}
+	.name-limit label{cursor:pointer}
+	.tool_cur{color: #2782F2;border-color: #2782F2;text-decoration: none;}
+	.search-list-content .keywordBg{color: #2782f2}
+	.ne-header-left .novel_cover{border-radius: 2px;border: 1px solid #9cbde6;background-repeat:no-repeat;background-size:100% 100%;-moz-background-size:100% 100%;}
+	.w-e-text p, .w-e-text h1, .w-e-text h2, .w-e-text h3, .w-e-text h4, .w-e-text h5, .w-e-text table, .w-e-text pre{margin-bottom:24px}
+	</style>
+</head>
+<body data-system="windows" class="win-chrome fz-m skin-light" data-theme="light" style="zoom: 1;">
+<!--svg图标-->
+<script src="{templates}/static/js/author/editor_icon.js"></script>
+
+<!--加载中-->
+<div class="page-loading">
+	<div class="loading-content" style="height: 25px;"><div class="bounce-one"></div><div class="bounce-two"></div><div class="bounce-three"></div></div>
+	<div class="loading-content">加载中<span id="loading_progress">0<span>%</div>
+</div>
+
+<!--主要控制台-->
+<div class="write-wrap new-editor dn" id="root">
+	<div class="write-header ne-header">
+		<!--顶部右边工具按钮-->
+		<div class="ne-header-right">
+			<ul class="neh-ul" id="guideHeaderFeatures">
+				<li class="neh-li"><a href="javascript:" class="nehr-item ui-tips reverse nw-all-hover" id="top_outline" data-title="作品大纲"><em class="nehr-icon"><i class=" sicon-con"><svg width="24" height="24" viewbox="0 0 16 16" fill="none" class="sicon"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 8a1 1 0 011-1h4.667a1 1 0 110 2H9a1 1 0 01-1-1zM1.833 8c0-.368.299-.667.667-.667H6a.667.667 0 010 1.334H2.5A.667.667 0 011.833 8zM8 12.667a1 1 0 011-1h4.667a1 1 0 110 2H9a1 1 0 01-1-1zM1.333 12.667c0-.368.299-.667.667-.667h4a.667.667 0 010 1.333H2a.667.667 0 01-.667-.666zM5 3.333a1 1 0 011-1h7.667a1 1 0 110 2H6a1 1 0 01-1-1z" fill="#525252"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M1.333 3.333c0-.368.299-.666.667-.666h1.333a.667.667 0 110 1.333h-.666v8.5a.667.667 0 01-1.334 0V3.333z" fill="#525252"></path></svg></i></em></a></li>
+				<li class="neh-li"><a href="" class="nehr-item ui-tips reverse nw-all-hover" data-title="作品设定" target="_blank" rel="noopener noreferrer"><em class="nehr-icon"><i class=" sicon-con"><svg width="24" height="24" viewbox="0 0 16 16" fill="none" class="sicon"><path d="M3.333 3.333C3.333 2.637 3.95 2 4.8 2h7.867v5.667a.667.667 0 101.333 0V1.333a.667.667 0 00-.667-.666H4.8C3.295.667 2 1.82 2 3.333v10a2 2 0 002 2h3A.667.667 0 107 14H4a.667.667 0 01-.303-1.26c.044-.01.095-.019.153-.027.228-.031.527-.046.924-.046h1.729v-.022a.667.667 0 000-1.29v-.022H4c-.234 0-.458.04-.667.114V3.333z" fill="#525252"></path><path d="M11.334 8.667c.368 0 .666.298.666.667v.43c.141.042.277.097.406.163l.399-.398a.667.667 0 11.942.942l-.381.382c.085.15.154.312.204.48H14a.667.667 0 010 1.334h-.43a2.318 2.318 0 01-.184.443l.459.46a.667.667 0 11-.943.942l-.459-.459c-.14.076-.288.138-.443.184v.43a.667.667 0 01-1.333 0v-.43c-.17-.05-.33-.12-.48-.204l-.48.479a.667.667 0 11-.943-.943l.497-.496a2.32 2.32 0 01-.165-.406h-.43a.667.667 0 010-1.334h.43c.047-.155.109-.303.184-.443l-.418-.419a.667.667 0 11.943-.942l.418.418c.14-.076.289-.137.444-.184v-.43c0-.368.298-.666.667-.666zM11.35 13a1 1 0 10-.033 0h.033z" fill="#525252"></path></svg></i></em></a></li>
+				<li class="neh-li"><a href="javascript:" class="nehr-item ui-tips reverse nw-all-hover" id="top_volume_manager" data-title="分卷管理"><em class="nehr-icon"><i class=" sicon-con"><svg width="24" height="24" viewbox="0 0 16 16" fill="none" class="sicon"><path d="M.667 3c0-.736.597-1.333 1.333-1.333h4.333c.198 0 .386.088.512.24l1.467 1.76H14c.736 0 1.333.597 1.333 1.333v2.5A.667.667 0 1114 7.5V5H8a.667.667 0 01-.512-.24L6.02 3H2v10h5.5a.667.667 0 010 1.333H2A1.333 1.333 0 01.667 13V3z" fill="#525252"></path><path d="M12.334 8.667c.368 0 .666.298.666.667v.43c.141.042.277.097.406.163l.399-.398a.667.667 0 01.942.942l-.381.382c.085.15.154.312.204.48H15a.667.667 0 110 1.334h-.43a2.327 2.327 0 01-.184.443l.459.46a.667.667 0 11-.943.942l-.459-.459c-.14.076-.288.138-.443.184v.43a.667.667 0 01-1.333 0v-.43c-.17-.05-.33-.12-.48-.204l-.48.479a.667.667 0 11-.943-.943l.497-.496a2.313 2.313 0 01-.165-.406h-.43a.667.667 0 010-1.334h.43c.047-.155.109-.303.184-.443l-.418-.419a.667.667 0 11.943-.942l.418.418a2.32 2.32 0 01.444-.184v-.43c0-.368.298-.666.667-.666zM12.35 13a1 1 0 10-.033 0h.033z" fill="#525252"></path></svg></i></em></a></li>
+			</ul>
+			<div class="draft-header-operating neh-operate" id="guideHeaderBtns">
+				<!-- 草稿操作按钮 -->
+				<button class="ui-button save_btn dn draftBtn">保存</button><button class="ui-button ui-button-primary release_btn dn draftBtn">发布</button><button class="ui-button delete_btn dn chapterBtn">删除</button><button class="ui-button ui-button-primary edit_save_btn dn chapterBtn">修改</button>
+				<a href="javascript:" id="top_more" class="write-header-more neh-operate-more nw-all-hover"><i class=" sicon-con"><svg width="24" height="24" viewbox="0 0 16 16" fill="none" class="sicon"><g clip-path="url(#clip0)" fill="#525252"><path d="M6.5 1.5a1.5 1.5 0 103 0 1.5 1.5 0 00-3 0zM6.5 8a1.5 1.5 0 103 0 1.5 1.5 0 00-3 0zM8 16a1.5 1.5 0 110-3 1.5 1.5 0 010 3z"></path></g><defs><clippath id="clip0"><path fill="#fff" d="M0 0h16v16H0z"></path></clippath></defs></svg></i></a>
+			</div>
+		</div>
+		
+		<!--顶部左边导航-->
+		<div class="ne-header-left">
+			<ul class="neh-ul">
+				<li class="neh-li"><a href="{编辑小说}" target="_blank" class="nehl-item ne-site-logo"><em class="enhl-icon novel_cover"></em></a></li>
+				<li class="neh-li"><div class="nehl-item ne-bookname jsTips reverse novel_name">小说名字</div></li>
+				<li class="neh-li"><div class="nehl-item nehl-line">/</div></li>
+				<li class="neh-li neh-li-last">
+					<div class="nehl-item">
+						<a href="javascript:" id="top_volume" class="volume-list nw-all-hover"><span>正文</span><i class="coll"><svg class="icon icon_arrow_drop_down"><use xlink:href="#icon_arrow_drop_down"></use></svg></i></a>
+						<span class="nehl-line">/</span>
+						<a href="javascript:" id="top_chapter" class="chapter-type nw-all-hover"><span>免费章节</span><i class="coll">
+							<svg class="icon icon_arrow_drop_down"><use xlink:href="#icon_arrow_drop_down"></use></svg></i
+						></a>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="write-header-control"><div class="write-header-options fl"></div></div>
+	</div>
+	
+	<!--内容创作部分-->
+	<div class="write-body ne-body">
+		<div class="page-loading" style="width: 100%; height: 100%;">
+			<div class="loading-content">
+				<div class="bounce-one"></div>
+				<div class="bounce-two"></div>
+				<div class="bounce-three"></div>
+			</div>
+		</div>
+		<div class="edit-chapter write-view-body dn" id="write-body">
+			<div class="guide-draft" id="guideDraftCon"></div>
+			<!--顶部工具栏-->
+			<div class="write-tools ne-draft-tools">
+				<div class="ne-dft-con">
+					<ul class="ne-dtc-ul">
+						<li class="ne-dtc-li" id="center_undo"><span class="nedft-item"><a href="javascript:" class="jsTips reverse nw-all-hover" title="撤销"><i class=" sicon-con"><svg width="24" height="24" viewbox="0 0 16 16" fill="none" class="sicon"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 1.333c-1.84 0-3.508.747-4.714 1.953-.168.168-.39.404-.62.651V3a.667.667 0 00-1.333 0v2.667A.664.664 0 002 6.333h2.667a.667.667 0 100-1.333H3.5c.273-.297.543-.585.729-.771a5.333 5.333 0 110 7.542.667.667 0 00-.943.943A6.667 6.667 0 108 1.334z" fill="#525252"></path></svg></i></a></span></li>
+						<li class="ne-dtc-li" id="center_redo"><span class="nedft-item"><a href="javascript:" class="jsTips reverse nw-all-hover" title="重做"><i class=" sicon-con"><svg width="24" height="24" viewbox="0 0 16 16" fill="none" class="sicon"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 2.667a5.333 5.333 0 103.771 9.104.667.667 0 01.943.943 6.667 6.667 0 110-9.428c.29.29.74.779 1.108 1.185l.478.53.145.163.053.06-.498.443-.498.442-.053-.058-.143-.16c-.12-.135-.287-.321-.471-.524A38.5 38.5 0 0011.77 4.23 5.314 5.314 0 008 2.667zm6.443 3.498a.667.667 0 01-.941-.056L14 5.667l.498-.443a.667.667 0 01-.055.941z" fill="#525252"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M14 2c.368 0 .667.298.667.667v3a.667.667 0 01-.667.666h-3A.667.667 0 1111 5h2.333V2.667c0-.369.299-.667.667-.667z" fill="#525252"></path></svg></i></a></span></li>
+						
+						<li class="ne-dtc-li"><em class="ne-dtc-line"></em></li>
+						
+						<li class="ne-dtc-li ne-dtcl-more" id="center_find"><span class="nedft-item" toolname="查找替换"><a href="javascript:" class="jsTips reverse nw-all-hover"><i class=" sicon-con"><svg width="24" height="24" viewbox="0 0 16 16" fill="none" class="sicon"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.333 3c0-.92.747-1.667 1.667-1.667h10c.92 0 1.667.747 1.667 1.667v5a.667.667 0 01-1.334 0V3A.333.333 0 0013 2.667H3A.333.333 0 002.667 3v10c0 .184.149.333.333.333h5a.667.667 0 010 1.334H3c-.92 0-1.667-.746-1.667-1.667V3zm9.334 6.333a1.333 1.333 0 100 2.667 1.333 1.333 0 000-2.667zM8 10.667a2.667 2.667 0 115.1 1.092l1.316 1.054a.667.667 0 11-.832 1.04L12.267 12.8A2.667 2.667 0 018 10.666zM4 5.333c0-.368.298-.666.667-.666h6.666a.667.667 0 110 1.333H4.667A.667.667 0 014 5.333zm.667 2a.667.667 0 000 1.334h2.666a.667.667 0 000-1.334H4.667z" fill="#525252"></path></svg></i><span class="ne-dtc-txt">查找替换</span></a></span></li>
+						
+						<li class="ne-dtc-li ne-dtcl-more" id="center_content_tool"><span class="nedft-item" toolname="内容工具箱"><a href="javascript:" class="jsTips nw-all-hover"><i class=" sicon-con"><svg width="24" height="24" viewbox="0 0 24 24" fill="none" class="sicon"><path fill-rule="evenodd" clip-rule="evenodd" d="M3 5V3h18v2H3zm4 7l-4 4V8l4 4zm14 9H3v-2h18v2zm-10-4h10v-2H11v2zm0-8h10V7H11v2zm10 4H11v-2h10v2z"></path></svg></i><span class="ne-dtc-txt">内容工具箱</span></a></span></li>
+						
+						
+						<li class="ne-dtc-li ne-dtcl-more" id="center_tool"><a href="javascript:" class="nw-all-hover"><i class=" sicon-con"><svg width="24" height="24" viewbox="0 0 16 16" fill="none" class="sicon"><g clip-path="url(#clip0)" fill-rule="evenodd" clip-rule="evenodd" fill="#525252"><path d="M2 1.333c0-.368.298-.666.667-.666h10.666c.368 0 .667.298.667.666v13.334a.667.667 0 01-.667.666H2.667A.667.667 0 012 14.667V12a.667.667 0 111.333 0v2h9.334V2H3.333v2A.667.667 0 112 4V1.333z"></path><path d="M1.333 10c0-.368.299-.667.667-.667h1.333a.667.667 0 010 1.334H2A.667.667 0 011.333 10zM1.333 8c0-.368.299-.667.667-.667h1.333a.667.667 0 010 1.334H2A.667.667 0 011.333 8zM1.333 6c0-.368.299-.667.667-.667h1.333a.667.667 0 010 1.334H2A.667.667 0 011.333 6zM8 5a.667.667 0 100 1.333A.667.667 0 008 5zm-2 .667a2 2 0 114 0 2 2 0 01-4 0zM4.667 11.667a3.333 3.333 0 116.666 0 .667.667 0 11-1.333 0 2 2 0 10-4 0 .667.667 0 01-1.333 0z"></path></g><defs><clippath id="clip0"><path fill="#fff" d="M0 0h16v16H0z"></path></clippath></defs></svg></i><span class="ne-dtc-txt">作者工具箱</span></a></li>
+						
+						<li class="ne-dtc-li ne-dtcl-more" id="center_talk"><a href="javascript:" class="nw-all-hover"><em class="j_drawer edit-icon"><i class=" sicon-con"><svg width="24" height="24" viewbox="0 0 16 16" fill="none" class="sicon"><path d="M.667 2c0-.368.298-.667.666-.667h13.334c.368 0 .666.299.666.667v10a.667.667 0 01-.666.667H9.943L8.47 14.138a.667.667 0 01-.942 0l-1.472-1.471H1.333A.667.667 0 01.667 12V2zM2 2.667v8.666h4.333c.177 0 .347.07.472.196L8 12.724l1.195-1.195a.667.667 0 01.472-.196H14V2.667H2z" fill="#525252"></path><path d="M7 7c0-.368.298-.667.667-.667h.667a.667.667 0 010 1.334h-.667A.667.667 0 017 7zM10.334 7c0-.368.298-.667.666-.667h.667a.667.667 0 010 1.334H11A.667.667 0 0110.334 7zM3.667 7c0-.368.298-.667.667-.667H5a.667.667 0 010 1.334h-.666A.667.667 0 013.667 7z" fill="#525252"></path></svg></i></em><span class="ne-dtc-txt">作者的话</span></a></li>
+						<!--li class="ne-dtc-li ne-dtcl-more"><a href="javascript:" class="nw-all-hover" id="histroyVersion"><em class="edit-icon"><i class=" sicon-con"><svg width="24" height="24" viewbox="0 0 16 16" fill="none" class="sicon"><g clip-path="url(#clip0)"><path d="M4.364 4h-.836A6 6 0 112 8 .667.667 0 00.667 8a7.333 7.333 0 101.94-4.968v-.79a.667.667 0 00-1.334 0v2.425c0 .368.298.666.666.666h2.425a.667.667 0 000-1.333zm4.304 1a.667.667 0 00-1.333 0v3.003c0 .177.07.346.195.471l2.12 2.12a.667.667 0 10.942-.943L8.668 7.727V5z" fill="#525252"></path></g><defs><clippath id="clip0"><path fill="#fff" d="M0 0h16v16H0z"></path></clippath></defs></svg></i></em><span class="ne-dtc-txt">历史版本</span></a></li-->
+						<li class="ne-dtc-li"></li>
+						<li class="ne-dtc-li"></li>
+					</ul>
+				</div>
+			</div>
+			
+			<div class="ne-warning-note" style="height: 100%;">
+				<div class="warning-warning edit-chapter-note ">
+					<i class=" sicon-con"><svg width="24" height="24" viewbox="0 0 16 16" fill="none" class="sicon"><path d="M8 3.917c.322 0 .583.26.583.583v4.667a.583.583 0 11-1.166 0V4.5c0-.322.26-.583.583-.583zM8.73 11.063a.73.73 0 11-1.46 0 .73.73 0 011.46 0z" fill="#F2463D"></path><path d="M3.463 3.463A6.398 6.398 0 018 1.583c1.772 0 3.377.72 4.537 1.88A6.399 6.399 0 0114.417 8a6.398 6.398 0 01-1.88 4.537A6.398 6.398 0 018 14.417a6.398 6.398 0 01-4.537-1.88A6.398 6.398 0 011.583 8c0-1.772.72-3.377 1.88-4.537zm.825.825A5.232 5.232 0 002.75 8c0 1.45.587 2.762 1.538 3.712A5.232 5.232 0 008 13.25c1.45 0 2.762-.587 3.712-1.538A5.232 5.232 0 0013.25 8c0-1.45-.587-2.762-1.538-3.712A5.232 5.232 0 008 2.75c-1.45 0-2.762.587-3.712 1.538z" fill="#F2463D"></path>
+					</svg></i><span>请注意：严禁上传任何情色、低俗、涉政等违法违规内容。一旦查实，视情节严重程度全书屏蔽整改起步并取消福利，直至报警处理。</span>
+				</div>
+				
+				<!--编辑器部分-->
+				<div class="chapter-body ne-main-body">
+					<div class="scroll-div">
+						<div class="chapter-name ui-input">
+							<input type="text" id="title" placeholder="请输入章节号与章节名。示例：“第一章 横空出世”" value="" />
+						</div>
+						<div class="chapter-content" style="position: relative;">
+							<div class="chapter-content-placeholder" style="width: 89%;height: 87%;color: inherit;color: #bfbfbf;">
+								<div id="content"><p>在此输入正文</p></div>
+							</div>
+					   </div>
+					</div>
+				</div>
+
+				<!--作者的话-->
+				<div class="ne-author-say"><div class="ne-as-con"><div class="author-say"><p class="info"><i class=" sicon-con"><svg width="24" height="24" viewBox="0 0 16 16" fill="none" class="sicon"><path fill-rule="evenodd" clip-rule="evenodd" d="M.667 8a7.333 7.333 0 1114.666 0A7.333 7.333 0 01.667 8zM8 2a6 6 0 100 12A6 6 0 008 2z" fill="#525252"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M8 4.667c.368 0 .667.298.667.666v5.334a.667.667 0 01-1.334 0V5.333c0-.368.299-.666.667-.666z" fill="#525252"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M4.667 8c0-.368.298-.667.666-.667h5.334a.667.667 0 010 1.334H5.333A.667.667 0 014.667 8z" fill="#525252"></path></svg></i> 作者的话</p><div class="author-say-txt"></div></div></div></div>
+			</div>
+		</div>
+		
+		<div class="empty-page"><div class="empty-content"><i class="i-empty"><svg class="icon-empty-books"></svg></i><h3 class="empty-txt">更多精彩世界等你来创作！</h3></div></div>
+	</div>
+	
+	<!--左侧工具栏-->
+	<div class="write-tabs ne-sidebar ne-sidebar-status">
+		<div class="side-coll-btn">
+			<span class="side-coll-txt">章节</span>
+			<em class="side-coll-icon"><i class=" sicon-con"><svg width="24" height="24" viewbox="0 0 16 16" fill="none" class="sicon"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.78 12.78a.75.75 0 01-1.06 0L4.47 8.53a.75.75 0 010-1.06l4.25-4.25a.75.75 0 011.06 1.06L6.06 8l3.72 3.72a.75.75 0 010 1.06z" fill="#525252"></path></svg></i></em>
+		</div>
+		<div class="capter-search-content">
+			<div class="capter-search">
+				<i class="capter-search-icon sicon-con"><svg width="24" height="24" viewbox="0 0 16 16" fill="none" class="sicon"><path fill-rule="evenodd" clip-rule="evenodd" d="M11.5 7a4.499 4.499 0 11-8.998 0A4.499 4.499 0 0111.5 7zm-.82 4.74a6 6 0 111.06-1.06l3.04 3.04a.75.75 0 11-1.06 1.06l-3.04-3.04z" fill="#525252"></path></svg></i>
+				<input class="capter-search-input" maxlength="10" placeholder="搜索章节" value="" />
+				<a class="capter-search-clear" title="清空" data-show="false"><i class=" sicon-con"><svg width="24" height="24" viewbox="0 0 16 16" fill="none" class="sicon">
+				 <path fill-rule="evenodd" clip-rule="evenodd" d="M2.343 13.657A8 8 0 1113.657 2.343 8 8 0 012.343 13.657zM6.03 4.97a.75.75 0 00-1.06 1.06L6.94 8 4.97 9.97a.75.75 0 101.06 1.06L8 9.06l1.97 1.97a.75.75 0 101.06-1.06L9.06 8l1.97-1.97a.75.75 0 10-1.06-1.06L8 6.94 6.03 4.97z" fill="#7A7A7A"></path></svg></i></a>
+			</div>
+			<div class="search-list-content" data-show="false">
+				<div class="search-title search-chapter dn">已发布<!--button hidden="" class="search-res-btn">显示更多</button--></div>
+				<ul class="search-res-list search-chapter-list dn"></ul>
+				<div class="search-title search-draft dn">草稿箱<!--button hidden="" class="search-res-btn">显示更多</button--></div>
+				<ul class="search-res-list search-draft-list dn"></ul>
+			</div>
+		</div>
+		
+		<div class="guide-sidebar" id="guideSidebarFeatures"></div>
+		<div class="ne-sidebar-tool">
+			<a class="ne-st-item" id="create_draft"><i class="ne-sti-icon sicon-con"><svg width="24" height="24" viewbox="0 0 16 16" fill="none" class="sicon"><path fill-rule="evenodd" clip-rule="evenodd" d="M.667 8a7.333 7.333 0 1114.666 0A7.333 7.333 0 01.667 8zM8 2a6 6 0 100 12A6 6 0 008 2z" fill="#525252"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M8 4.667c.368 0 .667.298.667.666v5.334a.667.667 0 01-1.334 0V5.333c0-.368.299-.666.667-.666z" fill="#525252"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M4.667 8c0-.368.298-.667.666-.667h5.334a.667.667 0 010 1.334H5.333A.667.667 0 014.667 8z" fill="#525252"></path></svg></i><p class="ne-sti-txt">新建章节</p></a>
+		</div>
+		<div class="ne-sidebar-con">
+			<!--草稿箱列表-->
+			<div class="ne-sc-details draftBox">
+				<div class="ne-sc-summary">
+					<i class="ne-sc-arrow sicon-con"><svg width="24" height="24" viewbox="0 0 16 16" fill="none" class="sicon"><path d="M6.427 4.427l3.396 3.396a.25.25 0 010 .354l-3.396 3.396A.25.25 0 016 11.396V4.604a.25.25 0 01.427-.177z" fill="#525252"></path></svg></i>
+					<p class="ne-sc-title">草稿箱<span class="ne-sc-num">(共<span id="draft_count">0</span>章)</span></p>
+				</div>
+				<ol class="tab-coll tab-coll-draft"></ol>
+			</div>
+			<!--正文列表列表-->
+			<div class="ne-sc-details active chapterBox">
+				<div class="ne-sc-summary">
+					<i class="ne-sc-arrow sicon-con"><svg width="24" height="24" viewbox="0 0 16 16" fill="none" class="sicon"><path d="M6.427 4.427l3.396 3.396a.25.25 0 010 .354l-3.396 3.396A.25.25 0 016 11.396V4.604a.25.25 0 01.427-.177z" fill="#525252"></path></svg></i>
+					<p class="ne-sc-title">已发布<span class="ne-sc-num">(共<span id="volume_count">0</span>卷, 共<span id="chapter_count">0</span>章)</span></p>
+				</div>
+				<ol class="tab-coll tab-coll-send" id="publish-list"></ol>
+			</div>
+			<!--div class="ne-sc-details">
+				<div class="ne-sc-summary"><i class="ne-sc-arrow sicon-con"><svg width="24" height="24" viewbox="0 0 16 16" fill="none" class="sicon"><path d="M6.427 4.427l3.396 3.396a.25.25 0 010 .354l-3.396 3.396A.25.25 0 016 11.396V4.604a.25.25 0 01.427-.177z" fill="#525252"></path></svg></i>
+				<p class="ne-sc-title">回收站<span class="ne-sc-num">(共0章)</span></p>
+			</div-->
+		</div>
+	</div>
+
+	<div class="ne-footer">
+		<div class="ne-footer-con">
+			<div class="ne-ftc-left" id="guideFtLeft">
+				<ul class="ne-ftcl-ul">
+					<li class="ne-ftcl-li wordnumberBox"><p class="ne-ftcl-txt">本章字数：<span class="num wordnumber">0</span> 字</p></li>
+					<li class="ne-ftcl-li"><em class="ne-ftcl-line"></em></li>
+					<li class="ne-ftcl-li speedBox"><p class="ne-ftcl-txt">码字速率：<span class="num speed">0</span> 字/分</p></li>
+					<li class="ne-ftcl-li"><em class="ne-ftcl-line"></em></li>
+					<li class="ne-ftcl-li timeBox"><p class="ne-ftcl-txt">编辑时长：<span class="num time">00:00:00</span></p></li>
+					<li class="ne-ftcl-li"><em class="ne-ftcl-line"></em></li>
+					<li class="ne-ftcl-li createtimeBox"><p class="ne-ftcl-txt">创建时间：<span class="num createtime">0000-00-00 00:00:00</span></p></li>
+				</ul>
+			 </div>
+			 <div class="ne-ftc-center"><span></span></div>
+			 <div class="ne-ftc-right" id="guideFtRight">
+				<ul class="ne-ftcr-oprate">
+					<li class="ne-ftcr-item">
+						<a class="skin-choices" data-new="false"><em class="ne-ftcr-icon ui-tips nw-all-hover"><i class=" sicon-con"><svg width="24" height="24" viewbox="0 0 16 16" fill="none" class="sicon"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zM13.657 2.343a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z" fill="#525252"></path></svg></i></em>
+						<div class="skin-pane">
+							<h4 class="skin-title">可选皮肤</h4>
+							<div class="skin-list">
+								<button class="skin-color" data-select="true" data-color="light"></button>
+								<button class="skin-color" data-select="false" data-color="dark"></button>
+								<button class="skin-color" data-select="false" data-color="theme1"></button>
+								<button class="skin-color" data-select="false" data-color="theme2"></button>
+								<button class="skin-color" data-select="false" data-color="theme4"></button>
+							</div>
+						</div>
+						</a>
+					</li>
+					<li class="ne-ftcr-item">
+						<div class="ne-font-scale fz-m">
+							<a class="ne-font-down"><em class="ne-ftcr-icon ui-tips nw-all-hover" title="缩小"><i class=" sicon-con"><svg width="24" height="24" viewbox="0 0 16 16" fill="none" class="sicon"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.833 8c0-.368.299-.667.667-.667h9.333a.667.667 0 110 1.334H3.5A.667.667 0 012.833 8z" fill="#525252"></path></svg></i></em></a>
+							<p class="ne-fs-current">100%</p><span></span>
+							<a class="ne-font-add"><em class="ne-ftcr-icon ui-tips nw-all-hover" title="放大"><i class=" sicon-con"><svg width="24" height="24" viewbox="0 0 16 16" fill="none" class="sicon"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.021 2.667c.368 0 .666.299.666.667l-.012 9.334a.667.667 0 01-1.334-.002l.013-9.334c0-.368.299-.666.667-.665z" fill="#525252"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M2.667 8c0-.368.298-.667.666-.667h9.334a.667.667 0 110 1.334H3.333A.667.667 0 012.667 8z" fill="#525252"></path></svg></i></em></a>
+						</div>
+					</li>
+					<li class="ne-ftcr-item fullScreen"><a href="javascript:"><em class="ne-ftcr-icon ui-tips nw-all-hover" data-title="全屏显示"><i class=" sicon-con"><svg width="24" height="24" viewbox="0 0 16 16" fill="none" class="sicon"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.333 2c0-.368.299-.667.667-.667h3c.368 0 .667.299.667.667v3a.667.667 0 01-1.334 0V2.667H11A.667.667 0 0110.333 2zM14 10.333c.368 0 .667.299.667.667v3a.667.667 0 01-.667.667h-3a.667.667 0 010-1.334h2.333V11c0-.368.299-.667.667-.667zM2 10.333c.368 0 .667.299.667.667v2.333H5a.667.667 0 010 1.334H2A.667.667 0 011.333 14v-3c0-.368.299-.667.667-.667zM1.333 2c0-.368.299-.667.667-.667h3a.667.667 0 010 1.334H2.667V5a.667.667 0 01-1.334 0V2z" fill="#525252"></path></svg></i></em></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	</div>
+</div>
+
+
+<!--顶部右侧工具栏更多-->
+<div id="top_more_panel" class="ui-droplist-x header-more-drop" style="position: absolute; display: inline;width: 104px;right: 18px; top: 44px; z-index: 19;display:none">
+	<a href="javascript:" id="top_explain" class="ui-droplist-li">新功能说明</a>
+	<a href="{小说作品列表}" target="_blank" class="ui-droplist-li">作品列表</a>
+	<a href="{编辑小说}" target="_blank" class="ui-droplist-li">编辑作品信息</a>
+</div>
+<!--顶部左侧分卷-->
+<div id="top_volume_panel" class="ui-droplist-x ESC volume-drop-list" style="position: absolute; display: inline; left: 152px; top: 46px; z-index: 19;display:none">
+	<a href="javascript:" class="ui-droplist-li" data-vid="1">正文</a>
+</div>
+<!--顶部左侧章节类型-->
+<div id="top_chapter_panel" class="ui-droplist-x ESC" style="position: absolute; display: inline; left: 247px; top: 46px; z-index: 19;display:none">
+	<a href="javascript:" class="ui-droplist-li dn" data-pay="1">收费章节</a>
+	<a href="javascript:" class="ui-droplist-li" data-pay="0">免费章节</a>
+</div>
+<!--作品大纲-->
+<div id="top_outline_panel" class="panel nu_dialog_wrap _right g-drawer">
+	<label class="nu_dialog_mask"></label>
+	<div class="nu_dialog">
+		<div class="g-drawer-hd">
+			<h3 class="g-drawer-title">作品大纲</h3>
+			<div class="g-drawer-hd-sd">
+				<a class="g-link _sub ml24 j_drawer_close panel_close" href="javascript:;" title="收起">收起<svg class="icon icon_chevron_right"><use xlink:href="#icon_chevron_right"></use></svg></a>
+			</div>
+		</div>
+		<div class="g-drawer-bd">
+			<div class="txts-content"><textarea name="outline" id="outline" placeholder="请输入"></textarea></div>
+		</div>
+		<div class="g-drawer-ft"><span class="current-count">0</span>/<span class="current-max">20000</span></div>
+	</div>
+</div>
+<!--分卷管理-->
+<div id="top_volume_manager_panel" class="panel volume-dialog nu_dialog_wrap _middle">
+	<label title="mask" class="nu_dialog_mask"></label>
+	<div class="nu_dialog">
+		<label title="close" class="nu_dialog_close">×</label>
+		<div class="ui-dialog-title">分卷管理</div>
+		<div class="ui-dialog-body modal-dialog-body">
+			<div class="modal volume-edit" id="">
+				<div class="modal-left fl">
+					<div class="volume-nav"><ol></ol></div>
+					<div class="volume-new-btn"><svg class="icon icon_note_add"><use xlink:href="#icon_note_add"></use></svg><span id="create_volume_btn">新建分卷</span></div>
+				</div>
+				<div class="modal-right cell">
+					<div class="volume-name">
+						<label class="write-form-label" for="">分卷名称</label>
+						<div class="write-form-cell">
+							<div class="ui-input-x" style="height: 32px;">
+								<input placeholder="必填" id="volume_name" value="" style="height: 32px;">
+								<div class="ui-input"></div>
+								<label for="" class="ui-input-count"><span class="current-count">0</span>/<span class="current-max">20</span></label>
+							</div>
+						</div>
+					</div>
+                    <div class="volume-name">
+                        <label class="write-form-label" for="">分卷顺序</label>
+                        <div class="write-form-cell">
+                            <div class="ui-input-x" style="height: 32px;">
+                                <input placeholder="必填，数字，越小越靠前" id="volume_order" value="" style="height: 32px;">
+                                <div class="ui-input"></div>
+                            </div>
+                        </div>
+                    </div>
+					<div class="volume-info">
+						<label class="write-form-label" for="">分卷简介</label>
+						<div class="write-form-cell">
+							<div class="ui-textarea-x">
+								<textarea rows="6" placeholder="必填" id="volume_desc"></textarea>
+								<div class="ui-textarea"></div>
+								<label for="" class="ui-input-count"><span class="current-count">0</span>/<span class="current-max">140</span></label>
+							</div>
+						</div>
+					</div>
+					<div class="modal-edit-btn"><button class="ui-button dn" id="volume_delete">删除分卷</button><button class="ui-button ui-button-primary" id="volume_save">保存</button></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--替换工具-->
+<div id="center_find_panel" class="tool-findreplace panel">
+	<a href="javascript:" class="tool-fr-close"><i class=" sicon-con"><svg width="24" height="24" viewbox="0 0 16 16" fill="none" class="sicon"><path d="M2.862 2.862c.26-.26.682-.26.943 0L8 7.057l4.195-4.195a.667.667 0 01.88-.056l.063.056c.26.26.26.682 0 .943L8.943 8l4.195 4.195c.24.24.259.619.056.88l-.056.063a.667.667 0 01-.943 0L8 8.943l-4.195 4.195a.667.667 0 01-.88.056l-.063-.056a.667.667 0 010-.943L7.057 8 2.862 3.805a.667.667 0 01-.056-.88l.056-.063z" fill="#525252"></path></svg></i></a>
+	<p class="findreplace-txt">查找</p>
+	<div class="ui-input-x">
+		<input id="txtFind" placeholder="请输入" autocomplete="off" value="" style="height: 30px;"/><div class="ui-input"></div>
+		<label for="txtFind" class="ui-input-count"><span id="txtFindCur">0</span>/<span id="txtFindCount">0</span></label>
+	</div>
+	<p class="findreplace-txt">替换为</p>
+	<div class="ui-input"><input placeholder="请输入" autocomplete="off" value="" id="textReplace" /></div>
+	<div class="findreplace-btns">
+		<button class="ui-button find-site find-up disabled" id="txtFindUp"><svg class="icon icon_chevron_up"><use xlink:href="#icon_chevron_up"></use></svg></button>
+		<button class="ui-button find-site find-down disabled" id="txtFindDown"><svg class="icon icon_chevron_down"><use xlink:href="#icon_chevron_down"></use></svg></button>
+		<button class="ui-button disabled" id="textReplaceBtn">替换</button>
+		<button class="ui-button disabled" id="textReplaceAllBtn">全部替换</button>
+	</div>
+</div>
+<!--替换工具-->
+<div id="center_content_tool_panel" class="tool-findreplace panel">
+	<a href="javascript:" class="tool-fr-close"><i class=" sicon-con"><svg width="24" height="24" viewbox="0 0 16 16" fill="none" class="sicon"><path d="M2.862 2.862c.26-.26.682-.26.943 0L8 7.057l4.195-4.195a.667.667 0 01.88-.056l.063.056c.26.26.26.682 0 .943L8.943 8l4.195 4.195c.24.24.259.619.056.88l-.056.063a.667.667 0 01-.943 0L8 8.943l-4.195 4.195a.667.667 0 01-.88.056l-.063-.056a.667.667 0 010-.943L7.057 8 2.862 3.805a.667.667 0 01-.056-.88l.056-.063z" fill="#525252"></path></svg></i></a>
+	<p class="findreplace-txt">内容工具箱</p>
+	<div class="findreplace-btns">
+		<button class="ui-button" id="center_word_check"><span class="nedft-item" toolname="错别字检查"><a><i class=" sicon-con"><svg width="24" height="24" viewbox="0 0 24 24" fill="none" class="sicon"><path fill-rule="evenodd" clip-rule="evenodd" d="M2 12C2 6.48 6.48 2 12 2s10 4.48 10 10-4.48 10-10 10S2 17.52 2 12zm11 4v2h-2v-2h2zm-1 4c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM8 10c0-2.21 1.79-4 4-4s4 1.79 4 4c0 1.283-.79 1.973-1.56 2.646C13.712 13.283 13 13.905 13 15h-2c0-1.821.942-2.543 1.77-3.178.65-.498 1.23-.943 1.23-1.822 0-1.1-.9-2-2-2s-2 .9-2 2H8z" fill="#525252"></path></svg></i><span class="ne-dtc-txt">错别字检查</span></a></span></button>
+    	<button class="ui-button" id="center_symbol_clearp"><span class="nedft-item" toolname="符号替换"><a><i class=" sicon-con"><svg width="24" height="24" viewbox="0 0 24 24" fill="none" class="sicon"><path fill-rule="evenodd" clip-rule="evenodd" d="M4 2c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2H4zm0 2h16v12H5.17L4 17.17V4zm14 8H6v2h12v-2zM6 9h12v2H6V9zm12-3H6v2h12V6z"></path></svg></i><span class="ne-dtc-txt">清理空行</span></a></span></button>
+	</div>
+	<div class="findreplace-btns">
+    	<button class="ui-button" id="center_format"><span class="nedft-item" toolname="格式化内容"><a><i class=" sicon-con"><svg width="24" height="24" viewbox="0 0 24 24" fill="none" class="sicon"><path fill-rule="evenodd" clip-rule="evenodd" d="M15.22 11.79c.97-.67 1.65-1.77 1.65-2.79 0-2.26-1.75-4-4-4H6.62v14h7.04c2.09 0 3.71-1.7 3.71-3.79 0-1.52-.86-2.82-2.15-3.42zM9.62 7.5h3c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-3v-3zm0 9h3.5c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5h-3.5v3z"></path></svg></i><span class="ne-dtc-txt">内容格式化</span></a></span></button>
+    	<button class="ui-button" id="center_symbol_replace"><span class="nedft-item" toolname="符号替换"><a><i class=" sicon-con"><svg width="24" height="24" viewbox="0 0 24 24" fill="none" class="sicon"><path fill-rule="evenodd" clip-rule="evenodd" d="M5 5h4v2H5v4h7v2H5v4h7v2H3V5h2zm16 0H11v3h10V5zm-7 6h7v3h-7v-3zm0 6h7v3h-7v-3z"></path></svg></i><span class="ne-dtc-txt">符号替换</span></a></span></button>
+	</div>
+	<p class="findreplace-txt">内容工具箱</p>
+	<div class="findreplace-btns">
+	    <p>
+            <input type="checkbox" id="auto_format_space" value="1" checked=""><label for="auto_format_space" class="ui-checkbox"></label><label for="auto_format_space" class="radio-txt" style="cursor: pointer;">自动清理空行</label>
+    	    <input type="checkbox" id="auto_format_content" value="1" checked=""><label for="auto_format_content" class="ui-checkbox"></label><label for="auto_format_content" class="radio-txt" style="cursor: pointer;">自动格式化内容</label>
+	    </p>
+	</div>
+</div>
+<!--作者工具-->
+<div id="center_tool_panel" class="panel volume-dialog nu_dialog_wrap _middle ">
+	<label title="mask" class="nu_dialog_mask"></label>
+	<div class="nu_dialog" style="max-width:800px">
+		<input id="tool_copy_content" type="text" style="opacity:0;position: absolute">
+		<label title="close" class="nu_dialog_close">×</label>
+		<div class="ui-dialog-title">作者工具箱</div>
+		<div class="ui-dialog-body modal-dialog-body">
+			<div class="modal volume-edit">
+				<div class="modal-left fl">
+					<div class="volume-nav">
+						<ol>
+							<li class="listselected" data-cell="name"><a href="javascript:"><span class="tab-coll-title">姓名生成器</span></a></li>
+							<li class="" data-cell="menpai"><a href="javascript:"><span class="tab-coll-title">门派生成器</span></a></li>
+						</ol>
+					</div>
+				</div>
+				<div class="modal-right cell">
+					<div class="chinese-name name">
+						<div class="first-name" id="tool_name_country">
+							<p class="name-limit-title">姓名国家</p>
+							<button class="ui-button tool_cur" data-val="cn">中国姓名</button>
+							<button class="ui-button" data-val="en">西方姓名</button>
+							<button class="ui-button" data-val="jp">日本姓名</button>
+						</div>
+						<div class="name-limit">
+							<p class="name-limit-title">指定姓氏</p>
+							<div class="ui-input-x"><input placeholder="仅支持汉字" id="xing" value="" style="transform: translate(0, 6px);">
+								<div class="ui-input"></div>
+								<label class="ui-input-count"><span class="current-count">0</span>/<span class="current-max">5</span></label>
+							</div>
+							<p class="name-limit-title">指定名字</p>
+							<div class="ui-input-x"><input placeholder="仅支持汉字" id="ming" value="" style="transform: translate(0, 6px);">
+								<div class="ui-input"></div>
+								<label class="ui-input-count"><span class="current-count">0</span>/<span class="current-max">5</span></label>
+							</div>
+							<div style="clear: both;"></div>
+						</div>
+						<div class="name-limit">
+							<p class="name-limit-title">姓氏字数</p>
+							<p>
+								<input type="radio" id="xing_len-0" name="xing_len" value="0" checked=""><label for="xing_len-0" class="ui-radio"></label><label for="xing_len-0" class="radio-txt">不限</label>
+								<input type="radio" id="xing_len-1" name="xing_len" value="1"><label for="xing_len-1" class="ui-radio"></label><label for="xing_len-1" class="radio-txt">1 字</label>
+								<input type="radio" id="xing_len-2" name="xing_len" value="2"><label for="xing_len-2" class="ui-radio"></label><label for="xing_len-2" class="radio-txt">2 字</label>
+								<input type="radio" id="xing_len-9" name="xing_len" value="9"><label for="xing_len-9" class="ui-radio"></label><label for="xing_len-9" class="radio-txt">多字</label>
+							</p>
+						</div>
+						<div class="name-limit">
+							<p class="name-limit-title">名字字数</p>
+							<p>
+								<input type="radio" id="ming_len-0" name="ming_len" value="0" checked=""><label for="ming_len-0" class="ui-radio"></label><label for="ming_len-0" class="radio-txt">不限</label>
+								<input type="radio" id="ming_len-1" name="ming_len" value="1"><label for="ming_len-1" class="ui-radio"></label><label for="ming_len-1" class="radio-txt">1 字</label>
+								<input type="radio" id="ming_len-2" name="ming_len" value="2"><label for="ming_len-2" class="ui-radio"></label><label for="ming_len-2" class="radio-txt">2 字</label>
+								<input type="radio" id="ming_len-9" name="ming_len" value="9"><label for="ming_len-9" class="ui-radio"></label><label for="ming_len-9" class="radio-txt">多字</label>
+							</p>
+						</div>
+						<div class="name-limit">
+							<p class="name-limit-title">姓名类型</p>
+							<p>
+								<input type="radio" id="sex-0" name="sex" value="0" checked=""><label for="sex-0" class="ui-radio"></label><label for="sex-0" class="radio-txt">不限</label>
+								<input type="radio" id="sex-1" name="sex" value="1"><label for="sex-1" class="ui-radio"></label><label for="sex-1" class="radio-txt">男名</label>
+								<input type="radio" id="sex-2" name="sex" value="2"><label for="sex-2" class="ui-radio"></label><label for="sex-2" class="radio-txt">女名</label>
+							</p>
+						</div>
+						<div class="name-example"><ul class="name-example-ul" id="tool_name_ul"></ul></div>
+						<div class="name-random"><a class="nr-btn" href="javascript:" onclick="OnLoadTool('name')"><svg class="icon icon_autorenew"><use xlink:href="#icon_autorenew"></use></svg><span class="nr-btn-txt">换一换</span></a><p class="nr-txt">点击姓名即可复制</p></div>
+					</div>
+					
+					<div class="chinese-name menpai dn">
+						<div class="first-name">
+							<p class="name-limit-title">前缀</p>
+								<div class="ui-input-x"><input placeholder="仅支持汉字" id="prefix" value="" style="transform: translate(0, 6px);">
+								<div class="ui-input"></div>
+								<label class="ui-input-count"><span class="current-count">0</span>/<span class="current-max">5</span></label>
+							</div>
+							<p class="name-limit-title">后缀</p>
+							<div class="ui-input-x"><input placeholder="仅支持汉字" id="suffix" value="" style="transform: translate(0, 6px);">
+								<div class="ui-input"></div>
+								<label class="ui-input-count"><span class="current-count">0</span>/<span class="current-max">5</span></label>
+							</div>
+							<button class="ui-button" onclick="OnLoadTool('menpai')">生成</button>
+							<div style="clear: both;"></div>
+							<br/>
+						</div>
+						<div class="name-example"><ul class="name-example-ul" id="tool_menpai_ul"></ul></div>
+						<div class="name-random"><a class="nr-btn" href="javascript:" onclick="OnLoadTool('menpai')"><svg class="icon icon_autorenew"><use xlink:href="#icon_autorenew"></use></svg><span class="nr-btn-txt">换一换</span></a><p class="nr-txt">点击门派名字即可复制</p></div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--作者的话-->
+<div id="center_talk_panel" class="panel nu_dialog_wrap _right g-drawer">
+	<label class="nu_dialog_mask"></label>
+	<div class="nu_dialog">
+			<div class="g-drawer-hd">
+				<h3 class="g-drawer-title">作者的话</h3>
+				<div class="g-drawer-hd-sd">
+					<a class="g-link _sub ml24 j_drawer_close" href="javascript:;" title="收起">收起<svg class="icon icon_chevron_right"><use xlink:href="#icon_chevron_right"></use></svg></a>
+				</div>
+			</div>
+			<div class="g-drawer-bd">
+				<div class="txts-content"><textarea name="said" id="said" placeholder="请输入"></textarea>
+			</div>
+		</div>
+		<div class="g-drawer-ft"><span class="current-count">0</span>/<span class="current-max">500</span></div>
+	</div>
+</div>	
+<!--编辑器新功能说明-->
+<div id="top_explain_panel" class="panel new-features-modal nu_dialog_wrap _right g-drawer">
+	<label class="nu_dialog_mask"></label>
+	<div class="nu_dialog">
+		<div class="g-drawer-hd">
+			<h3 class="g-drawer-title">编辑器新功能</h3>
+			<div class="g-drawer-hd-sd"><a class="g-link _sub ml24 j_drawer_close" href="javascript:;" title="收起">收起<svg class="icon icon_chevron_right"><use xlink:href="#icon_chevron_right"></use></svg></a></div>
+		</div>
+		<div class="g-drawer-bd">
+			<ul class="new-features-ul">
+				<li class="new-features-li">
+					<p class="nwl-date">2021年8月1日</p><h5 class="nwl-title">编辑器 V0.1</h5>
+					<p class="nwl-txt">1.查找替换：快速对编辑器内容进行查找替换操作。</p>
+					<p class="nwl-txt">2.错别字检查：检查常用的错别字组合，检查出后可使用查找替换工具进行替换。</p>
+					<p class="nwl-txt">3.作者工具：打开作者常用工具箱，如姓名生成、门派生成等。</p>
+					<p class="nwl-txt">
+						4.符号替换：将部分英文符号替换为中文符号或者常用符号替换。<br/>
+						如下：<br/>,　　　=>　　　，<br/>......　　　=>　　　……<br/>。。。。。。 => ……<br/>:　　　=>　　　：<br/>;　　　=>　　　；<br/>!　　　=>　　　！<br/>(　　　=>　　　（<br/>)　　　=>　　　）<br/>
+					</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!--弹窗提示-->
+<dialog id="alert_panel" class="panel ui-dialog-container ui-dialog-alert">
+	<div class="ui-dialog" role="alertdialog" style="width: auto;">
+		<a href="javascript:" class="ui-dialog-close ESC" role="button"><svg class="icon icon_clear"><use xlink:href="#icon_clear"></use></svg></a>
+		<div class="ui-dialog-title" role="heading"></div>
+		<div class="ui-dialog-body">
+			<div class="ui-dialog-remind ui-dialog-alert" id="alert_panel_icon">
+				<h6 id="alert_panel_title">错误</h6>
+				<p id="alert_panel_content">错误信息</p>
+			</div>
+		</div>
+		<div class="ui-dialog-footer win">
+            <a href="javascript:" class="ui-button ui-button- alert_close" role="button" style="outline: none;">取消</a>
+            <a href="javascript:" class="ui-button ui-button-primary dn" onClick="" style="outline: none;">确定</a>
+        </div>
+	</div>
+</dialog>
+<!--遮罩提示-->
+<div id="tip_panel" class="panel ui-lightip" style="display:none;left: 50%; margin-left: -216px;">
+	<i class="ui-lightip-icon">&nbsp;</i><span class="ui-lightip-text">提示内容</span>
+</div>
+<!--发布二次确认-->
+<div class="panel publish-form-dialog nu_dialog_wrap _middle">
+	<label title="mask" class="nu_dialog_mask"></label>
+	<div class="nu_dialog">
+		<label title="close" class="nu_dialog_close">×</label>
+		<div class="ui-dialog-title">确认章节信息</div>
+		<div class="ui-dialog-body">
+			<form class="modal-send-confrim">
+				<p class="publish-send-note">请注意：严禁上传任何情色、低俗、涉政等违法违规内容。一旦查实，视情节严重程度全书屏蔽整改起步并取消福利，直至报警处理。</p>
+				<ul>
+					<li class="pubilsh-send-li"><label class="psl-title">书籍名称</label><div class="psl-con"><p class="psl-txt novel_name">小说名字</p></div></li>
+					<li class="pubilsh-send-li"><label class="psl-title">最新章节</label><div class="psl-con"><p class="psl-txt novel_newcname">最新章节</p></div></li>
+					<li class="pubilsh-send-li"><label class="psl-title">发布章节</label><div class="psl-con"><p class="psl-txt publish_title">第0章</p></div></li>
+					<li class="pubilsh-send-li"><label class="psl-title">章节字数</label><div class="psl-con"><p class="psl-txt publish_number">0字</p></div></li>
+					<li class="pubilsh-send-li"><label class="psl-title">分卷信息</label>
+						<div class="psl-con">
+							<a class="volume-info" href="javascript:" role="button" id="sure_volume"><span title="正文">正文</span><i class="icon-drop"><svg class="icon icon_arrow_drop_down"><use xlink:href="#icon_arrow_drop_down"></use></svg></i></a>
+							<a class="volume-info" href="javascript:" role="button" id="sure_chapter"><span title="免费章节">免费章节</span><i class="icon-drop"><svg class="icon icon_arrow_drop_down"><use xlink:href="#icon_arrow_drop_down"></use></svg></i></a>
+						</div>
+					</li>
+					<li class="pubilsh-send-li">
+						<label class="psl-title">发布时间</label>
+						<div class="psl-con">
+							<div class="send-mode">
+								<input type="radio" id="sendNow" name="radio" checked=""><label for="sendNow" class="ui-radio"></label><label for="sendNow" class="ml5 mr20 psl-txt">立即</label>
+								<input type="radio" id="sendTimimg" name="radio" disabled><label for="sendTimimg" class="ui-radio"></label><label class="ml5 psl-txt">定时</label>
+							</div>
+							<div class="choose-date-time" style="display:none">
+								<span class="ui-input ui-date-input">
+									<input min="2021-08-03" type="date" value="2021-08-03" readonly=""><label class="ui-date-arrow"></label>
+								</span>
+								<span class="ui-input ui-time-input">
+									<input type="minute-col" value="21:42" readonly="" ><label class="ui-date-arrow"></label>
+								</span>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<div class="send-confirm-btn">
+					<button class="ui-button btn-send-cancel" type="button">我再想想</button>
+					<button class="ui-button ui-button-primary btn-send-sure" type="button">确认发布</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script>
+	const editor = new window.wangEditor("#content");
+	//模块
+	var module = 'novel';
+	//小说id
+	var novelId = {id};
+	//表单数据
+	var formData = {did:0,vid:0,pay:0,cid:0,manager_vid:0};
+	//当前加载的进度
+	var nowLoadProgress = 0;
+	//进程总数
+	var progressCount = 5;
+	//工具URL
+	var toolUrl = '{url:ajax;author.tool}';
+	//获得小说信息URL
+	var getNovelUrl = '{url:ajax;author.get_novel}';
+	//获得分卷列表URL
+	var getVolumeListUrl = '{url:ajax;author.get_volume_list}';
+	//获得草稿列表URL
+	var getDraftListUrl = '{url:ajax;author.get_draft_list}';
+	//获得章节列表URL
+	var getChapterListUrl = '{url:ajax;author.get_chapter_list}';
+	//获得小说大纲URL
+	var getOutlineUrl = '{url:ajax;author.get_outline}';
+	//获得作者说URL
+	var getSaidUrl = '{url:ajax;author.get_said}';
+	//保存草稿URL
+	var saveDraftUrl = '{url:action;author.draftedit&ajax=yes}';
+	//保存章节URL
+	var saveChaptertUrl = '{url:action;author.novel_chapteredit&ajax=yes}';
+	//获得草稿详情URL
+	var getDraftUrl = '{url:ajax;author.get_draft}';
+	//获得章节详情URL
+	var getChapterUrl = '{url:ajax;author.get_chapter}';
+    //删除分卷URL
+    var delVolumeUrl = '{url:action;author.novel_volumedel&ajax=yes}';
+    //保存分卷URL
+    var saveVolumeUrl = '{url:action;author.novel_volumeedit&ajax=yes}';
+    //删除分卷URL
+    var delChapterUrl = '{url:action;author.novel_chapterdel&ajax=yes}';
+    //保存分卷URL
+    var saveChapterUrl = '{url:action;author.novel_chapteredit&ajax=yes}';
+</script>
+<script src="{templates}/static/js/author/editor_main.js?v=202203251349"></script>
+</body>
+</html>

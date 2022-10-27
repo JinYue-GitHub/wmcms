@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{title}</title>
+		<link rel="stylesheet" href="{templates}/static/author/css/style.css">
+		<script src="{templates}/static/author/js/font.js"></script>
+		<script src="{templates}/static/author/js/jquery.min.js"></script>
+		<script src="{templates}/static/author/js/layer.js"></script>
+	</head>
+	<body>
+		<div class="app">
+			<div class="main" id="main">
+				<div class="header">
+					<a href="javascript:history.back(-1)" style="left: 0.1rem;" class="close">〈</a>
+					<a href="javascript:;" id="menu" class="more">管理</a>
+				</div>
+				<div class="editnav">
+					<ul class="">
+						{cur:did>0}
+						<li class="active">
+							<a href="{小说新建草稿}">新建章节</a>
+						</li>
+						{/cur}
+						<li>
+							<a href="{编辑小说}">编辑作品</a>
+						</li>
+						<li>
+							<a href="{小说草稿箱列表}">草稿箱</a>
+						</li>
+						<li>
+							<a href="{小说分卷列表}">分卷管理</a>
+						</li>
+						<li>
+							<a href="{小说章节列表}">章节管理</a>
+						</li>
+					</ul>
+				</div>
+				<div class="newBook">
+					<form name="form" id="form" method="post">
+						{隐藏表单}
+						<div class="u-f-ac inputbox">
+							<div class="otc">
+								<span class="name">发 布 至 :</span>
+							</div>
+							<div class="input">
+								<select id="vid" name="vid" class="select">
+									<option value="">请选择分卷</option>
+									{小说分卷列表:}<option value="{小说分卷id}" {eq:{分卷id}:{小说分卷id}}selected="selected"{/eq}>{小说分卷名字}</option>{/小说分卷列表}
+								</select>
+							</div>
+						</div>
+						<div class="u-f-ac inputbox">
+							<div class="otc">
+								<span class="name">章节类型 :</span>
+							</div>
+							<div class="input">
+								<select id="pay" name="pay" class="select">
+									{小说章节类型列表:}<option value="{小说章节类型id}" {eq:{是否上架}:{小说章节类型id}}selected="selected"{/eq}>{小说章节类型名字}</option>{/小说章节类型列表}
+								</select>
+							</div>
+						</div>
+						<div class="edittitle">
+							<input style="width: 100%;" autocomplete="off" id="title" name="title" type="text" maxlength="30" value="{标题}" placeholder="示例：“第十章 天降奇缘”">
+						</div>
+						<textarea class="edit" id="content" placeholder="内容" name="content">{内容}</textarea>
+						<div class="u-f u-f-jsb">
+							<div class="u-f">
+								<button type="button" class="submit" id="save" style="background-color: #FF5722;">保存草稿</button>
+								<button type="button" class="submit" id="sub">正式发布</button>
+							</div>
+							<span class="fsize">（<b id="fsize">0</b>）字数</span>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		
+		<script>
+			$("#fsize").html(wordsNumber($("[name=content]").val()));
+			
+			//实时检查字数
+			$("#content").keyup(function(){
+				$("#fsize").html(wordsNumber($("[name=content]").val()));
+			});
+			
+			var offonMenu = true;
+			
+			$('#menu').click(function(){
+				if(offonMenu){
+					$('#main').addClass('right')
+					$('.editnav').show()
+				}else{
+					$('#main').removeClass('right')
+					$('.editnav').hide()
+				}
+				offonMenu = !offonMenu
+				
+			})
+			
+			
+			
+			//保存草稿
+			$("#save").click(function(){
+				var vid = $("#vid").val();
+				var pay = $("#pay").val();
+				var title = $("#title").val();
+				var content = $("#content").val();
+				
+				if( !isPositiveNum(pay) ){
+					layer.open({content:'对不起，章节类型错误！',time: 2});
+				}else if( !isPositiveNum(vid) ){
+					layer.open({content:'对不起，请先添加分卷！',time: 2});
+					setTimeout(function(){window.parent.location = '{小说新建分卷}';},1000);
+				}else if( title == '' || content == '' ){
+					layer.open({content:'对不起，所有项都不能为空！',time: 2});
+				}else{
+					$.ajax({
+						type:"POST",
+						url:"{url:action;author.draftedit&ajax=yes}",
+						data:$("#form").serializeArray(),
+						dataType:"json",
+						success:function(data){
+							layer.open({content:data.msg,time: 2});
+						},
+						async:true,
+					});
+				}
+			});
+			
+			
+			//发布章节草稿
+			$("#sub").click(function(){
+				var vid = $("#vid").val();
+				var pay = $("#pay").val();
+				var title = $("#title").val();
+				var content = $("#content").val();
+				var did = $("#did").val();
+				var contentid = $("#contentid").val();
+				var module = $("#module").val();
+				
+				if( !isPositiveNum(pay)){
+					layer.open({content:'对不起，章节类型错误！',time: 2});
+				}else if( !isPositiveNum(vid) ){
+					layer.open({content:'对不起，请先添加分卷！',time: 2});
+					setTimeout(function(){window.parent.location = '{小说新建分卷}';},1000);
+				}else if( !isPositiveNum(did) || !isPositiveNum(contentid) ){
+					layer.open({content:'对不起，草稿id和书籍id错误！',time: 2});
+				}else if( module == '' ){
+					layer.open({content:'对不起，草稿发布模块错误！',time: 2});
+				}else if( title == '' || content == '' ){
+					layer.open({content:'对不起，所有项都不能为空！',time: 2});
+				}else{
+					$.ajax({
+						type:"POST",
+						url:"{url:action;author.novel_chapteredit&ajax=yes}",
+						data:$("#form").serializeArray(),
+						dataType:"json",
+						success:function(data){
+							layer.open({content:data.msg,time: 2});
+							if( data.code == 200){
+								setTimeout(function(){window.parent.location = '{小说草稿箱列表}';},1000);
+							}
+						},
+						async:true,
+					});
+				}
+			});
+			
+			/**
+			 * 检查是否是正整数。
+			 * 参数1，必须 字符串
+			 */
+			function isPositiveNum(str){
+				if( str== '0' ){
+					return true;
+				}
+				var re = /^[0-9]*[1-9][0-9]*$/;
+			    return re.test(str); 
+			} 
+			/**
+			 * 中文字数统计
+			 * 参数1，必须，需要检查的字符串
+			 */
+			function wordsNumber(str){
+				//先将回车换行符做特殊处理
+				str = str.replace(/(\r\n+|\s+|　+)/g,"龘");
+				//处理英文字符数字，连续字母、数字、英文符号视为一个单词
+				str = str.replace(/[\x00-\xff]/g,"m");	
+				//合并字符m，连续字母、数字、英文符号视为一个单词
+				str = str.replace(/m+/g,"*");
+				//去掉回车换行符
+				str = str.replace(/龘+/g,"");
+				//返回字数
+				sLen = str.length;
+				return sLen;
+			}
+		</script>
+	</body>
+</html>

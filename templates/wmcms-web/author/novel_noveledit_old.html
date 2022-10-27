@@ -1,0 +1,232 @@
+{header:author/inc_header.html}
+{header:author/inc_toper.html}
+{header:author/inc_nav.html}
+<script>
+$(document).ready(function(){
+	$("#main-bar").find("li").eq("1").addClass("act");
+});
+</script>
+<link rel="stylesheet" type="text/css" href="{templates}/static/css/author/novellist.css">
+<style>
+.upload_button{width: 40px;height: 20px;border: none;cursor: pointer;}
+.hide_button{opacity:0;position:absolute;margin-top: -5px;width: 122px;height: 45px;cursor: pointer;}
+#field li label{margin-right:10px;};
+#field li input{vertical-align:middle};
+
+</style>
+
+
+<div class="mainRight fl">
+    <div class="crumbsWrap">
+    	<i class="before"><a href="{小说作品列表}"><span>小说管理</span></a></i><em class="same"></em>
+		<i class="current"><span>{cur:id={id}}{名字}{/cur}{cur:id=0}创建小说{/cur}</span></i>
+    </div>
+    <div class="msgBoxTitle">
+        <div class="tabSwitch cf">
+            <span class="act"><a href="{编辑小说}">编辑作品信息</a></span>
+            {cur:id>0}
+            <span><a href="{小说草稿箱列表}">草稿箱</a></span>
+            <span><a href="{小说分卷列表}">分卷管理</a></span>
+            <span><a href="{小说章节列表}">章节管理</a></span>
+            {/cur}      
+        </div>
+    </div>
+    <div class="workStateWrap cf">
+        <form name="form" method="post" action="{表单提交地址}" enctype="multipart/form-data">
+        	<input type="hidden" name="id" value="{id}">
+        	<input type="hidden" name="cover" value="{封面}">
+            <div class="fmBox fl">
+               <div class="fm">
+                   <img src="{封面}" id="cover" width="114" height="152">
+				   {cur:{封面审核状态}=1}
+                   <span class="modify hidden" id="upload_button" style="display: inline;">上传新封面</span>
+					<input type="file" id="hide_button" class="hide_button" name="hide_button"/>
+					{/cur}
+				   {cur:{封面审核状态}=0}
+                   <span class="modify hidden" style="display: inline;">封面审核中</span>
+					{/cur}
+               </div>
+            </div>
+            
+            <div class="workSetList fl">
+                <ul>
+                	<li><em>书号：</em><b>{id}</b></li>
+                    <li>
+                    	<em>作品名称：</em>
+                        <input id="name" name="name" autocomplete="off" class="midInput recTagInput" value="{名字}" type="text">
+                    </li>
+                    <li>
+                    	<em>作品进程：</em>
+                    	<b class="select-level">
+						<select class="modify hidden showselect valid" name="process" style="display: inline-block; visibility: visible;" {cur:id>0}disabled{/cur}>
+	                        {小说进程列表:}<option value="{小说进程id}" {eq:{process}:{小说进程id}}selected="selected"{/eq}>{小说进程名字}</option>{/小说进程列表}
+						</select></b>
+                    </li>
+                    <li>
+                    	<em>授权级别：</em>
+                    	<b class="select-level">
+						<select class="modify hidden showselect valid" name="type" style="display: inline-block; visibility: visible;" {cur:id>0}disabled{/cur}>
+                        	{小说类型列表:}<option value="{小说类型id}" {eq:{type}:{小说类型id}}selected="selected"{/eq}>{小说类型名字}</option>{/小说类型列表}
+						</select></b>
+                    </li>
+                    <li><em>作品类型：</em>
+                        <b class="select-category" id="type_box" style="width: auto;">
+                        	{cur:id=0}
+	                        <select name="tid" style="visibility: visible; display: inline-block;">
+	                        	<option>选择分类</option>
+	                        	{小说分类:父级分类=0}<option value="{小说分类id}">{小说分类名字}</option>{/小说分类}
+							</select>
+							{/cur}
+							{cur:id>0}
+								{小说分类列表:}
+		                        <select name="tid" style="visibility: visible; display: inline-block;" disabled>
+		                        	{小说分类:父级分类={topid}}<option value="{小说分类id}" {eq:{typeid}:{小说分类id}}selected="selected"{/eq}>{小说分类名字}</option>{/小说分类}
+								</select>
+								{/小说分类列表}
+							{/cur}
+						</b>
+                    </li>
+				</ul>
+                <ul id="field" style="display:none"></ul>
+				<ul>
+                    <li><em>总点击：</em><b>{总点击}</b><cite>总收藏：</cite>{总收藏}</li>
+                    <li><em>总字数：</em><b>{字数}</b><cite>总评分：</cite>{评分}</li>
+                    <li><em>总顶量：</em><b>{顶}</b><cite>总踩量：</cite>{踩}</li>
+                    <li><em>作品介绍：</em>
+                        <textarea id="intro" name="intro" style="width:400px;height:300px;">{简介}</textarea>
+                        <p data-node="tip" class="f12 c999">20~2500个字，可自行修改</p>
+                    </li>
+                </ul>
+
+                <p class="dib-wrap confirm modify hidden" style="display: block;">
+                    <a class="button" id="sub" href="javascript:">提交</a>
+            	</p>
+            </div>
+		</form>
+    </div>
+ </div>
+{header:author/inc_footer.html}
+<script type="text/javascript" src="/files/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="/files/js/ajaxfileupload.js"></script>
+<script type="text/javascript" src="{templates}/static/js/author/field.js"></script>
+<script>
+$("#sub").click(function(){
+	var name = $("#name").val();
+	var intro = $("#intro").val();
+	var tid = $("[name=tid]").val();
+	if( name == '' ){
+		easydialog_alert('对不起，小说名字不能为空！','','','');
+	}else if( !isPositiveNum(tid) ){
+		easydialog_alert('对不起，请选择小说分类！','','','');
+	}else if( intro.length < 20 || intro.length > 2500  ){
+		easydialog_alert('对不起，描述只能在20-2500个字符之间！','','','');
+	}else{
+		$.ajax({
+			type:"POST",
+			url:"{表单提交地址}&ajax=yes",
+			data:$("[name=form]").serializeArray(),
+			dataType:"json",
+			success:function(data){
+				if(data.code == 200){
+					easydialog_autoclose(data.msg,'success');
+					setTimeout(function(){window.parent.location = '{小说作品列表}';},2000);
+				}else{
+					easydialog_alert(data.msg,'','','');
+				}
+			},
+			async:true,
+		});
+	}
+});
+/*上传封面按妞*/
+$('#hide_button').live('change',function(){
+	//禁用按钮
+	$('#upload_button').val('上传中...');
+    $.ajaxFileUpload
+    ({
+        url: '/wmcms/action/index.php?action=upload.novelcover', //用于文件上传的服务器端请求地址
+		type: 'post',
+        secureuri: false, //是否需要安全协议，一般设置为false
+        fileElementId: 'hide_button', //文件上传域的ID
+        data:{ajax:'yes',module: 'novel',cid: '{id}'},
+        dataType: 'json', //返回值类型 一般设置为json
+        success: function (data)  //服务器成功响应处理函数
+        {
+        	alert
+        	if( data.code == 500 ){
+            	easydialog_alert(data.msg);
+        	}else{
+				//设置封面
+	        	$("#cover").attr("src", data.data.file);
+	        	$("[name=cover]").val(data.data.file);
+				//还原按钮
+				$('#hide_button').clone().val('');
+				$('#upload_button').val('上传新封面');
+				
+				easydialog_alert(data.msg , '提示' , null, '');
+        	}
+        },
+        error: function(e) {
+        	easydialog_alert(e);
+        } 
+     })
+});
+
+//分类选择
+$('#type_box select').live('change',function(){
+	var html=obj='';
+	var thisObj = $(this);
+	$.ajax({
+		type:"POST",
+		url:"{url:ajax;novel.gettype}",
+		data:{tid:thisObj.val(),child:'1',cid:{id}},
+		dataType:"json",
+		success:function(data){
+			thisObj.nextAll().remove();
+			if( data.code != 500 ){
+				if(data.code == 200){
+					obj = data.data;
+					html = objToHtml(data.data , '<option value="{type_id}">{type_name}</option>' , '<select name="tid" style="visibility: visible; display: inline-block;"><option value="'+thisObj.val()+'">选择分类</option>' , '</select>' );
+					$('#type_box').append(html);
+				}
+				if(typeof(data.field.content_field) != 'undefined' ){
+					$('#field').html(getForm(data.field.content_field));
+					$('#field').show();
+				}else{
+					$('#field').html();
+					$('#field').hide();
+				}
+				typeOption = true;
+			}
+		},
+		async:true,
+	});
+})
+
+{cur:id>0}
+init();
+//初始化分类选择
+function init(){
+	var html=obj='';
+	var thisObj = $('#type_box select:last');
+	$.ajax({
+		type:"POST",
+		url:"{url:ajax;novel.gettype}",
+		data:{tid:thisObj.val(),child:'1',cid:{id}},
+		dataType:"json",
+		success:function(data){
+			if( data.code != 500 ){
+				if(typeof(data.field.content_field) != 'undefined' ){
+					$('#field').html(getForm(data.field.content_field));
+					$('#field').show();
+				}else{
+					$('#field').html();
+					$('#field').hide();
+				}
+			}
+		},
+		async:true,
+	});
+}
+{/cur}
+</script>

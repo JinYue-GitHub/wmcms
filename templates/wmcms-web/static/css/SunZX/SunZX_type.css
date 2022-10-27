@@ -1,0 +1,69 @@
+/*解决小说分类章节标题过长显示问题*/
+.mod-cover-list-text {
+	width: 100px;
+	display: -moz-inline-box;
+	display: inline-block;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	line-height: 16px!important;
+	color: #E8E8E8!important;
+} 
+.mod-cover-list-mask{
+	padding-top: 6px;
+    margin-top: 0!important;
+	text-align: center!important;
+}
+
+/*小说分类标题添加鼠标悬浮显示全部效果*/
+.mod-cover-list-text:hover{
+	margin-left: 2px;
+	text-align: left;
+	white-space: pre-line;
+	line-height: 16px;
+    width:120px;
+	padding: 1px 0px 6px 6px;	
+	word-break:normal;
+    display:block;
+    overflow: hidden;
+} 
+
+.mod-cover-list-mask{	
+	position: absolute!important;
+	bottom: 0!important;
+	left: 0!important;
+	height: auto!important;
+	min-height: 100%!important;
+}
+
+/*小说分类页面简介加省略号*/
+.ret-works-decs{
+	word-break: break-all;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:3;
+	overflow: hidden;
+	line-height: 18px;
+	text-align: left!important;
+	white-space: pre-line;
+	
+}
+
+/*小说分类页面简介鼠标悬浮显示全部效果*/
+.ret-works-decs p{
+	display:none;	
+}
+.ret-works-decs p:hover span{
+	padding:3px;
+background:skyblue;
+color:#fff;
+font-size:9pt;
+border-width:1px 2px 2px 1px;
+border-color:#333;
+border-style:solid;
+position:absolute;
+top:-30px;
+left:0;
+display:block;
+}

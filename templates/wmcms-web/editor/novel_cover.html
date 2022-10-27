@@ -1,0 +1,234 @@
+{header:editor/inc_header.html}
+{header:editor/inc_toper.html}
+{header:editor/inc_nav.html}
+<style>
+    .tabSwitch span{padding: 0px 19px 0;}
+    .tabSwitch {height: 38px;}
+    .msgBoxTitle {padding: 15px 0 0 35px;}
+    .pageBox{padding: 0 0 5px 0;text-align: center;}
+    .font_red{ color: red;}
+    .font_green{color:green}
+    .font_gray{color:#bbbbbb}
+    .pageBox a:hover{color:#FFFFFF}
+    .oldBox,.newBox{width: 300px;height:300px; }
+    .oldBox .bc-ec-item,.newBox .bc-ec-item{overflow-y: clip;height: 266px;}
+    .bc-ec-txt {overflow: unset;line-height:20px;-webkit-line-clamp: unset;font-size: 14px;}
+    .bc-ec-txt div{margin-top: 10px;padding-bottom: 10px;border-bottom: 1px dashed #e1e0e0;}
+    .bc-ec-item::-webkit-scrollbar {width: 5px;background-color: #bbbbbb;}
+    .bc-ec-item::-webkit-scrollbar-thumb {background: #50a8ff;}
+    .refuseRemark{position: absolute;padding:10px;bottom: 65px;left: 200px;border: 1px solid #ffffff;background: #FFFFFF;width: 300px;z-index:99999}
+    .editor-select-body .ui-dialog-body {margin: 0;}
+    .basic div{margin-top: 5px;padding-bottom: 5px;}
+</style>
+<link rel="stylesheet" type="text/css" href="{templates}/static/css/author/novellist.css">
+
+<div class="mainRight fl">
+    <div class="crumbsWrap">
+        <i><span>小说封面审核</span></i>
+    </div>
+    <div class="msgBoxTitle">
+		<div class="tabSwitch cf">
+    		<span {cur:{状态}=}class="act"{/cur}><a href="{编辑小说封面审核}">全部</a></span>
+    		<span {cur:{状态}=0}class="act"{/cur}><a href="{待审核封面}">待审核</a></span>
+    		<span {cur:{状态}=1}class="act"{/cur}><a href="{已审核封面}">已审核</a></span>
+    		<span {cur:{状态}=2}class="act"{/cur}><a href="{未通过封面}">未通过</a></span>
+		</div>
+	</div>
+    <!-- 存在作品 -->
+    <div id="bookManageExist" class="worksCtrlWrap">
+        <div class="worksListWrap mb20">
+            <table class="worklist-table" width="100%" border="0" cellspacing="0">
+                <thead>
+	                <tr>
+	                    <th class="center" width="60px">ID</th>
+	                    <th class="center" width="60px">状态</th>
+	                    <th class="center" width="80px">编辑组</th>
+	                    <th class="tl" width="200px">书名</th>
+	                    <th class="center" width="100px">旧封面</th>
+	                    <th class="center" width="100px">新封面</th>
+	                    <th class="center" width="160px">申请/处理时间</th>
+	                    <th class="center" width="60px">操作</th>
+	                </tr>
+                </thead>
+                <tbody id="novelList">
+           		{编辑小说封面列表:数量=15;排序=申请排序}
+               		{无数据}
+               		<tr class="active"><td colspan="9"><div class="worksCtrlWrap"><div class="null"><p>暂无相关数据</p></div></div></td></tr>
+				    {/无数据}
+                	<tr class="active" style="background: #FFFFFF;">
+                		<td>{编辑小说封面申请id}</td>
+                		<td class="center"><span class="{cur:{编辑小说封面申请状态码}=0}font_red{/cur} {cur:{编辑小说封面申请状态码}=1}font_green{/cur} {cur:{编辑小说封面申请状态码}=2}font_gray{/cur}">{编辑小说封面申请状态}</span></td>
+                		<td class="center">{编辑小说封面编辑组}</td>
+                		<td class="tl">《<a href="{编辑小说封面url}" target="_blank">{小说名字}</a>》</td>
+                		<td><em><a href="{编辑小说封面旧地址}" target="_blank" title="小说封面旧地址"><img style="width: 80px;height: 100px;" src="{编辑小说封面旧地址}"/></a></em></td>
+                		<td><em><a href="{编辑小说封面新地址}" target="_blank" title="小说封面旧地址"><img style="width: 80px;height: 100px;" src="{编辑小说封面新地址}"/></a></em></td>
+                		<td><em style="color: #b1b1b1;">{编辑小说封面申请时间}</em><br/><em style="color:#59c95d">{编辑小说封面处理时间}</em></td>
+                		<td><div class="dib-wrap">
+                		<a class="detailBtn button {cur:{编辑小说封面申请状态码}=0}blue{/cur} {cur:{编辑小说封面申请状态码}>0}white{/cur}" href="javascript:void(0);" style="width: 40px;height: 45px;margin-right: 0;" data-option='{编辑小说封面申请数据}' data-aid="{编辑小说封面申请id}"><span class="icon" style="margin:4px 10px 1px auto;"></span><i style="margin-top: 3px;">详情</i></a>
+                		</div></td>
+            		</tr>
+            	{/编辑小说封面列表}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="msgBoxTitle pageBox">
+        <p class="f12 c555">共 {总数据} 条，当前 {当前页} / {总页数} 页，{跳页:3}<a href="{url}" style="padding: 3px;margin-right: 5px;height: auto;">{i}</a>{/跳页}</p>
+    </div>
+</div>
+
+<div id="detailHtml" style="display:none">
+    <div class="bc-editor-con j-select">
+        <ul class="bc-ec-ul cf">
+            <li class="bc-ec-li oldBox"><a href="javascript:" class="bc-ec-item"><h4 class="bc-ec-title">旧的封面</h4><div class="bc-ec-txt old"></div></a></li>
+            <li class="bc-ec-li" style="width: 20px;line-height:300px;color: red;">=></li>
+            <li class="bc-ec-li newBox"><a href="javascript:" class="bc-ec-item"><h4 class="bc-ec-title" style="color: red;">新的封面</h4><div class="bc-ec-txt new"></div></a></li>
+            <li class="bc-ec-li" style="width: 95.5%;">
+                <div href="javascript:" class="bc-ec-item" style="height:218px;">
+                    <h4 class="bc-ec-title" style="color: green;">基础数据</h4>
+                    <div class="bc-ec-txt basic">
+                        <div>申请 I D：<span class="apply_id"></span></div>
+                        <div>申请状态：<span class="apply_status"></span></div>
+                        <div>申请时间：<span class="apply_createtime"></span></div>
+                        <div>处理时间：<span class="apply_updatetime"></span></div>
+                        <div>处理编辑：<span class="editor_name"></span></div>
+                        <div style="height: 39px;overflow-y: scroll;">申请备注：<span class="apply_remark"></span></div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<div id="refuseHtml" style="display:none">
+    <div class="refuseRemark">
+        <h4 class="bc-ec-title" style="color: green;">拒绝理由</h4>
+        <div class="write-form-li" style="margin: 5px auto;">
+            <div class="write-form-cell">
+                <div class="write-input">
+                    <div class="ui-textarea j-check pr">
+                        <textarea rows="6" placeholder="请填写" class="remark">{拒绝理由}</textarea>
+                    </div>
+                    <p class="input-caution">200字以内</p>
+                </div>
+                <a href="javascript:" class="ui-button ui-button-primary remark_sure">确定</a>
+                <a href="javascript:" class="ui-button remark_close">关闭</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+$(document).ready(function(){
+	$("#novel_cover").addClass("act");
+    //获得用户信息url
+    var getApplyUrl = '{url:ajax;editor.get_apply}';
+    //处理请求URL
+    var applyUrl = '{url:ajax;editor.apply}';
+    
+	//查看详情
+	$(".detailBtn").click(function(){
+	    var aid = $(this).data('aid');
+	    $('#pass').data('aid',aid);
+	    $('#refuse').data('aid',aid);
+	    ShowDialogMask();
+		$.ajax({
+			type:"POST",dataType:"json",url:getApplyUrl,data:{aid:aid,mt:'novel_cover'},
+			success:function(result){
+			    if( result.code == 200 ){
+			        var data = result.data.data;
+			        var change = result.data.change;
+		            $('.old').html('<img style="width: 200px;height: 250px;" src="'+change['novel_cover']['old']+'"/>');
+		            $('.new').html('<img style="width: 200px;height: 250px;" src="'+change['novel_cover']['new']+'"/>');
+			        /*基础数据*/
+			        var status = '<span class="font_red">待审核</span>';
+			        var btn = new Array('pass','refuse','close');
+			        if( data.apply_status=='1' ){
+			            status = '<span class="font_green">已审核</span>';
+			            btn = false;
+			        }else if( data.apply_status=='2' ){
+			            status = '<span class="font_gray">未通过</span>';
+			            btn = false;
+			        }
+			        var createTime = FormatTime(data.apply_createtime,'Y-m-d H:i:s');
+			        var updateTime = '------';
+			        if( data.apply_updatetime > 0 ){
+			            updateTime = FormatTime(data.apply_updatetime,'Y-m-d H:i:s');
+			        }
+			        $('.apply_id').html(data.apply_id);
+			        $('.apply_status').html(status);
+			        $('.apply_createtime').html(createTime);
+			        $('.apply_updatetime').html(updateTime);
+			        $('.apply_remark').html(data.apply_remark);
+			        $('.editor_name').html(data.o_editor_name);
+			        /*基础数据*/
+	                ShowDialog('数据变更详情','申请修改前后数据记录',$('#detailHtml').html(),700,btn)
+                	//监听数据div的滚动条和点击
+                    $(".bc-ec-item").on("scroll", function () {
+                        $(".bc-ec-item").scrollTop($(this).scrollTop());
+                    });
+                    $(".bc-ec-item").on("click", function () {
+                	    window.open('_blank').location=$(this).find('img').attr('src');
+                    });
+			    }else{
+			        HideDialog();
+			        easydialog_alert(result.msg,'','','');
+			    }
+			},
+		});
+	});
+	//通过操作
+	$("#pass").click(function(){
+	    if (confirm("是否确认要通过审核？")) {
+	        var aid = $(this).data('aid');
+            DialogLoadingShow();
+    		$.ajax({
+    			type:"POST",dataType:"json",url:applyUrl,data:{aid:aid,status:1,mt:'novel_cover'},
+    			success:function(result){
+    			    DialogLoadingHide();
+    			    if( result.code == 200 ){
+					    easydialog_autoclose(result.msg,'success',false,function(){location.reload();});
+    			    }else{
+    			        easydialog_autoclose(result.msg,'error');
+    			    }
+    			},
+    		});
+        }
+	});
+	//拒绝按钮
+	$("#refuse").click(function(){
+        DialogLoadingShow();
+        $('.dialog-loading div').html('');
+	    $('.ui-dialog-footer').append($('#refuseHtml').html());
+    	//提交拒绝理由
+        $(".remark_sure").on("click", function () {
+	        var aid = $('#refuse').data('aid');
+    	    var remark = $('.ui-dialog-footer .remark').val();
+    		if (remark == null || remark == "") {
+    	        easydialog_alert('请输入拒绝理由','','','');
+    		}else if (remark.length >= 200 ) {
+    	        easydialog_alert('拒绝理由200字以内','','','');
+    		} else {
+                $('.dialog-loading div').html('加载中...');
+                $('.ui-dialog-footer .refuseRemark').remove();
+                $.ajax({
+        			type:"POST",dataType:"json",url:applyUrl,data:{aid:aid,status:2,remark:remark,mt:'novel_cover'},
+        			success:function(result){
+        			    DialogLoadingHide();
+        			    if( result.code == 200 ){
+    					    easydialog_autoclose(result.msg,'success',false,function(){location.reload();});
+        			    }else{
+        			        easydialog_autoclose(result.msg,'error');
+        			    }
+        			},
+        		});
+    		}
+    	});
+    	//关闭拒绝理由
+        $(".remark_close").on("click", function () {
+            DialogLoadingHide();
+            $('.dialog-loading div').html('加载中...');
+            $('.ui-dialog-footer .refuseRemark').remove();
+    	});
+	});
+});
+</script>
+{header:editor/inc_footer.html}

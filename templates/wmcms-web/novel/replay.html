@@ -1,0 +1,194 @@
+{header:header.html}
+	<link rel="stylesheet" type="text/css" href="{templates}/css/wxintro.css" media="screen" />
+	
+	<link rel="stylesheet" type="text/css" href="{templates}/css/comment.css" media="screen" />
+<!--书本信息--><section class="wapcomment">
+<div class="container">
+<p class="here">
+<a href="/module/novel/info.php?pt={pt}&tid={分类id}&nid={id}" title="">{名字}</a><b> &gt; 评论 </b></p>
+<h2>
+<b data-href="" class="bclickurl active">全部评论</b>
+<a href="javascript:;" class="publish fr">发表评论</a>
+</h2>
+<ul>{评论:数量=10;排序=时间}  
+<li><h3 class="clearfix">
+<span class="com_left fl">
+<a title="">
+<img class="bd50" src="{评论用户头像}" alt="">
+</a>
+</span>
+<span class="com_right fl">
+<a title="">{评论用户昵称}</a>
+<b>{评论时间}</b>
+<a class="fr "></a>
+<!--点评--></span>
+</h3>
+<a href="">
+<div class="con_content clearfix">{评论内容}</div>
+</a>
+</li>{/评论}
+</ul>
+<div class="com_total page">全部{总数据}条评论 
+            <a href="{下一页}" class="fr">下一页</a>
+			<a class="fr"> {当前页}/{总页数} </a>
+			<a href="{上一页}" class="fr ">上一页</a></div></div></section><!--猜你喜欢 end-->
+<!--评论 end--><!--内容区 end-->
+<section class="com_alert "><section class="container"><div class="downs"><div class="contxt bd3 "><a href="javascript:" class="close"></a>
+	<form name="re" action="{评论提交地址}" method="post">{表单锁}{评论隐藏表单}
+
+<div class="puss">
+<textarea name="content" rows="2" class="bd3" placeholder="你的评论可以一针见血" style="width:100%"></textarea>
+
+
+<input type="submit" name="go" class="com_push bd3" id="submit" value="发表评论">
+<h6></h6></div></form><!--评论成功--><h5><b></b></h5><!--评论成功 end--></div></div></section></section>
+
+<section class="footer clearfix"><section class="container"><p class="clearfix"><a href="{首页}">首页</a><a href="{全部小说}">书库</a><a href="{作者中心}">写作</a><a href="{充值}">充值</a><a href="{电脑版}">电脑站</a></p></section></section><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?c158910b8e1b7e2ad1b6e43238e9d898";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+(function(){
+    var bp = document.createElement('script');
+    bp.src = '//push.zhanzhang.baidu.com/push.js';
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+function is_weixn(){  
+    var ua = navigator.userAgent.toLowerCase();  
+    if(ua.match(/MicroMessenger/i)=="micromessenger") {  
+        return true;  
+    } else {  
+        return false;  
+    }  
+}
+if(is_weixn()){
+    var url_id = document.getElementById('down');
+    url_id.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.mengmengda.reader';
+}
+</script></div><script src="https://img2.9kus.com/wap_9kus/new_wap/js/wapnew.js" type="text/javascript"></script><script type="text/javascript">    $(".downChannelCount").on('click',function(){
+        var userStatus = "0";
+
+        if(userStatus && userStatus == 1){
+            var url = "";
+        }else{
+            var url = "";
+        }
+
+        
+        $.ajax({
+            url:url,
+            type:'get',
+            async:false,
+            cache:false,
+            success:function(data){
+
+            }
+        })
+    })
+    </script></body></html><!--尾部 end--><script  type="text/javascript">$(".bclickurl").on('click',function(){
+    var url = $(this).attr('data-href');
+    window.location.href=url;
+});
+        
+
+//发布评论弹框
+    var   com_alertH5 = $('.com_alert h5');
+    var   contxtPuss = $('.com_alert .contxt .puss');
+
+    $('.com_alert .com_push').on('click',function(){
+        var  com_alertZhi = $('.com_alert .contxt textarea').val(); 
+        if(com_alertZhi.length == 0 || com_alertZhi.match(/^\s+$/g)){
+            $('.com_alert .contxt h6').show().html('啥东西没？休想提交！');return false;
+        }
+        if(com_alertZhi.length < 5){
+            $('.com_alert .contxt h6').show().html('评论字数太少！');return false;
+        }
+        var book_id = "39360";
+        var pid = '0';
+        $.ajax({
+            url:"",
+            type:"POST",
+            async:false,
+            cache:false,
+            data:'book_id='+book_id+'&pid='+pid+'&content='+com_alertZhi,
+            success:function(data){
+                data = eval('('+data+')');
+                if(data.status == '1'){
+                    contxtPuss.hide();
+                    $('.com_alert .container').css({'bottom':'50%'}); 
+                    com_alertH5.show();
+                    com_alertH5.find('b').html('评论成功!');  /*如果不成功：评论失败!*/
+                    //2秒后关闭弹框
+                    setTimeout(function(){
+                        $('.com_alert').hide();
+                    },2000)
+                    // $('.com_alert').hide(); 
+                    $('.com_alert .contxt textarea').val(''); 
+                    $('.com_alert .contxt h6').html('');
+                    window.location.reload();
+                }else{
+                    switch(data.error){
+                        case 'no_login':
+                            var backurl = "http%3A%2F%2Fm.9kus.com%2FBookComment%2FallComment%2Fbook_id%2F39360";
+                            var login_url = "https://m.9kus.com/User/login";
+                            if(login_url.indexOf("?")>0){
+                                login_url = login_url+'&backurl='+backurl;
+                            }else{
+                                login_url = login_url+'?backurl='+backurl;
+                            }
+                            window.location.href=login_url;
+                        break;
+                        case 'no_content':
+                            $('.com_alert .contxt h6').show().html('评论字数太少！');
+                        break;
+                        case 'suspect':$('.com_alert .contxt h6').show().html('内容涉及涉嫌词！');break;
+                        case 'timeout':$('.com_alert .contxt h6').show().html('评论太快了！');break;
+                        case 'user_comment_ban':$('.com_alert .contxt h6').show().html('用户被禁言');break;
+                        case 'comment_ban':$('.com_alert .contxt h6').show().html('用户被禁言');break;
+                        case 'repeat':$('.com_alert .contxt h6').show().html('评论内容重复');break;
+                    }
+                }
+            }
+        });
+
+    });
+    
+
+   
+    </script></div>
+<!--尾部--><style>
+.fmenu{  z-index: 999;}
+.copy-tips{
+    position:fixed;z-index:99999;bottom:50%;left:50%;margin:0 0 -20px -80px;background-color:rgba(0, 0, 0, 0.2);filter:progid:DXImageTransform.Microsoft.Gradient(startColorstr=#30000000, endColorstr=#30000000);padding:6px;
+}
+.copy-tips-wrap{
+    padding:10px 20px;text-align:center;border:1px solid #F4D9A6;background-color:#FFFDEE;font-size:14px;
+}
+.footfx{
+    position:fixed;left:0;width:100%;bottom:0;right:0;margin:0 auto;max-width:750px;background:rgba(0,0,0,.6);z-index:999;height:4.2rem;line-height:4.2rem;
+}
+.footfx a{
+    float:left;width:33.3%;text-align:center;color:#fff;font-size:1.16rem;
+}
+.footfx i{
+    display:inline-block;width:1.78rem;height:1.78rem;line-height:0;margin-right:6px;position:relative;top:0.55rem;
+}
+.footfx .sharex i{
+    background:url(https://img2.9kus.com/wap_9kus/2018_tj/images/ftfx0.png) no-repeat left center;background-size:contain;
+}
+.footfx .copyx i{
+    background:url(https://img2.9kus.com/wap_9kus/2018_tj/images/ftfx1.png) no-repeat left  center;background-size:contain;
+}
+.footfx .loginout i{
+    background:url(https://img2.9kus.com/wap_9kus/2018_tj/images/ftfx2.png) no-repeat left  center;background-size:contain;
+}
+ .shareot{
+    position: fixed;width: 100%;left: 0;right: 0;bottom: 0;overflow: hidden;max-width: 750px;margin: 0 auto;z-index: 10000;background: #fff;padding: 10px 15px ;display: none;
+}
+.shareot a{
+    float: left;width: 10%;
+}
+</style><script type="text/javascript" src="{templates}/js/jquery-1.11.1.min.js(1)"></script><script type="text/javascript" src="{templates}/js/jquery.cookie.js"></script><script type="text/javascript" src="{templates}/js/clipboard.min.js"></script><div></div></body></html>

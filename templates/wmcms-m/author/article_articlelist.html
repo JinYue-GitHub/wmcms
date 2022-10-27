@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{title}</title>
+		<link rel="stylesheet" href="{templates}/static/author/css/style.css">
+		<script src="{templates}/static/author/js/font.js"></script>
+		<script src="{templates}/static/author/js/jquery.min.js"></script>
+	</head>
+	<body>
+		<div class="app">
+			<div class="header">
+				<a href="javascript:history.back(-1)" style="left: 0.1rem;" class="close">〈</a>
+				<a href="{文章投稿}" id="more" class="more">我要投稿</a>
+				<a href="{文章草稿箱列表}" id="more" class="more" style="right: 1.6rem;">草稿箱</a>
+			</div>
+			<div class="info">
+				<div class="chapterlist">
+					{文章列表:数量=20;排序=时间}
+					<div class="u-f listLine">
+						<ul class="list-d" style="width: 100%;">
+							<li>
+								<h2>
+									<a href="{url}" style="color: #333;">{文章标题}</a>
+									<span class="status_{v.article_status}">[{文章状态}]</span>
+									<a href="{eurl}" class="hedit">[修改]</a>
+								</h2>
+								<p class="u-f-ac u-f-jsb">
+									<span>{文章发布时间}</span>
+									<span>{文章编辑}</span>
+								</p>
+							</li>
+						</ul>
+					</div>
+					{/文章列表}
+				</div>
+				<div class="page">
+					<a href="{上一页}">上一页</a>
+					<a href="{下一页}">下一页</a>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

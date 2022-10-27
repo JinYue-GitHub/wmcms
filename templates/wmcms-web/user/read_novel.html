@@ -1,0 +1,83 @@
+{header:user/inc_header.html}
+<script>
+$(document).ready(function(){
+	$("#nv").find("li a").eq("1").addClass("nvcur");
+});
+</script>
+<style>
+.space_notice .bm{padding: 0 4px;}
+.space_notice .nts{padding-left: 0px;}
+.space_notice .nts dl{border-bottom: 1px solid #f4f4f4;}
+.space_notice .nts dl:last-child{border-bottom: 2px solid #eee;}
+.space_notice .xlda .m{margin: 3px 15px 0 0;}
+.space_notice .ntc_body{margin: 17px 0 0 0;}
+.space_notice .quote{margin: 4px 0;}
+.space_notice .mbn{margin-bottom: 20px !important;}
+.xlda .m {margin-top: 3px;}
+.xld dt{padding-top: 5px;padding-bottom: 22px;}
+.emp{padding-bottom: 60px;}
+.emp span{background: url({templates}/static/images/home_imghack.png) -58px -37px no-repeat transparent;height: 40px;width: 40px;display: inline-block;position: relative;top: 14px;margin-right: 12px;}
+
+table {width: 100%;}
+table thead {background-color: #f9f9f9;}
+table td,table th {border: 1px solid #ccc;vertical-align: top;padding: 2px 4px;text-align: left;line-height:30px}
+</style>
+
+<div id="ct" class="ct2 wp cl">
+	<div class="mn">
+		<div class="bm">
+			<div class="bm_h">
+				<h1 class="mt" style="margin-right: 20px;float:left;width:50px;height:35px;"><a href="{我的书架}">书架列表</a></h1>
+				<h1 class="mt" style="width:50px;border-bottom: 2px #ff5f19 solid;height: 36px;margin-left: 70px;"><a href="{阅读记录}">最近阅读</a></h1>
+			</div>
+			<div class="bm_c">
+				<div class="bm_c u_profile">
+				    <div class="pbm mbm bbda cl" style="position: relative;">
+						<div style="clear: both"></div>
+						<div id="pbbs" class="pf_l">
+						<table>
+							<colgroup><col width="20%"><col width="10%"><col width="10%"><col width="25%"><col width="15%"></colgroup>
+							<thead>
+								<tr>
+									<th>小说名字</th>
+									<th>作者</th>
+									<th>分类</th>
+									<th>上次阅读</th>
+									<th>阅读时间</th>
+								</tr>
+							</thead>
+							<tbody>
+								{记录列表:数量=50}
+								{无数据}<tr><td colspan="5" style="text-align:center">暂时没有数据</td></tr>{/无数据}
+								<tr>
+									<td><a href="{nurl}" target="_blank">{小说名字}</a></td> 
+									<td>{小说作者}</td> 
+									<td>{小说分类名字}</td> 
+									<td><a href="{url}" target="_blank">{阅读标题}</a></td> 
+									<td>{最后阅读时间}</td> 
+								</tr>
+							{/记录列表}
+							</tbody>
+						</table>
+						
+						<table>
+						</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="sd">
+		<div id="pcd" class="bm cl">
+			<div class="bm_c">
+				<div class="hm">
+					<p><a href="{头像设置}" class="avtm"><img src="{用户头像}"></a></p>
+					<h2 class="xs2">{用户昵称}</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{footer:user/inc_footer.html}

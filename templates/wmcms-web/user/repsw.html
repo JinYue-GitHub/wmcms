@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+<title>{title}</title>
+<meta name="keywords" content="{key}" />
+<meta name="description" content="{desc}" />
+<meta name="author" content="wmcms" />
+<meta name="copyright" content="www.weimengcms.com" />
+<link type="text/css" rel="stylesheet" href="{templates}/static/css/user/reset.css">
+<link type="text/css" rel="stylesheet" href="{templates}/static/css/user/layout.css">
+<link type="text/css" rel="stylesheet" href="{templates}/static/css/user/registerpwd.css">
+<script src="/files/js/jquery-1.4.3.min.js" type="text/javascript"></script>
+<script src="{templates}/static/js/user/account.js" type="text/javascript"></script>
+<style>
+.errinput{border: #EF4B4B 1px solid;}
+.sucessinput{border: #199E0E 1px solid;}
+</style>
+</head>
+ 
+<body>
+<div class="wrapper">
+<div class="wrap" style="margin-top: -10px;">
+<div class="layout">
+	<form action="{表单提交地址}" method="post">
+	{隐藏表单}
+  <div class="n-frame device-frame reg_frame" id="main_container">
+    <div class="external_logo_area"><a class="milogo" href="javascript:void(0)"></a></div>
+    <div class="title-item t_c">
+      <h4 class="title_big30">重置WMCMS密码</h4>          
+    </div>  
+	<div>
+	<div class="regbox">
+		<div class="inputbg">
+		  <label class="labelbox" for="">
+			<input type="password" name="psw" placeholder="您的新密码">
+		  </label>
+		</div>
+		<div class="inputbg">
+		  <label class="labelbox" for="">
+			<input type="password" name="repsw" placeholder="重复新密码">
+		  </label>
+		</div>
+		<div class="fixed_bot mar_phone_dis1">
+		  <input class="btn332 btn_reg_1 submit-step" type="submit" value="立即重置">
+		</div>
+	</div>
+	</div>
+  </div>
+  </div>
+  </form>
+</div>
+</div>
+</div>
+
+<div class="n-footer">
+  <div class="nf-link-area clearfix">
+  <ul class="lang-select-list">
+    <li><a class="lang-select-li" href="{首页}">官网首页</a>|</li>
+    <li><a class="lang-select-li" href="{论坛首页}">论坛首页</a>|</li>
+    <li><a class="lang-select-li" href="{帮助中心}">帮助中心</a>|</li>
+    <li><a class="lang-select-li" href="{标签帮助}">标签文档</a>|</li>
+    <li><a class="lang-select-li" href="{数据库字典}">数据库字典</a></li>
+  </ul>
+  </div>
+  <p class="nf-intro"><span>Copyright © 2016 WMCMS - {备案号}</span></p>
+</div>

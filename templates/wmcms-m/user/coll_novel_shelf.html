@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title>{title}</title>
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" href="{templates}/static/user/css/style.css">
+    <script type="text/javascript" src="{templates}/static/user/js/flexible.min.js"></script>
+</head>
+<body>
+	<div class="app_meskSection"></div>
+	<div class="container">
+		<div class="app_header_section2  app_scrollerHeader" id="header">
+			<div class="app_header_detail2">
+				<div class="app_header_back"></div>
+				<div class="app_header_h1">
+					书架
+					<a href="{我的书架}"> <i class="shujiaIco"></i>
+					</a> <i class="moreIco"></i>
+				</div>
+			</div>
+			<div class="app_header_second" style="display: none;">
+				<ul>
+					<li class="icon1">
+						<a href="/">首页</a>
+					</li>
+					<li class="icon2">
+						<a href="{全部小说}">书库</a>
+					</li>
+					<li class="icon3">
+						<a href="{我的书架}">书架</a>
+					</li>
+					<li class="icon4">
+						<a href="{用户中心}">账户</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="app_body">
+			<div class="app_topTabBlock">
+				<span class="public_AddFloatRight rightButton" id="success" style="display: none;">完成</span>
+				<span class="public_AddFloatRight rightButton" id="administration">管理</span>
+			</div>
+			<div class="app_listBlock app_deleteMargin" id="content">
+				<div class="app_listBlock_con">
+					<ul class="app_deletePaddingBottom" id="list">
+						{书架列表:数量=4;}
+						{无数据}
+						<div class="app_noBookDataBlock" id="noData">
+							书架空空如也, 去挑本好书看吧
+							<div class="app_listBlockButton">
+								<button onclick="javascript: window.location.href='{全部小说}'">去找本好书</button>
+							</div>
+						</div>
+						{/无数据}
+						<li class="li2">
+							<a href="{url}">
+								<div class="leftImage2"><img src="{小说封面}"></div>
+								<div class="rightBlock">
+									<span class="rightBlock_title">{小说名字}</span>
+									<span class="rightBlock_name">{小说分类名字}</span>
+									<span class="rightBlock_con  rightBlock_con2">
+										<span class="con">
+											<span class="spanLi">{小说最新章节名字}</span>
+										</span>
+										<span class="spanLi Time">{小说更新时间}</span>
+										<span class="rightJustTime" onclick="javascript:window.location.href='{url}';return false;">继续阅读</span>
+									</span>
+								</div>
+							</a>
+							<span class="deleteBlock" onclick="javascript:window.location.href='{删除收藏}';return false;"></span>
+						</li>
+						{/书架列表}
+					</ul>
+				</div>
+			</div>
+			<div class="app_pageBlock">
+		    <ul class="pager">
+					<li><a href="{上一页}">«</a></li> 
+					<li><a href="{下一页}">»</a></li>
+				</ul>
+		  </div>
+			
+		</div>
+	</div>
+	<script type="text/javascript" src="{templates}/static/user/js/jquery.min.js"></script>
+	<script type="text/javascript" src="{templates}/static/js/layer.js"></script>
+	<script type="text/javascript" src="{templates}/static/user/js/ajax.js"></script>
+	<script type="text/javascript" src="{templates}/static/user/js/user.js"></script>
+</body>
+</html>

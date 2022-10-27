@@ -1,0 +1,82 @@
+{header:user/inc_header.html}
+<script>
+$(document).ready(function(){
+	$("#nv").find("li a").eq("0").addClass("nvcur");
+});
+</script>
+<div id="ct" class="wp w cl">
+	<div id="diypage" class="area">
+		<div id="frame1" class="frame cl">
+			<div id="frame1_left" style="width:200px" class="z column">
+				<div id="profile" class="block move-span">
+					<div class="blocktitle title">
+						<span>头像</span>
+					</div>
+					<div id="profile_content" class="dxb_bc">
+						<div>
+							<div class="hm">
+								<p><img src="{用户头像}" width="150" height="150" /></p>
+								<h2 class="mbn">{用户昵称}</h2>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="statistic" class="block move-span">
+					<div class="blocktitle title"><span>统计信息</span></div>
+					<div id="statistic_content" class="dxb_bc">
+						<div>
+							<p class="mbm xw1">已有 <strong class="xi1">{用户人气}</strong> 人来访过</p>
+							<ul class="xl xl2 cl">
+								<li>等级: {用户等级}</li>
+								<li>经验: {用户经验}</li>
+								<li>{金币1名字}: {用户金币1数量}</li>
+								<li>{金币2名字}: {用户金币2数量}</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="frame1_center" style="width:520px" class="z column">
+				<div id="personalinfo" class="block move-span">
+					<div class="blocktitle title"><span>个人资料</span></div>
+					<div id="personalinfo_content" class="dxb_bc">
+						<ul id="pprl" class="mbm pbm bbda cl">
+							<li><em>性别</em>{用户性别}</li>
+							<li><em>年龄</em>{用户年龄}</li>
+						</ul>
+					</div>
+				</div>
+				<div id="personalinfo" class="block move-span">
+					<div class="blocktitle title">
+						<span>最新消息</span>
+						<span class="y xw0"><a href="{消息列表}">更多>></a></span>
+					</div>
+					<div id="personalinfo_content" class="dxb_bc">
+						<ul id="pprl" class="mbm pbm bbda cl">
+							{用户消息列表:数量=5;排序=发信时间}
+							{无数据}<p class="emp">现在还没有消息</p>{/无数据}
+							<li style="border-bottom: 1px dashed #E4E4E4;padding-bottom: 10px;padding-top: 10px;">
+								<em style="width: 130px;">{发信时间}</em><a href="{url}">【{发信用户昵称}】:{消息内容:25}</a>
+							</li>
+							{/用户消息列表}
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div id="frame1_right" style="width:240px" class="z column">
+				<div id="visitor" class="block move-span"><div class="blocktitle title"><span>最近访客</span></div>
+				<div id="visitor_content" class="dxb_bc">
+					<ul class="ml mls cl">
+						{访客列表:数量=6}
+						<li><a href="{url}" class="avt"><img src="{访客头像}" /></a><p><a href="{url}" title="{访客昵称}">{访客昵称}</a></p><span class="xg2"><span title="{访问时间:n-y-r}">{访问时间:n-y-r}</span></span></li>
+						{/访客列表}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+{footer:user/inc_footer.html}

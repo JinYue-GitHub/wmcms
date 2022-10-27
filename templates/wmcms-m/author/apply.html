@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{title}</title>
+		<link rel="stylesheet" href="{templates}/static/author/css/style.css">
+		<script src="{templates}/static/author/js/font.js"></script>
+		<script src="{templates}/static/author/js/jquery.min.js"></script>
+		<script src="{templates}/static/author/js/layer.js"></script>
+	</head>
+	<body>
+		<div class="app">
+			<div class="htitle u-f-ajc">
+				<span>申请作者</span>
+			</div>
+			<div class="infoEdit newBook">
+					<form name="Form" id="Form" method="post">
+						<div class="u-f-ac inputbox">
+							<div class="otc">
+								<span class="name">作家笔名:</span>
+							</div>
+							<div class="input">
+								<input type="text" id="nickname" name="nickname" placeholder="笔名申请后不可变更">
+							</div>
+						</div>
+						
+						<div class="u-f-ac inputbox">
+							<div class="otc">
+								<span class="name">真是姓名:</span>
+							</div>
+							<div class="input">
+								<input type="text" id="realname" name="realname" placeholder="请使用2~10位汉字或英文！">
+							</div>
+						</div>
+						
+						<div class="u-f-ac inputbox">
+							<div class="otc">
+								<span class="name">身份证号:</span>
+							</div>
+							<div class="input">
+								<input type="text" id="cardid" name="cardid" placeholder="请输入您的真实身份证号码">
+							</div>
+						</div>
+						
+						<div class="u-f-ac inputbox">
+							<div class="otc">
+								<span class="name">联系地址:</span>
+							</div>
+							<div class="input">
+								<input type="text" id="address" name="address" placeholder="方便合同邮寄">
+							</div>
+						</div>
+						
+						<div class="u-f-ac">
+							<input id="agreeCheckbox" name="agreement" type="checkbox" value="1"></span>
+							<label class="xieyi" for="agreeCheckbox">
+								我已阅读并同意
+								<a class="blue" href="{作家注册协议}" target="_blank">《{网站名}作家注册投稿协议》</a>
+							</label>
+						</div>
+						
+						<button class="submit" id="sub">提交</button>
+					</form>
+			</div>
+		</div>
+		
+		<footer>
+			<p>{网站名}</p>
+		</footer>
+		
+		<script>
+			var isSub = true;
+			//提交注册
+			$('#sub').click(function(){
+				if( isSub == true){
+					var nickname = $("#nickname").val();
+					var realname = $("#realname").val();
+					var cardid = $("#cardid").val();
+					var address = $("#address").val();
+					var agreement = $("#agreeCheckbox").is(':checked');
+					if( nickname.length < 2 || nickname.length > 12 || !isString(nickname) ){
+						layer.open({content:'笔名只能为2到12为的数字、字母和中文组成！',time: 2});
+					}else if( !isName(realname) || realname.length < 2 || realname.length > 10){
+						layer.open({content:'真实姓名只能为2-10位的中文或英文！',time: 2});
+					}else if( !isCardId(cardid) ){
+						layer.open({content:'对不起，身份证号码格式错误！',time: 2});
+					}else if( address == '' ){
+						layer.open({content:'对不起，联系地址不能为空！',time: 2});
+					}else if( agreement == false){
+						layer.open({content:'请先同意注册协议！',time: 2});
+					}else{
+						isSub = false;
+						$("#sub").css("background","#B0B9C1");
+						$("#sub").html("加载中...");
+						$.ajax({
+							type:"POST",
+							url:"{表单提交地址}&ajax=yes",
+							data:$("[name=Form]").serializeArray(),
+							dataType:"json",
+							success:function(data){
+								if(data.code == 200){
+									layer.open({content:data.msg.info,time: 2});
+									$('.newBook').html('<div class="sqinfo">已经提交申请，请耐心等待审核结果!</div>')
+								}else{
+									$("#sub").css("background","#4EA8FF");
+									$("#sub").html("提交申请");
+									layer.open({content:data.msg,time: 2});
+								}
+								isSub = true;
+							},
+							async:true,
+						});
+						return false;
+					}
+				}
+				return false;
+			})
+			/**
+			 * 判断是否为身份证号
+			 * 参数1，必须，字符串
+			 */
+			function isCardId(sId){
+				var aCity={11:"北京",12:"天津",13:"河北",14:"山西",15:"内蒙古",21:"辽宁",22:"吉林",23:"黑龙江",31:"上海",32:"江苏",33:"浙江",34:"安徽",35:"福建",36:"江西",37:"山东",41:"河南",42:"湖北",43:"湖南",44:"广东",45:"广西",46:"海南",50:"重庆",51:"四川",52:"贵州",53:"云南",54:"西藏",61:"陕西",62:"甘肃",63:"青海",64:"宁夏",65:"新疆",71:"台湾",81:"香港",82:"澳门",91:"国外"} 
+				var iSum=0;
+				var info="";
+				if(!/^\d{17}(\d|x)$/i.test(sId)){
+					//return "你输入的身份证长度或格式错误";
+					return false;
+				}
+				sId=sId.replace(/x$/i,"a");
+				if(aCity[parseInt(sId.substr(0,2))]==null){
+					//return "你的身份证地区非法";
+					return false;
+				}
+				sBirthday=sId.substr(6,4)+"-"+Number(sId.substr(10,2))+"-"+Number(sId.substr(12,2));
+				var d=new Date(sBirthday.replace(/-/g,"/")) ;
+				if(sBirthday!=(d.getFullYear()+"-"+ (d.getMonth()+1) + "-" + d.getDate())){
+					//return "身份证上的出生日期非法";
+					return false;
+				}
+				for(var i = 17;i>=0;i --) iSum += (Math.pow(2,i) % 11) * parseInt(sId.charAt(17 - i),11) ;
+				if(iSum%11!=1){
+					//return "你输入的身份证号非法";
+					return false;
+				}
+				//aCity[parseInt(sId.substr(0,2))]+","+sBirthday+","+(sId.substr(16,1)%2?"男":"女");//此次还可以判断出输入的身份证号的人性别
+				return true;
+			}
+			/**
+			 * 检查是否是英文、数字和中文。
+			 * 参数1，必须 字符串
+			 */
+			function isString(str){
+				var re = /^[\d|A-z|\u4E00-\u9FFF]+$/;
+			    return re.test(str); 
+			}
+			/**
+			 * 检查是否是中文或者字母组合
+			 * 参数1，必须，字符串
+			 */
+			function isName(str){  
+			     var re =  /^[0-9a-zA-Z|\u4E00-\u9FFF]*$/g;
+			     return re.test(str);
+			}
+		</script>
+	</body>
+</html>

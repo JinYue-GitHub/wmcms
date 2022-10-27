@@ -1,0 +1,29 @@
+<style>
+.{cFun}Table{margin-bottom:20px}
+</style>
+
+<div class="bjui-pageContent">
+	<form name="form1" action="index.php?a=yes&c=cloud.apps.plugin&t=config" method="post" data-toggle="validate">
+    <input type="hidden" name="id" value="{id}"/>
+    <table class="table table-border table-bordered table-hover table-bg table-sort {cFun}Table">
+      <thead><tr><th colspan="2" style="text-align:left;"><b>插件功能设置</b></th></tr></thead>
+      <tr>
+        <td width='200'>申请开关：</td>
+        <td>
+        	<select name="site_open" data-toggle="selectpicker">
+				<option value="0" {eq:{申请开关}:0}selected{/eq}>关闭申请</option>
+				<option value="1" {eq:{申请开关}:1}selected{/eq}>开启申请</option>
+			</select>
+		</td>
+      </tr>
+    </table>
+  </form>
+</div>
+
+
+
+<div class="bjui-pageFooter">
+    <ul>
+        <li><button type="submit" class="btn-green" data-icon="save">保存</button></li>
+    </ul>
+</div>

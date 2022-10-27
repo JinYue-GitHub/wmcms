@@ -1,0 +1,60 @@
+﻿.hljs-line-numbers {
+	text-align: right;
+	border-right: 1px solid #ccc;
+	color: #999;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+.left {
+	float: left;
+	width: 50%;
+}
+.right {
+	float: right;
+	width: 49%;
+}
+.scroll {
+	height: 600px;
+	overflow-x: scroll;
+	overflow-y: auto;
+}
+.inserted {
+	background-color: #9E9;
+	min-width: 100%;
+	display: inline-block;
+}
+.deleted {
+	background-color: #E99;
+	min-width: 100%;
+	display: inline-block;
+}
+.modified {
+	background-color: #FD8;
+	min-width: 100%;
+	display: inline-block;
+}
+.modified-light {
+	background-color: #ef954e;
+	/*min-width: 100%;*/
+	/*display: inline-block;*/
+}
+.padding {
+	background-color: #b9b9b9;
+	min-width: 100%;
+	display: inline-block;
+}
+.ie{   
+   _position: absolute;  
+   _clear: both;   
+   _top:expression(eval(document.compatMode &&   
+		   document.compatMode=='CSS1Compat') ?   
+		   documentElement.scrollTop   
+		   +(documentElement.clientHeight-this.clientHeight) - 1   
+		   : document.body.scrollTop   
+		   +(document.body.clientHeight-this.clientHeight) - 1); 
+}
+.hljs{display:block;overflow-x:auto;padding:0.5em;background:white;color:black}.hljs-comment,.hljs-quote,.hljs-variable{color:#008000}.hljs-keyword,.hljs-selector-tag,.hljs-built_in,.hljs-name,.hljs-tag{color:#00f}.hljs-string,.hljs-title,.hljs-section,.hljs-attribute,.hljs-literal,.hljs-template-tag,.hljs-template-variable,.hljs-type,.hljs-addition{color:#a31515}.hljs-deletion,.hljs-selector-attr,.hljs-selector-pseudo,.hljs-meta{color:#2b91af}.hljs-doctag{color:#808080}.hljs-attr{color:#f00}.hljs-symbol,.hljs-bullet,.hljs-link{color:#00b0e8}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:bold}

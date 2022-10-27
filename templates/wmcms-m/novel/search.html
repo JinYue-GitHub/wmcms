@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html style="font-size: {$_COOKIE['fontsize']|default='52px'};">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=no">
+    <meta name="Keywords" content="{key}" />
+    <meta name="Description" content="{desc}" />
+    <link rel="stylesheet" href="{templates}/static/css/style.css">
+    <title>{title}</title>
+</head>
+<body>
+    <div id="app">
+       <div class="x-home">
+            <div class="x-page__header van-hairline--bottom">
+                <a href="javascript:history.back();"></a>
+                <span class="x-page__title">搜索</span>
+                <div class="header-menu" onclick="javascript:location.href='/';">
+                    <i class="icon-shouye-h is-active" style="font-size: 0.4rem;"></i>
+                </div>
+            </div>
+            <div class="x-page__content">
+                <div class="x-book__library">
+                    <div class="search-box">
+                        <form action="{搜索提交地址}" style="width: 85%;">
+                            <input type="text" placeholder="请输入搜索的书名" name="key" class="search-name">                    
+                            <input type="hidden" name="module" value="novel">                    
+                            <img src="{templates}/static/images/search.png" class="search-img">
+                        </form>
+                    </div>
+                    <div class="x-library__books">
+                        <div class="van-list">
+                            <span>
+																{搜索结果:数量=20;}
+                                {无数据}
+																<div class='van-list'><div class='x-empty'><img src='{templates}/static/images/empty.png'></div></div>
+																{/无数据}
+                                <div class="x-book">
+                                    <div class="x-book__multi">
+                                        
+                                        <div class="x-book__coverbox">
+                                            <a href="{url}">
+                                                <img class="x-book__cover" src="{小说封面}" style="width: 1.6rem; height: 2.13333rem;">
+                                            </a>
+                                        </div>
+                                        <div class="x-book__text--multi" style="width: calc(100% - 1.6rem); height: 2.13333rem;">
+                                            <a href="{url}">
+                                                <div class="x-book__nocover">
+                                                    <p class="x-book__info--name">{小说名字}</p>
+                                                    <div class="book-info-status">
+                                                        <span class="book-status">{小说进程}</span>
+                                                        <span class="book-wordcount">{php}
+	                            if('{小说字数}'==0){
+	                                echo '暂未写作';
+	                            };
+	                            if('{小说字数}'<999 && '{小说字数}'>0){
+	                                echo '{小说字数}字';
+	                            };
+	                            if('{小说字数}'>999 && '{小说字数}'<9999){
+	                                echo '{运算:{小说字数}/1000}千字	';
+	                            };
+	                            if('{小说字数}'>9999 && '{小说字数}'<99999){
+	                                echo round('{运算:{小说字数}/10000}',0).'万字';
+	                            };
+	                            if('{小说字数}'>99999 && '{小说字数}'<999999){
+	                                echo round('{运算:{小说字数}/100000}',0).'十万字';
+	                            };
+	                            if('{小说字数}'>999999){
+	                                echo round('{运算:{小说字数}/1000000}',0).'百万字';
+	                            };
+                            {/php}</span>
+                                                    </div>
+                                                    <p class="x-book__intro">{小说简介:30}</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {/搜索结果}
+                            </span>
+                        </div>
+                        <div class="pages_bottom" style="display: block;">
+                            <ul class="pager">
+                            	<li><a href="{上一页}">«</a></li> 
+                            	<li><a href="{下一页}">»</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript" src="{templates}/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="{templates}/static/js/global.js"></script>
+</body>
+</html>

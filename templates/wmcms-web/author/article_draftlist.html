@@ -1,0 +1,83 @@
+{header:author/inc_header.html}
+{header:author/inc_toper.html}
+{header:author/inc_nav.html}
+<script>
+$(document).ready(function(){
+	$("#main-bar").find("li").eq("2").addClass("act");
+});
+</script>
+<link rel="stylesheet" type="text/css" href="{templates}/static/css/author/novellist.css">
+<style>
+.select{border: 1px solid #DDDDDD;height: 30px;outline: none !important;cursor: pointer;visibility: inherit;}
+.page{border-top: 1px solid #DEDEDE;border-right: 1px solid #DEDEDE;height: 29px;line-height: 28px;text-align: center;}
+.page a{font-size:14px;}
+</style>
+
+<div class="mainRight fl">
+    <div class="crumbsWrap">
+    	<i class="before"><a href="{文章投稿列表}"><span>投稿管理</span></a></i><em class="same"></em>
+		<i class="current"><span>文章草稿列表</span></i>
+    </div>
+    <div class="msgBoxTitle">
+    	<a class="create button" href="{文章投稿}"><em class="icon"></em>立即投稿</a>
+        <div class="tabSwitch cf">
+            <span class="act"><a>草稿箱</a></span>
+        </div>
+    </div>
+    
+    <div class="managerWrap cf">
+        <div class="mLeftList fl" style="width: 100%;">
+			<div id="draftListWrap" class="leftListWrap">
+                <div class="titleBox"><p>共有 {总数据} 篇草稿</p></div>
+                <div class="sectionManage">
+                    <div class="slimScrollDiv">
+                    	<div class="sectionList">
+	                        <!-- 草稿列表 -->
+	                        <ul id="draftlist" style="position: absolute;height: 100%;overflow: auto;width: 100%;">
+	                        	{草稿列表:}
+	                            <li style="padding-left: 15px;padding-right: 15px;">
+	                            	<a href="{url}">
+		                            	<div class="sectionBox">
+		                            		<p><em>{草稿标题}</em></p>
+		                            		<p class="f12"><i>{草稿创建时间}  </i>共{草稿字数}字 </p>
+		                            	</div>
+	                            	</a>
+	                            </li>
+	                        	{/草稿列表}
+	                        </ul>
+                    	</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+{header:author/inc_footer.html}
+<script>
+$(document).ready(function(){
+	$("#draftlist li").hover(function(){
+		$(this).css('background','#E1F2FF');  
+    },function(){  
+		$(this).css('background','#FFFFFF');
+    })
+	
+	//删除
+	$("#delete").click(function(){
+		var did = $("#did").val();
+	 	if( !isPositiveNum(did) ){
+	 		easydialog_alert('对不起，草稿id错误！','','','');
+	 	}else{
+	 		$.ajax({
+	 			type:"POST",
+	 			url:"{url:action;author.draftdel&ajax=yes&did="+did+"}",
+	 			dataType:"json",
+	 			success:function(data){
+	 				easydialog_alert(data.msg,'','','');
+	 				setTimeout(function(){window.parent.location = '';},1000);
+	 			},
+	 			async:true,
+	 		});
+	 	}
+	});
+});
+</script>

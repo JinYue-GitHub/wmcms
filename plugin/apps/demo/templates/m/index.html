@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>在线报名</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="{插件资源}css/style.css" rel='stylesheet' type='text/css' />
+<script src="/files/js/jquery-3.0.0.min.js"></script>
+<style type="text/css">
+.tb960x90 {display:none!important;display:none}</style>
+</head>
+<body>
+	<div class="main">
+		<div class="login">
+			<h1>在线报名系统</h1>
+			<div class="inset">
+		         <div>
+		         	<h2>在线报名</h2>
+					<span><label>姓名</label></span>
+					<span><input type="text" id="name" class="textbox" ></span>
+				 </div>
+				 <div>
+					<span><label>联系电话</label></span>
+				    <span><input type="text" id="phone" class="textbox"></span>
+				 </div>
+				<div class="sign">
+                	<input type="button" value="提交" class="submit" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="copy-right">
+		<p>&copy; 2018 WMCMS. All Rights Reserved</p>
+	</div>
+	<script>
+		var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/; 
+		$(document).ready(function(){
+			$(".submit").off().click(function(){
+				var name = $("#name").val();
+				var phone = $("#phone").val();
+				if( name == '' ){
+					alert('姓名不能为空！');
+					return false;
+				} else if ( !myreg.test(phone) ) {
+                    alert('请填写正确的手机号');
+                    return false;
+				}else{
+					$.ajax({
+						url: '{url:plugin;demo.index.apply;}',
+						type: 'post',
+						dataType: 'json',
+						data: {name:name,phone:phone},
+						success(res) {
+							alert(res.msg);
+						}
+					})
+				}
+			});
+		});
+	</script>
+</body>
+</html>

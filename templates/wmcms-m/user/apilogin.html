@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title>{title}</title>
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" href="{templates}/static/user/css/style.css">
+    <script type="text/javascript" src="{templates}/static/user/js/flexible.min.js"></script>
+</head>
+<body>
+	<div class="app_meskSection"></div>
+	<div class="container">
+		<div class="app_header_section2  app_scrollerHeader" id="header">
+			<div class="app_header_detail2">
+				<div class="app_header_back"></div>
+				<div class="app_header_h1">
+					需要绑定网站账号
+					<i class="moreIco"></i>
+				</div>
+			</div>
+			<div class="app_header_second" style="display: none;">
+				<ul>
+					<li class="icon1">
+						<a href="/">首页</a>
+					</li>
+					<li class="icon2">
+						<a href="{全部小说}">书库</a>
+					</li>
+					<li class="icon3">
+						<a href="{我的书架}">书架</a>
+					</li>
+					<li class="icon4">
+						<a href="{用户中心}">账户</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="app_body">
+			<div class="app_bindPhoneBlock" id="login" style="padding-bottom: 0.6rem;">
+        		<form method="post" action="{绑定提交地址}">
+            		{登录隐藏表单}
+    				<div class="app_lisLoinSpan app_addPaddingStyle">
+    					<ul>
+    						{登录隐藏表单}
+    						<li class="username">
+    							<input type="text" name="name" placeholder="登录账号">	
+    						</li>
+    						<li class="password">
+    							<input type="password" name="psw" placeholder="登录密码">
+    						</li>
+    					</ul>
+    				</div>
+    				<div class="app_listBlockButton" style="padding-top: 0.36rem">
+    					<button type="submit">立即绑定</button>
+    				</div>
+	            </form>
+				<a onclick="$('#reg').show();$('#login').hide()">没有账号？立即注册</a>
+			</div>
+			
+			<div class="app_bindPhoneBlock" id="reg" style="display: none;">
+        		<form method="post" action="{注册提交地址}">
+            		{注册隐藏表单}
+    				<div class="app_lisLoinSpan app_addPaddingStyle">
+    					<ul>
+    						<li class="username">
+    							<input type="text" name="name" placeholder="请输入用户名">	
+    						</li>
+    						<input type="hidden" name="sex" value="1">
+    						<li class="password">
+    							<input type="password" name="psw" placeholder="请输入密码">
+    						</li>
+    						<li class="password">
+    							<input type="password" name="repsw" placeholder="再次输入密码">
+    						</li>
+    					</ul>
+    				</div>
+    				<div class="app_listBlockButton" style="padding-top: 0.36rem">
+    					<button type="submit">立即注册</button>
+    				</div>
+    				<a onclick="$('#login').show();$('#reg').hide()">已有账号？立即绑定</a>
+    				<div class="app_dengLu_bottom">
+    						注册即表示您同意<a class="blue">《服务条款和隐私政策》</a>
+    				</div>
+	            </form>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="{templates}/static/user/js/jquery.min.js"></script>
+	<script type="text/javascript" src="{templates}/static/js/layer.js"></script>
+	<script type="text/javascript" src="{templates}/static/user/js/ajax.js"></script>
+	<script type="text/javascript" src="{templates}/static/user/js/user.js"></script>
+</body>
+</html>

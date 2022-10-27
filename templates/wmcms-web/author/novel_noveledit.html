@@ -1,0 +1,413 @@
+{header:author/inc_header.html}
+{header:author/inc_toper.html}
+{header:author/inc_nav.html}
+<script>
+$(document).ready(function(){
+	$("#main-bar").find("li").eq("1").addClass("act");
+});
+</script>
+<link rel="stylesheet" type="text/css" href="{templates}/static/css/author/novellist.css">
+<link href="{templates}/static/css/author/editor_ui.css" rel="stylesheet"  type="text/css"/>
+<link href="{templates}/static/css/author/common.css" rel="stylesheet" type="text/css"/>
+<style>
+.upload_button{width: 40px;height: 20px;border: none;cursor: pointer;}
+.hide_button{opacity:0;position:absolute;margin-top: -5px;width: 122px;height: 45px;cursor: pointer;}
+#field li label{margin-right:10px;};
+#field li input{vertical-align:middle};
+.workSetList li div{border: 1px solid #dddddd;height: 30px;width: 350px;cursor: pointer;}
+.tag_list{border: 1px solid #50a8ff;width: auto;float: left;margin: 5px;font-size: 12px;padding: 2px 4px 2px 4px;border-radius: 2px;background: #50a8ff;color: #FFFFFF;}
+.tag_select_box{position: absolute;left: 292px;top: 257px;background: #FFFFFF;width: 350px;height: 200px;display: block; z-index: 999;border: 1px solid #dddddd;overflow: hidden;}
+.tag_select_box .tag_list{cursor: pointer;background: #FFFFFF;color: #50a8ff;}
+.tag_select_box .cur{background: #50a8ff;color: #FFFFFF;}
+.tag_select_box .loading{text-align: center;line-height: 180px;color: #50a8ff;}
+.tags_type li{border: 1px solid #50a8ff;float: left;width: 50px;text-align: center;padding: 5px;font-size: 14px;cursor: pointer}
+.typeSelect{background: #50a8ff;color: #FFFFFF;cursor: unset;}
+.tag_list_box{overflow: scroll;height: 170px;}
+.tag_list_box::-webkit-scrollbar {width : 10px;height: 1px;}
+.tag_list_box::-webkit-scrollbar-thumb {border-radius: 10px;box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);}
+.tag_list_box::-webkit-scrollbar-track {box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);border-radius: 10px;}
+
+.workSetList li b.cur_group{margin-right: 10px;width: 90px;}
+.change_group{color: #50a8ff;font-size: 14px;}
+.dialog-loading{position: absolute;width: 100%;height: 100%;background: #838282;z-index: 999;color: #FFFFFF;opacity: 0.5;}
+</style>
+
+
+<div class="mainRight fl">
+    <div class="crumbsWrap">
+    	<i class="before"><a href="{小说作品列表}"><span>小说管理</span></a></i><em class="same"></em>
+		<i class="current"><span>{cur:id={id}}{名字}{/cur}{cur:id=0}创建小说{/cur}</span></i>
+    </div>
+    <div class="msgBoxTitle">
+        <div class="tabSwitch cf">
+            <span class="act"><a href="{编辑小说}">编辑作品信息</a></span>
+        </div>
+    </div>
+    <div class="workStateWrap cf">
+        <form name="form" method="post" action="{表单提交地址}" enctype="multipart/form-data">
+        	<input type="hidden" name="id" value="{id}">
+        	<input type="hidden" name="cover_id" value="0">
+        	<input type="hidden" name="group_id" value="0">
+            <div class="fmBox fl">
+               <div class="fm">
+                   <img src="{封面}" id="cover" width="114" height="152">
+				   {cur:{封面审核状态}=1}
+                   <span class="modify hidden" id="upload_button" style="display: inline;">上传新封面</span>
+					<input type="file" id="hide_button" class="hide_button" name="hide_button"/>
+					{/cur}
+				   {cur:{封面审核状态}=0}
+                   <span class="modify hidden" style="display: inline;">封面审核中</span>
+					{/cur}
+               </div>
+            </div>
+            
+            <div class="tag_select_box" style="display:none">
+                <div class="loading">加载中</div>
+            </div>
+            <div class="workSetList fl">
+                <ul>
+                	<li><em>书号：</em><b>{id}</b></li>
+                    <li>
+                    	<em>作品名称：</em>
+                        <input id="name" name="name" autocomplete="off" class="midInput recTagInput" value="{名字}" type="text">
+                    </li>
+                    <li>
+                    	<em>作品标签：</em>
+                        <input id="tags" name="tags" type="hidden">
+                        <div id="tag_box" style="border: 1px solid #dddddd;height: 30px;width: 350px;cursor: pointer;"></div>
+                    </li>
+                    <li>
+                    	<em>作品进程：</em>
+                    	<b class="select-level">
+						<select class="modify hidden showselect valid" name="process" style="display: inline-block; visibility: visible;opacity: 1;font-size: small;" {cur:id>0}disabled{/cur}>
+	                        {小说进程列表:}<option value="{小说进程id}" {eq:{process}:{小说进程id}}selected="selected"{/eq}>{小说进程名字}</option>{/小说进程列表}
+						</select></b>
+                    </li>
+                    <li>
+                    	<em>授权级别：</em>
+                    	<b class="select-level">
+						<select class="modify hidden showselect valid" name="type" style="display: inline-block; visibility: visible;opacity: 1;font-size: small;" {cur:id>0}disabled{/cur}>
+                        	{小说类型列表:}<option value="{小说类型id}" {eq:{type}:{小说类型id}}selected="selected"{/eq}>{小说类型名字}</option>{/小说类型列表}
+						</select></b>
+                    </li>
+                    <li><em>作品类型：</em>
+                        <b class="select-category" id="type_box" style="width: auto;">
+                        	{cur:id=0}
+	                        <select name="tid" style="visibility: visible; display: inline-block;opacity: 1;font-size: small;">
+	                        	<option>选择分类</option>
+	                        	{小说分类:父级分类=0}<option value="{小说分类id}">{小说分类名字}</option>{/小说分类}
+							</select>
+							{/cur}
+							{cur:id>0}
+								{小说分类列表:}
+		                        <select name="tid" style="visibility: visible; display: inline-block;opacity: 1;font-size: small;" disabled>
+		                        	{小说分类:父级分类={topid}}<option value="{小说分类id}" {eq:{typeid}:{小说分类id}}selected="selected"{/eq}>{小说分类名字}</option>{/小说分类}
+								</select>
+								{/小说分类列表}
+							{/cur}
+						</b>
+                    </li>
+                    {cur:id=0}<li>
+                        <em>编辑组：</em><b class="cur_group">请选择编辑组</b><a class="bc-cg-operate change_group" href="javascript:">更换</a>
+					</li>{/cur}
+				</ul>
+                <ul id="field" style="display:none"></ul>
+				<ul>
+                    <li><em>总点击：</em><b>{总点击}</b><cite>总收藏：</cite>{总收藏}</li>
+                    <li><em>总字数：</em><b>{字数}</b><cite>总评分：</cite>{评分}</li>
+                    <li><em>总顶量：</em><b>{顶}</b><cite>总踩量：</cite>{踩}</li>
+                    <li><em>作品介绍：</em>
+                        <textarea id="intro" name="intro" style="width:400px;height:300px;">{简介}</textarea>
+                        <p data-node="tip" class="f12 c999">20~2500个字，可自行修改</p>
+                    </li>
+                </ul>
+
+                <p class="dib-wrap confirm modify hidden" style="display: block;">
+                    <a class="button" id="sub" href="javascript:">提交</a>
+            	</p>
+            </div>
+		</form>
+    </div>
+ </div>
+ 
+<dialog class="ui-dialog-container" style="z-index: 20; display:none;">
+    <div class="dialog-loading"><div style="text-align: center;margin-top: 328px;">加载中...</div></div>
+    <div class="ui-dialog editor-select-body" style="width: 660px;display:none">
+        <a href="javascript:" class="ui-dialog-close ESC" role="button" style="font-size: 17px;top: 25px;right: 15px;"><em class="icon-font icon-close">X</em></a>
+        <div class="ui-dialog-title">当前可选的编辑组有<span class="sub-title">发布审核通过后编辑组将无法修改，请谨慎选择</span></div>
+        <div class="ui-dialog-body"><div class="bc-editor-con j-select"><ul class="bc-ec-ul cf"></ul></div></div>
+        <div class="ui-dialog-footer" style="text-align: center;">
+            <a href="javascript:" id="sure" class="ui-button ui-button-primary">选择</a>
+            <a href="javascript:" id="close" class="ui-button icon-close">关闭</a>
+        </div>
+    </div>
+</dialog>
+{header:author/inc_footer.html}
+<script type="text/javascript" src="/files/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="/files/js/ajaxfileupload.js"></script>
+<script type="text/javascript" src="{templates}/static/js/author/field.js"></script>
+<script>
+var groupData = null;
+//点击弹出编辑组选择框
+$(".change_group").click(function(){
+    if( !groupData ){
+        $('.ui-dialog-container').show();
+        $.ajax({
+			type:"POST",dataType:"json",url:"{url:ajax;author.get_group_list}",
+			success:function(data){
+				if( data.data.length>0 ){
+				    groupData = data.data;
+                    $('.dialog-loading').hide();
+                    $('.ui-dialog').show();
+                    var groupHtml = '';
+                    for(var i in data.data){
+                        var id = data.data[i].group_id;
+                        var name = data.data[i].group_name;
+                        var desc = data.data[i].group_desc;
+                        groupHtml += '<li class="bc-ec-li " data-id="'+id+'" style="width: 144px;" title="'+desc+'"><a href="javascript:" class="bc-ec-item" role="button"><h4 class="bc-ec-title">'+name+'</h4><p class="bc-ec-txt">'+desc+'</p><i class="editor-icon-checked"></i></a></li>';
+                    }
+                    $(".bc-ec-ul").html(groupHtml);
+                    //确认选中编辑组
+                    $(".bc-ec-li").bind("click", function () {
+                        $('.bc-ec-ul li').removeClass('current');
+                        $(this).addClass('current');
+                    });
+				}else{
+                    $("#close").click();
+					easydialog_alert('编辑组不存在，请联系管理员后台添加','','','');
+				}
+			},
+		});
+    }else{
+        $('.ui-dialog-container').show();
+        $('.dialog-loading').hide();
+        $('.ui-dialog').show();
+    }
+});
+//关闭编辑组选择
+$("#close,.icon-close").click(function(){
+    $('.ui-dialog-container').hide();
+    $('.dialog-loading').show();
+    $('.ui-dialog').hide();
+});
+//选中提交回填编辑组
+$("#sure").click(function(){
+    var curObj = $('.bc-ec-ul').find('.current');
+    $('[name=group_id]').val(curObj.attr('data-id'));
+    $('.cur_group').html(curObj.find('h4').html());
+    $("#close").click();
+});
+$("#sub").click(function(){
+	var name = $("#name").val();
+	var intro = $("#intro").val();
+	var tid = $("[name=tid]").val();
+	var groupId = $("[name=group_id]").val();
+	if( name == '' ){
+		easydialog_alert('对不起，小说名字不能为空！','','','');
+	}else if( !isPositiveNum(tid) ){
+		easydialog_alert('对不起，请选择小说分类！','','','');
+	}else if( intro.length < 20 || intro.length > 2500  ){
+		easydialog_alert('对不起，描述只能在20-2500个字符之间！','','','');
+	}else if( {id}==0 && groupId<=0 ){
+		easydialog_alert('对不起，请选择编辑组！','','','');
+	}else{
+		$.ajax({
+			type:"POST",
+			url:"{表单提交地址}&ajax=yes",
+			data:$("[name=form]").serializeArray(),
+			dataType:"json",
+			success:function(data){
+				if(data.code == 200){
+					easydialog_autoclose(data.msg,'success');
+					setTimeout(function(){window.parent.location = '{小说作品列表}';},2000);
+				}else{
+					easydialog_alert(data.msg,'','','');
+				}
+			},
+			async:true,
+		});
+	}
+});
+/*上传封面按妞*/
+$('#hide_button').live('change',function(){
+	//禁用按钮
+	$('#upload_button').val('上传中...');
+    $.ajaxFileUpload
+    ({
+        url: '/wmcms/action/index.php?action=upload.novelcover', //用于文件上传的服务器端请求地址
+		type: 'post',
+        secureuri: false, //是否需要安全协议，一般设置为false
+        fileElementId: 'hide_button', //文件上传域的ID
+        data:{ajax:'yes',module: 'novel',cid: '{id}'},
+        dataType: 'json', //返回值类型 一般设置为json
+        success: function (data)  //服务器成功响应处理函数
+        {
+        	alert
+        	if( data.code == 500 ){
+            	easydialog_alert(data.msg);
+        	}else{
+				//设置封面
+	        	$("#cover").attr("src", data.data.file);
+	        	$("[name=cover_id]").val(data.data.file_id);
+				//还原按钮
+				$('#hide_button').clone().val('');
+				$('#upload_button').val('上传新封面');
+				
+				easydialog_alert(data.msg , '提示' , null, '');
+        	}
+        },
+        error: function(e) {
+        	easydialog_alert(e);
+        } 
+     })
+});
+
+//分类选择
+$('#type_box select').live('change',function(){
+	var html=obj='';
+	var thisObj = $(this);
+	$.ajax({
+		type:"POST",
+		url:"{url:ajax;novel.gettype}",
+		data:{tid:thisObj.val(),child:'1',cid:{id}},
+		dataType:"json",
+		success:function(data){
+			thisObj.nextAll().remove();
+			if( data.code != 500 ){
+				if(data.code == 200){
+					obj = data.data;
+					html = objToHtml(data.data , '<option value="{type_id}">{type_name}</option>' , '<select name="tid" style="visibility: visible; display: inline-block;opacity: 1;font-size: small;"><option value="'+thisObj.val()+'">选择分类</option>' , '</select>' );
+					$('#type_box').append(html);
+				}
+				if(typeof(data.field.content_field) != 'undefined' ){
+					$('#field').html(getForm(data.field.content_field));
+					$('#field').show();
+				}else{
+					$('#field').html();
+					$('#field').hide();
+				}
+				typeOption = true;
+			}
+		},
+		async:true,
+	});
+})
+
+//加载推荐标签
+$(document).ready(function(){
+    $.ajax({
+    	type:"POST",
+    	url:"{url:ajax;author.get_rec_tags}",
+    	data:{nid:{id},module:'novel'},
+    	dataType:"json",
+    	success:function(data){
+    		if( data.code != 200 ){
+    		    easydialog_autoclose(data.msg,'error',2000);
+    		}else{
+    		    if( data.data ){
+    		        var tagTypeHtml = '';
+    		        var tagListsHtml = '';
+    		        
+        		    for(o in data.data){
+    		            var tagListHtml = '';
+    		            var typeSelect = '';
+    		            var tagListHide = 'display:none';
+    		            if( tagTypeHtml=='' ){
+    		                typeSelect = 'class="typeSelect"';
+    		                tagListHide = '';
+    		            }
+    		            tagTypeHtml += '<li data-id="'+data.data[o].id+'" '+typeSelect+'>'+data.data[o].name+'</li>';
+        		        list = data.data[o].list
+            		    for(i in list){
+            		        cur = '';
+            		        if( list[i].select ){
+            		            cur = 'cur';
+            		        }
+            		        tagListHtml += '<div class="tag_list '+cur+'" data-name="'+list[i].tags_name+'" style="margin:6px;">'+list[i].tags_name+'</div>';
+        		        }
+        		        tagListsHtml += '<div class="tag_list_box" id="tag_list_'+data.data[o].id+'" style="'+tagListHide+'">'+tagListHtml+'</div>';
+        		    }
+        		    $('.tag_select_box').html('<ul class="tags_type">'+tagTypeHtml+'</ul><div style="clear:both"></div>'+tagListsHtml);
+        		    $('.tags_type li').css('width',350/$('.tags_type li').length-12);
+        		    UpdateTagId();
+    		    }else{
+        		    $('.tag_select_box .loading').html('暂无推荐标签,请联系管理员添加');
+    		    }
+    		}
+    	},
+    	async:true,
+    });
+});
+/*关闭标签列表选择框*/
+$(document).bind("click",function(e){
+    var target = $(e.target);
+    if(target.closest(".tag_select_box").length == 0&& target.closest("#tag_box").length == 0){
+        $('.tag_select_box').hide();
+    }
+})
+/*作品标签选择框*/
+$('#tag_box').click(function(){
+    $('.tag_select_box').toggle();
+});
+/*选择列表分类点击*/
+$('.tags_type li').live('click',function(){
+    $('.tags_type li').removeClass('typeSelect');
+    $(this).addClass('typeSelect');
+    $('.tag_list_box').hide();
+    $('#tag_list_'+$(this).attr('data-id')).show();
+});
+/*选择列表点击*/
+$('.tag_select_box .tag_list').live('click',function(){
+    if( $(this).hasClass('cur')==true){
+        $(this).removeClass('cur');
+    }else{
+        if( $('.tag_select_box .cur').length >= 5 ){
+			easydialog_autoclose('不能超过五个标签' , 'warning');
+    	    return false;
+        }else{
+            $(this).addClass('cur');
+        }
+    }
+    UpdateTagId();
+});
+//更新选中的标签id
+function UpdateTagId(){
+    $('#tags').val('');
+    $('#tag_box').html('');
+    $('.tag_select_box .cur').each(function(){
+        if( $('#tags').val()==''){
+            $('#tags').val($(this).attr('data-name'));
+        }else{
+            $('#tags').val($('#tags').val()+','+$(this).attr('data-name'));
+        }
+        $('#tag_box').append('<div class="tag_list">'+$(this).text()+'</div>');
+    })
+}
+
+{cur:id>0}
+init();
+//初始化分类选择
+function init(){
+	var html=obj='';
+	var thisObj = $('#type_box select:last');
+	$.ajax({
+		type:"POST",
+		url:"{url:ajax;novel.gettype}",
+		data:{tid:thisObj.val(),child:'1',cid:{id}},
+		dataType:"json",
+		success:function(data){
+			if( data.code != 500 ){
+				if(typeof(data.field.content_field) != 'undefined' ){
+					$('#field').html(getForm(data.field.content_field));
+					$('#field').show();
+				}else{
+					$('#field').html();
+					$('#field').hide();
+				}
+			}
+		},
+		async:true,
+	});
+}
+{/cur}
+</script>

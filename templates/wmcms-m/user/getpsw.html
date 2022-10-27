@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title>{title}</title>
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" href="{templates}/static/user/css/style.css">
+    <script type="text/javascript" src="{templates}/static/user/js/flexible.min.js"></script>
+    <style>
+        .code_box{width: 60%;height:1.3437rem;line-height:1.3437rem;display: block;float: right;text-align: right;}
+    </style>
+</head>
+<body>
+	<div class="app_meskSection"></div>
+	<div class="container">
+		<div class="app_header_section2  app_scrollerHeader" id="header">
+			<div class="app_header_detail2">
+				<div class="app_header_back"></div>
+				<div class="app_header_h1">
+					找回密码
+					<i class="moreIco"></i>
+				</div>
+			</div>
+			<div class="app_header_second" style="display: none;">
+				<ul>
+					<li class="icon1">
+						<a href="/">首页</a>
+					</li>
+					<li class="icon2">
+						<a href="{全部小说}">书库</a>
+					</li>
+					<li class="icon3">
+						<a href="{我的书架}">书架</a>
+					</li>
+					<li class="icon4">
+						<a href="{用户中心}">账户</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="app_body">
+			<div class="app_bindPhoneBlock">
+				<div class="app_bindPhoneBlock_header">
+					<span class="app_header">
+						<img src="{templates}/static/user/images/userlogin.png"></span>
+				</div>
+				<div class="app_lisLoinSpan">
+					<ul>
+						{表单锁}
+						<li class="username">
+							<input id="name" type="text" name="name" placeholder="登录账号">
+						</li>
+						<li class="email">
+							<input id="receive" type="text" name="receive" placeholder="绑定的邮箱/手机号">
+						</li>
+						<li class="password">
+							<div class="app_listBlockButton" style="width: 40%;padding-top: 0.11rem;float: right;">
+            					<button id="get_smscode" data-id="user_getpsw" style="border-radius: 0.2rem;">发送验证码</button>
+            				</div>
+							<input type="text" name="sms_code" style="width:60%" placeholder="收到的验证码">
+						</li>
+						{找回密码验证码开启}
+						<li class="code" style="position: unset;padding-right: unset;">
+						    <div style="clear:both"></div>
+							{找回密码验证码}
+							<span style="width:40%"><input id="code" type="text" name="code" placeholder="请输入验证码"></span>
+						</li>
+						{/找回密码验证码开启}
+					</ul>
+				</div>
+				<div class="app_listBlockButton" style="padding-top: 0.36rem">
+					<button id="loginbtn" ajax-post='app_lisLoinSpan' url="{找回密码提交地址}&ajax=yes" callback="GetPswCallBack">立即找回</button>
+				</div>
+				<div class="app_registerList">
+					<span class="public_AddFloatLeft">
+						<a href="{注册}">我要注册</a>
+					</span>
+					<span class="public_AddFloatRight">
+						<a href="{登录}">立即登录</a>
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="/files/js/function.js"></script>
+	<script type="text/javascript" src="{templates}/static/user/js/jquery.min.js"></script>
+	<script type="text/javascript" src="{templates}/static/js/layer.js"></script>
+	<script>
+    //获取密码成功后
+    function GetPswCallBack(json){
+        var data = JSON.parse(json);
+        location.href = data.data.url+'?key='+data.data.key;
+    }
+    </script>
+	<script type="text/javascript" src="{templates}/static/user/js/ajax.js?v=202203231514"></script>
+	<script type="text/javascript" src="{templates}/static/user/js/user.js?v=202203231514"></script>
+</body>
+</html>

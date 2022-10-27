@@ -1,0 +1,47 @@
+{header:editor/inc_header.html}
+{header:editor/inc_toper.html}
+{header:editor/inc_nav.html}
+<script>
+$(document).ready(function(){
+	$("#index").addClass("act");
+});
+</script>
+<style>
+    .detailNews p{border-bottom: 1px dashed #e1e0e0;padding-bottom: 10px;}
+</style>
+	
+<div class="mainRight pb260 fl">
+	<div class="authorInfoWrap cf">
+		<div class="headPhotoBox fl">
+			<span></span> <img src="{用户头像}" width="86" height="86">
+		</div>
+		<div class="authorInfoBox fl">
+			<h3>名字：{编辑名字}(ID:{编辑id})</h3>
+			<h3>姓名：{编辑姓名}</h3>
+			<p>今天是{年}年{月}月{日}日，星期{星期}</p>
+		</div>
+	</div>
+	
+	<div class="midContentWrap">
+		<h3 class="title_h3"><span class="icon news"></span>编辑基础资料</h3>
+		<div class="newsListWrap">
+			<ul id="newsList">
+       			<li class="act" style="margin-top: 10px;">
+       			<div data-node="detail" class="detailNews" style="display: block;">
+       				<p>编辑QQ：{编辑qq}</p>
+       				<p>编辑微信：{编辑微信}</p>
+       				<p>编辑简介：<span style="display: block;margin-left: 2rem;">{编辑简介}</span></p>
+       				<p>加入时间：{编辑加入时间}</p>
+       				<p>
+       				    编辑职位：
+       				    {编辑分组成员:排序=分组排序}
+       				    <span style="display: block;margin-left: 2rem;">{编辑分组成员分组名字} - {编辑分组成员类型}</span>
+       				    {/编辑分组成员}
+   				    </p>
+       			</div>
+       			</li>
+			</ul>
+		</div>
+	</div>
+</div>
+{header:editor/inc_footer.html}

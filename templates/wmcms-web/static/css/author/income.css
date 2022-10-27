@@ -1,0 +1,58 @@
+@charset "utf-8";@charset "UTF-8";.incomeWrap{padding:40px
+35px 0}.totalBox{width:310px;height:124px;margin-right:19px;background:#50A8FF}.totalBox
+.all{overflow:hidden;padding:0
+22px;color:#FFF;*zoom:1}.totalBox .all
+i{font:16px/72px "PingFangSC-Regular", "HelveticaNeue-Light", "Helvetica Neue Light", "Microsoft YaHei", "sans-serif"}.totalBox .all
+em{float:right;font:42px/72px Arial;color:#FFF}.platform{height:42px;padding-top:10px;background:#3F8CDA}.platform span, .platform
+em{display:block}.platform i, .platform
+b{float:left}.platform
+i{padding-left:17px}.platform i
+span{margin-bottom:8px;font:12px/1 "PingFangSC-Regular", "HelveticaNeue-Light", "Helvetica Neue Light", "Microsoft YaHei", "sans-serif";color:#A1D1FF}.platform i
+em{font:12px/1 Arial;color:#FFF}.platform
+b{border-right:1px solid #A1D1FF;height:32px;padding:0
+5px 0 23px}.reserveBox
+.record{width:640px;height:124px;background:#69DB89}.record
+ul{padding:29px
+0 0}.record
+li{float:left;border-right:1px solid #BBF5CB;width:33.2%;height:61px;padding-top:5px;text-align:center}.record li
+p{margin-bottom:8px;font:16px/1 "PingFangSC-Regular", "HelveticaNeue-Light", "Helvetica Neue Light", "Microsoft YaHei", "sans-serif";color:#FFF}.record li
+span{font:42px/1 Arial;color:#FFF}.record
+li.br0{border-right:none}.reserveBox
+.tip{font:12px/30px "PingFangSC-Regular", "HelveticaNeue-Light", "Helvetica Neue Light", "Microsoft YaHei","sans-serif";color:#999}.reserveTitle{position:relative;z-index:2;clear:both;margin-bottom:8px;font:18px/1.8 "PingFangSC-Regular", "HelveticaNeue-Light", "Helvetica Neue Light", "Microsoft YaHei", "sans-serif";overflow:hidden;*zoom:1}.reserveTitle
+.searchBtn{float:right;width:58px;height:28px;margin-left:10px;font:14px/26px "PingFangSC-Regular", "HelveticaNeue-Light", "Helvetica Neue Light", "Microsoft YaHei", "sans-serif"}.reserveTitle
+span{float:right;margin-top:4px;font:14px/26px "PingFangSC-Regular", "HelveticaNeue-Light", "Helvetica Neue Light", "Microsoft YaHei", "sans-serif"}.reserveTitle span
+i{margin:0
+5px;font-family:Arial;color:#4EA8FF}.selectBox{position:absolute;top:0;right:0}.selectBox .combo-select{float:right;border-radius:3px;margin-left:10px}.selectBox .combo-select
+input{float:left;border-radius:3px;*width:70px}.reserveTitle
+em{margin:-5px 10px 0 0}.reserveTitle
+em.chart{width:22px;height:22px;background-position:-171px -56px}.reserveTitle
+em.detail{width:22px;height:24px;background-position:-171px -79px}.reserveTitle
+em.reward{width:22px;height:19px;background-position:-171px -128px}.reserveTitle
+em.pie{width:23px;height:23px;margin:-2px 10px 0 0;background-position:-171px -104px}.chartWrap{position:relative;z-index:1;border:1px
+solid #E6E6E6;min-height:350px}.chartWrap
+h2{position:absolute;padding-left:10px;font:700 15px/32px "PingFangSC-Regular", "HelveticaNeue-Light", "Helvetica Neue Light", "Microsoft YaHei","sans-serif"}.totalCenter{position:absolute;top:30px;left:50%;margin-left:-97px;width:200px;height:260px;text-align:center}.totalData{height:50%;margin-top:75px}.totalData
+td{position:relative;z-index:50;height:30px}.totalData
+h3{font:16px/1.5 "PingFangSC-Regular", "HelveticaNeue-Light", "Helvetica Neue Light", "Microsoft YaHei", "sans-serif"}.totalData
+p{display:inline-block;border-bottom:1px solid #E6E6E6;margin:0
+auto 8px;font:28px/1.5 Arial;color:#4EA8FF}.totalData
+h4{font:14px/1.5 "PingFangSC-Regular", "HelveticaNeue-Light", "Helvetica Neue Light", "Microsoft YaHei", "sans-serif"}.totalData .detailWrap
+span{font:22px/1.5 Arial;cursor:pointer;color:#4EA8FF}.totalData .detailWrap
+em.icon{width:15px;height:15px;margin:-3px 0 0 5px;background-position:-194px -80px}.detailBubble{position:absolute;z-index:50;top:134px;left:38px;display:none;border:1px
+solid #DDD;padding:0
+18px;cursor:default;background:#FFF}.detailBubble
+cite{position:absolute;top:-8px;left:50%;width:13px;height:8px;margin-left:-7px;background-position:-65px -70px}.detailBubble
+ul{margin-bottom:-1px}.detailBubble
+li{overflow:hidden;border-bottom:1px solid #DDD;width:200px;height:44px;font:14px/44px "PingFangSC-Regular", "HelveticaNeue-Light", "Helvetica Neue Light", "Microsoft YaHei", "sans-serif";text-align:left;color:#8C8C8C;*zoom:1}.detailBubble li
+i{float:right;color:#333}.chartWrap
+.tabSwitch{height:auto}.chartWrap .tabSwitch
+span{padding:0
+19px}.reserveTitle .combo-select{float:right;width:114px;height:28px}.reserveTitle .combo-select input, .reserveTitle .combo-select{font:14px/1.8 "PingFangSC-Regular", "HelveticaNeue-Light", "Helvetica Neue Light", "Microsoft YaHei", "sans-serif"}.reserveGraph
+text{font:14px/1.8 "PingFangSC-Regular", "HelveticaNeue-Light", "Helvetica Neue Light", "Microsoft YaHei","sans-serif"}.nodataBox{width:141px;margin:65px
+auto 0;text-align:center}.nodataBox
+img{display:block;margin-bottom:20px}.gTip{padding:40px
+0}.gTip
+p{font:12px/2 "PingFangSC-Regular", "HelveticaNeue-Light", "Helvetica Neue Light", "Microsoft YaHei","sans-serif";color:#999}.payState{padding:20px
+0 30px;text-align:center}.payState
+p{font:14px/1.8 "PingFangSC-Regular", "HelveticaNeue-Light", "Helvetica Neue Light", "Microsoft YaHei", "sans-serif"}.payState p
+.icon{width:15px;height:15px;margin:-2px 0 0;background-position:-210px -80px}.reserveListWrap
+.c999{padding-bottom:10px}

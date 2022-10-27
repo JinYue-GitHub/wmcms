@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title>{title}</title>
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" href="{templates}/static/user/css/style.css">
+    <script type="text/javascript" src="{templates}/static/user/js/flexible.min.js"></script>
+</head>
+<body>
+	<div class="app_meskSection"></div>
+	<div class="container">
+		<div class="app_header_section2  app_scrollerHeader" id="header">
+			<div class="app_header_detail2">
+				<div class="app_header_back"></div>
+				<div class="app_header_h1">
+					重置密码
+					<i class="moreIco"></i>
+				</div>
+			</div>
+			<div class="app_header_second" style="display: none;">
+				<ul>
+					<li class="icon1">
+						<a href="/">首页</a>
+					</li>
+					<li class="icon2">
+						<a href="{全部小说}">书库</a>
+					</li>
+					<li class="icon3">
+						<a href="{我的书架}">书架</a>
+					</li>
+					<li class="icon4">
+						<a href="{用户中心}">账户</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="app_body">
+			<div class="app_bindPhoneBlock">
+				<div class="app_bindPhoneBlock_header">
+					<span class="app_header">
+						<img src="{templates}/static/user/images/userlogin.png"></span>
+				</div>
+				<div class="app_lisLoinSpan">
+				    {隐藏表单}
+					<ul>
+						<li class="password">
+							<input type="password" name="psw" placeholder="新密码">
+						</li>
+						<li class="password">
+							<input type="password" name="repsw" placeholder="重复新密码">
+						</li>
+					</ul>
+				</div>
+				<div class="app_listBlockButton" style="padding-top: 0.36rem">
+					<button id="loginbtn" ajax-post='app_lisLoinSpan' url="{表单提交地址}&ajax=yes" callback="RePswCallBack">立即修改</button>
+				</div>
+				
+				<div class="app_registerList">
+					<span class="public_AddFloatLeft">
+						<a href="{注册}">我要注册</a>
+					</span>
+					<span class="public_AddFloatRight">
+						<a href="{登录}">立即登录</a>
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+    //修改密码成功后
+    function RePswCallBack(json){
+        location.href = '{登录}';
+    }
+    </script>
+	<script type="text/javascript" src="{templates}/static/user/js/jquery.min.js"></script>
+	<script type="text/javascript" src="{templates}/static/js/layer.js"></script>
+	<script type="text/javascript" src="{templates}/static/user/js/ajax.js?v=202203231514"></script>
+	<script type="text/javascript" src="{templates}/static/user/js/user.js?v=202203231514"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<div id="ft" class="cl">
+	<div class="wp" id="footer">
+		<div id="flk"><div style="float: left;"><img src="{logo}" style="height: 35px;"></div>
+		<div style="display: inline;">
+			<a href="{首页}" target="_blank">网站首页</a>
+			<span class="pipe">|</span><a href="javascript:void(0);" target="_blank">网站地图</a>
+			<span class="pipe">|</span><a href="javascript:void(0);" target="_blank">站内帮助</a>
+			<span class="pipe">|</span><a href="javascript:void(0);" target="_blank">反馈通道</a>
+		</div>
+		<div style="float: right;color: #7e7e7e;">Copyright © 2016 WMCMS</div>
+		<div style="width: 800px;">{备案号}</div>
+	</div>
+</div>
+</body>
+</html>
+<script>
+var screenHeight = screenWidth = 0;
+if(document.documentElement.clientHeight){
+screenHeight = document.documentElement.clientHeight+21;
+screenWidth = document.documentElement.clientWidth;
+}else{
+screenWidth = document.body.clientWidth;
+screenHeight = document.body.clientHeight+21;
+}
+
+var fttop = document.getElementById('ft').offsetTop;
+if((fttop+65)<screenHeight){
+if(document.getElementById('wp')){
+var header_footer_height = document.getElementById('hd').offsetHeight + document.getElementById('ft').offsetHeight;				   
+document.getElementById('wp').style.minHeight = (screenHeight-header_footer_height - 21) + 'px';
+}else if(document.getElementById('ct')){
+var header_footer_height = document.getElementById('toptb').offsetHeight + document.getElementById('hd').offsetHeight + document.getElementById('ft').offsetHeight;				   
+document.getElementById('ct').style.minHeight = (screenHeight-header_footer_height - 66) + 'px';
+}else{
+document.getElementById('ft').style.position = 'absolute';
+document.getElementById('ft').style.top = (screenHeight-66) + 'px';
+document.getElementById('ft').style.width = '100%';
+}
+}
+</script>

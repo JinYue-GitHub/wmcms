@@ -1,0 +1,3 @@
+<?php $replayConfig=array('replay_open' => '1','unify' => '1','replay_login' => '0','status' => '1','top_time' => '15','everyday_count' => '100','dingcai_open' => '1','dingcai_count' => '1','nickname' => '游客','reward_count' => '0','replay_gold1' => '0','replay_gold2' => '0','replay_exp' => '0','boxname' => '江湖茶馆','no_data' => '就等你了','input' => '少侠,你不来两句？','hot' => '1','hot_display' => '2','hot_count' => '2','list_limit' => '6','page_count' => '5','dingcai_login' => '1','replay_floor_nickname' => '沙发
+板凳
+地板','replay_floor_name' => '楼','replay_type' => '2','replay_replay_number' => '5','replay_replay_page' => '10','replay_replay_order' => 'replay_time',);?>

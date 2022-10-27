@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{title}</title>
+		<link rel="stylesheet" href="{templates}/static/author/css/style.css">
+		<script src="{templates}/static/author/js/font.js"></script>
+		<script src="{templates}/static/author/js/jquery.min.js"></script>
+		<script src="{templates}/static/author/js/layer.js"></script>
+	</head>
+	<body>
+		<div class="app">
+			<div class="header">
+				<a href="javascript:history.back(-1)" style="left: 0.1rem;" class="close">〈</a>
+				<a href="{小说新建草稿}" class="more">发表新章节</a>
+			</div>
+			<div class="chapterlist">
+				{草稿列表:}
+				<div class="u-f listLine">
+					<ul class="list-c">
+						<li>
+							<a href="{url}">
+								<h2>{草稿标题} <span>[草稿]</span></h2>
+								<p>{草稿创建时间} 共{草稿字数}字</p>
+							</a>
+						</li>
+					</ul>
+				</div>
+				{/草稿列表}
+			</div>
+		</div>
+		
+		<script>
+			
+		</script>
+	</body>
+</html>

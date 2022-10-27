@@ -1,0 +1,30 @@
+﻿.f12 {font-size:12px;}
+.f14 {font-size:14px;}
+.f16 {font-size:16px;}
+.f20 {font-size:20px;}
+.fb {font-weight:bold;}
+.fi {font-style:italic;}
+.fn {font-weight:normal;}
+.tc {text-align:center;}
+.tr {text-align:right;}
+.tl {text-align:left;}
+.txtline {text-decoration:underline;}
+.db {display:block;}
+.dn {display:none;}
+.fl{float:left;}
+.fr {float:right;}
+.cleanfix{zoom:1;}
+.cleanfix:after{content:"."; display:block; height:0; clear:both; visibility:hidden;}
+.txtid {text-indent:-9999px;}
+
+.mod_gbd {border:1px solid #d7d7d7;}
+.mod_rbd {border:1px solid red!important;}
+.mod_wbg {background:#fff;}
+.mod_gbg {background:#ebebeb;}
+.mod_btd {border-top:1px dashed #ccc;}
+.mod_bbd {border-bottom:1px dashed #ccc;}
+.mod_of {overflow:hidden;}
+.mod_textarea {border:1px solid #ccc;padding:2px;line-height:150%;background:#fff;overflow:hidden;}
+.mod_ipt_txt {border:1px solid #ccc;padding:2px;background:#fff;overflow:hidden;}
+.mod_960wr {width:960px;margin-right:auto;margin-left:auto;}
+.mod_958wr {width:958px;margin-right:auto;margin-left:auto;}

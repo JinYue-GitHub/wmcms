@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{title}</title>
+		<link rel="stylesheet" href="{templates}/static/author/css/style.css">
+		<script src="{templates}/static/author/js/font.js"></script>
+		<script src="{templates}/static/author/js/jquery.min.js"></script>
+		<script src="{templates}/static/author/js/layer.js"></script>
+	</head>
+	<body>
+		<div class="app">
+			<div class="header">
+				<a href="javascript:history.back(-1)" style="left: 0.1rem;" class="close">〈</a>
+				<a href="{小说新建草稿}" class="more">发表新章节</a>
+			</div>
+			<div class="chapterlist">
+				{小说分卷列表:}
+				<div class="u-f listLine">
+					<ul class="list-a">
+						<li onclick="show(this,'{小说分卷id}')" data-list="false">
+							<h2>{小说分卷名字}</h2>
+							<ul class="list-b" onclick="stop()" style="display: none;">
+								
+							</ul>
+						</li>
+					</ul>
+				</div>
+				{/小说分卷列表}
+			</div>
+		</div>
+		
+		<script>
+			function show(obj,vid){
+				if($(obj).attr('data-list')=='false'){
+					var index = layer.open({type: 2,content: '加载中'});
+					$.ajax({
+						type:"POST",
+						url:"{url:ajax;novel.getchapterlist&order=chapter_order&order_type=desc}",
+						data:{vid:vid,nid:{id}},
+						dataType:"json",
+						success:function(data){
+							layer.close(index);
+							if(data.code==200){
+								var tmpl = '<li style="background:#F7F6F6" data-vid="{chapter_vid}" data-cid="{chapter_id}"><div class="sectionBox"><p><em>[<span class="status_{chapter_status}">{chapter_status_text}</span>] {chapter_name}</em></p><p class="f12"><i>{chapter_time}</i>共{chapter_number}字</p></div></li>';
+								$(obj).attr('data-list','true')
+								$(obj).children('.list-b').append(objToHtml(data.data , tmpl));
+							}else if(data.code==201){
+								layer.open({content:'该分卷暂无章节',time: 2})
+							}else{
+								layer.open({content:data.msg,time: 2})
+							}
+						},
+						async:true,
+					});
+				}else{
+					
+				}
+				$(obj).children('ul').toggle();
+			}
+			
+			$('.list-b').click(function(event){
+				event.stopPropagation();
+			})
+			
+			/**
+			 * 将对象转为html
+			 * 参数1，必须，对象
+			 * 参数2，必须，内容模版
+			 * 参数3，选填，前置html代码
+			 * 参数4，选填，后置html代码
+			 */
+			function objToHtml(obj , tpl , before , last ){
+				var html=field='';
+				tplArr = tpl.match(/{(.*?)}/g);
+				for(var o in obj){
+					newTpl = tpl;
+					for(var i=0;i<tplArr.length;i++){
+						field = tplArr[i].replace('{','');
+						field = field.replace('}','');
+						newTpl = newTpl.replace(tplArr[i],obj[o][field]);
+					}
+					html = html + newTpl;
+			    }
+				if(typeof(before) != 'undefined' ){
+					html = before+html;
+				}
+				if(typeof(last) != 'undefined' ){
+					html = html+last;
+				}
+				return html;
+			}
+		</script>
+	</body>
+</html>

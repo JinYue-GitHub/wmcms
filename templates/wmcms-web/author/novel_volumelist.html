@@ -1,0 +1,177 @@
+{header:author/inc_header.html}
+{header:author/inc_toper.html}
+{header:author/inc_nav.html}
+<script>
+$(document).ready(function(){
+	$("#main-bar").find("li").eq("1").addClass("act");
+});
+</script>
+<link rel="stylesheet" type="text/css" href="{templates}/static/css/author/novellist.css">
+<style>
+.page{border-top: 1px solid #DEDEDE;border-right: 1px solid #DEDEDE;height: 29px;line-height: 28px;text-align: center;}
+.page a{font-size:14px;}
+.save{cursor: pointer;}
+</style>
+
+<div class="mainRight fl">
+    <div class="crumbsWrap">
+    	<i class="before"><a href="{小说作品列表}"><span>小说管理</span></a></i><em class="same"></em>
+		<i class="current"><span>{名字}</span></i>
+    </div>
+    <div class="msgBoxTitle">
+    	<a id="createVolumeIconBtn" class="button white" href="{小说新建分卷}">新建分卷</a>
+    	<a class="create button" href="{小说新建草稿}"><em class="icon"></em>新建章节</a>
+        <div class="tabSwitch cf">
+            <span><a href="{编辑小说}">编辑作品信息</a></span>
+            <span><a href="{小说草稿箱列表}">草稿箱</a></span>
+            <span class="act"><a href="{小说分卷列表}">分卷管理</a></span>
+            <span><a href="{小说章节列表}">章节管理</a></span>
+        </div>
+    </div>
+    
+    <div class="managerWrap cf">
+        <div class="mLeftList fl">
+			<div class="leftListWrap">
+                <div class="titleBox"><p>共 {总数据}卷</p></div>
+                <div class="sectionManage">
+                    <div class="slimScrollDiv">
+                    	<div class="sectionList">
+	                        <!-- 草稿列表 -->
+	                        <ul id="volumelist" style="position: absolute;height: 100%;overflow: auto;width: 100%;">
+	                        	{小说分卷列表:}
+	                            <li data-id="{小说分卷id}">
+	                            	<div class="volume">
+		                            	<div class="sectionBox">
+		                            		<p><cite></cite><em>{小说分卷名字}</em></p>
+		                            		<p class="f12"><i>{小说分卷创建时间}  </i> {小说分卷描述:5}</p>
+		                            	</div>
+	                            	</div>
+	                            </li>
+	                        	{/小说分卷列表}
+	                        </ul>
+                    	</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+	    <div class="managerWrap cf" id="content" style="display:none">
+	        <div class="mRightContent fl">
+	            <div class="midWrap editWrap">
+	                <form id="form" name="form" method="post">
+						{隐藏表单}
+	                    <div class="sectionViewWrap">
+	                        <div>
+	                        	<div class="sectionBtnBox cf">
+		                            <div class="titleBtn fr">
+		                                <a id="delete" class="button white" style="cursor: pointer;">删除</a>
+	                        			<a class="button save" id="save" data-type="update"><span class="icon"></span>保存</a>
+		                            </div>
+		                            <em class="c999">编辑分卷信息</em>
+		                        </div>
+							</div>
+					
+							<div class="volumeForm">
+			                    <ul>
+			                        <li>
+			                            <em>分卷名称</em>
+			                            <input id="name" name="name" autocomplete="off" class="midInput" type="text" placeholder="分卷的名字。示例：“第一卷 横空出世”">
+			                        </li>
+			                        <li>
+			                            <em>显示顺序</em>
+			                            <input id="order" name="order" autocomplete="off" class="midInput" type="text" placeholder="分卷的顺序。越小越靠前">
+			                        </li>
+			                        <li>
+			                            <em>分卷介绍</em>
+			                            <textarea id="desc" name="desc" autocomplete="off" placeholder="分卷的简介。"></textarea>
+			                        </li>
+			                    </ul>
+			                </div>
+	                
+	                    </div>
+	 				</form>
+	            </div>
+	        </div>
+	    </div>
+    </div>
+ </div>
+{header:author/inc_footer.html}
+<script>
+$(document).ready(function(){
+	$("#volumelist li").hover(function(){
+		$(this).css('background','#E1F2FF');  
+    },function(){  
+		$(this).css('background','#FFFFFF');
+    })
+    
+    //点击分卷
+	$("#volumelist li").click(function(){
+		$("#content").css("display","block");
+		$("#vid").val("");
+		$("#name").val("");
+		$("#order").val("");
+		$("#desc").val("");
+		var vid = $(this).data('id');
+		$.ajax({
+			type:"POST",
+			url:"{url:ajax;novel.getvolume}",
+			data:{vid:vid},
+			dataType:"json",
+			success:function(data){
+				if(data.code==200){
+					$("#vid").val(vid);
+					$("#name").val(data.data.volume_name);
+					$("#order").val(data.data.volume_order);
+					$("#desc").val(data.data.volume_desc);
+				}
+			},
+			async:true,
+		});
+    })  
+    
+
+  //保存分卷信息
+  $("#save").click(function(){
+  	var name = $("#name").val();
+  	var desc = $("#desc").val();
+  	
+  	if( name == '' ){
+  		easydialog_alert('对不起，分卷名字不能为空！','','','');
+  	}else if( name == '' ){
+  		easydialog_alert('对不起，显示顺序只能为数字！','','','');
+  	}else{
+  		$.ajax({
+  			type:"POST",
+  			url:"{url:action;author.novel_volumeedit&ajax=yes}",
+  			data:$("#form").serializeArray(),
+  			dataType:"json",
+  			success:function(data){
+  				easydialog_alert(data.msg,'','','');
+  			},
+  			async:true,
+  		});
+  	}
+  });
+
+  //删除分卷信息
+  $("#delete").click(function(){
+	  var delfun = function(){
+		  $.ajax({
+	  			type:"POST",
+	  			url:"{url:action;author.novel_volumedel&ajax=yes}",
+	  			data:{nid:$('#nid').val(),vid:$('#vid').val()},
+	  			dataType:"json",
+	  			success:function(data){
+	  				if( data.code=='200' ){
+	  				  $('#volumelist li[data-id="'+$('#vid').val()+'"]').remove();
+	  				  $('#content').hide();
+	  				}
+	  				easydialog_alert(data.msg,'','','');
+	  			},
+	  			async:true,
+	  		});
+	  };
+	  easydialog_alert('是否删除当前分卷“'+$('#name').val()+'”?','是否删除',delfun,'','删除','取消');
+  });
+});
+</script>

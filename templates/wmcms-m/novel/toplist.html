@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html style="font-size: {$_COOKIE['fontsize']|default='52px'};">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=no">
+    <meta name="Keywords" content="{key}" />
+    <meta name="Description" content="{desc}" />
+    <link rel="stylesheet" href="{templates}/static/css/style.css">
+    <title>{title}</title>
+</head>
+<body>
+    <div id="app">
+       <div class="x-home">
+            <div class="x-page__header van-hairline--bottom">
+                <a href="javascript:history.back();"></a>
+                <span class="x-page__title">排行榜</span>
+                <div class="header-menu" onclick="javascript:location.href='/';">
+                    <i class="icon-shouye-h is-active" style="font-size: 0.4rem;"></i>
+                </div>
+            </div>
+            <div class="x-page__content">
+                <div class="x-rank">
+                    <div class="x-rank__menu">
+												{小说类型排行:1,2,7,12}
+                        <a href="{url}">
+													<p class="x-rank__menu--item{cur} is-active{/cur}">{小说类型排行名字}</p>
+												</a>
+                        {/小说类型排行}
+                    </div>
+                    <div class="x-rank__list" style="height: calc(736px - 1.2rem);">
+                        {小说列表:数量=50}
+                        <div class="x-book x-rank__book van-hairline--bottom">
+                            <a href="{url}">
+                            <div class="x-book__multi">
+                                <div class="x-book__coverbox">
+                                    <img class="x-book__cover" src="{小说封面}" style="width: 1.3rem; height: 1.73333rem;">      
+                                    <div class="x-book__coverindex">
+                                        <span>{i}</span>
+                                    </div>
+                                </div>
+                                <div class="x-book__text--multi" style="width: calc(100% - 1.3rem); height: 1.73333rem;">
+                                    <div class="x-rank__book--info">
+                                        <p class="x-info__name">{小说名字}</p>
+                                        <p class="x-info__author">
+                                            {小说分类名字}
+                                            <span>{小说作者}</span>
+                                        </p>
+                                        <p class="x-info__intro">
+                                            {小说简介:30}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            </a>
+                        </div>
+                        {/小说列表}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript" src="{templates}/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="{templates}/static/js/global.js"></script>
+</body>
+</html>

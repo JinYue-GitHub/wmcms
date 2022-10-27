@@ -1,0 +1,108 @@
+{header:user/inc_header.html}
+<script type="text/javascript" src="/files/js/easydialog/easydialog.js"></script>
+<link rel="stylesheet" type="text/css" href="/files/js/easydialog/easydialog.css" />
+<script>
+$(document).ready(function(){
+	$("#nv").find("li a").eq("7").addClass("nvcur");
+	$('.bind').click(function(){
+	    var type = $(this).data('type');
+	    easydialog_url('user.bind','绑定账号','',320,200,{"type":type});
+	})
+});
+</script>
+<style>
+h2{font-size: 14px;}
+.xw0{margin-left: 15px;font-size: 12px;}
+.pf_l li{float: left;width: auto;margin-right: 35px;color: #5a5a5a;}
+.pf_l em{padding-right: 2px;}
+.bm_h{height: 32px;line-height: 36px;}
+.table_show,#pcr{border: 2px solid #f4f4f4;width: 100%;margin: 15px 0;}
+.table_show th,.table_show td,#pcr td,#pcr th{padding: 11px 0 11px 8px;}
+.table_show th,#pcr th{color: #acacac;}
+.table_show td,#pcr td{color: #5a5a5a;}
+.md_ctrl{margin: 15px 0;}
+.block_title{padding-bottom: 8px;border-bottom: 1px dashed #cdcdcd;}
+.group_show{position: absolute;top: 0px;right: 0px;}
+.group_show li{float: left;margin-left: 30px;}
+#pbbs,#psts .pf_l{overflow: hidden;border: solid #f4f4f4;border-width: 2px 2px 1px 1px;}
+#pbbs div,#psts .pf_l div{/*float: left;width: 357px;*/border-bottom: 1px solid #f4f4f4;}
+#pbbs span,#psts .pf_l span{padding: 11px 0 11px 10px;display: inline-block;color: #5a5a5a;}
+#pbbs .th,#psts .pf_l .th{width: 10%;padding-right: 10px;text-align: right;border: solid #f4f4f4;border-width: 0 1px 0 1px; color: #acacac;}
+#psts{margin-top: 20px;}
+.bind_box{text-align: right;width: 82%;}
+.bind{cursor: pointer;}
+.bind_box b{ color:red;}
+</style>
+
+<div id="ct" class="ct2 wp cl">
+	<div class="mn">
+		<div class="bm">
+			<div class="bm_h"><h1 class="mt">登陆方式</h1></div>
+			<div class="bm_c">
+				<div class="bm_c u_profile">
+				    <div class="pbm mbm bbda cl" style="position: relative;">
+						<div style="clear: both"></div>
+					    <h2 class="mbn">安全验证</h2>
+						<div id="pbbs" class="pf_l">
+    						<div><span class="th" style="">邮 箱</span><span class="bind_box">{邮箱已验证}<b>{用户邮箱}</b>{/邮箱已验证}{邮箱未验证}<a class="bind" data-type="email">立即绑定</a>{/邮箱未验证}</span></div>
+    						
+    						<div><span class="th" style="">手 机</span><span class="bind_box">{手机已验证}<b>{用户手机}</b>{/手机已验证}{手机未验证}<a class="bind" data-type="tel">立即绑定</a>{/手机未验证}</span></div>
+						</div>
+					    <h2 class="mbn" style="margin-top: 10px;">其他登录方式</h2>
+						<div id="pbbs" class="pf_l other">
+						    {qq登录开启}<div><span class="th" style="">Q Q</span>
+						    <span class="bind_box">
+						        {qq登录已绑定}<a href="{qq登录取消绑定}" onclick="if(confirm('确认要取消QQ登录绑定吗？')==false){return false}"><b>取消绑定</b></a>{/qq登录已绑定}
+						        {qq登录未绑定}<a href="{qq登录}">绑定QQ</a>{/qq登录未绑定}
+						    </span></div>
+						    {/qq登录开启}
+						    
+						    {微信登录开启}<div><span class="th" style="">微信平台</span>
+						    <span class="bind_box">
+						        {微信登录已绑定}<a href="{微信登录取消绑定}" onclick="if(confirm('确认要取消微信登录绑定吗？')==false){return false}"><b>取消绑定</b></a>{/微信登录已绑定}
+						        {微信登录未绑定}<a href="{微信登录}">绑定微信</a>{/微信登录未绑定}
+						    </span></div>
+						    {/微信登录开启}
+						    
+						    {微信公众号登录开启}<div><span class="th" style="">微信公众号</span>
+						    <span class="bind_box">
+						        {微信公众号登录已绑定}<a href="{微信公众号登录取消绑定}" onclick="if(confirm('确认要取消微信公众号登录绑定吗？')==false){return false}"><b>取消绑定</b></a>{/微信公众号登录已绑定}
+						        {微信公众号登录未绑定}<a href="{微信公众号登录}">绑定公众号</a>{/微信公众号登录未绑定}
+						    </span></div>{/微信公众号登录开启}
+						    
+						    {微博登录开启}<div><span class="th" style="">微 博</span>
+						    <span class="bind_box">
+    						    {微博登录已绑定}<a href="{微博登录取消绑定}" onclick="if(confirm('确认要取消微博登录绑定吗？')==false){return false}"><b>取消绑定</b></a>{/微博登录已绑定}
+    						    {微博登录未绑定}<a href="{微博登录}">绑定微博</a>{/微博登录未绑定}
+						    </span></div>{/微博登录开启}
+						    
+						    {百度登录开启}<div><span class="th" style="">百 度</span>
+						    <span class="bind_box">
+						        {百度登录已绑定}<a href="{百度登录取消绑定}" onclick="if(confirm('确认要取消百度登录绑定吗？')==false){return false}"><b>取消绑定</b></a>{/百度登录已绑定}
+						        {百度登录未绑定}<a href="{百度登录}">绑定百度</a>{/百度登录未绑定}
+						    </span></div>{/百度登录开启}
+						    
+						    {支付宝登录开启}<div><span class="th" style="">支付宝</span>
+						    <span class="bind_box">
+						        {支付宝登录已绑定}<a href="{支付宝登录取消绑定}" onclick="if(confirm('确认要取消支付宝登录绑定吗？')==false){return false}"><b>取消绑定</b></a>{/支付宝登录已绑定}
+						        {支付宝登录未绑定}<a href="{支付宝登录}">绑定支付宝</a>{/支付宝登录未绑定}
+						    </span></div>{/支付宝登录开启}
+						</div>
+					</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="sd">
+		<div id="pcd" class="bm cl">
+			<div class="bm_c">
+				<div class="hm">
+					<p><a href="{头像设置}" class="avtm"><img src="{用户头像}"></a></p>
+					<h2 class="xs2">{用户昵称}</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{footer:user/inc_footer.html}

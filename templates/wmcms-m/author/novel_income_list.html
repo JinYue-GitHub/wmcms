@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{title}</title>
+		<link rel="stylesheet" href="{templates}/static/author/css/style.css">
+		<script src="{templates}/static/author/js/font.js"></script>
+		<script src="{templates}/static/author/js/jquery.min.js"></script>
+	</head>
+	<body>
+		<div class="app">
+			<div class="header">
+				<a href="javascript:history.back(-1)" style="left: 0.1rem;" class="close">〈</a>
+			</div>
+			
+			<div class="list">
+				<div class="info">
+					<div class="nav u-f-ac u-f-jsb">
+						<span {cur:type=all}class="act"{/cur}><a href="{小说收入列表}">总收入</a></span>
+						<span {cur:type=props}class="act"{/cur}><a href="{小说收入列表:props}">道具收入</a></span>
+						<span {cur:type=reward}class="act"{/cur}><a href="{小说收入列表:reward}">打赏收入</a></span>
+						<span {cur:type=sub}class="act"{/cur}><a href="{小说收入列表:sub}">订阅收入</a></span>
+					</div>
+					<div class="yue">
+						<em>您当前共有 {用户金币2数量} {金币2名字}</em>
+						<a href="{提现申请}">申请提现</a>
+					</div>
+				</div>
+				{收入列表:数量=20;排序=收入时间}
+				{无数据}
+				<div class="tis">暂无任何数据</div>
+				{/无数据}
+				<div class="line-1 u-f-ac u-f-jsb">
+					<div class="info">
+						<p>《{收入作品}》{收入来源}</p>
+						<p>{收入时间}</p>
+						
+					</div>
+					<div class="num">
+						<strong>+{收入金币2}</strong>
+						<p>{收入备注}</p>
+					</div>
+				</div>
+				{/收入列表}
+				
+				<div class="page">
+					<a href="{上一页}">上一页</a>
+					<a href="{下一页}">下一页</a>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

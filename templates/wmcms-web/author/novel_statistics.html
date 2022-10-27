@@ -1,0 +1,265 @@
+{header:author/inc_header.html}
+{header:author/inc_toper.html}
+{header:author/inc_nav.html}
+<script>
+$(document).ready(function(){
+	$("#novel_statistics").addClass("act");
+});
+</script>
+<script type="text/javascript" src="/files/js/echarts/echarts.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{templates}/static/css/author/novellist.css">
+<style>
+    .workStateWrap{padding: 20px 20px 0 20px;}
+    .workStateWrap .fmBox{margin: 8px 10px 0 0;height: 164px;}
+    .workStateWrap .fmBox img{ height: 158px;}
+    .workSetList {width: 300px;}
+    .workSetList li{margin-bottom: unset;}
+    .borderRight{border-right: 1px solid #d5d5d5;}
+    .borderTop{border-top: 1px solid #d5d5d5;}
+    .w250{width: 250px;}
+    .card{border: 1px solid #d5d5d5;border-radius: 5px;width:200px;margin-right: 45px;}
+    .card li{padding-left: 65px;}
+    .card li em{width:50px}
+    .card .tag{margin-left: 79px;font-size: 12px;background: #efefef; padding: 5px; border-radius: 5px; width: 45px;display: block; text-align: center;color: #50a8ff;}
+    .card .top{background: red;margin-left: 10px;color: #FFFFFF;padding: 2px 4px 2px 4px;font-size: 12px;}
+    .card .down{background: green;margin-left: 10px;color: #FFFFFF;padding: 2px 4px 2px 4px;font-size: 12px;}
+    .proportion{display:none}
+    #ticketMonthRank{position: absolute;z-index: 999;background: red;width: 110px;color: #FFFFFF;font-size: 14px;padding: 5px;top: 210px;border-top-left-radius: 8px;border-top-right-radius: 8px;}
+    #ticketRecRank{position: absolute;left: 348px;top: 63px;width: 66px;height: 0;text-align: center;border-width: 0px 35px 36px 36px;border-style: none solid solid;border-color: transparent transparent #fa9144;transform: rotate( 45deg);-webkit-transform: rotate( 45deg);-moz-transform: rotate(45deg);color: #FFFFFF;font-size: 12px;}
+</style>
+<div class="mainRight fl">
+    <div class="crumbsWrap">
+        <div style="float: right;">
+            <span style="color:red">切换显示</span>
+            <select id="novel_select" class="modify hidden showselect valid" id="novel" style="display: inline-block; visibility: visible;height: 45px;border: 1px solid #4ea8ff;border-radius: 5px;cursor: pointer;">
+                {小说列表:排序=最新入库}
+                    <option value="{小说id}">ID：{小说id}，{小说名字}</option>
+            	{/小说列表}
+			</select>
+		</div>
+        <i><span>数据统计</span></i>
+    </div>
+    
+    <div id="loading" class="worksCtrlWrap" style="text-align: center;margin-top: 300px;">
+        加载中...
+    </div>
+    <div id="bookManageExist" class="worksCtrlWrap" style="display:none">
+        <!--书籍基本信息开始-->
+        <div class="workStateWrap cf">
+            <div id="ticketMonthRank">月票NO:<span>0</span></div>
+            <div id="ticketRecRank">推荐票<br/>NO:<span>0</span></div>
+            <div class="fmBox fl">
+               <div class="fm"><img src="/files/images/nocover.jpg" id="cover" width="114" height="152"></div>
+            </div>
+            <div class="workSetList fl borderRight">
+                <ul>
+                	<li><em>书号：</em><b id="novel_id">0</b></li>
+                	<li><em>作品名称：</em><b id="novel_name" style="width: 205px;"></b></li>
+                	<li><em>作品分类：</em><b id="type_name"></b></li>
+                	<li><em>发表日期：</em><b id="novel_createtime">0</b></li>
+                	<li><em>章节字数：</em><b id="novel_wordnumber">0</b></li>
+                	<li><em>最后更新：</em><b id="novel_updateime">0</b></li>
+				</ul>
+            </div>
+            <div class="workSetList fl w250 borderRight">
+                <ul>
+                	<li><em>总订阅：</em><b id="sub_all">0</b></li>
+                	<li><em>今日：</em><b id="sub_today">0</b></li>
+                	<li><em>昨日：</em><b id="sub_lastday">0</b></li>
+                	<li><em>本月：</em><b id="sub_month">0</b></li>
+                	<li><em>最高：</em><b id="sub_max">0</b></li>
+                	<li><em>平均：</em><b id="sub_avg">0</b></li>
+				</ul>
+            </div>
+            <div class="workSetList fl w250">
+                <ul>
+                	<li><em>总打赏：</em><b id="reward_all">0</b></li>
+                	<li><em>今日：</em><b id="reward_today">0</b></li>
+                	<li><em>昨日：</em><b id="reward_lastday">0</b></li>
+                	<li><em>本月：</em><b id="reward_month">0</b></li>
+                	<li><em>最高：</em><b id="reward_max">0</b></li>
+                	<li><em>平均：</em><b id="reward_avg">0</b></li>
+				</ul>
+            </div>
+        </div>
+        <!--书籍基本信息结束-->
+        <!--书籍基本信息开始-->
+        <div class="workStateWrap cf">
+            <div class="workSetList fl w250 card">
+                <ul>
+                	<li><em>字数</em><span class="tag" id="chapter_all" style="width: 65px;margin-left: 59px;">0</span></li>
+                	<li><em>今日</em><b><span id="chapter_today">0</span><span class="proportion" id="chapter_proportion"></span></b></li>
+                	<li><em>昨日</em><b id="chapter_lastday">0</b></li>
+				</ul>
+            </div>
+            <div class="workSetList fl w250 card">
+                <ul>
+                	<li><em>书架</em><span class="tag" id="shelf_all">0</span></li>
+                	<li><em>今日</em><b><span id="shelf_today">0</span><span class="proportion" id="shelf_proportion">0</span></b></li>
+                	<li><em>昨日</em><b id="shelf_lastday">0</b></li>
+				</ul>
+            </div>
+            <div class="workSetList fl w250 card">
+                <ul>
+                	<li><em>阅读</em><span class="tag" id="read_all style="width: 65px;margin-left: 59px;"">0</span></li>
+                	<li><em>今日</em><b><span id="read_today">0</span><span class="proportion" id="read_proportion"></span></b></li>
+                	<li><em>昨日</em><b id="read_lastday">0</b></li>
+				</ul>
+            </div>
+            <div class="workSetList fl w250 card">
+                <ul>
+                	<li><em>评论</em><span class="tag" id="replay_all">0</span></li>
+                	<li><em>今日</em><b><span id="replay_today">0</span><span class="proportion" id="replay_proportion">0</span></b></li>
+                	<li><em>昨日</em><b id="replay_lastday">0</b></li>
+				</ul>
+            </div>
+        </div>
+        <!--书籍基本信息结束-->
+        
+        <div class="worksListWrap mb20" id="main" style="height:400px;padding: 20px 20px 0 20px;">
+        </div>
+    </div>
+    
+</div>
+{header:author/inc_footer.html}
+<script type="text/javascript" src="/files/js/easydialog/easydialog.js"></script>
+<script>
+function SetProp(id,today,lastday){
+    if( today != lastday ){
+        if( today==0 ){
+            prop = '-100';
+        }else if(lastday==0){
+            prop = '100';
+        }else{
+            prop = Math.floor((today-lastday)/lastday*100*100)/100;
+        }
+        if( prop > 0 ){
+            $(id).addClass('top');
+            $(id).html('+'+prop+'% ↑');
+        }else{
+            $(id).addClass('down');
+            $(id).html(prop+'% ↓');
+        }
+        $(id).show();
+    }else{
+        $(id).html('');
+        $(id).hide();
+    }
+}
+function GetData(nid){
+    $.ajax({
+		type:"POST",url:"{url:ajax;author.novel_statistics}",data:{nid:nid},dataType:"json",
+		success:function(result){
+			if( result.code != 500 ){
+                $('#loading').hide();
+                $('#bookManageExist').show();
+                var novel = result.data.novel;
+                var sub = result.data.sub;
+                var reward = result.data.reward;
+                var replay = result.data.replay;
+                var read = result.data.read;
+                var shelf = result.data.shelf;
+                var chapter = result.data.chapter;
+                var click = result.data.click;
+                var coll = result.data.coll;
+                var rec = result.data.rec;
+                var ticketMonth = result.data.ticket_month;
+                var ticketRec = result.data.ticket_rec;
+                subMax = sub.max==0?0:sub.max['count'];
+                subMaxDay = subMax==0?'':' [ '+sub.max['day']+' ]';
+                rewardMax = reward.max==0?0:reward.max['count'];
+                rewardMaxDay = rewardMax==0?'':' [ '+reward.max['day']+' ]';
+                //小说信息
+                $('#novel_id').html(novel.novel_id);
+                $('#novel_name').html(novel.novel_name);
+                $('#type_name').html(novel.type_name);
+                $('#novel_createtime').html(FormatTime(novel.novel_createtime,'Y-m-d H:i:s'));
+                $('#novel_wordnumber').html(novel.novel_wordnumber);
+                $('#novel_updateime').html(FormatTime(novel.novel_uptime,'Y-m-d H:i:s'));
+                //订阅
+                $('#sub_all').html(sub.all);
+                $('#sub_today').html(sub.today);
+                $('#sub_lastday').html(sub.lastday);
+                $('#sub_month').html(sub.month);
+                $('#sub_max').html(subMax+subMaxDay);
+                $('#sub_avg').html(sub.avg);
+                //打赏
+                $('#reward_all').html(reward.all);
+                $('#reward_today').html(reward.today);
+                $('#reward_lastday').html(reward.lastday);
+                $('#reward_month').html(reward.month);
+                $('#reward_max').html(rewardMax+rewardMaxDay);
+                $('#reward_avg').html(reward.avg);
+                //评论
+                $('#replay_all').html(replay.all);
+                $('#replay_today').html(replay.today);
+                $('#replay_lastday').html(replay.lastday);
+                SetProp('#replay_proportion',replay.today,replay.lastday);
+                //书架
+                $('#shelf_all').html(shelf.all);
+                $('#shelf_today').html(shelf.today);
+                $('#shelf_lastday').html(shelf.lastday);
+                SetProp('#shelf_proportion',shelf.today,shelf.lastday);
+                //阅读
+                $('#read_all').html(read.all);
+                $('#read_today').html(read.today);
+                $('#read_lastday').html(read.lastday);
+                SetProp('#read_proportion',read.today,read.lastday);
+                //字数
+                $('#chapter_all').html(chapter.all);
+                $('#chapter_today').html(chapter.today);
+                $('#chapter_lastday').html(chapter.lastday);
+                SetProp('#chapter_proportion',chapter.today,chapter.lastday);
+                //月票排名
+                if( ticketMonth.month ){
+                    $('#ticketMonthRank span').html(ticketMonth.month.rank);
+                }else{
+                    $('#ticketMonthRank span').html('未上榜');
+                }
+                //推荐票排名
+                if( ticketRec.month ){
+                    $('#ticketRecRank span').html(ticketRec.month.rank);
+                }else{
+                    $('#ticketRecRank span').html('未上榜');
+                }
+                	
+                var chartDom = document.getElementById('main');
+                var myChart = echarts.init(chartDom);
+                var option;
+                option = {
+                  legend: {},tooltip: {},
+                  dataset: {
+                    dimensions: ['product', '点击排名', '收藏排名', '推荐排名'],
+                    source: [
+                      { product: '总排名', '点击排名': click.all.rank, '收藏排名': coll.all.rank, '推荐排名': rec.all.rank },
+                      { product: '今年', '点击排名': click.year.rank, '收藏排名': coll.year.rank, '推荐排名': rec.year.rank },
+                      { product: '本月', '点击排名': click.month.rank, '收藏排名': coll.month.rank, '推荐排名': rec.month.rank },
+                      { product: '本周', '点击排名': click.week.rank, '收藏排名': coll.week.rank, '推荐排名': rec.week.rank},
+                      { product: '今日', '点击排名': click.today.rank, '收藏排名': coll.today.rank, '推荐排名': rec.today.rank }
+                    ]
+                  },
+                  xAxis: { type: 'category' },yAxis: {},series: [{ type: 'bar' }, { type: 'bar' }, { type: 'bar' }]
+                };
+            
+                option && myChart.setOption(option);
+			}else{
+			    easydialog_autoclose(result.msg,'warning','3000');
+			}
+		},
+		async:true,
+	});
+	
+}
+$(document).ready(function(){
+    GetData($('#novel_select option:selected').val());
+    $('#novel_select').change(function(){
+        $('#loading').show();
+        $('#bookManageExist').hide();
+        $('.proportion').hide();
+        $('.proportion').html('');
+        $('.proportion').removeClass('top');
+        $('.proportion').removeClass('down');
+        GetData($(this).val());
+    })
+});
+</script>

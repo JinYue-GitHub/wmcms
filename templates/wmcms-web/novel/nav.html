@@ -1,0 +1,72 @@
+<div class="mod-top-wr">
+	<div class="mod-top-frame">
+		<div class="mod-top-tool-wr ui-wm">
+			<div class="mod-top-logo-wr ui-left">
+				<h1 class="mod-top-logo ui-left ui-text-hide">
+					<a title="{网站名}" href="{首页}"><img src="{logo}" alt="{网站名}" /><span class="ico-ani"></span></a>
+				</h1>
+				<div class="mod-top-event ui-left ui-dn"></div>
+			</div>
+			<div class="mod-top-search-wr ui-left">
+				<form action="{搜索提交地址}" method="post">
+					<input type="hidden" name="module" value="novel">
+					<input type="hidden" name="type" value="1">
+					<div id="top-search" class="mod-top-search">
+						<div class="mod-search-input-wr ui-left">
+							<input class="mod-search-input" type="text" name="key" placeholder="请输入小说名字"/>
+						</div>
+						<button class="mod-search-submit ui-left ui-text-hide" type="submit">搜索</button>
+					</div>
+				</form>
+
+				<ul class="mod-top-tag" id="hotWord">
+					{热门搜索:数量=5;排序=搜索量;推荐=是;}
+					<li><a href="{url}" title="{搜索关键字}">{搜索关键字}</a></li>
+					{/热门搜索}
+				</ul>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="mod-top-nav-wr">
+		<div class="mod-top-nav ui-wm">
+			<!-- 主导航 -->
+			<ul class="mod-top-nav-list ui-left">
+				<li>
+					<a class="mod-top-nav-home" href="{首页}" title="首页">
+						<span>首页</span>
+						<!--<em class="mod-top-ico-new">&nbsp;</em>-->
+					</a>
+				</li>
+				<li {cur:tid=0}class="active"{/cur}><a href="{全部小说}" title="全部小说"><span>全部小说</span></a></li>
+				<li><a href="{小说排行首页}" title="排行榜"><span>排行榜</span></a></li>
+				{小说分类:数量=7;排序=分类排序}
+				<li {cur}class="active"{/cur}><a href="{url}" title="{小说分类名字}"><span>{小说分类名字}</span></a></li>
+				{/小说分类}
+				<li id="homebox"></li>
+			</ul>
+			<!-- 登录注册 -->
+			<div class="mod-top-nav-tool ui-right" id="loginbox"></div>
+			<script>
+			$(document).ready(function(){
+				$.get("{url:ajax;user.getinfo}",function(data){
+					if(data.code == 200){
+						var newHtml = '';
+						var url = '{用户中心}';
+						if( data.data.new_msg > 0 ){
+							url = '{消息列表}';
+							newHtml = '<em class="mod-top-ico-new">&nbsp;</em>';
+						}
+						$("#homebox").html('<a href="'+url+'" title="个人中心"><span>个人中心</span>'+newHtml+'</a>');
+						$("#loginbox").html('<a class="mod-top-nav-user ui-right" href="{退出登录}">&nbsp; 安全退出</a>');
+					}else if( data.code == 300){
+						$("#loginbox").html('<a class="mod-top-nav-user ui-right" href="javascript:easydialog_url(\'user.login\',\'登录/注册\',\'\',320,420)">&nbsp; 登录/注册</a>');
+					}
+				},"json");
+			});
+			</script>
+		</div>
+		<!-- 主导航栏结束 -->
+	</div>
+</div> 

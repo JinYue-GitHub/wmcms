@@ -1,0 +1,67 @@
+{header:novel/header.html}
+	<link rel="stylesheet" type="text/css" href="{templates}/static/css/wmcms.page.works.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="{templates}/static/css/author/author.css" media="screen" />
+</head>
+<body>
+
+{header:novel/nav.html}
+
+<div id="special_bg" style="padding-top:20px">
+	<div class="ui-wm ui-mb40">
+		<div class="user_msg user-author">
+			<div class="user-info">
+				<p class="name">{笔名}<span>作者</span><span title="作者等级" style="background:red">{小说等级名} [{小说经验值}/{小说等级结束经验}]</span></p>
+				<p class="intro" title="{简介}"><i>作者简介<em>|</em></i>{简介}</p>
+				<p class="num"><span><i>作者公告<em>|</em></i>{公告}</span></p>
+				<!--a href="javascript:;" class="btn"><i>+</i>关注</a--->
+				<p class="signdate"><span>·</span>{格式化:时间:{时间}:n年y月r日} 加入</p>
+			</div>
+			<div class="user-head"><img src="{头像}" alt="{笔名}"></div>
+		</div>
+	
+		<div class="user-author-detail">
+			{cur:{签约小说数量}>0}
+			<div class="author-tag"><span class="icon i01"></span>签约作家</div>
+			<div class="author-detail">
+				<p class="author-detail-msg">{网站名}签约作家。代表作有{小说:小说作者id={id};排序=总点击;数量=3}《{小说名字}》{/小说}等。</p>
+				<p class="author-ach">本站作品<span>{所有小说数量}</span>|&nbsp;&nbsp;&nbsp;&nbsp;签约作品<span>{签约小说数量}</span>|&nbsp;&nbsp;&nbsp;&nbsp;累计字数<span>{格式化:数字:{所有小说字数}:,}</span></p>
+			</div>
+			{/cur}
+			{cur:{签约小说数量}=0}
+			<div class="author-tag"><span class="icon i02"></span>入驻作家</div>
+			<div class="author-detail">
+				<p class="author-detail-msg">{网站名}入驻作家。代表作有{小说:小说作者id={id};排序=总点击;数量=3}《{小说名字}》{/小说}等。</p>
+				<p class="author-ach">本站作品<span>{所有小说数量}</span>|&nbsp;&nbsp;&nbsp;&nbsp;累计字数<span>{格式化:数字:{所有小说字数}:,}</span></p>
+			</div>
+			{/cur}
+		</div>
+	
+		<div style="padding-top:20px"></div>
+		
+		<div class="author-books">
+			<div class="title">Ta的作品</div>
+			<div class="scroll-demo book-lists">
+				<!-- 滚动内容 -->
+				<div class="book-lists-con ">
+					{小说:小说作者id={id};排序=最新更新}
+					<div class="list-cell clearfix">
+						<div class="imgbox"><a href="{url}" target="_blank"><img src="{小说封面}" alt="{小说名字}"></a></div>
+						<div class="list-cell-msg">
+							<p class="tit"><a href="{url}" target="_blank">{小说名字}</a></p>
+							<p class="ms"><a href="{turl}" target="_blank">{小说分类名字}</a><span>|</span>{小说进程}<span>|</span>{小说字数}</p>
+							<p class="ac" title="{小说简介}">{小说简介}</p>
+							<p class="recent"><a href="{小说最新章节url}" target="_blank">最新章节：<span>{小说最新章节名字}</span></a></p>
+							<p class="date">{小说更新时间:y-r s:f:s}</p>
+						</div>
+						<a class="read" href="{url}" target="_blank">查看详情</a>
+						<a class="add" href="{rurl}" target="_blank">立即阅读</a>
+					</div>
+					{/小说}
+					<div class="correct-bot"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	
+{footer:novel/footer.html}

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+	    <meta name="keywords" content="{key}">
+	    <meta name="description" content="{desc}">
+	    <title>{title}</title>
+	    <link rel="stylesheet" href="{templates}/static/css/read.css?v=202204231529" type="text/css"/>
+	    <link rel="stylesheet" href="//at.alicdn.com/t/font_934628_byagqjb6vae.css" type="text/css"/>
+    </head>
+    <body class="skin-default">
+    	<aside id="asideChapter" class="aside" data-is-bind-scroll="true">
+		    <i id="asideOverlay" class="aside-overlay" role="button" title="点击关闭浮层"></i>
+		    <div id="asideChapterContent" class="aside-content"></div>
+			</aside>
+	    <div id="pageRead" class="page-read">
+	    	<content id="readContent" class="page-read-content">
+	    		<div id="readLoadPrev" class="read-load-prev">
+		            <a class="read-load-icon btn-any loading"></a>
+		            <p class="read-load-p">下拉阅读上一章</p>
+		        </div>
+	    		<article id="chapterContent" class="read-article">
+	    			<section class="read-section jsChapterWrapper" data-chapter-id="{章节id}">
+	    			    加载中...
+	    			</section>
+	    		</article>
+	    		<div id="readLoadNext" class="read-load-next">
+	    			<a id="btnLoadNextChapter" href="javascript:" class="btn-normal red" data-size="14" role="button">加载下一章</a>
+	    			<a id="aGotoBookEnd" href="#" class="btn-blank blue" style="display:none">已经是最后一章了 »</a>
+		    	</div>
+		    </content>
+		    <div class="page-read-top">
+		    	<h1 id="chapterTitle" class="read-book-name">{章节名字}</h1>
+		    </div>
+		    <mark id="readPageMark" class="read-page-mark">你刚刚阅读到这里</mark>
+		    <p id="pageNum" class="read-page-num"></p>
+	    </div>
+			
+	    <div id="pageReadOpt" class="page-read-opt" data-settings-str="" data-book-publish="0" data-sale-modes="1" data-has-sub="0">
+	    	<header class="header read-opt-header">
+	    		<a href="javascript:history.back();" class="header-back jsBack">
+	    			<i class="iconfont icon-previewleft"><title>返回</title></i>
+	    		</a>
+	    		<div class="header-operate">
+	    			<!-- <a id="btnPledgeTrigger" href="javascript:" class="iconfont icon-wodetuijianzhuanhongbao" title="打赏" role="button">
+	    			</a> -->
+	    			<a id="readBtnMore" href="javascript:" class="iconfont icon-dotshorizontal jsLayerTrigger" title="更多操作" data-rel="readMoreX" role="menu" aria-expanded="false">
+	    			</a>
+	    		</div>
+	    	</header>
+	    	{未书架}<a href="javascript:location.href='{加入书架}'" id="readJoinSJ" class="read-join-sj" role="button">加入书架</a>{/未书架}
+	    	{已书架}<a class="read-join-sj" role="button">已在书架</a>{/已书架}
+	    	<a href="javascript:" id="voiceBtn" class="read-join-sj" role="button" style="top: 6.5rem;" data-type="voice">A I 听书</a>
+	    	
+            <!-- start 听书模式 -->
+            <div class="mask hidden" id="voiceMask" style="z-index:98"></div>
+            <div class="page-read voice-panel hidden" style="z-index: 99; height:280px;width:100%;position:fixed; padding: 0;">
+                <div class="voice-panel-body">
+                    <div class="guide-popup tip-popup">
+                        <div class="guide-img" >
+                            <div class="voice-playerBtn" style="height: 46px;line-height: 46px;">
+                                <a class="btn" id="j_playerInit" style="background: green;" href="javascript:">开始听书</a>
+                            </div>
+                            <div class="voice-playerLoading hidden">
+                                <a class="red-btn" id="j_playerInit" href="javascript:">播放器初始化中...</a>
+                            </div>
+                            <div class="voice-player hidden">
+                                <div class="vioce-prvenext vioce-prve" style="width: 8%;" title="上一章">&lt;</div>
+                                <div id="player" class="aplayer" style="width: 84%;"></div>
+                                <div class="vioce-prvenext vioce-next" style="width: 8%;" title="下一章">&gt;</div>
+                                <div style="clear:both"></div>
+                            </div>
+                            <div class="voice-set">
+                                <li class="voice-channel-box"><i>发音人渠道</i></li>
+                                <li class="voice-voicet-box"><i>发音人</i><span><select style="font-size: small;"></select></span></li>
+                                <li class="voice-speed-box">
+                                    <i>语速</i>
+                                    <span data-val="-2" class="voice-speed">最慢</span>
+                                    <span data-val="-1" class="voice-speed">慢</span>
+                                    <span data-val="0" class="voice-speed act">正常</span>
+                                    <span data-val="1" class="voice-speed">快</span>
+                                    <span data-val="2" class="voice-speed">最快</span>
+                                </li>
+                                <li class="voice-auto-box">
+                                <i>自动播放下一章</i><cite class="auto-switch"><em class="on" id="j-voiceAutoNextBtn"><a class="lang " id="j-voiceAutoNextSwitch" title="自动播放下一章" href="javascript:">开启</a></em></cite>
+                                </li>
+                            </div>
+                        </div>
+                        <div class="voice-close">
+                            <a class="btn" style="background:red" id="j_closeVoice" href="javascript:">关闭</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end 听书模式 -->
+	    	
+	    	
+	    	<div id="readMoreX" class="read-opt-more">
+	    		<a href="{首页}" class="read-opt-a">
+	    			<i class="iconfont icon-zhuye1"></i>
+	    			<h4>返回首页</h4>
+	    		</a>
+	    		<!-- <a href="javascript:" id="btnDownloadFreeChapters" class="read-opt-a">
+	    			<i class="iconfont icon-lixianxiazai"></i>
+	    			离线章节
+	    		</a> -->
+	    		<a href="{内容链接}" class="read-opt-a">
+	    			<i class="iconfont icon-SU"></i>
+	    			书籍详情
+	    		</a>
+	    		<a href="{我的书架}" class="read-opt-a">
+	    			<i class="iconfont icon-books"></i>
+	    			返回我的书架
+	    		</a>
+		    </div>
+		    <div id="readOptProg" class="read-opt-bot read-opt-prog">
+		    	<div class="read-prog-info">
+		    		<a href="javascript:" id="readProgPrev" class="read-prog-prev">
+		    			<i class="iconfont icon-back" aria-hidden="true"></i>
+		    			上一章
+		    		</a>
+		    		<a href="javascript:" id="readProgNext" class="read-prog-next">
+		    			下一章
+		    			<i class="iconfont icon-you" aria-hidden="true"></i>
+		    		</a>
+		    		<div id="readProgVal" class="read-prog-val">
+		    			<h4 class="ell"></h4>
+		    			<output role="presentation"></output>
+		    		</div>
+		    	</div>
+		    	<div class="read-prog-bar">
+		    		<input type="range" id="readProgRange" name="read-prog" min="0" max="1000" value="0">
+		    	</div>
+		    </div>
+		    <div id="readOptSet" class="read-opt-bot read-opt-set">
+		    	<div class="read-set-font">
+		    		<a href="javascript:" id="readFontDown" class="read-font-down" data-index="0" role="button">
+		    			<i class="iconfont icon-yueduye_zitijianxiao"></i>
+		    			<aria>字号变小</aria>
+		    		</a>
+		    		<a href="javascript:" id="readFontUp" class="read-font-up" data-index="1" role="button">
+		    			<i class="iconfont icon-yueduye_zitizengda"></i>
+		    			<aria>字号变大</aria>
+		    		</a>
+		    		<div class="read-font-bar">
+		    			<div class="range">
+		    				<div class="range-track">
+		    					<a class="range-thumb" role="slider" aria-valuenow="0" aria-valuemax="8" aria-valuemin="1"></a>
+		    				</div>
+		    			</div>
+		    			<input type="range" id="readFontRange" name="font-size" min="1" max="8">
+		    		</div>
+		    	</div>
+		    	<div id="readSetSkin" class="read-set-skin">
+		    		<ul class="btn-group" role="radiogroup">
+		    			<li class="btn-group-cell read-set-cell">
+		    				<input type="radio" id="skinDefault" name="skin" value="default" data-index="0" title="默认皮肤">	    
+		    				<label class="read-skin-default" for="skinDefault" title="默认皮肤">
+		    					<i class="iconfont icon-ok center"></i>
+		    				</label>
+		    			</li>
+		    			<li class="btn-group-cell read-set-cell">
+		    				<input type="radio" id="skinBlue" name="skin" value="blue" data-index="1" title="蓝色皮肤">	    
+		    				<label class="read-skin-blue" for="skinBlue" title="蓝色皮肤">
+		    					<i class="iconfont icon-ok center"></i>
+		    				</label>
+		    			</li>
+		    			<li class="btn-group-cell read-set-cell">
+		    				<input type="radio" id="skinGreen" name="skin" value="green" data-index="2" title="绿色皮肤">	    
+		    				<label class="read-skin-green" for="skinGreen" title="绿色皮肤">
+		    					<i class="iconfont icon-ok center"></i>
+		    				</label>
+		    			</li>
+		    			<li class="btn-group-cell read-set-cell">
+		    				<input type="radio" id="skinLight" name="skin" value="light" data-index="3" title="浅色皮肤">	    
+		    				<label class="read-skin-light" for="skinLight" title="浅色皮肤">
+		    					<i class="iconfont icon-ok center"></i>
+		    				</label>
+		    			</li>
+		    		</ul>
+		    	</div>
+		    	<div id="readSetLayout" class="read-set-layout">
+		    		<ul class="btn-group">
+		    			<li class="btn-group-cell read-set-cell">
+		    				<input type="radio" id="layoutV" name="layout" value="v">	    
+		    				<label class="read-btn-layout" for="layoutV">上下滑动</label>
+		    			</li>
+		    			<li class="btn-group-cell read-set-cell">
+		    				<input type="radio" id="layoutH" name="layout" value="h">	    
+		    				<label class="read-btn-layout" for="layoutH">左右滑动</label>
+		    			</li>
+		    		</ul>
+		    	</div>
+		    </div>
+		    <footer class="read-opt-footer">
+		    	<div class="btn-group">
+		    		<a href="#&amp;asideChapter" id="readBtnChapter" class="btn-group-cell" data-rel="asideChapter" role="button" aria-haspopup="true">
+		    			<i class="iconfont icon-mulu"></i>
+		    			<h4 class="read-opt-footer-h">目录</h4>
+		    		</a>
+		    		<a href="javascript:" id="readBtnProg" class="btn-group-cell jsLayerTrigger" data-rel="readOptProg" role="menuitem">
+		    			<i class="iconfont icon-jindutiao"></i>
+		    			<h4 class="read-opt-footer-h">进度</h4>
+		    		</a>
+		    		<a href="javascript:" id="readBtnSet" class="btn-group-cell jsLayerTrigger" data-rel="readOptSet" role="menuitem">
+		    			<i class="iconfont icon-shezhi"></i>
+		    			<h4 class="read-opt-footer-h">设置</h4>
+		    		</a>
+
+		    		<a href="javascript:" id="readBtnMode" class="btn-group-cell" role="checkbox" title="日间夜间模式切换">
+		    			<i class="iconfont icon-yueliang"></i>
+		    			<h4 class="read-opt-footer-h"></h4>
+		    		</a>
+		    		<a href="{内容链接}" class="btn-group-cell">
+		    			<i class="iconfont icon-pinglun"></i>
+		    			<h4 class="read-opt-footer-h">评论</h4>
+		    		</a>
+		    	</div>
+		    </footer>
+	    </div>
+    </body>
+    <script type="text/javascript" src="{templates}/static/js/zepto.min.js"></script>
+    <script type="text/javascript" src="{templates}/static/js/layer.js"></script>
+    <script type="text/javascript" src="{templates}/static/js/reader.js"></script>
+    <script type="text/javascript">
+		var book = {};
+		book.subUrl = '{url:action;novel.sub&ajax=yes}';
+		book.gold2Name = '{金币2名字}';
+		//书信息
+	    book.Info = {"tid":'{分类id}',"nid":'{id}',"Name":'{名字}',"authorName": '{作者}'}
+	    //页面初始化章节信息
+	    book.chapter = {
+	        //页面进入加载的章节id
+	        id:'{章节id}',title:'{章节名字}',
+	        //章节vip标识
+	        vipStatus : {vip章节},
+	        //上一章id
+	        prevId :'{上一章id}',
+	        //下一章id
+	        nextId :'{下一章id}',
+			content:'',
+	    };
+	    book.chapterUrl = '{章节url}';
+	    book.url = '{内容链接}'
+	    book.nextChapterVip = 0;
+	    book.uid = {用户id};
+	    
+        //是否在等待中
+        var playerLoading = false;
+        //发音人渠道
+        var voiceChannel = '';
+        //渠道发音人列表
+        var voicetChannelList = new Array();
+        //合成语速
+        var voiceSpeed = '0';
+        //是否自动播放下一章
+        var voiceAutoNext = true;
+        //播放器对象
+        var player = null;
+        //语音合成配置
+        var ttsConfigUrl = '{url:ajax;sys.tts_config}';
+        //语音合成URL
+        var ttsUrl = '{url:ajax;sys.tts}';
+        //章节信息
+        var getChapterUrl = '{url:ajax;novel.getchapter}';
+        //章节ID
+        var chapterId = {章节id};
+        //上一章id
+        var chapterPrveId = 0;
+        //下一章id
+        var chapterNextId = 0;
+        //章节标题
+        var chapterName = '{章节名字}';
+        //小说封面
+        var novelCover = '{封面}';
+        //作者
+        var novelAuthor = '{作者}';
+	</script>
+    <script type="text/javascript" src="{templates}/static/js/read/global.js"></script>
+    <script src="/files/js/aplayer/aplayer.js"></script> 
+</html>

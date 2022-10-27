@@ -1,0 +1,47 @@
+{header:novel/header.html}
+	<link rel="stylesheet" type="text/css" href="{templates}/static/css/global.css" media="screen" />
+
+</head>
+<body style="background:#F8F8F8">
+
+{header:novel/nav.html}
+
+
+<div class="mod_958wr mod_gbd mod_wbg mod_of ma mod_all_cata_wr" style="margin:40px auto 50px;min-height:400px">
+	<div class="mod_title"><h3 class="title ssjg txtid fl">{搜索词}搜索结果</h3></div>
+	<p class="ma mod_of mod_bbd all_total_num">{总数据}</p>
+	<ul class="mod_book_list mod_all_works_list mod_of">
+		{搜索结果:数量=28}
+		{无数据}<div>啊哦，暂时没有找到“{搜索词}”相关的小说。</div>{/无数据}
+		<li>
+        	<a href="{url}" title="{小说名字}" class="mod_book_cover db" target="_blank">
+	        	<img src="{小说封面}" class="img100x133 lazy" style="display: block;">
+	        	<div class="mod_book_detail">
+					<div class="mod_book_detail_mask"></div>
+					<div class="mod_book_detail_info">
+						<h3 class="mod_book_update fw">{小说最新章节名字}</h3>
+		        	</div>
+	            </div>
+            </a>
+			<h4 class="mod_book_name"><a href="{url}" title="{小说名字}" class="f14" target="_blank">{小说名字}</a></h4>
+			<div class="mod_books_tag">
+        		<sub class="novel_process{小说进程id} db txtid fl" style="text-indent: inherit;color:#FFFFFF;padding-left: 4px;">{小说进程}</sub>
+        	</div>
+		</li>
+		{/搜索结果}
+	</ul>
+	<p class="ma mod_of mod_btd all_total_num">{总数据}</p>
+	<div class="mod_page">
+		<a href="{第一页}" class="mod_page_next">第一页</a>
+        <a href="{上一页}" class="mod_page_next">上一页</a>
+        {跳页:3}
+	        {选中页}<a href="javascript:void(0)" class="current">{i}</a>{/选中页}
+	        <a href="{url}">{i}</a>
+        {/跳页}
+        <a href="{下一页}" class="mod_page_next">下一页</a>
+        <a href="{最后页}" class="mod_page_next">最后页</a>
+	</div>   
+</div>
+
+
+{footer:novel/footer.html}

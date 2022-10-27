@@ -1,0 +1,494 @@
+body,ul,li,p,table,h1,h2,h3,h4,h5{
+	margin: 0;
+	padding: 0;
+}
+i,em{
+	font-style: normal;
+}
+a{
+	text-decoration: none;
+}
+ul,li{
+	list-style-type: none;
+}
+body{
+	max-width: 7.5rem;
+	margin: 0 auto;
+	font-size: 0.35rem;
+}
+
+/* flex布局 */
+.u-f,.u-f-ac,.u-f-ajc{
+    display: flex;
+}
+.u-f-ac,.u-f-ajc{
+    align-items: center;
+}
+.u-f-ajc{
+    justify-content: center;
+}
+.u-f-jsb{
+    justify-content: space-between;
+}
+.u-f-wrap{
+    flex-wrap: wrap;
+}
+.u-f1{
+    flex: 1;
+}
+.u-f-column{
+    flex-direction: column;
+}
+
+.header{
+	position: relative;
+	background-image: linear-gradient(to bottom, #84b7ff, #5ca5ff);
+	/* border-radius: 0 0 0.6rem 0.6rem; */
+	padding: 0.4rem 0.2rem;
+}
+.header .headPic div,.header .headPic div img{
+	width: 1.5rem;
+	height: 1.5rem;
+	border-radius: 0.2rem;
+}
+.header .nickname{
+	padding: 0.1rem 0;
+	font-size: 0.40rem;
+	color: white;
+}
+.header .sign{
+	padding: 0.1rem 0;
+	font-size: 0.28rem;
+	color: #f1f4f7;
+	margin-bottom: 0.2rem;
+}
+.header .menu a{
+	display: block;
+	font-size: 0.22rem;
+	margin: 0 0.2rem;
+	padding: 0.1rem 0.2rem;
+	border: 1px solid #ffffff;
+	color: #F5F5F5;
+	background: rgba(255,255,255,0.3);
+	border-radius: 0.05rem;
+}
+.header .close{
+	position: absolute;
+	left: 0.3rem;
+	top: 0.2rem;
+	color: white;
+	font-size: 0.35rem;
+}
+.header .more{
+	position: absolute;
+	right: 0.2rem;
+	top: 0.2rem;
+	font-size: 0.30rem;
+	color: white;
+}
+.info .title{
+	margin: 0.2rem;
+	padding: 0 0.2rem;
+	height: 0.4rem;
+	line-height: 0.4rem;
+	border-left: 2px solid #f98;
+}
+.info .title .more{
+	float: right;
+	color: #e6e6e6;
+}
+.info .gonggao{
+	margin: 0.2rem;
+	font-size: 0.28rem;
+	color: #999999;
+}
+.info .gonggao li{
+	padding: 0.1rem 0;
+}
+.info .gonggao li a{
+	color: #999999;
+}
+.info .line{
+	border-top: 1px dashed #f8f8f8;
+	height: 1px;
+}
+.list{
+	padding: 0.2rem 0;
+}
+.list .cover {
+	width: 1.4rem;
+	flex-shrink: 0;
+}
+.list .cover img{
+	width: 100%;
+	height: 100%;
+}
+.list .info{
+	margin-left: 0.2rem;
+}
+.list .info h2{
+	font-size: 0.32rem;
+	color: #333333;
+	margin-top: 0.1rem;
+}
+.list .info h2 a{
+	color: #333333;
+}
+.list .info h5{
+	font-size: 0.25rem;
+	color: #999;
+	margin: 0.05rem 0;
+	font-weight: 500;
+}
+.list .info p{
+	color: #999999;
+	margin-bottom: 0.05rem;
+}
+.list .next{
+	display: block;
+	text-align: center;
+	line-height: 0.45rem;
+	width: 1.5rem;
+	height: 0.45rem;
+	background-color: #3EAAF7;
+	color: white;
+}
+.basicEdit{
+	padding: 0.2rem;
+}
+.basicEdit li{
+	padding: 0.15rem 0;
+	font-size: 0.34rem;
+	color: #999999;
+}
+.basicEdit li em{
+	text-align: right;
+	width: 1.5rem;
+	display: inline-block;
+	color: #333333;
+}
+.basicEdit li p{
+	border: 1px solid #f8f8f8;
+	margin: 0.1rem;
+}
+.basicEdit li p textarea,.basicEdit li p input{
+	border: none;
+	width: 100%;
+	height: 100%;
+	padding: 0.2rem;
+	outline: medium;
+	font-size: 0.25rem;
+	color: #999999;
+	resize: none;
+	box-sizing:border-box;
+}
+.basicEdit li p i{
+	font-size: 0.28rem;
+}
+.basicEdit #form2 li em{
+	text-align: left;
+	font-size: 0.28rem;
+	margin-left: 0.1rem;
+}
+.basicEdit #form2 li i{
+	font-size: 0.25rem;
+	color: #99999;
+	margin-left: 0.1rem;
+}
+.basicEdit button{
+	border: none;
+	background-color: #3EAAF7;
+	width: 3rem;
+	height: 0.8rem;
+	display: block;
+	margin: 0.2rem auto;
+	text-align: center;
+	font-size: 0.25rem;
+	color: white;
+}
+.list .table{
+	padding: 0.2rem;
+}
+.list table{
+	width: 100%;
+	text-align: center;
+	border: 1px solid #f8f8f8;
+}
+.list table th,.list table td{
+	font-size: 0.28rem;
+	font-weight: 500;
+}
+.list table td{
+	color: #999999;
+}
+.list .table .page{
+	font-size: 0.25rem;
+	text-align: right;
+	margin: 0.2rem 0;
+}
+.list .table .page a{
+	margin-left: 0.2rem;
+	color: #333;
+}
+.info .yue{
+	font-size: 0.28rem;
+	color: #666666;
+}
+.info .yue a{
+	padding: 0.03rem 0.1rem;
+	background-color: #3EAAF7;
+	color: white;
+	font-size: 0.25rem;
+	border-radius: 0.05rem;
+}
+.info .nav{
+	margin: 0.1rem 0;
+	margin-bottom: 0.2rem;
+	padding-right: 0.2rem;
+}
+.info .nav span{
+	font-size: 0.30rem;
+	border-bottom: 1px solid transparent;
+}
+.info .nav span a{
+	color: #999999;
+}
+.info .nav .act{
+	border-color: #3EAAF7;
+}
+.info .nav .act a{
+	color: #3EAAF7;
+}
+.info .yue{
+	padding: 0.2rem 0;
+}
+.line-1{
+	padding: 0.2rem;
+	border-top: 1px solid #F5F5F5;
+}
+.line-1 .info p{
+	font-size: 0.28rem;
+}
+.line-1 .num{
+	font-size: 0.30rem;
+}
+.line-1 .num strong{
+	color: #4caf50;
+}
+.line-1 .num p{
+	color: #999999;
+	font-size: 0.25rem;
+	text-align: right;
+}
+.page {
+	padding: 0.2rem;
+	text-align: right;
+	font-size: 0.28rem;
+}
+.page a{
+	color: #666666;
+	margin-left: 0.2rem;
+}
+.tis{
+	padding: 0.2rem;
+	font-size: 0.28rem;
+	color: #999999;
+}
+.newBook{
+	padding: 0.2rem;
+}
+.newBook .input{
+	border: 1px solid #eeeeee;
+	border-radius: 0.05rem;
+	margin: 0.2rem 0;
+}
+.newBook .input:nth-of-type(1){
+	margin: 0;
+}
+.newBook input,.newBook select{
+	border: none;
+	height: 0.5rem;
+	line-height: 0.5rem;
+	font-size: 0.28rem;
+	outline: medium;
+	padding: 0 0.2rem;
+	box-sizing:border-box;
+}
+.newBook textarea{
+	border: none;
+	height: 2rem;
+	width: 7.1rem;
+	font-size: 0.28rem;
+	outline: medium;
+	padding: 0.2rem;
+	box-sizing:border-box;
+	border: 1px solid #eeeeee;
+	margin-bottom: 0.2rem;
+}
+.newBook .right{
+	flex-shrink: 0;
+}
+.newBook .right,.newBook .right img{
+	width: 2.28rem;
+}
+.edit{
+	border: none;
+	border: 1px solid #f8f8f8;
+	width: 100%;
+	height: 2rem;
+	outline: medium;
+	padding: 0.2rem;
+	font-size: 0.28rem;
+	box-sizing:border-box;
+}
+.submit{
+	display: block;
+	border: none;
+	background-color: #3EAAF7;
+	width: 1.8rem;
+	height: 0.6rem;
+	margin: 0.2rem 0;
+	color: white;
+	font-size: 0.28rem;
+}
+.inputbox{
+	margin: 0.2rem 0;
+}
+.inputbox .otc{
+	margin-right: 0.2rem;
+}
+.inputbox .otc .name{
+	font-size: 0.32rem;
+}
+.fsize{
+	font-size: 0.25rem;
+	color: #666666;
+}
+.edittitle{
+	border: 1px solid #f8f8f8;
+	margin: 0.2rem 0;
+}
+.editnav{
+	display: none;
+	position: fixed;
+	right: 0;
+	top: 0;
+	width: 3rem;
+	height: 100%;
+	background-color: #313131;
+}
+.editnav ul li{
+	height: 0.6rem;
+	line-height: 0.6rem;
+	padding: 0.2rem 0;
+	font-size: 0.32rem;
+	text-align: center;
+	border-top: 1px solid #3e3e3e;
+}
+.editnav ul li:nth-of-type(1){
+	border: none;
+}
+.editnav ul li a{
+	color: white;
+}
+#main{
+	position: relative;
+}
+#main.right{
+	right: 3rem;
+}
+#main.right .editnav{
+	display: block;
+}
+.chapterlist{
+	padding: 0.2rem;
+}
+.listLine{
+	line-height: 0.8rem;
+	border-bottom: 1px solid #f8f8f8;
+}
+.listLine .list-a h2{
+	font-size: 0.32rem;
+	font-weight: 500;
+}
+.list-a,.list-b{
+	width: 100%;
+}
+.list-b li{
+	font-size: 0.32rem;
+	padding: 0 0.2rem;
+	border-top: 1px solid #f1f1f1;
+}
+.list-b li:nth-of-type(1){
+	border: none;
+}
+.list-b .f12 i{
+	margin-right: 0.2rem;
+}
+.status_0{
+	color: #AE9467;
+}
+.status_1{
+	color: #8bc34a;
+}
+.status_2{
+	color: red;
+}
+.list-c li{
+	font-size: 0.26rem;
+}
+.list-c li h2{
+	font-weight: 500;
+	color: #333333;
+	height: 0.6rem;
+	line-height: 0.6rem;
+}
+.list-c li h2 span{
+	font-size: 0.23rem;
+	color: red;
+}
+.list-c li p{
+	color: #999999;
+	line-height: 0.6rem;
+}
+
+.list-d li{
+	font-size: 0.26rem;
+}
+.list-d li h2{
+	font-weight: 500;
+	color: #333333;
+	line-height: 0.6rem;
+}
+.list-d li h2 span{
+	font-size: 0.23rem;
+}
+.list-d li p{
+	color: #999999;
+	line-height: 0.6rem;
+}
+.list-d .hedit{
+	font-size: 0.26rem;
+	display: inline;
+}
+.htitle{
+	height: 0.8rem;
+	background-color: #3EAAF7;
+	color: white;
+}
+.infoEdit{
+	padding: 0.2rem;
+}
+.xieyi{
+	font-size: 0.25rem;
+	color: #33333;
+}
+footer{
+	padding: 0.2rem 0;
+	text-align: center;
+	background-color: #f8f8f8;
+}
+footer p{
+	font-size: 0.26rem;
+	color: #999999;
+}

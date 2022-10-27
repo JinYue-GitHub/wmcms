@@ -1,0 +1,38 @@
+{header:author/inc_header.html}
+{header:author/inc_toper.html}
+{header:author/inc_nav.html}
+<script>
+$(document).ready(function(){
+	$("#home").addClass("act");
+});
+</script>
+	
+<div class="mainRight pb260 fl">
+	<div class="authorInfoWrap cf">
+		<div class="headPhotoBox fl">
+			<span></span> <img src="{用户头像}" width="86" height="86">
+		</div>
+		<div class="authorInfoBox fl">
+			<h3>笔名：{作家笔名}(ID:{作家id})</h3>
+			<h3>姓名：{用户真实姓名}</h3>
+			<p>今天是{年}年{月}月{日}日，星期{星期}</p>
+		</div>
+	</div>
+	
+	<div class="midContentWrap">
+		<h3 class="title_h3"><span class="icon news"></span>作家资料</h3>
+		<div class="newsListWrap">
+			<ul id="newsList">
+       			<li class="act" style="margin-top: 10px;">
+       			<div data-node="detail" class="detailNews" style="display: block;">
+       				<p>作家QQ：{用户qq}</p>
+       				<p>作家手机：{用户手机}</p>
+       				<p>作家简介：{作家简介}</p>
+       				<p>作家公告：{作家公告}</p>
+       			</div>
+       			</li>
+			</ul>
+		</div>
+	</div>
+</div>
+{header:author/inc_footer.html}

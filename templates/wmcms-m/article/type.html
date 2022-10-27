@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html style="font-size: {$_COOKIE['fontsize']|default='52px'};">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=no">
+    <meta name="Keywords" content="{key}" />
+    <meta name="Description" content="{desc}" />
+    <link rel="stylesheet" href="{templates}/static/css/style.css">
+    <title>{title}</title>
+</head>
+<body>
+    <div id="app">
+       <div class="x-home">
+            <div class="x-city__header">
+                <img src="{logo}" alt="" class="x-city__logo">
+                <form action="{搜索提交地址}" class="x-city__search">
+                    <input type="text" placeholder="{热门搜索:推荐=是;排序=随机}{搜索关键字}{/热门搜索}" name="key" class="x-city__search--input" autocomplete="off">                    
+                    <input type="hidden" name="module" value="novel">                    
+                    <img src="{templates}/static/images/search.png" id="souya">
+                </form>
+                {已登录}
+                <a class="user" style="background-image: url({用户头像});" href="{用户中心}">{用户昵称}</a>
+                {/已登录}
+            		{未登录}
+                <a class="account" href="{登录}">帐户</a>
+                {/未登录}
+            </div>
+            <ul class="menu f-cb van-hairline--bottom">
+                <li>
+                    <a href="{首页}">首页</a>
+                </li>
+            		<li>
+            		    <a href="{小说男生版}">男生</a>
+            		</li>
+            		<li>
+            		    <a href="{小说女生版}">女生</a>
+            		</li>
+            		<li>
+            		    <a href="{全部小说}">书库</a>
+            		</li>
+            		<li>
+            		    <a href="{小说排行列表}">排行</a>
+            		</li>
+            		<li>
+            		    <a href="{全部文章}" class="crt">文章</a>
+            		</li>
+            </ul>
+            <div class="x-page__content">
+                <div class="x-book__library">
+                    <div class="x-library__books">
+                        <div class="van-list">
+                            <span>
+                                {文章列表:数量=10;}
+																{无数据}
+																<div class='van-list'><div class='x-empty'><img src='{templates}/static/images/empty.png'></div>
+																</div>
+																{/无数据}
+                                <div class="x-book">
+                                    <div class="x-news__multi">
+                                        <div class="x-news__coverbox">
+                                            <a href="{url}">
+                                                <img class="x-book__cover" style="height:100%" src="{文章缩略图}">
+                                            </a>
+                                        </div>
+                                        <div class="x-book__text--multi" style="width: calc(100% - 1.8rem); height: 1.4rem;">
+                                            <a href="{url}">
+                                                <div class="x-book__nocover">
+                                                    <p class="x-news__info--name">{文章标题}</p>
+                                                    <p class="x-news__intro">{文章简介:40}</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {/文章列表}
+                            </span>
+                        </div>
+                        <div class="pages_bottom" style="display: block;">
+                            <ul class="pager">
+                            	<li><a href="{上一页}">«</a></li> 
+                            	<li><a href="{下一页}">»</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript" src="{templates}/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="{templates}/static/js/global.js"></script>
+</body>
+</html>

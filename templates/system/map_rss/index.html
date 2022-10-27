@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>{网站名}-RSS频道聚合</title>
+<style type="text/css">
+#head {margin:0px auto;width:910px;height:29px;}
+#left {width:180px;float:left;}
+#right {width:910px;float:left;}
+#rssbody {margin:0px auto;width:910px}
+body{margin:0;padding:0;background:#fff;}
+.hot_info{border:1px solid #ECEFD0;background:#FEFFF1;margin-bottom:7px;}
+.hot_tit {font-size:14px;color:#f00;font-weight:bold;padding-left:24px;}
+.hot_i_info{text-indent:2em;line-height:24px;padding:0 24px;}
+.tit_r_1{padding-left:24px;font-weight:bold;color:#0076AA;}
+.tit_r_1 a{color:#0076AA; text-decoration:none;}
+.tit_r_1 a:hover{color:#f00; text-decoration:underline;}
+.info_r_1{padding-left:32px;line-height:28px;}
+h3,h4,h5{margin:0px;}
+h3{background-color:#71DDF9;font-size:12px;height:27px;line-height:27px;padding-left:12px;margin-bottom:4px;}
+img{border:0;}
+#titile1{width:760px;float:left;}
+#xml1{width:100px;float:left}
+#dy{width:100px;float:left;display:none}
+h4{background:#DEF5FF;font-size:12px;line-height:18px;padding:4px;padding-left:24px;height: 18px;}
+h3 a,h4 a{color:#0076AA; text-decoration:none;}
+h3{margin-top:20px}
+h3 a:hover,h4 a:hover{color:#f00; text-decoration:underline;}
+h5{font-size:12px;font-weight:200;padding:4px 2em;line-height:28px;text-indent:20px}
+</style>
+</head>
+<body>
+<div id="head"><h1>RSS频道聚合</h1></div>
+<div id="rssbody">
+	<div id="right">
+		<div id="channel">
+			<h3>新闻频道</h3>
+			{文章分类:}
+			<h4><span id="titile1">·<a href="{url}" target="_blank">{文章分类名字}</a></span>
+			<span id="xml1"><a href="/html/sitemap/rss/article/{文章分类id}.xml" target="_blank"><img src="/files/images/xml.gif" border="0"></a></span></h4>
+			<h5>{文章分类简介}</h5>
+			{/文章分类}
+			
+			<h3>小说频道</h3>
+			{小说分类:}
+			<h4><span id="titile1">·<a href="{url}" target="_blank">{小说分类名字}</a></span>
+			<span id="xml1"><a href="/html/sitemap/rss/novel/{小说分类id}.xml" target="_blank"><img src="/files/images/xml.gif" border="0"></a></span></h4>
+			<h5>{小说分类简介}</h5>
+			{/小说分类}
+		</div>
+    </div>
+<div>
+
+<table width="910" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+	<tbody>
+		<tr><td height="6"></td></tr>
+		<tr><td height="1" bgcolor="AFAFAF"></td></tr>
+		<tr><td height="12" align="center"></td></tr>
+		<tr>
+		<td height="19" align="center"><font style="font-size:12px; color:3B3B3B">
+			<a href="{首页}" target="_parent" class="FOOTER">网站首页</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+			<a href="{网站地图:html}" target="_parent" class="FOOTER">HTML地图</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+			<a href="{网站地图:xml}" target="_parent" class="FOOTER">XML地图</a>
+		</font></td>
+		</tr>
+		<tr><td height="12"></td></tr>
+		<tr>
+			<td align="center"><font style="font-size:12px; color:3B3B3B">Copyright © {网站名}&nbsp;版权所有</a></font></td>
+		  </tr>
+	</tbody>
+</table>
+</body>
+</html>

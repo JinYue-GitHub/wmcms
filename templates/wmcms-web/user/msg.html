@@ -1,0 +1,62 @@
+{header:user/inc_header.html}
+<script>
+$(document).ready(function(){
+	$("#nv").find("li a").eq("2").addClass("nvcur");
+});
+</script>
+<style>
+.space_notice .bm{padding: 0 4px;}
+.space_notice .nts{padding-left: 0px;}
+.space_notice .nts dl{border-bottom: 1px solid #f4f4f4;}
+.space_notice .nts dl:last-child{border-bottom: 2px solid #eee;}
+.space_notice .xlda .m{margin: 3px 15px 0 0;}
+.space_notice .ntc_body{margin: 17px 0 0 0;}
+.space_notice .quote{margin: 4px 0;}
+.space_notice .mbn{margin-bottom: 20px !important;}
+.xlda .m {margin-top: 3px;}
+.xld dt{padding-top: 5px;padding-bottom: 22px;}
+.emp{padding-bottom: 60px;}
+.emp span{background: url({templates}/static/images/home_imghack.png) -58px -37px no-repeat transparent;height: 40px;width: 40px;display: inline-block;position: relative;top: 14px;margin-right: 12px;}
+</style>
+
+<div id="ct" class="ct2 wp cl">
+	<div class="mn">
+		<div class="bm">
+			<div class="bm_h"><h1 class="mt"><a href="{消息列表}">消息列表</a> > 消息内容</h1></div>
+			<div class="bm_c">
+				<div class="bm_c u_profile">
+				    <div class="pbm mbm bbda cl" style="position: relative;">
+						<div style="clear: both"></div>
+						<div id="pbbs" class="pf_l">
+						<div class="xld xlda" style= "margin-top: 0px;">
+							<div class="nts">
+								<dl class="cl " style="margin-bottom: 20px;">
+								<dd class="ntc_body" >
+									<a class="d b" href="{删除消息}" title="删除消息">删除消息</a>
+									来自：{发信用户昵称}<br/>
+									时间：{发信时间}<br/>
+									内容：<br/>
+									{消息内容}
+								</dd>
+								</dl>
+							</div>
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="sd">
+		<div id="pcd" class="bm cl">
+			<div class="bm_c">
+				<div class="hm">
+					<p><a href="{头像设置}" class="avtm"><img src="{用户头像}"></a></p>
+					<h2 class="xs2">{用户昵称}</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{footer:user/inc_footer.html}
